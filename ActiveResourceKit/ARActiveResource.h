@@ -26,6 +26,9 @@
 
 @interface ARActiveResource : NSObject
 
-@property(retain) NSURL *site;
+@property(retain, NS_NONATOMIC_IPHONEONLY) NSURL *site;
+@property(retain, NS_NONATOMIC_IPHONEONLY) NSString *prefixSource;
+
+- (NSString *)prefixWithOptions:(NSDictionary *)options;
 
 @end

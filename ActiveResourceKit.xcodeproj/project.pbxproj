@@ -15,6 +15,7 @@
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
 		7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
+		78B10AAC140BFE1A007E5683 /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B10A9E140BF7F7007E5683 /* ActiveSupportKit.framework */; };
 		78D3D6F3140BC3B800DD4278 /* ARActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D3D6F4140BC3B800DD4278 /* ARActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARActiveResource.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +28,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7846AA13140BAAE100FE58E5;
 			remoteInfo = ActiveResourceKit;
+		};
+		78B10A9D140BF7F7007E5683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 783545EB13EA64C50049385C;
+			remoteInfo = ActiveSupportKitFramework;
+		};
+		78B10A9F140BF7F7007E5683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7835460313EA64C50049385C;
+			remoteInfo = ActiveSupportKitFrameworkTests;
+		};
+		78B10AA1140BF7F7007E5683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78AFBD8F13EC587900BBFC62;
+			remoteInfo = ActiveSupportKitLibrary;
+		};
+		78B10AA3140BF7F7007E5683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78AFBD9D13EC587900BBFC62;
+			remoteInfo = ActiveSupportKitLibraryTests;
+		};
+		78B10AAA140BF810007E5683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 783545EA13EA64C50049385C;
+			remoteInfo = ActiveSupportKitFramework;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -45,6 +81,7 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActiveSupportKit.xcodeproj; path = ../ActiveSupportKit/ActiveSupportKit.xcodeproj; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARActiveResource.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARActiveResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARActiveResource.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
@@ -55,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B10AAC140BFE1A007E5683 /* ActiveSupportKit.framework in Frameworks */,
 				7846AA18140BAAE100FE58E5 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +113,7 @@
 		7846AA08140BAAE100FE58E5 = {
 			isa = PBXGroup;
 			children = (
+				78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */,
 				7846AA1D140BAAE100FE58E5 /* ActiveResourceKit */,
 				7846AA33140BAAE100FE58E5 /* ActiveResourceKitTests */,
 				7846AA16140BAAE100FE58E5 /* Frameworks */,
@@ -151,6 +190,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		78B10A90140BF7F6007E5683 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78B10A9E140BF7F7007E5683 /* ActiveSupportKit.framework */,
+				78B10AA0140BF7F7007E5683 /* ActiveSupportKitTests.octest */,
+				78B10AA2140BF7F7007E5683 /* libActiveSupportKit.a */,
+				78B10AA4140BF7F7007E5683 /* ActiveSupportKitLibraryTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -178,6 +228,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				78B10AAB140BF810007E5683 /* PBXTargetDependency */,
 			);
 			name = ActiveResourceKit;
 			productName = ActiveResourceKit;
@@ -221,6 +272,12 @@
 			mainGroup = 7846AA08140BAAE100FE58E5;
 			productRefGroup = 7846AA15140BAAE100FE58E5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 78B10A90140BF7F6007E5683 /* Products */;
+					ProjectRef = 78B10A8F140BF7F6007E5683 /* ActiveSupportKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7846AA13140BAAE100FE58E5 /* ActiveResourceKit */,
@@ -228,6 +285,38 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		78B10A9E140BF7F7007E5683 /* ActiveSupportKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ActiveSupportKit.framework;
+			remoteRef = 78B10A9D140BF7F7007E5683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78B10AA0140BF7F7007E5683 /* ActiveSupportKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			name = ActiveSupportKitTests.octest;
+			path = ActiveSupportKitFrameworkTests.octest;
+			remoteRef = 78B10A9F140BF7F7007E5683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78B10AA2140BF7F7007E5683 /* libActiveSupportKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libActiveSupportKit.a;
+			remoteRef = 78B10AA1140BF7F7007E5683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78B10AA4140BF7F7007E5683 /* ActiveSupportKitLibraryTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ActiveSupportKitLibraryTests.octest;
+			remoteRef = 78B10AA3140BF7F7007E5683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7846AA12140BAAE100FE58E5 /* Resources */ = {
@@ -290,6 +379,11 @@
 			target = 7846AA13140BAAE100FE58E5 /* ActiveResourceKit */;
 			targetProxy = 7846AA30140BAAE100FE58E5 /* PBXContainerItemProxy */;
 		};
+		78B10AAB140BF810007E5683 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ActiveSupportKitFramework;
+			targetProxy = 78B10AAA140BF810007E5683 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -334,6 +428,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				PUBLIC_HEADERS_FOLDER_PATH = /include;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -353,6 +448,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PUBLIC_HEADERS_FOLDER_PATH = /include;
 				SDKROOT = macosx;
 			};
 			name = Release;
