@@ -33,15 +33,29 @@
 	// its site URL. Then ensure that the site property responds as it should,
 	// i.e. as an URL. This test exercises NSURL more than
 	// ARActiveResource. Never mind.
+	//
+	// Make sure that the site URL can accept “prefix parameters,” as Rails dubs
+	// them. This term refers to path elements beginning with a colon and
+	// followed by a regular-expression word. ActiveResourceKit substitutes
+	// these for actual parameters.
 	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
-	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y"]];
+	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y;a=b"]];
 	STAssertEqualObjects([[resource site] scheme], @"http", nil);
 	STAssertEqualObjects([[resource site] user], @"user", nil);
 	STAssertEqualObjects([[resource site] password], @"password", nil);
 	STAssertEqualObjects([[resource site] host], @"localhost", nil);
 	STAssertEqualObjects([[resource site] port], [NSNumber numberWithInt:3000], nil);
 	STAssertEqualObjects([[resource site] path], @"/resources/:resource_id", nil);
-	STAssertEqualObjects([[resource site] query], @"x=y", nil);
+	STAssertEqualObjects([[resource site] query], @"x=y;a=b", nil);
+}
+
+- (void)testEmptyPath
+{
+	// Empty URL paths should become empty strings after parsing. This tests the
+	// Foundation frameworks implementation of an URL.
+	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
+	STAssertEqualObjects([[resource site] path], @"", nil);
 }
 
 @end
