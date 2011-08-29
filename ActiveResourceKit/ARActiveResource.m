@@ -1,4 +1,4 @@
-// ActiveResourceKitTests ActiveResourceKitTests.h
+// ActiveResourceKit ARActiveResource.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,8 +22,10 @@
 //
 //------------------------------------------------------------------------------
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ARActiveResource.h"
 
-@interface ActiveResourceKitTests : SenTestCase
+@implementation ARActiveResource
+
+@synthesize site;
 
 @end

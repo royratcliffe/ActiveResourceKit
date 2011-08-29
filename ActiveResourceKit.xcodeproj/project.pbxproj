@@ -15,6 +15,9 @@
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
 		7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
+		78D3D6F3140BC3B800DD4278 /* ARActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78D3D6F4140BC3B800DD4278 /* ARActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARActiveResource.m */; };
+		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		78D3D6F1140BC3B800DD4278 /* ARActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARActiveResource.h; sourceTree = "<group>"; };
+		78D3D6F2140BC3B800DD4278 /* ARActiveResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARActiveResource.m; sourceTree = "<group>"; };
+		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,9 @@
 		7846AA1D140BAAE100FE58E5 /* ActiveResourceKit */ = {
 			isa = PBXGroup;
 			children = (
+				78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */,
+				78D3D6F1140BC3B800DD4278 /* ARActiveResource.h */,
+				78D3D6F2140BC3B800DD4278 /* ARActiveResource.m */,
 				7846AA1E140BAAE100FE58E5 /* Supporting Files */,
 			);
 			path = ActiveResourceKit;
@@ -149,6 +158,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D3D6F3140BC3B800DD4278 /* ARActiveResource.h in Headers */,
+				78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D3D6F4140BC3B800DD4278 /* ARActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +428,7 @@
 				7846AA41140BAAE100FE58E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7846AA42140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +437,7 @@
 				7846AA44140BAAE100FE58E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
