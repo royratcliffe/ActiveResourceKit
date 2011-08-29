@@ -29,15 +29,18 @@
 
 - (void)testSetUpSite
 {
-	// Start off with a very simple test. Just set up a resource. Load it with its site URL. Then ensure that the site property responds as it should, i.e. as an URL. This test exercises NSURL more than ARActiveResource. Never mind.
+	// Start off with a very simple test. Just set up a resource. Load it with
+	// its site URL. Then ensure that the site property responds as it should,
+	// i.e. as an URL. This test exercises NSURL more than
+	// ARActiveResource. Never mind.
 	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
-	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/path/to?x=y"]];
+	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y"]];
 	STAssertEqualObjects([[resource site] scheme], @"http", nil);
 	STAssertEqualObjects([[resource site] user], @"user", nil);
 	STAssertEqualObjects([[resource site] password], @"password", nil);
 	STAssertEqualObjects([[resource site] host], @"localhost", nil);
 	STAssertEqualObjects([[resource site] port], [NSNumber numberWithInt:3000], nil);
-	STAssertEqualObjects([[resource site] path], @"/path/to", nil);
+	STAssertEqualObjects([[resource site] path], @"/resources/:resource_id", nil);
 	STAssertEqualObjects([[resource site] query], @"x=y", nil);
 }
 
