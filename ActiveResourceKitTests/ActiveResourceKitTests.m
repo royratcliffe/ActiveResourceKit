@@ -88,4 +88,12 @@
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
 }
 
+- (void)testPrefixParameterWithPercentEscapes
+{
+	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	[resource setPrefixSource:@"/resources/:resource_id"];
+	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
+	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
+}
+
 @end
