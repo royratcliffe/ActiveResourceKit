@@ -34,7 +34,7 @@
 - (NSString *)prefixWithOptions:(NSDictionary *)options
 {
 	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSource] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
-		return [options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]];
+		return [[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description];
 	}];
 }
 

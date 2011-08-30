@@ -65,8 +65,7 @@
 	//	require 'active_resource'
 	//	
 	//	class Resource < ActiveResource::Base
-	//	self.site = 'http://localhost:3000'
-	//	self.prefix = '/resources/:resource_id'
+	//	  self.prefix = '/resources/:resource_id'
 	//	end
 	//	
 	//	p Resource.prefix(:resource_id => 1)
@@ -76,9 +75,15 @@
 	//	"/resources/1"
 	//
 	// The following test performs the same thing but using Objective-C.
+	//
+	// Note that the options can contain numbers and other objects. Method
+	// -[ARActiveResource prefixWithOptions:] places the “description” of the
+	// object answering to the prefix-parameter key (resource_id in this test
+	// case). Hence the options dictionary can contain various types answering
+	// to -[NSObject description], not just strings.
 	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
 	[resource setPrefixSource:@"/resources/:resource_id"];
-	NSDictionary *options = [NSDictionary dictionaryWithObject:@"1" forKey:@"resource_id"];
+	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
 	NSString *prefix = [resource prefixWithOptions:options];
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
 }
