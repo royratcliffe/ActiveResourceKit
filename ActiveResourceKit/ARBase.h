@@ -62,7 +62,16 @@
  */
 - (NSSet *)prefixParameters;
 
+/*!
+ * Answers the prefix after translating the prefix parameters according to the
+ * given prefix-options dictionary. The options dictionary may be nil. In that
+ * case -prefixWithOptions: answers the prefix unmodified. This assumes that the
+ * prefix contains no untranslated prefix parameters.
+ */
 - (NSString *)prefixWithOptions:(NSDictionary *)options;
+
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions;
+- (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
+- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 
 @end

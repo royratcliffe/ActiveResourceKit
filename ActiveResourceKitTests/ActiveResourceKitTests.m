@@ -37,6 +37,17 @@
 
 @implementation ActiveResourceKitTests
 
+- (void)setUp
+{
+	post = [[Post alloc] init];
+	[post setSite:[NSURL URLWithString:@"http://localhost:3000"]];
+}
+
+- (void)tearDown
+{
+	[post release];
+}
+
 - (void)testSetUpSite
 {
 	// Start off with a very simple test. Just set up a resource. Load it with
@@ -118,10 +129,20 @@
 
 - (void)testElementPath
 {
-	Post *post = [[[Post alloc] init] autorelease];
-	[post setSite:[NSURL URLWithString:@"http://localhost:3000"]];
-	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:[NSDictionary dictionary]];
+	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:nil];
 	STAssertEqualObjects(elementPath, @"/posts/1.json", nil);
+}
+
+- (void)testNewElementPath
+{
+	NSString *newElementPath = [post newElementPathWithPrefixOptions:nil];
+	STAssertEqualObjects(newElementPath, @"/posts/new.json", nil);
+}
+
+- (void)testCollectionPath
+{
+	NSString *collectionPath = [post collectionPathWithPrefixOptions:nil];
+	STAssertEqualObjects(collectionPath, @"/posts.json", nil);
 }
 
 - (void)testJSONFormat

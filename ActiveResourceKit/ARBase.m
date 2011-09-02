@@ -170,6 +170,10 @@
 	// expression identifies the substitution on our behalf, making it easier to
 	// remove the colon, access the prefix parameter minus its colon and replace
 	// both; and all at the same time.
+	if (options == nil)
+	{
+		return [self prefix];
+	}
 	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
@@ -182,6 +186,16 @@
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions
 {
 	return [NSString stringWithFormat:@"%@%@/%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[self format] extension]];
+}
+
+- (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
+{
+	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
+}
+
+- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions
+{
+	return [NSString stringWithFormat:@"%@%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
 }
 
 @end

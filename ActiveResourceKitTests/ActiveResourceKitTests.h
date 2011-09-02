@@ -24,6 +24,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+@class Post;
+
 @interface ActiveResourceKitTests : SenTestCase
+{
+	Post *post;
+}
 
 @end
