@@ -1,4 +1,4 @@
-// ActiveResourceKit ARActiveResource.h
+// ActiveResourceKit ARBase.h
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -23,11 +23,16 @@
 //------------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import <ActiveResourceKit/ARFormat.h>
 
 @interface ARBase : NSObject
 
 // The following properties use copy rather than retain. Why use copy? You can
 // pass a mutable URL or string. The Active Resource retains a non-mutable copy.
+//
+// Note also that Rails implements some of the behaviours at class scope. For
+// example, format is a class-scoped attribute in Rails. The Objective-C
+// implementation here maps such behaviour to instances rather than classes.
 
 /*!
  * Always set up the site first. Other things depend on this essential
@@ -35,6 +40,8 @@
  * site's path becomes the default prefix.
  */
 @property(copy, NS_NONATOMIC_IPHONEONLY) NSURL *site;
+
+@property(retain, NS_NONATOMIC_IPHONEONLY) id<ARFormat> format;
 
 // Setters and getters for element and collection name follow Rails
 // semantics. You can set them but they also have default values which the class

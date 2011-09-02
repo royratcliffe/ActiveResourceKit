@@ -1,4 +1,4 @@
-// ActiveResourceKit ARActiveResource.m
+// ActiveResourceKit ARBase.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARBase.h"
+#import "ARJSONFormat.h"
 
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
@@ -39,6 +40,26 @@
 @implementation ARBase
 
 @synthesize site = _site;
+
+@synthesize format = _format;
+
+- (id<ARFormat>)format
+{
+	if (_format == nil)
+	{
+		[self setFormat:[ARJSONFormat JSONFormat]];
+	}
+	return _format;
+}
+
+- (void)setFormat:(id<ARFormat>)newFormat
+{
+	if (_format != newFormat)
+	{
+		[_format autorelease];
+		_format = [newFormat retain];
+	}
+}
 
 //------------------------------------------------------------------------------
 #pragma mark                                                              Prefix
