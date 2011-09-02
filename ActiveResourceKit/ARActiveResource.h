@@ -29,6 +29,9 @@
 @property(retain, NS_NONATOMIC_IPHONEONLY) NSURL *site;
 @property(retain, NS_NONATOMIC_IPHONEONLY) NSString *prefixSource;
 
+- (NSString *)elementName;
+- (NSString *)collectionName;
+
 - (NSString *)prefixWithOptions:(NSDictionary *)options;
 
 @end

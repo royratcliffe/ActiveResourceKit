@@ -24,12 +24,24 @@
 
 #import "ARActiveResource.h"
 
+#import <ActiveModelKit/ActiveModelKit.h>
+#import <ActiveSupportKit/ActiveSupportKit.h>
 #import <RRFoundation/RRFoundation.h>
 
 @implementation ARActiveResource
 
 @synthesize site = _site;
 @synthesize prefixSource = _prefixSource;
+
+- (NSString *)elementName
+{
+	return [[[[AMName alloc] initWithClass:[self class]] autorelease] element];
+}
+
+- (NSString *)collectionName
+{
+	return [[ASInflector defaultInflector] pluralize:[self elementName]];
+}
 
 - (NSString *)prefixWithOptions:(NSDictionary *)options
 {

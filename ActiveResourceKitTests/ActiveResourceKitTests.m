@@ -25,6 +25,11 @@
 #import "ActiveResourceKitTests.h"
 #import <ActiveResourceKit/ActiveResourceKit.h>
 
+@interface DummyObject : ARActiveResource
+@end
+@implementation DummyObject
+@end
+
 @implementation ActiveResourceKitTests
 
 - (void)testSetUpSite
@@ -94,6 +99,16 @@
 	[resource setPrefixSource:@"/resources/:resource_id"];
 	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
+}
+
+- (void)testElementName
+{
+	STAssertEqualObjects([[[[DummyObject alloc] init] autorelease] elementName], @"dummy_object", nil);
+}
+
+- (void)testCollectionName
+{
+	STAssertEqualObjects([[[[DummyObject alloc] init] autorelease] collectionName], @"dummy_objects", nil);
 }
 
 @end
