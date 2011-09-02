@@ -41,6 +41,24 @@
 
 @synthesize site = _site;
 
+// This is not the designated initialiser. Note the message to -[self init]
+// rather than -[super init], a small but important difference. This is just a
+// convenience initialiser: a way to initialise and assign the site URL at one
+// and the same time.
+- (id)initWithSite:(NSURL *)site
+{
+	self = [self init];
+	if (self)
+	{
+		[self setSite:site];
+	}
+	return self;
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                              Format
+//------------------------------------------------------------------------------
+
 @synthesize format = _format;
 
 - (id<ARFormat>)format

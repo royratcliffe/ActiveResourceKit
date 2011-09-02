@@ -25,10 +25,12 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @class Post;
+@class PostComment;
 
 @interface ActiveResourceKitTests : SenTestCase
 {
 	Post *post;
+	PostComment *postComment;
 }
 
 @end

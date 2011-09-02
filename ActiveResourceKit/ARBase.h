@@ -27,6 +27,8 @@
 
 @interface ARBase : NSObject
 
+- (id)initWithSite:(NSURL *)site;
+
 // The following properties use copy rather than retain. Why use copy? You can
 // pass a mutable URL or string. The Active Resource retains a non-mutable copy.
 //

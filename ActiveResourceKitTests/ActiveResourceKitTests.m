@@ -35,17 +35,33 @@
 @implementation Post
 @end
 
+@interface PostComment : ARBase
+@end
+@implementation PostComment
+@end
+
 @implementation ActiveResourceKitTests
 
 - (void)setUp
 {
-	post = [[Post alloc] init];
-	[post setSite:[NSURL URLWithString:@"http://localhost:3000"]];
+	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000"]];
+	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000/posts/:post_id"]];
+	
+	// You cannot use Comment as a class name. So we will call it PostComment,
+	// meaning a comment on a post within a blog. However, by default, ARBase
+	// will translate PostComment to post_comment when constructing the resource
+	// paths. There is an incongruence between Objective-C and Rails, unless
+	// Rails uses the same name of course. But the comments are just comments in
+	// the imaginary Rails application. Hence we need now to override the
+	// element name. This makes use of the lazy-getter approach to
+	// configuration. Setting it now overrides the default.
+	[postComment setElementName:@"comment"];
 }
 
 - (void)tearDown
 {
 	[post release];
+	[postComment release];
 }
 
 - (void)testSetUpSite
@@ -150,6 +166,13 @@
 	ARJSONFormat *format = [ARJSONFormat JSONFormat];
 	STAssertEqualObjects([format extension], @"json", nil);
 	STAssertEqualObjects([format MIMEType], @"application/json", nil);
+}
+
+- (void)testNestedResources
+{
+	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:5] forKey:@"post_id"];
+	STAssertEqualObjects([postComment newElementPathWithPrefixOptions:options], @"/posts/5/comments/new.json", nil);
+	STAssertEqualObjects([postComment collectionPathWithPrefixOptions:options], @"/posts/5/comments.json", nil);
 }
 
 @end
