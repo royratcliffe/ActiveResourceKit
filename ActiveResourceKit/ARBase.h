@@ -68,7 +68,9 @@
  * Answers the prefix after translating the prefix parameters according to the
  * given prefix-options dictionary. The options dictionary may be nil. In that
  * case -prefixWithOptions: answers the prefix unmodified. This assumes that the
- * prefix contains no untranslated prefix parameters.
+ * prefix contains no untranslated prefix parameters. The method quietly fails
+ * if you do not provide mappings for all parameters. The prefix result will
+ * contain parameter placeholders.
  */
 - (NSString *)prefixWithOptions:(NSDictionary *)options;
 
