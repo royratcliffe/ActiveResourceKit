@@ -28,8 +28,8 @@
 
 @implementation ARActiveResource
 
-@synthesize site;
-@synthesize prefixSource;
+@synthesize site = _site;
+@synthesize prefixSource = _prefixSource;
 
 - (NSString *)prefixWithOptions:(NSDictionary *)options
 {
