@@ -27,7 +27,7 @@
 @interface ARActiveResource : NSObject
 
 // The following properties use copy rather than retain. Why use copy? You can
-// pass a mutable string. The Active Resource retains a non-mutable copy.
+// pass a mutable URL or string. The Active Resource retains a non-mutable copy.
 
 /*!
  * Always set up the site first. Other things depend on this essential

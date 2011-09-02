@@ -23,3 +23,4 @@
  ******************************************************************************/
 
 #import <ActiveResourceKit/ARActiveResource.h>
+#import <ActiveResourceKit/ARJSONFormat.h>

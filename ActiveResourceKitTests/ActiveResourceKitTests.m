@@ -121,7 +121,14 @@
 	Post *post = [[[Post alloc] init] autorelease];
 	[post setSite:[NSURL URLWithString:@"http://localhost:3000"]];
 	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:[NSDictionary dictionary]];
-	STAssertEqualObjects(elementPath, @"/posts/1", nil);
+	STAssertEqualObjects(elementPath, @"/posts/1.json", nil);
+}
+
+- (void)testJSONFormat
+{
+	ARJSONFormat *format = [ARJSONFormat JSONFormat];
+	STAssertEqualObjects([format extension], @"json", nil);
+	STAssertEqualObjects([format MIMEType], @"application/json", nil);
 }
 
 @end

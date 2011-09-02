@@ -71,6 +71,11 @@
 	if (_prefix != newPrefix)
 	{
 		[_prefix autorelease];
+		// Auto-release the previous prefix, assuming there is one. This allows
+		// the caller to access the previous prefix first, alter the prefix and
+		// retain access to the original copy. The original will disappear from
+		// memory at the next pool-drain event having received the auto-release
+		// message.
 		_prefix = [newPrefix copy];
 	}
 }
@@ -136,14 +141,26 @@
 
 - (NSString *)prefixWithOptions:(NSDictionary *)options
 {
+	// The following implementation duplicates some of the functionality
+	// concerning extraction of prefix parameters from the prefix. See the
+	// -prefixParameters method. Nevertheless, the replace-in-place approach
+	// makes the string operations more convenient. The implementation does not
+	// need to cut apart the colon from its parameter word. The regular
+	// expression identifies the substitution on our behalf, making it easier to
+	// remove the colon, access the prefix parameter minus its colon and replace
+	// both; and all at the same time.
 	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                                               Paths
+//------------------------------------------------------------------------------
+
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions
 {
-	return [NSString stringWithFormat:@"%@%@/%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	return [NSString stringWithFormat:@"%@%@/%@.json", [self prefixWithOptions:prefixOptions], [self collectionName], [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end
