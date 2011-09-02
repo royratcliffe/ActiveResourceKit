@@ -30,6 +30,11 @@
 @implementation DummyObject
 @end
 
+@interface Post : ARActiveResource
+@end
+@implementation Post
+@end
+
 @implementation ActiveResourceKitTests
 
 - (void)testSetUpSite
@@ -87,7 +92,7 @@
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
 	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
-	[resource setPrefixSource:@"/resources/:resource_id"];
+	[resource setPrefix:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
 	NSString *prefix = [resource prefixWithOptions:options];
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
@@ -96,7 +101,7 @@
 - (void)testPrefixParameterWithPercentEscapes
 {
 	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
-	[resource setPrefixSource:@"/resources/:resource_id"];
+	[resource setPrefix:@"/resources/:resource_id"];
 	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
 }
@@ -109,6 +114,14 @@
 - (void)testCollectionName
 {
 	STAssertEqualObjects([[[[DummyObject alloc] init] autorelease] collectionName], @"dummy_objects", nil);
+}
+
+- (void)testElementPath
+{
+	Post *post = [[[Post alloc] init] autorelease];
+	[post setSite:[NSURL URLWithString:@"http://localhost:3000"]];
+	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:[NSDictionary dictionary]];
+	STAssertEqualObjects(elementPath, @"/posts/1", nil);
 }
 
 @end
