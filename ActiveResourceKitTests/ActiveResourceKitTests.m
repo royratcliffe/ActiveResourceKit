@@ -25,12 +25,12 @@
 #import "ActiveResourceKitTests.h"
 #import <ActiveResourceKit/ActiveResourceKit.h>
 
-@interface DummyObject : ARActiveResource
+@interface MyObject : ARBase
 @end
-@implementation DummyObject
+@implementation MyObject
 @end
 
-@interface Post : ARActiveResource
+@interface Post : ARBase
 @end
 @implementation Post
 @end
@@ -48,7 +48,7 @@
 	// them. This term refers to path elements beginning with a colon and
 	// followed by a regular-expression word. ActiveResourceKit substitutes
 	// these for actual parameters.
-	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	ARBase *resource = [[[ARBase alloc] init] autorelease];
 	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y;a=b"]];
 	STAssertEqualObjects([[resource site] scheme], @"http", nil);
 	STAssertEqualObjects([[resource site] user], @"user", nil);
@@ -63,7 +63,7 @@
 {
 	// Empty URL paths should become empty strings after parsing. This tests the
 	// Foundation frameworks implementation of an URL.
-	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	ARBase *resource = [[[ARBase alloc] init] autorelease];
 	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
 	STAssertEqualObjects([[resource site] path], @"", nil);
 }
@@ -91,7 +91,7 @@
 	// object answering to the prefix-parameter key (resource_id in this test
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
-	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	ARBase *resource = [[[ARBase alloc] init] autorelease];
 	[resource setPrefix:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
 	NSString *prefix = [resource prefixWithOptions:options];
@@ -100,7 +100,7 @@
 
 - (void)testPrefixParameterWithPercentEscapes
 {
-	ARActiveResource *resource = [[[ARActiveResource alloc] init] autorelease];
+	ARBase *resource = [[[ARBase alloc] init] autorelease];
 	[resource setPrefix:@"/resources/:resource_id"];
 	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
@@ -108,12 +108,12 @@
 
 - (void)testElementName
 {
-	STAssertEqualObjects([[[[DummyObject alloc] init] autorelease] elementName], @"dummy_object", nil);
+	STAssertEqualObjects([[[[MyObject alloc] init] autorelease] elementName], @"my_object", nil);
 }
 
 - (void)testCollectionName
 {
-	STAssertEqualObjects([[[[DummyObject alloc] init] autorelease] collectionName], @"dummy_objects", nil);
+	STAssertEqualObjects([[[[MyObject alloc] init] autorelease] collectionName], @"my_objects", nil);
 }
 
 - (void)testElementPath

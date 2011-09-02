@@ -22,5 +22,5 @@
  *
  ******************************************************************************/
 
-#import <ActiveResourceKit/ARActiveResource.h>
+#import <ActiveResourceKit/ARBase.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
