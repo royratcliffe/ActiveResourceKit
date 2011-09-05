@@ -1,4 +1,4 @@
-/* ActiveResourceKit ActiveResourceKit.h
+/* ActiveResourceKit Versioning.h
  *
  * Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
  *
@@ -22,7 +22,15 @@
  *
  ******************************************************************************/
 
-#import <ActiveResourceKit/ARBase.h>
-#import <ActiveResourceKit/ARJSONFormat.h>
+#import <Foundation/Foundation.h>
 
-#import <ActiveResourceKit/Versioning.h>
+extern const unsigned char kActiveResourceKitVersionString[];
+extern const double kActiveResourceKitVersionNumber;
+
+/*!
+ * Answers the current Apple-generic versioning-formatted version string. The
+ * version string has been trimmed. It has no leading or trailing whitespace or
+ * newlines. Note that the raw C-based version string contrastingly has a single
+ * terminating newline character.
+ */
+NSString *ActiveResourceKitVersionString(void);

@@ -12,6 +12,8 @@
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
 		7832703514111BF100ECCE7D /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7832703414111BF100ECCE7D /* ActiveSupportKit.framework */; };
+		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
 		7846AA18140BAAE100FE58E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA17140BAAE100FE58E5 /* Cocoa.framework */; };
 		7846AA22140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA20140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA2E140BAAE100FE58E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
@@ -62,6 +64,8 @@
 		7832703014110BAE00ECCE7D /* ARJSONFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARJSONFormat.h; sourceTree = "<group>"; };
 		7832703114110BAE00ECCE7D /* ARJSONFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARJSONFormat.m; sourceTree = "<group>"; };
 		7832703414111BF100ECCE7D /* ActiveSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveSupportKit.framework; path = "../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug/ActiveSupportKit.framework"; sourceTree = "<group>"; };
+		7835BC8D1414C47900CC4B56 /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
+		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
 		7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActiveResourceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7846AA17140BAAE100FE58E5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7846AA1A140BAAE100FE58E5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -164,6 +168,8 @@
 				7832702E14110B7B00ECCE7D /* ARFormat.h */,
 				7832703014110BAE00ECCE7D /* ARJSONFormat.h */,
 				7832703114110BAE00ECCE7D /* ARJSONFormat.m */,
+				7835BC8D1414C47900CC4B56 /* Versioning.h */,
+				7835BC8E1414C47900CC4B56 /* Versioning.m */,
 				7846AA1E140BAAE100FE58E5 /* Supporting Files */,
 			);
 			path = ActiveResourceKit;
@@ -209,6 +215,7 @@
 				78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */,
 				7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */,
 				7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */,
+				7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +352,7 @@
 			files = (
 				78D3D6F4140BC3B800DD4278 /* ARBase.m in Sources */,
 				7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */,
+				7835BC901414C47900CC4B56 /* Versioning.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +405,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -414,6 +423,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = k;
 			};
 			name = Debug;
 		};
@@ -423,6 +434,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -433,6 +445,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = k;
 			};
 			name = Release;
 		};
