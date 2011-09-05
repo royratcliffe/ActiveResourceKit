@@ -47,14 +47,16 @@
 	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000"]];
 	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000/posts/:post_id"]];
 	
-	// You cannot use Comment as a class name. So we will call it PostComment,
-	// meaning a comment on a post within a blog. However, by default, ARBase
-	// will translate PostComment to post_comment when constructing the resource
-	// paths. There is an incongruence between Objective-C and Rails, unless
-	// Rails uses the same name of course. But the comments are just comments in
-	// the imaginary Rails application. Hence we need now to override the
-	// element name. This makes use of the lazy-getter approach to
-	// configuration. Setting it now overrides the default.
+	// You cannot use Comment as a class name. The CarbonCore framework (a
+	// CoreServices sub-framework) steals this symbol first. Apple has already
+	// polluted the namespace with a Comment type definition. So we will call it
+	// PostComment instead, meaning a comment on a post within a blog. However,
+	// by default, ARBase will translate PostComment to post_comment when
+	// constructing the resource paths. There is an incongruence between
+	// Objective-C and Rails, unless Rails uses the same name of course. But the
+	// comments are just comments in the imaginary Rails application. Hence we
+	// need now to override the element name. This makes use of the lazy-getter
+	// approach to configuration. Setting it now overrides the default.
 	[postComment setElementName:@"comment"];
 }
 

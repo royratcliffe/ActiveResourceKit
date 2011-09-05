@@ -44,7 +44,8 @@
 // This is not the designated initialiser. Note the message to -[self init]
 // rather than -[super init], a small but important difference. This is just a
 // convenience initialiser: a way to initialise and assign the site URL at one
-// and the same time.
+// and the same time. The default initialiser is the standard initialiser
+// inherited from NSObject.
 - (id)initWithSite:(NSURL *)site
 {
 	self = [self init];
@@ -119,6 +120,36 @@
 	}
 }
 
+- (NSSet *)prefixParameters
+{
+	NSMutableSet *parameters = [NSMutableSet set];
+	NSString *prefix = [self prefix];
+	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:[self prefix] options:0 range:NSMakeRange(0, [prefix length])])
+	{
+		[parameters addObject:[match substringFromIndex:1]];
+	}
+	return [[parameters copy] autorelease];
+}
+
+- (NSString *)prefixWithOptions:(NSDictionary *)options
+{
+	// The following implementation duplicates some of the functionality
+	// concerning extraction of prefix parameters from the prefix. See the
+	// -prefixParameters method. Nevertheless, the replace-in-place approach
+	// makes the string operations more convenient. The implementation does not
+	// need to cut apart the colon from its parameter word. The regular
+	// expression identifies the substitution on our behalf, making it easier to
+	// remove the colon, access the prefix parameter minus its colon and replace
+	// both; and all at the same time.
+	if (options == nil)
+	{
+		return [self prefix];
+	}
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	}];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                        Element Name
 //------------------------------------------------------------------------------
@@ -165,36 +196,6 @@
 		[_collectionName autorelease];
 		_collectionName = [newCollectionName copy];
 	}
-}
-
-- (NSSet *)prefixParameters
-{
-	NSMutableSet *parameters = [NSMutableSet set];
-	NSString *prefix = [self prefix];
-	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:[self prefix] options:0 range:NSMakeRange(0, [prefix length])])
-	{
-		[parameters addObject:[match substringFromIndex:1]];
-	}
-	return [[parameters copy] autorelease];
-}
-
-- (NSString *)prefixWithOptions:(NSDictionary *)options
-{
-	// The following implementation duplicates some of the functionality
-	// concerning extraction of prefix parameters from the prefix. See the
-	// -prefixParameters method. Nevertheless, the replace-in-place approach
-	// makes the string operations more convenient. The implementation does not
-	// need to cut apart the colon from its parameter word. The regular
-	// expression identifies the substitution on our behalf, making it easier to
-	// remove the colon, access the prefix parameter minus its colon and replace
-	// both; and all at the same time.
-	if (options == nil)
-	{
-		return [self prefix];
-	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
-		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	}];
 }
 
 //------------------------------------------------------------------------------

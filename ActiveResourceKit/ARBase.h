@@ -45,6 +45,8 @@
 
 @property(retain, NS_NONATOMIC_IPHONEONLY) id<ARFormat> format;
 
+//----------------------------------------------------------------------- Prefix
+
 // Setters and getters for element and collection name follow Rails
 // semantics. You can set them but they also have default values which the class
 // computes whenever you get the property without setting it first. The getter
@@ -54,8 +56,6 @@
 // setter, either before accessing the getter or even afterwards.
 
 @property(copy, NS_NONATOMIC_IPHONEONLY) NSString *prefix;
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *elementName;
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *collectionName;
 
 /*!
  * Answers a set of prefix parameters based on the current prefix. These
@@ -73,6 +73,13 @@
  * contain parameter placeholders.
  */
 - (NSString *)prefixWithOptions:(NSDictionary *)options;
+
+//------------------------------------------------- Element and Collection Names
+
+@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *elementName;
+@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *collectionName;
+
+//------------------------------------------------------------------------ Paths
 
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
