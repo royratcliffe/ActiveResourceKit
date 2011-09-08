@@ -7,12 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
+		7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		7813AAAE1419270400523ECD /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */; };
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
+		78440D75141927E000EFBB93 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
+		78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78440D77141928B000EFBB93 /* ARBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78440D78141928B000EFBB93 /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78440D79141928B000EFBB93 /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78440D7A141928B000EFBB93 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78440D7B141928D100EFBB93 /* ARBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARBase.m */; };
+		78440D7C141928D100EFBB93 /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
+		78440D7D141928D100EFBB93 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
+		78440D801419297500EFBB93 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
+		78440D831419297500EFBB93 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78440D811419297500EFBB93 /* libActiveSupportKit.a */; };
+		78440D841419297500EFBB93 /* libYAJL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78440D821419297500EFBB93 /* libYAJL.a */; };
 		7846AA22140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA20140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
@@ -28,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7813AAAC1419270400523ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7846AA0A140BAAE100FE58E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7813AA991419270400523ECD;
+			remoteInfo = ActiveResourceKitLibrary;
+		};
 		78326FCB140FE38B00ECCE7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */;
@@ -48,6 +71,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 78A36D93140D1EB000E48D11;
 			remoteInfo = ActiveModelKit;
+		};
+		78440D7E1419291600EFBB93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78BF7F15141646A500DB0DEA;
+			remoteInfo = ActiveModelKitLibrary;
 		};
 		7846AA30140BAAE100FE58E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -73,12 +103,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActiveModelKit.xcodeproj; path = ../ActiveModelKit/ActiveModelKit.xcodeproj; sourceTree = "<group>"; };
 		7832702E14110B7B00ECCE7D /* ARFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormat.h; sourceTree = "<group>"; };
 		7832703014110BAE00ECCE7D /* ARJSONFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARJSONFormat.h; sourceTree = "<group>"; };
 		7832703114110BAE00ECCE7D /* ARJSONFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARJSONFormat.m; sourceTree = "<group>"; };
 		7835BC8D1414C47900CC4B56 /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
+		78440D811419297500EFBB93 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
+		78440D821419297500EFBB93 /* libYAJL.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libYAJL.a; path = "../yajl/objc/build/Release-iphoneos/libYAJL.a"; sourceTree = "<group>"; };
 		7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActiveResourceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7846AA1C140BAAE100FE58E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKit-Info.plist"; sourceTree = "<group>"; };
@@ -97,6 +131,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7813AA971419270400523ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78440D831419297500EFBB93 /* libActiveSupportKit.a in Frameworks */,
+				78440D841419297500EFBB93 /* libYAJL.a in Frameworks */,
+				78440D801419297500EFBB93 /* libActiveModelKit.a in Frameworks */,
+				7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7813AAA31419270400523ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */,
+				7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */,
+				7813AAAE1419270400523ECD /* libActiveResourceKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7846AA10140BAAE100FE58E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,6 +189,8 @@
 		7846AA08140BAAE100FE58E5 = {
 			isa = PBXGroup;
 			children = (
+				78440D811419297500EFBB93 /* libActiveSupportKit.a */,
+				78440D821419297500EFBB93 /* libYAJL.a */,
 				78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */,
 				7846AA1D140BAAE100FE58E5 /* ActiveResourceKit */,
 				7846AA33140BAAE100FE58E5 /* ActiveResourceKitTests */,
@@ -147,6 +204,8 @@
 			children = (
 				7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */,
 				7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */,
+				7813AA9A1419270400523ECD /* libActiveResourceKit.a */,
+				7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +276,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		7813AA981419270400523ECD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */,
+				78440D77141928B000EFBB93 /* ARBase.h in Headers */,
+				78440D78141928B000EFBB93 /* ARFormat.h in Headers */,
+				78440D79141928B000EFBB93 /* ARJSONFormat.h in Headers */,
+				78440D7A141928B000EFBB93 /* Versioning.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7846AA11140BAAE100FE58E5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +303,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7813AA991419270400523ECD /* ActiveResourceKitLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7813AAB81419270400523ECD /* Build configuration list for PBXNativeTarget "ActiveResourceKitLibrary" */;
+			buildPhases = (
+				7813AA961419270400523ECD /* Sources */,
+				7813AA971419270400523ECD /* Frameworks */,
+				7813AA981419270400523ECD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78440D7F1419291600EFBB93 /* PBXTargetDependency */,
+			);
+			name = ActiveResourceKitLibrary;
+			productName = ActiveResourceKitLibrary;
+			productReference = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7813AAA61419270400523ECD /* ActiveResourceKitLibraryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7813AABB1419270400523ECD /* Build configuration list for PBXNativeTarget "ActiveResourceKitLibraryTests" */;
+			buildPhases = (
+				7813AAA21419270400523ECD /* Sources */,
+				7813AAA31419270400523ECD /* Frameworks */,
+				7813AAA41419270400523ECD /* Resources */,
+				7813AAA51419270400523ECD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7813AAAD1419270400523ECD /* PBXTargetDependency */,
+			);
+			name = ActiveResourceKitLibraryTests;
+			productName = ActiveResourceKitLibraryTests;
+			productReference = 7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		7846AA13140BAAE100FE58E5 /* ActiveResourceKitFramework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7846AA3F140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitFramework" */;
@@ -276,6 +384,7 @@
 		7846AA0A140BAAE100FE58E5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Pioneering Software, United Kingdom";
 			};
 			buildConfigurationList = 7846AA0D140BAAE100FE58E5 /* Build configuration list for PBXProject "ActiveResourceKit" */;
@@ -298,6 +407,8 @@
 			targets = (
 				7846AA13140BAAE100FE58E5 /* ActiveResourceKitFramework */,
 				7846AA2B140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests */,
+				7813AA991419270400523ECD /* ActiveResourceKitLibrary */,
+				7813AAA61419270400523ECD /* ActiveResourceKitLibraryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -335,6 +446,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7813AAA41419270400523ECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7846AA12140BAAE100FE58E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,6 +473,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7813AAA51419270400523ECD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		7846AA2A140BAAE100FE58E5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +502,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7813AA961419270400523ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78440D7B141928D100EFBB93 /* ARBase.m in Sources */,
+				78440D7C141928D100EFBB93 /* ARJSONFormat.m in Sources */,
+				78440D7D141928D100EFBB93 /* Versioning.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7813AAA21419270400523ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78440D75141927E000EFBB93 /* ActiveResourceKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7846AA0F140BAAE100FE58E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,10 +541,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7813AAAD1419270400523ECD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7813AA991419270400523ECD /* ActiveResourceKitLibrary */;
+			targetProxy = 7813AAAC1419270400523ECD /* PBXContainerItemProxy */;
+		};
 		78326FD4140FE3A100ECCE7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ActiveModelKit;
 			targetProxy = 78326FD3140FE3A100ECCE7D /* PBXContainerItemProxy */;
+		};
+		78440D7F1419291600EFBB93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ActiveModelKitLibrary;
+			targetProxy = 78440D7E1419291600EFBB93 /* PBXContainerItemProxy */;
 		};
 		7846AA31140BAAE100FE58E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -424,6 +583,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7813AAB91419270400523ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/ActiveResourceKitLibrary.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7813AABA1419270400523ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/ActiveResourceKitLibrary.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7813AABC1419270400523ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7813AABD1419270400523ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		7846AA3D140BAAE100FE58E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -536,6 +767,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7813AAB81419270400523ECD /* Build configuration list for PBXNativeTarget "ActiveResourceKitLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7813AAB91419270400523ECD /* Debug */,
+				7813AABA1419270400523ECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7813AABB1419270400523ECD /* Build configuration list for PBXNativeTarget "ActiveResourceKitLibraryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7813AABC1419270400523ECD /* Debug */,
+				7813AABD1419270400523ECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7846AA0D140BAAE100FE58E5 /* Build configuration list for PBXProject "ActiveResourceKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
