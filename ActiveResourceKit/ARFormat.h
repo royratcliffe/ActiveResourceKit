@@ -26,7 +26,9 @@
 
 @protocol ARFormat<NSObject>
 
-@property(readonly, NS_NONATOMIC_IPHONEONLY) NSString *extension;
-@property(readonly, NS_NONATOMIC_IPHONEONLY) NSString *MIMEType;
+@property(readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
+@property(readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
+
+- (id)decode:(NSData *)data error:(NSError **)outError;
 
 @end

@@ -24,6 +24,8 @@
 
 #import "ARJSONFormat.h"
 
+#import <ActiveSupportKit/ActiveSupportKit.h>
+
 @implementation ARJSONFormat
 
 - (NSString *)extension
@@ -34,6 +36,11 @@
 - (NSString *)MIMEType
 {
 	return @"application/json";
+}
+
+- (id)decode:(NSData *)data error:(NSError **)outError
+{
+	return ASJSONDecode(data, outError);
 }
 
 //------------------------------------------------------------------------------
