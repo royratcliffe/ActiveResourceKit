@@ -84,7 +84,7 @@
 		7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKit-Info.plist"; sourceTree = "<group>"; };
 		7846AA21140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA23140BAAE100FE58E5 /* ActiveResourceKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ActiveResourceKit-Prefix.pch"; sourceTree = "<group>"; };
-		7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ActiveResourceKitTests.octest; path = ActiveResourceKitFrameworkTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7846AA35140BAAE100FE58E5 /* ActiveResourceKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKitTests-Info.plist"; sourceTree = "<group>"; };
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -232,9 +232,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7846AA13140BAAE100FE58E5 /* ActiveResourceKit */ = {
+		7846AA13140BAAE100FE58E5 /* ActiveResourceKitFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7846AA3F140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKit" */;
+			buildConfigurationList = 7846AA3F140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitFramework" */;
 			buildPhases = (
 				7846AA0F140BAAE100FE58E5 /* Sources */,
 				7846AA10140BAAE100FE58E5 /* Frameworks */,
@@ -246,14 +246,14 @@
 			dependencies = (
 				78326FD4140FE3A100ECCE7D /* PBXTargetDependency */,
 			);
-			name = ActiveResourceKit;
+			name = ActiveResourceKitFramework;
 			productName = ActiveResourceKit;
 			productReference = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7846AA2B140BAAE100FE58E5 /* ActiveResourceKitTests */ = {
+		7846AA2B140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7846AA42140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitTests" */;
+			buildConfigurationList = 7846AA42140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitFrameworkTests" */;
 			buildPhases = (
 				7846AA27140BAAE100FE58E5 /* Sources */,
 				7846AA28140BAAE100FE58E5 /* Frameworks */,
@@ -265,7 +265,7 @@
 			dependencies = (
 				7846AA31140BAAE100FE58E5 /* PBXTargetDependency */,
 			);
-			name = ActiveResourceKitTests;
+			name = ActiveResourceKitFrameworkTests;
 			productName = ActiveResourceKitTests;
 			productReference = 7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -296,8 +296,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				7846AA13140BAAE100FE58E5 /* ActiveResourceKit */,
-				7846AA2B140BAAE100FE58E5 /* ActiveResourceKitTests */,
+				7846AA13140BAAE100FE58E5 /* ActiveResourceKitFramework */,
+				7846AA2B140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -399,7 +399,7 @@
 		};
 		7846AA31140BAAE100FE58E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7846AA13140BAAE100FE58E5 /* ActiveResourceKit */;
+			target = 7846AA13140BAAE100FE58E5 /* ActiveResourceKitFramework */;
 			targetProxy = 7846AA30140BAAE100FE58E5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -484,7 +484,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
 				INFOPLIST_FILE = "ActiveResourceKit/ActiveResourceKit-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -498,7 +498,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
 				INFOPLIST_FILE = "ActiveResourceKit/ActiveResourceKit-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -545,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7846AA3F140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKit" */ = {
+		7846AA3F140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7846AA40140BAAE100FE58E5 /* Debug */,
@@ -554,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7846AA42140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitTests" */ = {
+		7846AA42140BAAE100FE58E5 /* Build configuration list for PBXNativeTarget "ActiveResourceKitFrameworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7846AA43140BAAE100FE58E5 /* Debug */,
