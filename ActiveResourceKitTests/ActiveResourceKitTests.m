@@ -42,6 +42,14 @@
 
 @implementation ActiveResourceKitTests
 
+@synthesize stop;
+
+- (void)runUntilStop
+{
+	[self setStop:NO];
+	while (![self stop] && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+}
+
 - (void)setUp
 {
 	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000"]];
@@ -179,12 +187,11 @@
 
 - (void)testBuild
 {
-	BOOL __block running = YES;
 	[post buildWithAttributes:nil completionHandler:^(NSDictionary *attrs, NSError *error) {
 		STAssertNotNil(attrs, nil);
-		running = NO;
+		[self setStop:YES];
 	}];
-	while (running && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+	[self runUntilStop];
 }
 
 @end

@@ -33,4 +33,6 @@
 	PostComment *postComment;
 }
 
+@property(NS_NONATOMIC_IOSONLY) BOOL stop;
+
 @end
