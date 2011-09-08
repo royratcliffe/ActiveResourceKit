@@ -24,6 +24,14 @@
 
 #import <Foundation/Foundation.h>
 
+#if !defined(NS_NONATOMIC_IOSONLY)
+#if TARGET_OS_IPHONE
+#define NS_NONATOMIC_IOSONLY nonatomic
+#else
+#define NS_NONATOMIC_IOSONLY
+#endif
+#endif
+
 @protocol ARFormat<NSObject>
 
 @property(readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
