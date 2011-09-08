@@ -189,8 +189,6 @@
 		7846AA08140BAAE100FE58E5 = {
 			isa = PBXGroup;
 			children = (
-				78440D811419297500EFBB93 /* libActiveSupportKit.a */,
-				78440D821419297500EFBB93 /* libYAJL.a */,
 				78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */,
 				7846AA1D140BAAE100FE58E5 /* ActiveResourceKit */,
 				7846AA33140BAAE100FE58E5 /* ActiveResourceKitTests */,
@@ -213,6 +211,8 @@
 		7846AA16140BAAE100FE58E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78440D811419297500EFBB93 /* libActiveSupportKit.a */,
+				78440D821419297500EFBB93 /* libYAJL.a */,
 				78BF7F75141652C300DB0DEA /* ActiveSupportKit.framework */,
 				7846AA1C140BAAE100FE58E5 /* Foundation.framework */,
 				7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */,
