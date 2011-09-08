@@ -27,7 +27,7 @@
 
 @interface ARBase : NSObject
 
-- (id)initWithSite:(NSURL *)site;
+@property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
 
 // The following properties use copy rather than retain. Why use copy? You can
 // pass a mutable URL or string. The Active Resource retains a non-mutable copy.
@@ -36,14 +36,21 @@
 // example, format is a class-scoped attribute in Rails. The Objective-C
 // implementation here maps such behaviour to instances rather than classes.
 
+@property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
+
+- (void)loadAttributes:(NSDictionary *)attributes;
+
+- (id)initWithSite:(NSURL *)site;
+- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
+
 /*!
  * Always set up the site first. Other things depend on this essential
  * property. You cannot fully operate the resource without the site URL. The
  * site's path becomes the default prefix.
  */
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSURL *site;
+@property(copy, NS_NONATOMIC_IOSONLY) NSURL *site;
 
-@property(retain, NS_NONATOMIC_IPHONEONLY) id<ARFormat> format;
+@property(retain, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
 
 //----------------------------------------------------------------------- Prefix
 
@@ -55,7 +62,7 @@
 // ‘lazy getter’ approach means that you can always override defaults using the
 // setter, either before accessing the getter or even afterwards.
 
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *prefix;
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *prefix;
 
 /*!
  * Answers a set of prefix parameters based on the current prefix. These
@@ -76,13 +83,15 @@
 
 //------------------------------------------------- Element and Collection Names
 
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *elementName;
-@property(copy, NS_NONATOMIC_IPHONEONLY) NSString *collectionName;
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *elementName;
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *collectionName;
 
 //------------------------------------------------------------------------ Paths
 
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions;
+
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler;
 
 @end

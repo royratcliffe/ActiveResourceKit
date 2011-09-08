@@ -27,7 +27,10 @@
 
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
-#import <RRFoundation/RRFoundation.h>
+
+@interface ARBase()
+
+@end
 
 @interface ARBase(Private)
 
@@ -38,6 +41,26 @@
 @end
 
 @implementation ARBase
+
+@synthesize timeout = _timeout;
+
+// designated initialiser
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		[self setTimeout:60.0];
+	}
+	return self;
+}
+
+@synthesize attributes = _attributes;
+
+- (void)loadAttributes:(NSDictionary *)attributes
+{
+	
+}
 
 @synthesize site = _site;
 
@@ -52,6 +75,16 @@
 	if (self)
 	{
 		[self setSite:site];
+	}
+	return self;
+}
+
+- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName
+{
+	self = [self initWithSite:site];
+	if (self)
+	{
+		[self setElementName:elementName];
 	}
 	return self;
 }
@@ -204,7 +237,8 @@
 
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions
 {
-	return [NSString stringWithFormat:@"%@%@/%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[self format] extension]];
+	NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	return [NSString stringWithFormat:@"%@%@/%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], IDString, [[self format] extension]];
 }
 
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
@@ -215,6 +249,49 @@
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions
 {
 	return [NSString stringWithFormat:@"%@%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
+}
+
+// Building with attributes. Should this be a class or instance method? Rails
+// implements this as a class method, or to be more specific, a singleton
+// method. Objective-C does not provide the singleton class
+// paradigm. ActiveResourceKit folds the Rails singleton methods to instance
+// methods.
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler
+{
+	// Use the new element path. Construct the request URL using this path but
+	// make it relative to the site URL. The NSURL class combines the new
+	// element path with the site, using the site's scheme, host and port.
+	NSURL *URL = [NSURL URLWithString:[self newElementPathWithPrefixOptions:nil] relativeToURL:[self site]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		if (data)
+		{
+			// Use the format to decode the data.
+			id object = [[self format] decode:data error:&error];
+			if (object)
+			{
+				if ([object isKindOfClass:[NSDictionary class]])
+				{
+					NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
+					[attrs addEntriesFromDictionary:attributes];
+					[self loadAttributes:attrs];
+					completionHandler(attrs, nil);
+				}
+				else
+				{
+					completionHandler(nil, error);
+				}
+			}
+			else
+			{
+				completionHandler(nil, error);
+			}
+		}
+		else
+		{
+			completionHandler(nil, error);
+		}
+	}];
 }
 
 @end

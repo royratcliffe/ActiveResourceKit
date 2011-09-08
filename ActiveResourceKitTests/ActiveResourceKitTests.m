@@ -177,4 +177,14 @@
 	STAssertEqualObjects([postComment collectionPathWithPrefixOptions:options], @"/posts/5/comments.json", nil);
 }
 
+- (void)testBuild
+{
+	BOOL __block running = YES;
+	[post buildWithAttributes:nil completionHandler:^(NSDictionary *attrs, NSError *error) {
+		STAssertNotNil(attrs, nil);
+		running = NO;
+	}];
+	while (running && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+}
+
 @end
