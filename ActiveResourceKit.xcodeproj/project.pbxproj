@@ -11,17 +11,17 @@
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
-		7832703514111BF100ECCE7D /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7832703414111BF100ECCE7D /* ActiveSupportKit.framework */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
-		7846AA18140BAAE100FE58E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA17140BAAE100FE58E5 /* Cocoa.framework */; };
 		7846AA22140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA20140BAAE100FE58E5 /* InfoPlist.strings */; };
-		7846AA2E140BAAE100FE58E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
-		7846AA2F140BAAE100FE58E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA17140BAAE100FE58E5 /* Cocoa.framework */; };
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
 		7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
+		78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		78BF7F7214164FE100DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		78BF7F731416512200DB0DEA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
+		78BF7F76141652C300DB0DEA /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F75141652C300DB0DEA /* ActiveSupportKit.framework */; };
 		78D3D6F3140BC3B800DD4278 /* ARBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D3D6F4140BC3B800DD4278 /* ARBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARBase.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,6 +56,20 @@
 			remoteGlobalIDString = 7846AA13140BAAE100FE58E5;
 			remoteInfo = ActiveResourceKit;
 		};
+		78BF7F5514164D2000DB0DEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78BF7F16141646A500DB0DEA;
+			remoteInfo = ActiveModelKitLibrary;
+		};
+		78BF7F5714164D2000DB0DEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78BF7F24141646A500DB0DEA;
+			remoteInfo = ActiveModelKitLibraryTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -63,13 +77,9 @@
 		7832702E14110B7B00ECCE7D /* ARFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormat.h; sourceTree = "<group>"; };
 		7832703014110BAE00ECCE7D /* ARJSONFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARJSONFormat.h; sourceTree = "<group>"; };
 		7832703114110BAE00ECCE7D /* ARJSONFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARJSONFormat.m; sourceTree = "<group>"; };
-		7832703414111BF100ECCE7D /* ActiveSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveSupportKit.framework; path = "../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug/ActiveSupportKit.framework"; sourceTree = "<group>"; };
 		7835BC8D1414C47900CC4B56 /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
 		7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActiveResourceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7846AA17140BAAE100FE58E5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		7846AA1A140BAAE100FE58E5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		7846AA1B140BAAE100FE58E5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7846AA1C140BAAE100FE58E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKit-Info.plist"; sourceTree = "<group>"; };
 		7846AA21140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -80,6 +90,7 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		78BF7F75141652C300DB0DEA /* ActiveSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveSupportKit.framework; path = "../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug/ActiveSupportKit.framework"; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
@@ -90,9 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7832703514111BF100ECCE7D /* ActiveSupportKit.framework in Frameworks */,
 				78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */,
-				7846AA18140BAAE100FE58E5 /* Cocoa.framework in Frameworks */,
+				78BF7F76141652C300DB0DEA /* ActiveSupportKit.framework in Frameworks */,
+				78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,9 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7846AA2E140BAAE100FE58E5 /* SenTestingKit.framework in Frameworks */,
-				7846AA2F140BAAE100FE58E5 /* Cocoa.framework in Frameworks */,
 				7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */,
+				78BF7F7214164FE100DB0DEA /* Foundation.framework in Frameworks */,
+				78BF7F731416512200DB0DEA /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +125,8 @@
 			children = (
 				78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */,
 				78326FCE140FE38B00ECCE7D /* ActiveModelKitTests.octest */,
+				78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */,
+				78BF7F5814164D2000DB0DEA /* ActiveModelKitLibraryTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,7 +134,6 @@
 		7846AA08140BAAE100FE58E5 = {
 			isa = PBXGroup;
 			children = (
-				7832703414111BF100ECCE7D /* ActiveSupportKit.framework */,
 				78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */,
 				7846AA1D140BAAE100FE58E5 /* ActiveResourceKit */,
 				7846AA33140BAAE100FE58E5 /* ActiveResourceKitTests */,
@@ -142,7 +154,8 @@
 		7846AA16140BAAE100FE58E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7846AA17140BAAE100FE58E5 /* Cocoa.framework */,
+				78BF7F75141652C300DB0DEA /* ActiveSupportKit.framework */,
+				7846AA1C140BAAE100FE58E5 /* Foundation.framework */,
 				7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */,
 				7846AA19140BAAE100FE58E5 /* Other Frameworks */,
 			);
@@ -152,9 +165,6 @@
 		7846AA19140BAAE100FE58E5 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7846AA1A140BAAE100FE58E5 /* AppKit.framework */,
-				7846AA1B140BAAE100FE58E5 /* CoreData.framework */,
-				7846AA1C140BAAE100FE58E5 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -303,8 +313,23 @@
 		78326FCE140FE38B00ECCE7D /* ActiveModelKitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = ActiveModelKitTests.octest;
+			name = ActiveModelKitTests.octest;
+			path = ActiveModelKitFrameworkTests.octest;
 			remoteRef = 78326FCD140FE38B00ECCE7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libActiveModelKit.a;
+			remoteRef = 78BF7F5514164D2000DB0DEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78BF7F5814164D2000DB0DEA /* ActiveModelKitLibraryTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ActiveModelKitLibraryTests.octest;
+			remoteRef = 78BF7F5714164D2000DB0DEA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -405,7 +430,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -434,7 +459,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -489,7 +514,10 @@
 		7846AA43140BAAE100FE58E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
@@ -501,7 +529,10 @@
 		7846AA44140BAAE100FE58E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
