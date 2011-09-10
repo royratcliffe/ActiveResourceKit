@@ -25,4 +25,5 @@
 #import <ActiveResourceKit/ARBase.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
 
+#import <ActiveResourceKit/Errors.h>
 #import <ActiveResourceKit/Versioning.h>
