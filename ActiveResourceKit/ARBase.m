@@ -24,6 +24,7 @@
 
 #import "ARBase.h"
 #import "ARJSONFormat.h"
+#import "Errors.h"
 
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
@@ -279,7 +280,12 @@
 				}
 				else
 				{
-					completionHandler(nil, error);
+					// The response body decodes successfully but it does not
+					// decode to a dictionary. It must be something else, either
+					// an array, a string or some other primitive type. In which
+					// case, building with attributes must fail even though
+					// ostensibly the operation has succeeded. Set up an error.
+					completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 				}
 			}
 			else
