@@ -187,8 +187,26 @@
 
 - (void)testBuild
 {
+	// This test only succeeds when the server-side is up and running. It sends
+	// a GET request to localhost, port 3000. The Test scheme launches a Rails
+	// server temporarily, if necessary, in order to answer the requests. The
+	// scheme pre-action comprises a shell script containing:
+	//
+	//	cd "$SRCROOT/active-resource-kit-tests"
+	//	[ -f tmp/pids/server.pid ] || "$HOME/.rvm/bin/rvm-shell" -c "rails s -d -P `pwd`/tmp/pids/server-xcode.pid"
+	//
+	// The script launches a Rails server in the background using RVM, if and
+	// only if the default server is not already running. It assumes that RVM is
+	// installed and carries the necessary Ruby gems. The post-action for the
+	// Test scheme contains the following shell script. It sends an interrupt
+	// signal to the server to shut it down.
+	//
+	//	cd "$SRCROOT/active-resource-kit-tests"
+	//	[ -f tmp/pids/server-xcode.pid ] && kill -INT `cat tmp/pids/server-xcode.pid`
+	//
 	[post buildWithAttributes:nil completionHandler:^(NSDictionary *attrs, NSError *error) {
 		STAssertNotNil(attrs, nil);
+		STAssertNil(error, nil);
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
