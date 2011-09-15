@@ -10,6 +10,7 @@
 		7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
 		7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		782B5B1D1421CE6100A74579 /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */; };
 		78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */; };
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveSupportKit.framework; path = "../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug/ActiveSupportKit.framework"; sourceTree = "<group>"; };
 		78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActiveModelKit.xcodeproj; path = ../ActiveModelKit/ActiveModelKit.xcodeproj; sourceTree = "<group>"; };
 		7832702E14110B7B00ECCE7D /* ARFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormat.h; sourceTree = "<group>"; };
 		7832703014110BAE00ECCE7D /* ARJSONFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARJSONFormat.h; sourceTree = "<group>"; };
@@ -125,8 +127,8 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
-		787CE7B9141A395200FAB90A /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
-		787CE7BB141A395C00FAB90A /* libYAJL.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libYAJL.a; path = "../yajl/objc/build/Release-iphoneos/libYAJL.a"; sourceTree = "<group>"; };
+		787CE7B9141A395200FAB90A /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
+		787CE7BB141A395C00FAB90A /* libYAJL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYAJL.a; path = "../yajl/objc/build/Release-iphoneos/libYAJL.a"; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782B5B1D1421CE6100A74579 /* ActiveSupportKit.framework in Frameworks */,
 				78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */,
 				78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */,
 			);
@@ -216,6 +219,7 @@
 			children = (
 				787CE7BB141A395C00FAB90A /* libYAJL.a */,
 				787CE7B9141A395200FAB90A /* libActiveSupportKit.a */,
+				782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */,
 				7846AA1C140BAAE100FE58E5 /* Foundation.framework */,
 				7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */,
 				7846AA19140BAAE100FE58E5 /* Other Frameworks */,
@@ -719,6 +723,10 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
@@ -733,6 +741,10 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
