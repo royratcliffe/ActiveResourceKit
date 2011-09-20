@@ -39,6 +39,8 @@
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
 
+- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler;
+
 @end
 
 @implementation ARBase
@@ -60,7 +62,7 @@
 
 - (void)loadAttributes:(NSDictionary *)attributes
 {
-	
+	[self setAttributes:attributes];
 }
 
 @synthesize site = _site;
@@ -242,6 +244,7 @@
 	return [NSString stringWithFormat:@"%@%@/%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], IDString, [[self format] extension]];
 }
 
+// Answers the path for creating a new element.
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
 {
 	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
@@ -262,40 +265,23 @@
 	// Use the new element path. Construct the request URL using this path but
 	// make it relative to the site URL. The NSURL class combines the new
 	// element path with the site, using the site's scheme, host and port.
-	NSURL *URL = [NSURL URLWithString:[self newElementPathWithPrefixOptions:nil] relativeToURL:[self site]];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-		if (data)
+	NSString *path = [self newElementPathWithPrefixOptions:nil];
+	[self get:path completionHandler:^(id object, NSError *error) {
+		if ([object isKindOfClass:[NSDictionary class]])
 		{
-			// Use the format to decode the data.
-			id object = [[self format] decode:data error:&error];
-			if (object)
-			{
-				if ([object isKindOfClass:[NSDictionary class]])
-				{
-					NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
-					[attrs addEntriesFromDictionary:attributes];
-					[self loadAttributes:attrs];
-					completionHandler(attrs, nil);
-				}
-				else
-				{
-					// The response body decodes successfully but it does not
-					// decode to a dictionary. It must be something else, either
-					// an array, a string or some other primitive type. In which
-					// case, building with attributes must fail even though
-					// ostensibly the operation has succeeded. Set up an error.
-					completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-				}
-			}
-			else
-			{
-				completionHandler(nil, error);
-			}
+			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
+			[attrs addEntriesFromDictionary:attributes];
+			[self loadAttributes:attrs];
+			completionHandler(attrs, nil);
 		}
 		else
 		{
-			completionHandler(nil, error);
+			// The response body decodes successfully but it does not
+			// decode to a dictionary. It must be something else, either
+			// an array, a string or some other primitive type. In which
+			// case, building with attributes must fail even though
+			// ostensibly the operation has succeeded. Set up an error.
+			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
@@ -317,6 +303,30 @@
 - (NSString *)defaultCollectionName
 {
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
+}
+
+- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
+{
+	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		if (data)
+		{
+			id object = [[self format] decode:data error:&error];
+			if (object)
+			{
+				completionHandler(object, nil);
+			}
+			else
+			{
+				completionHandler(nil, error);
+			}
+		}
+		else
+		{
+			completionHandler(nil, error);
+		}
+	}];
 }
 
 @end
