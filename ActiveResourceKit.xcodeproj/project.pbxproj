@@ -245,8 +245,6 @@
 				7832703114110BAE00ECCE7D /* ARJSONFormat.m */,
 				78FB0D84141A1820007AFB3D /* Errors.h */,
 				78FB0D85141A1820007AFB3D /* Errors.m */,
-				7835BC8D1414C47900CC4B56 /* Versioning.h */,
-				7835BC8E1414C47900CC4B56 /* Versioning.m */,
 				7846AA1E140BAAE100FE58E5 /* Supporting Files */,
 			);
 			path = ActiveResourceKit;
@@ -255,6 +253,8 @@
 		7846AA1E140BAAE100FE58E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7835BC8D1414C47900CC4B56 /* Versioning.h */,
+				7835BC8E1414C47900CC4B56 /* Versioning.m */,
 				7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */,
 				7846AA20140BAAE100FE58E5 /* InfoPlist.strings */,
 				7846AA23140BAAE100FE58E5 /* ActiveResourceKit-Prefix.pch */,
