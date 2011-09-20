@@ -39,6 +39,12 @@
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
 
+/*!
+ * Sends an asynchronous GET request. When the response successfully arrives,
+ * the format decodes the data. If the response body decodes successfully,
+ * finally sends the decoded object (or objects) to your given completion
+ * handler. Objects may be hashes (dictionaries) or arrays, or even primitives.
+ */
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler;
 
 @end
@@ -286,6 +292,39 @@
 	}];
 }
 
+- (ARBase *)instantiateRecord:(NSDictionary *)record prefix:(NSString *)prefix
+{
+	ARBase *resource = [[[ARBase alloc] initWithSite:[self site]] autorelease];
+	[resource loadAttributes:record];
+	[resource setPrefix:prefix];
+	return resource;
+}
+
+- (NSArray *)instantiateCollection:(NSArray *)collection prefix:(NSString *)prefix
+{
+	NSMutableArray *resources = [NSMutableArray array];
+	for (NSDictionary *record in collection)
+	{
+		[resources addObject:[self instantiateRecord:record prefix:prefix]];
+	}
+	return [[resources copy] autorelease];
+}
+
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+{
+	NSString *path = [self collectionPathWithPrefixOptions:nil];
+	[self get:path completionHandler:^(id object, NSError *error) {
+		if ([object isKindOfClass:[NSArray class]])
+		{
+			completionHandler([self instantiateCollection:object prefix:[self prefix]], nil);
+		}
+		else
+		{
+			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+		}
+	}];
+}
+
 @end
 
 @implementation ARBase(Private)
@@ -305,12 +344,6 @@
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
 }
 
-/*!
- * Sends an asynchronous GET request. When the response successfully arrives,
- * the format decodes the data. If the response body decodes successfully,
- * finally sends the decoded object (or objects) to your given completion
- * handler. Objects may be hashes (dictionaries) or arrays, or even primitives.
- */
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];

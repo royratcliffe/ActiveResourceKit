@@ -212,4 +212,20 @@
 	[self runUntilStop];
 }
 
+- (void)testFindAll
+{
+	[post findAllWithOptions:nil completionHandler:^(NSArray *resources, NSError *error) {
+		STAssertNotNil(resources, nil);
+		STAssertNil(error, nil);
+		// Without assuming exactly what the server-side records contain, just
+		// assert that there are some then log their contents.
+		for (ARBase *resource in resources)
+		{
+			NSLog(@"%@", [resource attributes]);
+		}
+		[self setStop:YES];
+	}];
+	[self runUntilStop];
+}
+
 @end

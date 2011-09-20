@@ -101,4 +101,6 @@
  */
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler;
 
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+
 @end
