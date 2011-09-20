@@ -92,6 +92,13 @@
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 
+/*
+ * Asynchronously builds an Active Resource.
+ *
+ * Executes the completion handler on success or upon error. Completion handler
+ * arguments signal the outcome: non-nil attributes indicate successful
+ * completion. In such case, error always equals nil. There is no error.
+ */
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler;
 
 @end
