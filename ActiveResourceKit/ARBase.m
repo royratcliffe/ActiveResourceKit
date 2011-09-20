@@ -24,7 +24,7 @@
 
 #import "ARBase.h"
 #import "ARJSONFormat.h"
-#import "Errors.h"
+#import "ARErrors.h"
 
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>

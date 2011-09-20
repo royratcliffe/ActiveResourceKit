@@ -1,4 +1,4 @@
-// ActiveResourceKit Errors.m
+// ActiveResourceKit ARErrors.h
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,6 +22,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import "Errors.h"
+#import <Foundation/Foundation.h>
 
-NSString *const ARErrorDomain = @"org.rubyonrails.api.ARErrorDomain";
+extern NSString *const ARErrorDomain;
+
+enum
+{
+	ARUnsupportedRootObjectTypeError = 'urot',
+};

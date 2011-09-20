@@ -26,5 +26,5 @@
 #import <ActiveResourceKit/ARFormatMethods.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
 
-#import <ActiveResourceKit/Errors.h>
+#import <ActiveResourceKit/ARErrors.h>
 #import <ActiveResourceKit/Versioning.h>
