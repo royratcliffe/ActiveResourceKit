@@ -305,6 +305,12 @@
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
 }
 
+/*!
+ * Sends an asynchronous GET request. When the response successfully arrives,
+ * the format decodes the data. If the response body decodes successfully,
+ * finally sends the decoded object (or objects) to your given completion
+ * handler. Objects may be hashes (dictionaries) or arrays, or even primitives.
+ */
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
