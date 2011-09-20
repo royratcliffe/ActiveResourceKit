@@ -1,4 +1,4 @@
-// ActiveResourceKit ARJSONFormat.m
+// ActiveResourceKit ARFormatMethods.h
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,70 +22,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARJSONFormat.h"
-#import "ARFormatMethods.h"
+#import <Foundation/Foundation.h>
 
-#import <ActiveSupportKit/ActiveSupportKit.h>
-
-@implementation ARJSONFormat
-
-- (NSString *)extension
-{
-	return @"json";
-}
-
-- (NSString *)MIMEType
-{
-	return @"application/json";
-}
-
-- (id)decode:(NSData *)data error:(NSError **)outError
-{
-	return ARRemoveRoot(ASJSONDecode(data, outError));
-}
-
-//------------------------------------------------------------------------------
-#pragma mark                                                           Singleton
-//------------------------------------------------------------------------------
-
-+ (ARJSONFormat *)JSONFormat
-{
-	static ARJSONFormat *JSONFormat;
-	if (JSONFormat == nil)
-	{
-		JSONFormat = [[super allocWithZone:nil] init];
-	}
-	return JSONFormat;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-	return [[self JSONFormat] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-	return self;
-}
-
-- (id)retain
-{
-	return self;
-}
-
-- (NSUInteger)retainCount
-{
-	return NSUIntegerMax;
-}
-
-- (oneway void)release
-{
-	;
-}
-
-- (id)autorelease
-{
-	return self;
-}
-
-@end
+/*!
+ * Strips off the enclosing dictionary if and only if the object is a dictionary
+ * (hash) containing just a single key-value pair. Otherwise answers object, a
+ * no-operation.
+ */
+id ARRemoveRoot(id object);

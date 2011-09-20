@@ -1,4 +1,4 @@
-// ActiveResourceKit ARJSONFormat.m
+// ActiveResourceKit ARFormatMethods.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,70 +22,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARJSONFormat.h"
 #import "ARFormatMethods.h"
 
-#import <ActiveSupportKit/ActiveSupportKit.h>
+// Rails places the following behaviour in the ActiveResource::Formats module.
 
-@implementation ARJSONFormat
-
-- (NSString *)extension
+id ARRemoveRoot(id object)
 {
-	return @"json";
+	return [object isKindOfClass:[NSDictionary class]] && [(NSDictionary *)object count] == 1 ? [[(NSDictionary *)object objectEnumerator] nextObject] : object;
 }
-
-- (NSString *)MIMEType
-{
-	return @"application/json";
-}
-
-- (id)decode:(NSData *)data error:(NSError **)outError
-{
-	return ARRemoveRoot(ASJSONDecode(data, outError));
-}
-
-//------------------------------------------------------------------------------
-#pragma mark                                                           Singleton
-//------------------------------------------------------------------------------
-
-+ (ARJSONFormat *)JSONFormat
-{
-	static ARJSONFormat *JSONFormat;
-	if (JSONFormat == nil)
-	{
-		JSONFormat = [[super allocWithZone:nil] init];
-	}
-	return JSONFormat;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-	return [[self JSONFormat] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-	return self;
-}
-
-- (id)retain
-{
-	return self;
-}
-
-- (NSUInteger)retainCount
-{
-	return NSUIntegerMax;
-}
-
-- (oneway void)release
-{
-	;
-}
-
-- (id)autorelease
-{
-	return self;
-}
-
-@end
