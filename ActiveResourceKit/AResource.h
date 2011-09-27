@@ -56,4 +56,12 @@
 
 - (void)loadAttributes:(NSDictionary *)attributes;
 
+//--------------------------------------------------------------- Prefix Options
+
+@property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *prefixOptions;
+
+//-------------------------------------------------------------------- Persisted
+
+@property(assign, NS_NONATOMIC_IOSONLY) BOOL persisted;
+
 @end
