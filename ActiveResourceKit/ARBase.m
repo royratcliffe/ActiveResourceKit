@@ -23,31 +23,10 @@
 //------------------------------------------------------------------------------
 
 #import "ARBase.h"
-#import "ARJSONFormat.h"
+#import "ARBase+Private.h"
+
+#import "AResource.h"
 #import "ARErrors.h"
-
-#import <ActiveModelKit/ActiveModelKit.h>
-#import <ActiveSupportKit/ActiveSupportKit.h>
-
-@interface ARBase()
-
-@end
-
-@interface ARBase(Private)
-
-- (NSString *)defaultPrefix;
-- (NSString *)defaultElementName;
-- (NSString *)defaultCollectionName;
-
-/*!
- * Sends an asynchronous GET request. When the response successfully arrives,
- * the format decodes the data. If the response body decodes successfully,
- * finally sends the decoded object (or objects) to your given completion
- * handler. Objects may be hashes (dictionaries) or arrays, or even primitives.
- */
-- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler;
-
-@end
 
 @implementation ARBase
 
@@ -64,20 +43,28 @@
 	return self;
 }
 
-@synthesize attributes = _attributes;
+//------------------------------------------------------------------------------
+#pragma mark                                                              Schema
+//------------------------------------------------------------------------------
 
-- (void)loadAttributes:(NSDictionary *)attributes
+@synthesize schema = _schema;
+
+- (NSArray *)knownAttributes
 {
-	[self setAttributes:attributes];
+	return [[self schema] allKeys];
 }
+
+//------------------------------------------------------------------------------
+#pragma mark                                                                Site
+//------------------------------------------------------------------------------
 
 @synthesize site = _site;
 
-// This is not the designated initialiser. Note the message to -[self init]
-// rather than -[super init], a small but important difference. This is just a
-// convenience initialiser: a way to initialise and assign the site URL at one
-// and the same time. The default initialiser is the standard initialiser
-// inherited from NSObject.
+// The following initialisers are not designated initialisers. Note the messages
+// to -[self init] rather than -[super init], a small but important
+// difference. These are just convenience initialisers: a way to initialise and
+// assign the site URL at one and the same time, or site plus element name.
+
 - (id)initWithSite:(NSURL *)site
 {
 	self = [self init];
@@ -104,15 +91,17 @@
 
 @synthesize format = _format;
 
+// getter
 - (id<ARFormat>)format
 {
 	if (_format == nil)
 	{
-		[self setFormat:[ARJSONFormat JSONFormat]];
+		[self setFormat:[self defaultFormat]];
 	}
 	return _format;
 }
 
+// setter
 - (void)setFormat:(id<ARFormat>)newFormat
 {
 	if (_format != newFormat)
@@ -128,6 +117,7 @@
 
 @synthesize prefix = _prefix;
 
+// getter
 - (NSString *)prefix
 {
 	if (_prefix == nil)
@@ -148,6 +138,7 @@
 // feature or bug? It outputs a warning message, “writable atomic property
 // cannot pair a synthesised setter/getter with a user defined setter/getter.”
 
+// setter
 - (void)setPrefix:(NSString *)newPrefix
 {
 	if (_prefix != newPrefix)
@@ -321,49 +312,6 @@
 		else
 		{
 			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-		}
-	}];
-}
-
-@end
-
-@implementation ARBase(Private)
-
-- (NSString *)defaultPrefix
-{
-	return [[self site] path];
-}
-
-- (NSString *)defaultElementName
-{
-	return [[[[AMName alloc] initWithClass:[self class]] autorelease] element];
-}
-
-- (NSString *)defaultCollectionName
-{
-	return [[ASInflector defaultInflector] pluralize:[self elementName]];
-}
-
-- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
-{
-	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-		if (data)
-		{
-			id object = [[self format] decode:data error:&error];
-			if (object)
-			{
-				completionHandler(object, nil);
-			}
-			else
-			{
-				completionHandler(nil, error);
-			}
-		}
-		else
-		{
-			completionHandler(nil, error);
 		}
 	}];
 }

@@ -22,7 +22,9 @@
  *
  ******************************************************************************/
 
+#import <ActiveResourceKit/AResource.h>
 #import <ActiveResourceKit/ARBase.h>
+
 #import <ActiveResourceKit/ARFormatMethods.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
 

@@ -99,19 +99,27 @@
 
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
 
-// The following properties use copy rather than retain. Why use copy? You can
-// pass a mutable URL or string. The Active Resource retains a non-mutable copy.
+// The following properties use copy, in general, rather than retain. Why use
+// copy? You can pass a mutable URL or string. The Active Resource retains a
+// non-mutable copy.
 //
 // Note also that Rails implements some of the behaviours at class scope. For
 // example, format is a class-scoped attribute in Rails. The Objective-C
 // implementation here maps such behaviour to instances rather than classes.
 
-@property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
+//----------------------------------------------------------------------- Schema
 
-- (void)loadAttributes:(NSDictionary *)attributes;
+@property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *schema;
 
-- (id)initWithSite:(NSURL *)site;
-- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
+/*!
+ * Answers the known attributes, known because the resource server publishes
+ * them; the server does not necessarily publish everything. Known attributes
+ * depend on schema: they amount to the schema's keys. The schema is a
+ * dictionary of attribute name-type pairs.
+ */
+@property(readonly, NS_NONATOMIC_IOSONLY) NSArray *knownAttributes;
+
+//------------------------------------------------------------------------- Site
 
 /*!
  * Always set up the site first. Other things depend on this essential
@@ -119,6 +127,11 @@
  * site's path becomes the default prefix.
  */
 @property(copy, NS_NONATOMIC_IOSONLY) NSURL *site;
+
+- (id)initWithSite:(NSURL *)site;
+- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
+
+//----------------------------------------------------------------------- Format
 
 @property(retain, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
 
