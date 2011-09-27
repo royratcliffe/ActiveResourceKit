@@ -28,6 +28,8 @@
 #import "AResource.h"
 #import "ARErrors.h"
 
+#import <ActiveSupportKit/ActiveSupportKit.h>
+
 @implementation ARBase
 
 @synthesize timeout = _timeout;
