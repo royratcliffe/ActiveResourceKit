@@ -24,12 +24,24 @@
 
 #import <ActiveResourceKit/ARBase.h>
 
+@class AResource;
+
 @interface ARBase(Private)
 
 - (id<ARFormat>)defaultFormat;
 - (NSString *)defaultPrefix;
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
+
+/*!
+ * Instantiates a collection of active resources given a collection of
+ * attributes; collection here meaning an array. The collection argument
+ * specifies an array of dictionaries. Each dictionary specifies attributes for
+ * a new active resource. Answers an array of newly instantiated active
+ * resources.
+ */
+- (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions;
+- (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
 
 /*!
  * Sends an asynchronous GET request. When the response successfully arrives,

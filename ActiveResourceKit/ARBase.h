@@ -25,6 +25,8 @@
 #import <Foundation/Foundation.h>
 #import <ActiveResourceKit/ARFormat.h>
 
+@class AResource;
+
 /*!
  * Under Rails ActiveResource, the ActiveResource::Base singleton class carries
  * the following state. See list below. This might help to define what ARBase
@@ -182,8 +184,8 @@
  * arguments signal the outcome: non-nil attributes indicate successful
  * completion. In such case, error always equals nil. There is no error.
  */
-- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler;
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
-- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+- (void)findAllWithPrefixOptions:(NSDictionary *)prefixOptions completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
 
 @end

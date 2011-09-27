@@ -50,6 +50,23 @@
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
 }
 
+- (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions
+{
+	NSMutableArray *resources = [NSMutableArray array];
+	for (NSDictionary *attrs in collection)
+	{
+		[resources addObject:[self instantiateRecordWithAttributes:attrs prefixOptions:prefixOptions]];
+	}
+	return [[resources copy] autorelease];
+}
+
+- (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
+{
+	AResource *resource = [[[AResource alloc] initWithBase:self attributes:attributes persisted:YES] autorelease];
+	[resource setPrefixOptions:prefixOptions];
+	return resource;
+}
+
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];

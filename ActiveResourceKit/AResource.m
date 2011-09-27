@@ -49,6 +49,16 @@
 
 @synthesize attributes = _attributes;
 
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes
+{
+	self = [self init];
+	if (self)
+	{
+		[self loadAttributes:attributes];
+	}
+	return self;
+}
+
 - (void)loadAttributes:(NSDictionary *)attributes
 {
 	[self setAttributes:attributes];
@@ -65,5 +75,15 @@
 //------------------------------------------------------------------------------
 
 @synthesize persisted = _persisted;
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted
+{
+	self = [self initWithBase:base attributes:attributes];
+	if (self)
+	{
+		[self setPersisted:persisted];
+	}
+	return self;
+}
 
 @end

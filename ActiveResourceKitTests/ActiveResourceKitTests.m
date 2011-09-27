@@ -204,8 +204,8 @@
 	//	cd "$SRCROOT/active-resource-kit-tests"
 	//	[ -f tmp/pids/server-xcode.pid ] && kill -INT `cat tmp/pids/server-xcode.pid`
 	//
-	[post buildWithAttributes:nil completionHandler:^(NSDictionary *attrs, NSError *error) {
-		STAssertNotNil(attrs, nil);
+	[post buildWithAttributes:nil completionHandler:^(AResource *resource, NSError *error) {
+		STAssertNotNil(resource, nil);
 		STAssertNil(error, nil);
 		[self setStop:YES];
 	}];
@@ -214,12 +214,12 @@
 
 - (void)testFindAll
 {
-	[post findAllWithOptions:nil completionHandler:^(NSArray *resources, NSError *error) {
+	[post findAllWithPrefixOptions:nil completionHandler:^(NSArray *resources, NSError *error) {
 		STAssertNotNil(resources, nil);
 		STAssertNil(error, nil);
 		// Without assuming exactly what the server-side records contain, just
 		// assert that there are some then log their contents.
-		for (ARBase *resource in resources)
+		for (AResource *resource in resources)
 		{
 			NSLog(@"%@", [resource attributes]);
 		}

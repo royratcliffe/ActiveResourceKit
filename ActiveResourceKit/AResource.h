@@ -46,6 +46,11 @@
 
 //------------------------------------------------------------------------- Base
 
+/*!
+ * Retains the active-resource base. Does not copy the base. This has important
+ * implications. If you alter base properties, the changes affect all the
+ * resources which depend upon it.
+ */
 @property(retain, NS_NONATOMIC_IOSONLY) ARBase *base;
 
 - (id)initWithBase:(ARBase *)base;
@@ -53,6 +58,8 @@
 //------------------------------------------------------------------- Attributes
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;
 
 - (void)loadAttributes:(NSDictionary *)attributes;
 
@@ -63,5 +70,7 @@
 //-------------------------------------------------------------------- Persisted
 
 @property(assign, NS_NONATOMIC_IOSONLY) BOOL persisted;
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
 @end

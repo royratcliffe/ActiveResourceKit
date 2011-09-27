@@ -259,7 +259,7 @@
 // method. Objective-C does not provide the singleton class
 // paradigm. ActiveResourceKit folds the Rails singleton methods to instance
 // methods.
-- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(NSDictionary *attrs, NSError *error))completionHandler
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
 {
 	// Use the new element path. Construct the request URL using this path but
 	// make it relative to the site URL. The NSURL class combines the new
@@ -270,8 +270,7 @@
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			[self loadAttributes:attrs];
-			completionHandler(attrs, nil);
+			completionHandler([[[AResource alloc] initWithBase:self attributes:attrs] autorelease], nil);
 		}
 		else
 		{
@@ -285,31 +284,13 @@
 	}];
 }
 
-- (ARBase *)instantiateRecord:(NSDictionary *)record prefix:(NSString *)prefix
-{
-	ARBase *resource = [[[ARBase alloc] initWithSite:[self site]] autorelease];
-	[resource loadAttributes:record];
-	[resource setPrefix:prefix];
-	return resource;
-}
-
-- (NSArray *)instantiateCollection:(NSArray *)collection prefix:(NSString *)prefix
-{
-	NSMutableArray *resources = [NSMutableArray array];
-	for (NSDictionary *record in collection)
-	{
-		[resources addObject:[self instantiateRecord:record prefix:prefix]];
-	}
-	return [[resources copy] autorelease];
-}
-
-- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+- (void)findAllWithPrefixOptions:(NSDictionary *)prefixOptions completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
 {
 	NSString *path = [self collectionPathWithPrefixOptions:nil];
 	[self get:path completionHandler:^(id object, NSError *error) {
 		if ([object isKindOfClass:[NSArray class]])
 		{
-			completionHandler([self instantiateCollection:object prefix:[self prefix]], nil);
+			completionHandler([self instantiateCollection:object prefixOptions:prefixOptions], nil);
 		}
 		else
 		{
