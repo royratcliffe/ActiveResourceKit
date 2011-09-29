@@ -39,10 +39,6 @@
  * becomes AResource!
  */
 @interface AResource : NSObject
-{
-@private
-	
-}
 
 //------------------------------------------------------------------------- Base
 
