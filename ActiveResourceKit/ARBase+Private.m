@@ -76,9 +76,9 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	NSMutableSet *parameters = [NSMutableSet set];
 	NSString *prefixSource = [self prefixSource];
-	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:prefixSource options:0 range:NSMakeRange(0, [prefixSource length])])
+	for (NSTextCheckingResult *result in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:prefixSource options:0 range:NSMakeRange(0, [prefixSource length])])
 	{
-		[parameters addObject:[match substringFromIndex:1]];
+		[parameters addObject:[[prefixSource substringWithRange:[result range]] substringFromIndex:1]];
 	}
 	return [[parameters copy] autorelease];
 }
