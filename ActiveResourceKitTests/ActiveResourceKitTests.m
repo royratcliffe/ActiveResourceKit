@@ -27,16 +27,19 @@
 
 @interface MyObject : ARBase
 @end
+
 @implementation MyObject
 @end
 
 @interface Post : ARBase
 @end
+
 @implementation Post
 @end
 
 @interface PostComment : ARBase
 @end
+
 @implementation PostComment
 @end
 
@@ -128,18 +131,18 @@
 	// object answering to the prefix-parameter key (resource_id in this test
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
-	ARBase *resource = [[[ARBase alloc] init] autorelease];
-	[resource setPrefixSource:@"/resources/:resource_id"];
+	ARBase *base = [[[ARBase alloc] init] autorelease];
+	[base setPrefixSource:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
-	NSString *prefix = [resource prefixWithOptions:options];
+	NSString *prefix = [base prefixWithOptions:options];
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
 }
 
 - (void)testPrefixParameterWithPercentEscapes
 {
-	ARBase *resource = [[[ARBase alloc] init] autorelease];
-	[resource setPrefixSource:@"/resources/:resource_id"];
-	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
+	ARBase *base = [[[ARBase alloc] init] autorelease];
+	[base setPrefixSource:@"/resources/:resource_id"];
+	NSString *prefix = [base prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
 }
 
@@ -157,6 +160,13 @@
 {
 	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:nil queryOptions:nil];
 	STAssertEqualObjects(elementPath, @"/posts/1.json", nil);
+}
+
+- (void)testElementPathWithQuery
+{
+	NSDictionary *query = [NSDictionary dictionaryWithObject:@"value string" forKey:@"key string"];
+	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:nil queryOptions:query];
+	STAssertEqualObjects(elementPath, @"/posts/1.json?key%20string=value%20string", nil);
 }
 
 - (void)testNewElementPath
