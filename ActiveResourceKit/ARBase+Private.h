@@ -29,9 +29,9 @@
 @interface ARBase(Private)
 
 - (id<ARFormat>)defaultFormat;
-- (NSString *)defaultPrefix;
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
+- (NSString *)defaultPrefix;
 
 /*!
  * Instantiates a collection of active resources given a collection of
@@ -42,6 +42,13 @@
  */
 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions;
 - (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
+
+/*!
+ * Answers a set of prefix parameters based on the current prefix. These
+ * constitute the current set of prefix parameters: an array of strings without
+ * the leading colon. Colon immediately followed by a word marks each parameter.
+ */
+- (NSSet *)prefixParameters;
 
 /*!
  * Sends an asynchronous GET request. When the response successfully arrives,

@@ -32,8 +32,6 @@
 
 @implementation ARBase
 
-@synthesize timeout = _timeout;
-
 // designated initialiser
 - (id)init
 {
@@ -113,77 +111,7 @@
 	}
 }
 
-//------------------------------------------------------------------------------
-#pragma mark                                                              Prefix
-//------------------------------------------------------------------------------
-
-@synthesize prefix = _prefix;
-
-// getter
-- (NSString *)prefix
-{
-	if (_prefix == nil)
-	{
-		NSString *prefix = [self defaultPrefix];
-		if ([prefix length] == 0 || ![[prefix substringFromIndex:[prefix length] - 1] isEqualToString:@"/"])
-		{
-			prefix = [prefix stringByAppendingString:@"/"];
-		}
-		[self setPrefix:prefix];
-	}
-	return _prefix;
-}
-
-// It would be nice for the compiler to provide the setter. If you make the
-// property non-atomic, the compiler will let you define just the custom
-// getter. But not so if you make the property atomic. Is this a compiler
-// feature or bug? It outputs a warning message, “writable atomic property
-// cannot pair a synthesised setter/getter with a user defined setter/getter.”
-
-// setter
-- (void)setPrefix:(NSString *)newPrefix
-{
-	if (_prefix != newPrefix)
-	{
-		[_prefix autorelease];
-		// Auto-release the previous prefix, assuming there is one. This allows
-		// the caller to access the previous prefix first, alter the prefix and
-		// retain access to the original copy. The original will disappear from
-		// memory at the next pool-drain event having received the auto-release
-		// message.
-		_prefix = [newPrefix copy];
-	}
-}
-
-- (NSSet *)prefixParameters
-{
-	NSMutableSet *parameters = [NSMutableSet set];
-	NSString *prefix = [self prefix];
-	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:[self prefix] options:0 range:NSMakeRange(0, [prefix length])])
-	{
-		[parameters addObject:[match substringFromIndex:1]];
-	}
-	return [[parameters copy] autorelease];
-}
-
-- (NSString *)prefixWithOptions:(NSDictionary *)options
-{
-	// The following implementation duplicates some of the functionality
-	// concerning extraction of prefix parameters from the prefix. See the
-	// -prefixParameters method. Nevertheless, the replace-in-place approach
-	// makes the string operations more convenient. The implementation does not
-	// need to cut apart the colon from its parameter word. The regular
-	// expression identifies the substitution on our behalf, making it easier to
-	// remove the colon, access the prefix parameter minus its colon and replace
-	// both; and all at the same time.
-	if (options == nil)
-	{
-		return [self prefix];
-	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
-		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	}];
-}
+@synthesize timeout = _timeout;
 
 //------------------------------------------------------------------------------
 #pragma mark                                                        Element Name
@@ -231,6 +159,67 @@
 		[_collectionName autorelease];
 		_collectionName = [newCollectionName copy];
 	}
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                              Prefix
+//------------------------------------------------------------------------------
+
+@synthesize prefix = _prefix;
+
+// getter
+- (NSString *)prefix
+{
+	if (_prefix == nil)
+	{
+		NSString *prefix = [self defaultPrefix];
+		if ([prefix length] == 0 || ![[prefix substringFromIndex:[prefix length] - 1] isEqualToString:@"/"])
+		{
+			prefix = [prefix stringByAppendingString:@"/"];
+		}
+		[self setPrefix:prefix];
+	}
+	return _prefix;
+}
+
+// It would be nice for the compiler to provide the setter. If you make the
+// property non-atomic, the compiler will let you define just the custom
+// getter. But not so if you make the property atomic. Is this a compiler
+// feature or bug? It outputs a warning message, “writable atomic property
+// cannot pair a synthesised setter/getter with a user defined setter/getter.”
+
+// setter
+- (void)setPrefix:(NSString *)newPrefix
+{
+	if (_prefix != newPrefix)
+	{
+		[_prefix autorelease];
+		// Auto-release the previous prefix, assuming there is one. This allows
+		// the caller to access the previous prefix first, alter the prefix and
+		// retain access to the original copy. The original will disappear from
+		// memory at the next pool-drain event having received the auto-release
+		// message.
+		_prefix = [newPrefix copy];
+	}
+}
+
+- (NSString *)prefixWithOptions:(NSDictionary *)options
+{
+	// The following implementation duplicates some of the functionality
+	// concerning extraction of prefix parameters from the prefix. See the
+	// -prefixParameters method. Nevertheless, the replace-in-place approach
+	// makes the string operations more convenient. The implementation does not
+	// need to cut apart the colon from its parameter word. The regular
+	// expression identifies the substitution on our behalf, making it easier to
+	// remove the colon, access the prefix parameter minus its colon and replace
+	// both; and all at the same time.
+	if (options == nil)
+	{
+		return [self prefix];
+	}
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	}];
 }
 
 //------------------------------------------------------------------------------

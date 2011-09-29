@@ -35,11 +35,6 @@
 	return [ARJSONFormat JSONFormat];
 }
 
-- (NSString *)defaultPrefix
-{
-	return [[self site] path];
-}
-
 - (NSString *)defaultElementName
 {
 	return [[[[AMName alloc] initWithClass:[self class]] autorelease] element];
@@ -48,6 +43,11 @@
 - (NSString *)defaultCollectionName
 {
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
+}
+
+- (NSString *)defaultPrefix
+{
+	return [[self site] path];
 }
 
 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions
@@ -65,6 +65,17 @@
 	AResource *resource = [[[AResource alloc] initWithBase:self attributes:attributes persisted:YES] autorelease];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
+}
+
+- (NSSet *)prefixParameters
+{
+	NSMutableSet *parameters = [NSMutableSet set];
+	NSString *prefix = [self prefix];
+	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:[self prefix] options:0 range:NSMakeRange(0, [prefix length])])
+	{
+		[parameters addObject:[match substringFromIndex:1]];
+	}
+	return [[parameters copy] autorelease];
 }
 
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler

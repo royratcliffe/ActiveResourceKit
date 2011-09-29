@@ -99,8 +99,6 @@
  */
 @interface ARBase : NSObject
 
-@property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
-
 // The following properties use copy, in general, rather than retain. Why use
 // copy? You can pass a mutable URL or string. The Active Resource retains a
 // non-mutable copy.
@@ -137,7 +135,9 @@
 
 @property(retain, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
 
-//----------------------------------------------------------------------- Prefix
+@property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
+
+//------------------------------------------------- Element and Collection Names
 
 // Setters and getters for element and collection name follow Rails
 // semantics. You can set them but they also have default values which the class
@@ -145,16 +145,15 @@
 // examines the current value and if not already set, sets up the default which
 // typically accesses other values and possibly other defaults. This Rails-like
 // ‘lazy getter’ approach means that you can always override defaults using the
-// setter, either before accessing the getter or even afterwards.
+// setter, either before accessing the getter or even afterwards, only provided
+// that the property has remained unrequired.
+
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *elementName;
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *collectionName;
+
+//----------------------------------------------------------------------- Prefix
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *prefix;
-
-/*!
- * Answers a set of prefix parameters based on the current prefix. These
- * constitute the current set of prefix parameters: an array of strings without
- * the leading colon. Colon immediately followed by a word marks each parameter.
- */
-- (NSSet *)prefixParameters;
 
 /*!
  * Answers the prefix after translating the prefix parameters according to the
@@ -165,11 +164,6 @@
  * contain parameter placeholders.
  */
 - (NSString *)prefixWithOptions:(NSDictionary *)options;
-
-//------------------------------------------------- Element and Collection Names
-
-@property(copy, NS_NONATOMIC_IOSONLY) NSString *elementName;
-@property(copy, NS_NONATOMIC_IOSONLY) NSString *collectionName;
 
 //------------------------------------------------------------------------ Paths
 
