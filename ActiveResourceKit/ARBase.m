@@ -242,9 +242,13 @@
 	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
 }
 
-- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions
+- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
 {
-	return [NSString stringWithFormat:@"%@%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
+	if (queryOptions == nil)
+	{
+		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
+	}
+	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Building with attributes. Should this be a class or instance method? Rails
@@ -279,7 +283,7 @@
 
 - (void)findAllWithPrefixOptions:(NSDictionary *)prefixOptions completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
 {
-	NSString *path = [self collectionPathWithPrefixOptions:nil];
+	NSString *path = [self collectionPathWithPrefixOptions:prefixOptions queryOptions:nil];
 	[self get:path completionHandler:^(id object, NSError *error) {
 		if ([object isKindOfClass:[NSArray class]])
 		{

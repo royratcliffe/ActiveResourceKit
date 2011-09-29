@@ -167,7 +167,7 @@
 
 - (void)testCollectionPath
 {
-	NSString *collectionPath = [post collectionPathWithPrefixOptions:nil];
+	NSString *collectionPath = [post collectionPathWithPrefixOptions:nil queryOptions:nil];
 	STAssertEqualObjects(collectionPath, @"/posts.json", nil);
 }
 
@@ -182,7 +182,7 @@
 {
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:5] forKey:@"post_id"];
 	STAssertEqualObjects([postComment newElementPathWithPrefixOptions:options], @"/posts/5/comments/new.json", nil);
-	STAssertEqualObjects([postComment collectionPathWithPrefixOptions:options], @"/posts/5/comments.json", nil);
+	STAssertEqualObjects([postComment collectionPathWithPrefixOptions:options queryOptions:nil], @"/posts/5/comments.json", nil);
 }
 
 - (void)testBuild

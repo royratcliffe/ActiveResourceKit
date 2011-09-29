@@ -169,7 +169,7 @@
 
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions;
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
-- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions;
+- (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions;
 
 /*
  * Asynchronously builds an Active Resource.
