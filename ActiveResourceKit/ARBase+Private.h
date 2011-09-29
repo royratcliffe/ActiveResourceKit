@@ -31,7 +31,7 @@
 - (id<ARFormat>)defaultFormat;
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
-- (NSString *)defaultPrefix;
+- (NSString *)defaultPrefixSource;
 
 /*!
  * Instantiates a collection of active resources given a collection of
@@ -49,6 +49,12 @@
  * the leading colon. Colon immediately followed by a word marks each parameter.
  */
 - (NSSet *)prefixParameters;
+
+/*!
+ * Splits an options dictionary into two dictionaries, one containing the prefix
+ * options, the other containing the leftovers, i.e. any query options.
+ */
+- (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions;
 
 /*!
  * Sends an asynchronous GET request. When the response successfully arrives,

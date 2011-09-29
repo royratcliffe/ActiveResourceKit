@@ -153,7 +153,7 @@
 
 //----------------------------------------------------------------------- Prefix
 
-@property(copy, NS_NONATOMIC_IOSONLY) NSString *prefix;
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *prefixSource;
 
 /*!
  * Answers the prefix after translating the prefix parameters according to the

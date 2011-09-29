@@ -45,7 +45,7 @@
 	return [[ASInflector defaultInflector] pluralize:[self elementName]];
 }
 
-- (NSString *)defaultPrefix
+- (NSString *)defaultPrefixSource
 {
 	return [[self site] path];
 }
@@ -70,12 +70,30 @@
 - (NSSet *)prefixParameters
 {
 	NSMutableSet *parameters = [NSMutableSet set];
-	NSString *prefix = [self prefix];
-	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:[self prefix] options:0 range:NSMakeRange(0, [prefix length])])
+	NSString *prefixSource = [self prefixSource];
+	for (NSString *match in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:prefixSource options:0 range:NSMakeRange(0, [prefixSource length])])
 	{
 		[parameters addObject:[match substringFromIndex:1]];
 	}
 	return [[parameters copy] autorelease];
+}
+
+- (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions
+{
+	NSSet *prefixParameters = [self prefixParameters];
+	NSMutableDictionary *prefixOptions = [NSMutableDictionary dictionary];
+	NSMutableDictionary *queryOptions = [NSMutableDictionary dictionary];
+	[options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		[[prefixParameters member:key] != nil ? prefixOptions : queryOptions setObject:obj forKey:key];
+	}];
+	if (outPrefixOptions)
+	{
+		*outPrefixOptions = [[prefixOptions copy] autorelease];
+	}
+	if (outQueryOptions)
+	{
+		*outQueryOptions = [[queryOptions copy] autorelease];
+	}
 }
 
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler

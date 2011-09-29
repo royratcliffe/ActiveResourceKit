@@ -165,21 +165,21 @@
 #pragma mark                                                              Prefix
 //------------------------------------------------------------------------------
 
-@synthesize prefix = _prefix;
+@synthesize prefixSource = _prefixSource;
 
 // getter
-- (NSString *)prefix
+- (NSString *)prefixSource
 {
-	if (_prefix == nil)
+	if (_prefixSource == nil)
 	{
-		NSString *prefix = [self defaultPrefix];
-		if ([prefix length] == 0 || ![[prefix substringFromIndex:[prefix length] - 1] isEqualToString:@"/"])
+		NSString *prefixSource = [self defaultPrefixSource];
+		if ([prefixSource length] == 0 || ![[prefixSource substringFromIndex:[prefixSource length] - 1] isEqualToString:@"/"])
 		{
-			prefix = [prefix stringByAppendingString:@"/"];
+			prefixSource = [prefixSource stringByAppendingString:@"/"];
 		}
-		[self setPrefix:prefix];
+		[self setPrefixSource:prefixSource];
 	}
-	return _prefix;
+	return _prefixSource;
 }
 
 // It would be nice for the compiler to provide the setter. If you make the
@@ -189,17 +189,17 @@
 // cannot pair a synthesised setter/getter with a user defined setter/getter.”
 
 // setter
-- (void)setPrefix:(NSString *)newPrefix
+- (void)setPrefixSource:(NSString *)newPrefixSource
 {
-	if (_prefix != newPrefix)
+	if (_prefixSource != newPrefixSource)
 	{
-		[_prefix autorelease];
-		// Auto-release the previous prefix, assuming there is one. This allows
-		// the caller to access the previous prefix first, alter the prefix and
-		// retain access to the original copy. The original will disappear from
-		// memory at the next pool-drain event having received the auto-release
-		// message.
-		_prefix = [newPrefix copy];
+		[_prefixSource autorelease];
+		// Auto-release the previous prefix source, assuming there is one. This
+		// allows the caller to access the previous prefix source first, then
+		// alter the prefix source and retain access to the original copy. The
+		// original will disappear from memory at the next pool-drain event
+		// having received the auto-release message.
+		_prefixSource = [newPrefixSource copy];
 	}
 }
 
@@ -215,9 +215,9 @@
 	// both; and all at the same time.
 	if (options == nil)
 	{
-		return [self prefix];
+		return [self prefixSource];
 	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefix] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSource] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
 }

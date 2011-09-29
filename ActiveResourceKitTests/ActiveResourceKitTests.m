@@ -129,7 +129,7 @@
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
 	ARBase *resource = [[[ARBase alloc] init] autorelease];
-	[resource setPrefix:@"/resources/:resource_id"];
+	[resource setPrefixSource:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
 	NSString *prefix = [resource prefixWithOptions:options];
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
@@ -138,7 +138,7 @@
 - (void)testPrefixParameterWithPercentEscapes
 {
 	ARBase *resource = [[[ARBase alloc] init] autorelease];
-	[resource setPrefix:@"/resources/:resource_id"];
+	[resource setPrefixSource:@"/resources/:resource_id"];
 	NSString *prefix = [resource prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
 }
