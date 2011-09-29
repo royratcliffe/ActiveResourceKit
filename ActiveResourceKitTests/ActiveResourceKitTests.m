@@ -155,7 +155,7 @@
 
 - (void)testElementPath
 {
-	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:nil];
+	NSString *elementPath = [post elementPathForID:[NSNumber numberWithInt:1] prefixOptions:nil queryOptions:nil];
 	STAssertEqualObjects(elementPath, @"/posts/1.json", nil);
 }
 

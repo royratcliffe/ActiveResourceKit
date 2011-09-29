@@ -226,10 +226,14 @@
 #pragma mark                                                               Paths
 //------------------------------------------------------------------------------
 
-- (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions
+- (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
 {
+	if (queryOptions == nil)
+	{
+		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
+	}
 	NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	return [NSString stringWithFormat:@"%@%@/%@.%@", [self prefixWithOptions:prefixOptions], [self collectionName], IDString, [[self format] extension]];
+	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionName], IDString, [[self format] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Answers the path for creating a new element.

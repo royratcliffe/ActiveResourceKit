@@ -26,6 +26,14 @@
 
 @class AResource;
 
+/*!
+ * Builds a query string given a dictionary of query options. The answer is an
+ * empty string when you pass nil options or the options indicate an empty
+ * dictionary. This function assumes that the given options are query options
+ * only; they should not contain prefix options.
+ */
+NSString *ARQueryStringForOptions(NSDictionary *options);
+
 @interface ARBase(Private)
 
 - (id<ARFormat>)defaultFormat;
@@ -44,9 +52,10 @@
 - (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
 
 /*!
- * Answers a set of prefix parameters based on the current prefix. These
+ * Answers a set of prefix parameters based on the current prefix source. These
  * constitute the current set of prefix parameters: an array of strings without
- * the leading colon. Colon immediately followed by a word marks each parameter.
+ * the leading colon. Colon immediately followed by a word marks each parameter
+ * in the prefix source.
  */
 - (NSSet *)prefixParameters;
 

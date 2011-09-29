@@ -28,6 +28,11 @@
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+NSString *ARQueryStringForOptions(NSDictionary *options)
+{
+	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
+}
+
 @implementation ARBase(Private)
 
 - (id<ARFormat>)defaultFormat

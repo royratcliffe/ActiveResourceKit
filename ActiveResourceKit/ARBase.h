@@ -167,7 +167,7 @@
 
 //------------------------------------------------------------------------ Paths
 
-- (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions;
+- (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions;
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 
