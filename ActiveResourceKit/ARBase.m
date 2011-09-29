@@ -281,19 +281,9 @@
 	}];
 }
 
-- (void)findAllWithPrefixOptions:(NSDictionary *)prefixOptions completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
 {
-	NSString *path = [self collectionPathWithPrefixOptions:prefixOptions queryOptions:nil];
-	[self get:path completionHandler:^(id object, NSError *error) {
-		if ([object isKindOfClass:[NSArray class]])
-		{
-			completionHandler([self instantiateCollection:object prefixOptions:prefixOptions], nil);
-		}
-		else
-		{
-			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-		}
-	}];
+	return [self findEveryWithOptions:options completionHandler:completionHandler];
 }
 
 @end

@@ -180,6 +180,6 @@
  */
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
-- (void)findAllWithPrefixOptions:(NSDictionary *)prefixOptions completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
 
 @end

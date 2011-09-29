@@ -26,6 +26,9 @@
 
 @class AResource;
 
+extern NSString *const kARFromKey;
+extern NSString *const kARParamsKey;
+
 /*!
  * Builds a query string given a dictionary of query options. The answer is an
  * empty string when you pass nil options or the options indicate an empty
@@ -40,6 +43,8 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
 - (NSString *)defaultPrefixSource;
+
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
 
 /*!
  * Instantiates a collection of active resources given a collection of

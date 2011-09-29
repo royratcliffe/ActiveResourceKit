@@ -28,6 +28,9 @@
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+NSString *const kARFromKey = @"from";
+NSString *const kARParamsKey = @"params";
+
 NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
@@ -53,6 +56,34 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (NSString *)defaultPrefixSource
 {
 	return [[self site] path];
+}
+
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+{
+	NSString *path;
+	NSDictionary *prefixOptions;
+	NSString *from = [options objectForKey:kARFromKey];
+	if (from && [from isKindOfClass:[NSString class]])
+	{
+		prefixOptions = nil;
+		path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
+	}
+	else
+	{
+		NSDictionary *queryOptions = nil;
+		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
+		path = [self collectionPathWithPrefixOptions:prefixOptions queryOptions:queryOptions];
+	}
+	[self get:path completionHandler:^(id object, NSError *error) {
+		if ([object isKindOfClass:[NSArray class]])
+		{
+			completionHandler([self instantiateCollection:object prefixOptions:prefixOptions], nil);
+		}
+		else
+		{
+			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+		}
+	}];
 }
 
 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions

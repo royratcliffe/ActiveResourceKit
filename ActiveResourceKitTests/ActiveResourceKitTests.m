@@ -224,7 +224,7 @@
 
 - (void)testFindAll
 {
-	[post findAllWithPrefixOptions:nil completionHandler:^(NSArray *resources, NSError *error) {
+	[post findAllWithOptions:nil completionHandler:^(NSArray *resources, NSError *error) {
 		STAssertNotNil(resources, nil);
 		STAssertNil(error, nil);
 		// Without assuming exactly what the server-side records contain, just
