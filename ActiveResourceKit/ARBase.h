@@ -171,7 +171,7 @@
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions;
 
-/*
+/*!
  * Asynchronously builds an Active Resource.
  *
  * Executes the completion handler on success or upon error. Completion handler
@@ -181,5 +181,14 @@
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
 - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+
+/*!
+ * Answers just the first resource in a collection of resources. Finds all the
+ * resources first, then extracts the first element. Acts as a convenience
+ * wrapper.
+ */
+- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+
+- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
 @end

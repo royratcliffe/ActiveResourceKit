@@ -286,4 +286,18 @@
 	return [self findEveryWithOptions:options completionHandler:completionHandler];
 }
 
+- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+{
+	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
+		completionHandler(resources ? [resources objectAtIndex:0] : nil, error);
+	}];
+}
+
+- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+{
+	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
+		completionHandler(resources ? [resources lastObject] : nil, error);
+	}];
+}
+
 @end

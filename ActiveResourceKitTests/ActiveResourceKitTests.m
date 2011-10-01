@@ -238,4 +238,15 @@
 	[self runUntilStop];
 }
 
+- (void)testFindFirst
+{
+	[post findFirstWithOptions:nil completionHandler:^(AResource *resource, NSError *error) {
+		STAssertNotNil(resource, nil);
+		STAssertNil(error, nil);
+		NSLog(@"%@", [resource attributes]);
+		[self setStop:YES];
+	}];
+	[self runUntilStop];
+}
+
 @end
