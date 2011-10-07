@@ -37,65 +37,65 @@
  * singleton classes. The Rails singleton class becomes the Objective-C “base”
  * class.
  *
- *	auth_type
- *	collection_name
- *	connection
- *	element_name
- *	headers
- *	known_attributes
- *	nospam
- *	password
- *	prefix_parameters
- *	primary_key
- *	proxy
- *	schema
- *	site
- *	ssl_options
- *	test
- *	timeout
- *	user
+ *	- auth_type
+ *	- collection_name
+ *	- connection
+ *	- element_name
+ *	- headers
+ *	- known_attributes
+ *	- nospam
+ *	- password
+ *	- prefix_parameters
+ *	- primary_key
+ *	- proxy
+ *	- schema
+ *	- site
+ *	- ssl_options
+ *	- test
+ *	- timeout
+ *	- user
  *
  * Singleton methods for ActiveResource::Base include the following.
  *
- *	all
- *	auth_type
- *	build
- *	check_prefix_options
- *	collection_name
- *	collection_path
- *	connection
- *	create
- *	create_proxy_uri_from
- *	create_site_uri_from
- *	delete
- *	element_name
- *	element_path
- *	exists
- *	find
- *	find_every
- *	find_one
- *	find_single
- *	first
- *	format
- *	headers
- *	instantiate_collection
- *	instantiate_record
- *	known_attributes
- *	last
- *	new_element_path
- *	password
- *	prefix
- *	prefix_parameters
- *	prefix_source
- *	primary_key
- *	proxy
- *	query_string
- *	schema
- *	site
- *	split_options
- *	ssl_options
- *	timeout
- *	user
+ *	- all
+ *	- auth_type
+ *	- build
+ *	- check_prefix_options
+ *	- collection_name
+ *	- collection_path
+ *	- connection
+ *	- create
+ *	- create_proxy_uri_from
+ *	- create_site_uri_from
+ *	- delete
+ *	- element_name
+ *	- element_path
+ *	- exists
+ *	- find
+ *	- find_every
+ *	- find_one
+ *	- find_single
+ *	- first
+ *	- format
+ *	- headers
+ *	- instantiate_collection
+ *	- instantiate_record
+ *	- known_attributes
+ *	- last
+ *	- new_element_path
+ *	- password
+ *	- prefix
+ *	- prefix_parameters
+ *	- prefix_source
+ *	- primary_key
+ *	- proxy
+ *	- query_string
+ *	- schema
+ *	- site
+ *	- split_options
+ *	- ssl_options
+ *	- timeout
+ *	- user
  */
 @interface ARBase : NSObject
 
