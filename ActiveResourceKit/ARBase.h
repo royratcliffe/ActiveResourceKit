@@ -28,6 +28,8 @@
 @class AResource;
 
 /*!
+ * @brief An active resource's baseline configuration.
+ *
  * Under Rails ActiveResource, the ActiveResource::Base singleton class carries
  * the following state. See list below. This might help to define what ARBase
  * does, its purpose. ARBase implements the anonymous singleton class behaviours
