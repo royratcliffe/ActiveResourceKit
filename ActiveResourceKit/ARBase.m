@@ -289,14 +289,14 @@
 - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
-		completionHandler(resources ? [resources objectAtIndex:0] : nil, error);
+		completionHandler(resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
 	}];
 }
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
-		completionHandler(resources ? [resources lastObject] : nil, error);
+		completionHandler(resources && [resources count] ? [resources lastObject] : nil, error);
 	}];
 }
 
