@@ -203,7 +203,7 @@
 	// scheme pre-action comprises a shell script containing:
 	//
 	//	cd "$SRCROOT/active-resource-kit-tests"
-	//	[ -f tmp/pids/server.pid ] || "$HOME/.rvm/bin/rvm-shell" -c "rails s -d -P `pwd`/tmp/pids/server-xcode.pid"
+	//	[ -f tmp/pids/server.pid ] || "$HOME/.rvm/bin/rvm-shell" -c "rake db:setup db:fixtures:load ; rails s -d -P `pwd`/tmp/pids/server-xcode.pid"
 	//
 	// The script launches a Rails server in the background using RVM, if and
 	// only if the default server is not already running. It assumes that RVM is
