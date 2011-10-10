@@ -139,7 +139,7 @@
 		7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKit-Info.plist"; sourceTree = "<group>"; };
 		7846AA21140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA23140BAAE100FE58E5 /* ActiveResourceKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ActiveResourceKit-Prefix.pch"; sourceTree = "<group>"; };
-		7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ActiveResourceKitTests.octest; path = ActiveResourceKitFrameworkTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7846AA2C140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitFrameworkTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7846AA35140BAAE100FE58E5 /* ActiveResourceKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKitTests-Info.plist"; sourceTree = "<group>"; };
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */,
-				7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */,
+				7846AA2C140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests.octest */,
 				7813AA9A1419270400523ECD /* libActiveResourceKit.a */,
 				7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */,
 			);
@@ -415,7 +415,7 @@
 			);
 			name = ActiveResourceKitFrameworkTests;
 			productName = ActiveResourceKitTests;
-			productReference = 7846AA2C140BAAE100FE58E5 /* ActiveResourceKitTests.octest */;
+			productReference = 7846AA2C140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -674,6 +674,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PROJECT_NAME_STRING=\"\\\"$(PROJECT_NAME)\\\"\"",
+					"CURRENT_PROJECT_VERSION_STRING=\"\\\"$(CURRENT_PROJECT_VERSION)\\\"\"",
+					"CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-all_load";
@@ -693,6 +699,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PROJECT_NAME_STRING=\"\\\"$(PROJECT_NAME)\\\"\"",
+					"CURRENT_PROJECT_VERSION_STRING=\"\\\"$(CURRENT_PROJECT_VERSION)\\\"\"",
+					"CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-all_load";
@@ -799,6 +811,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PROJECT_NAME_STRING=\"\\\"$(PROJECT_NAME)\\\"\"",
+					"CURRENT_PROJECT_VERSION_STRING=\"\\\"$(CURRENT_PROJECT_VERSION)\\\"\"",
+					"CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -814,6 +832,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActiveResourceKit/ActiveResourceKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PROJECT_NAME_STRING=\"\\\"$(PROJECT_NAME)\\\"\"",
+					"CURRENT_PROJECT_VERSION_STRING=\"\\\"$(CURRENT_PROJECT_VERSION)\\\"\"",
+					"CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "ActiveResourceKitTests/ActiveResourceKitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

@@ -77,6 +77,24 @@
 	[postComment release];
 }
 
+#define PROGRAM_NAME_STRING PROJECT_NAME_STRING
+#define AT_HASH "@(#)PROGRAM:" PROGRAM_NAME_STRING "  PROJECT:" PROJECT_NAME_STRING "-"
+
+- (void)testVersionString
+{
+	STAssertEqualObjects(ActiveResourceKitVersionString(), @AT_HASH CURRENT_PROJECT_VERSION_STRING, nil);
+}
+
+- (void)testVersionCString
+{
+	STAssertEquals(strcmp((const char *)kActiveResourceKitVersionString, AT_HASH CURRENT_PROJECT_VERSION_STRING "\n"), 0, nil);
+}
+
+- (void)testVersionNumber
+{
+	STAssertEquals(kActiveResourceKitVersionNumber, (double)CURRENT_PROJECT_VERSION, nil);
+}
+
 - (void)testSetUpSite
 {
 	// Start off with a very simple test. Just set up a resource. Load it with
