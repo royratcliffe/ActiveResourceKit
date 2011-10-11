@@ -29,7 +29,7 @@
 
 /*!
  * @brief An active resource's baseline configuration, defining its site,
- * schema, attributes; but not defining an active resource <i>instance</i>.
+ * schema, attributes; but not defining an active resource @e instance.
  *
  * ARBase corresponds to the singleton class aspects of
  * ActiveResource::Base. Under Rails ActiveResource, the ActiveResource::Base
@@ -56,7 +56,7 @@
  * This might help to define what ARBase actually does, its purpose. ARBase
  * implements the anonymous singleton class behaviours belonging to
  * ActiveResource::Base. AResource defines the class for Active Resource
- * instances, but ARBase defines the class for Active Resource <i>classes</i>,
+ * instances, but ARBase defines the class for Active Resource @e classes,
  * singleton classes that is. Objective-C 2.0 does not provide anything
  * comparable singleton classes. The Rails singleton class becomes the
  * Objective-C “base” class.
