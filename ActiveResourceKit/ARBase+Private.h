@@ -30,10 +30,14 @@ extern NSString *const kARFromKey;
 extern NSString *const kARParamsKey;
 
 /*!
- * Builds a query string given a dictionary of query options. The answer is an
- * empty string when you pass nil options or the options indicate an empty
- * dictionary. This function assumes that the given options are query options
- * only; they should not contain prefix options.
+ * @brief Builds a query string given a dictionary of query options.
+ * @param options Dictionary (a Ruby hash) of query options.
+ * @result The answer is an empty string when you pass @c nil options or the
+ * options indicate an empty dictionary. This function assumes that the given
+ * options are @e query options only; they should not contain prefix options;
+ * otherwise prefix options will appear in the query string. Invoking this
+ * helper function assumes you have already filtered any options by splitting
+ * apart prefix from query options.
  */
 NSString *ARQueryStringForOptions(NSDictionary *options);
 
