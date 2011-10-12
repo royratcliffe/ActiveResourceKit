@@ -91,24 +91,16 @@
 
 @synthesize format = _format;
 
-// getter
-- (id<ARFormat>)format
+// lazy getter
+- (id<ARFormat>)formatOrDefault
 {
-	if (_format == nil)
+	id<ARFormat> format = [self format];
+	if (format == nil)
 	{
-		[self setFormat:[self defaultFormat]];
+		format = [self defaultFormat];
+		[self setFormat:format];
 	}
-	return _format;
-}
-
-// setter
-- (void)setFormat:(id<ARFormat>)newFormat
-{
-	if (_format != newFormat)
-	{
-		[_format autorelease];
-		_format = [newFormat retain];
-	}
+	return format;
 }
 
 @synthesize timeout = _timeout;
@@ -119,22 +111,16 @@
 
 @synthesize elementName = _elementName;
 
-- (NSString *)elementName
+// lazy getter
+- (NSString *)elementNameOrDefault
 {
-	if (_elementName == nil)
+	NSString *elementName = [self elementName];
+	if (elementName == nil)
 	{
-		[self setElementName:[self defaultElementName]];
+		elementName = [self defaultElementName];
+		[self setElementName:elementName];
 	}
-	return _elementName;
-}
-
-- (void)setElementName:(NSString *)newElementName
-{
-	if (_elementName != newElementName)
-	{
-		[_elementName autorelease];
-		_elementName = [newElementName copy];
-	}
+	return elementName;
 }
 
 //------------------------------------------------------------------------------
@@ -143,22 +129,16 @@
 
 @synthesize collectionName = _collectionName;
 
-- (NSString *)collectionName
+// lazy getter
+- (NSString *)collectionNameOrDefault
 {
-	if (_collectionName == nil)
+	NSString *collectionName = [self collectionName];
+	if (collectionName == nil)
 	{
-		[self setCollectionName:[self defaultCollectionName]];
+		collectionName = [self defaultCollectionName];
+		[self setCollectionName:collectionName];
 	}
-	return _collectionName;
-}
-
-- (void)setCollectionName:(NSString *)newCollectionName
-{
-	if (_collectionName != newCollectionName)
-	{
-		[_collectionName autorelease];
-		_collectionName = [newCollectionName copy];
-	}
+	return collectionName;
 }
 
 //------------------------------------------------------------------------------
@@ -167,40 +147,24 @@
 
 @synthesize prefixSource = _prefixSource;
 
-// getter
-- (NSString *)prefixSource
+// lazy getter
+- (NSString *)prefixSourceOrDefault
 {
-	if (_prefixSource == nil)
+	NSString *prefixSource = [self prefixSource];
+	if (prefixSource == nil)
 	{
-		NSString *prefixSource = [self defaultPrefixSource];
+		prefixSource = [self defaultPrefixSource];
+		
+		// Automatically append a trailing slash, but if and only if the prefix
+		// source does not already terminate with a slash.
 		if ([prefixSource length] == 0 || ![[prefixSource substringFromIndex:[prefixSource length] - 1] isEqualToString:@"/"])
 		{
 			prefixSource = [prefixSource stringByAppendingString:@"/"];
 		}
+		
 		[self setPrefixSource:prefixSource];
 	}
-	return _prefixSource;
-}
-
-// It would be nice for the compiler to provide the setter. If you make the
-// property non-atomic, the compiler will let you define just the custom
-// getter. But not so if you make the property atomic. Is this a compiler
-// feature or bug? It outputs a warning message, “writable atomic property
-// cannot pair a synthesised setter/getter with a user defined setter/getter.”
-
-// setter
-- (void)setPrefixSource:(NSString *)newPrefixSource
-{
-	if (_prefixSource != newPrefixSource)
-	{
-		[_prefixSource autorelease];
-		// Auto-release the previous prefix source, assuming there is one. This
-		// allows the caller to access the previous prefix source first, then
-		// alter the prefix source and retain access to the original copy. The
-		// original will disappear from memory at the next pool-drain event
-		// having received the auto-release message.
-		_prefixSource = [newPrefixSource copy];
-	}
+	return prefixSource;
 }
 
 - (NSString *)prefixWithOptions:(NSDictionary *)options
@@ -215,9 +179,9 @@
 	// both; and all at the same time.
 	if (options == nil)
 	{
-		return [self prefixSource];
+		return [self prefixSourceOrDefault];
 	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSource] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSourceOrDefault] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
 }
@@ -233,13 +197,13 @@
 		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	}
 	NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionName], IDString, [[self format] extension], ARQueryStringForOptions(queryOptions)];
+	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], IDString, [[self formatOrDefault] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Answers the path for creating a new element.
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
 {
-	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension]];
+	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], [[self formatOrDefault] extension]];
 }
 
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
@@ -248,7 +212,7 @@
 	{
 		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	}
-	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionName], [[self format] extension], ARQueryStringForOptions(queryOptions)];
+	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], [[self formatOrDefault] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Building with attributes. Should this be a class or instance method? Rails
