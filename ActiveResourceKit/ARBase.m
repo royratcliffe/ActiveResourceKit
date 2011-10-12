@@ -97,8 +97,7 @@
 	id<ARFormat> format = [self format];
 	if (format == nil)
 	{
-		format = [self defaultFormat];
-		[self setFormat:format];
+		[self setFormat:format = [self defaultFormat]];
 	}
 	return format;
 }
@@ -117,8 +116,7 @@
 	NSString *elementName = [self elementName];
 	if (elementName == nil)
 	{
-		elementName = [self defaultElementName];
-		[self setElementName:elementName];
+		[self setElementName:elementName = [self defaultElementName]];
 	}
 	return elementName;
 }
@@ -135,8 +133,7 @@
 	NSString *collectionName = [self collectionName];
 	if (collectionName == nil)
 	{
-		collectionName = [self defaultCollectionName];
-		[self setCollectionName:collectionName];
+		[self setCollectionName:collectionName = [self defaultCollectionName]];
 	}
 	return collectionName;
 }
