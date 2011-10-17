@@ -64,6 +64,14 @@
 	[self setAttributes:attributes];
 }
 
+// Supports key-value coding. Returns attribute values for undefined keys. Hence
+// you can access resource attributes on the resource itself rather than
+// indirectly via the attributes property.
+- (id)valueForUndefinedKey:(NSString *)key
+{
+	return [[self attributes] objectForKey:key];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                      Prefix Options
 //------------------------------------------------------------------------------
