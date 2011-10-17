@@ -197,7 +197,9 @@
 	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], IDString, [[self formatOrDefault] extension], ARQueryStringForOptions(queryOptions)];
 }
 
-// Answers the path for creating a new element.
+// Answers the path for creating a new element. Note, the term “new” appearing
+// at the start of the method name does not, in this case, signify a retained
+// result.
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
 {
 	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], [[self formatOrDefault] extension]];
