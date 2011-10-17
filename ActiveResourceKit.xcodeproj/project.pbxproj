@@ -43,10 +43,9 @@
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
 		7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
-		787CE7B7141A393100FAB90A /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
-		787CE7B8141A394600FAB90A /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
-		787CE7BA141A395200FAB90A /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787CE7B9141A395200FAB90A /* libActiveSupportKit.a */; };
-		787CE7BC141A395C00FAB90A /* libYAJL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787CE7BB141A395C00FAB90A /* libYAJL.a */; };
+		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
+		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
+		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
 		78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		78BF7F7214164FE100DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		78BF7F731416512200DB0DEA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
@@ -145,8 +144,7 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
-		787CE7B9141A395200FAB90A /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
-		787CE7BB141A395C00FAB90A /* libYAJL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYAJL.a; path = "../yajl/objc/build/Release-iphoneos/libYAJL.a"; sourceTree = "<group>"; };
+		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
@@ -167,10 +165,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				787CE7BC141A395C00FAB90A /* libYAJL.a in Frameworks */,
-				787CE7BA141A395200FAB90A /* libActiveSupportKit.a in Frameworks */,
-				787CE7B8141A394600FAB90A /* libActiveModelKit.a in Frameworks */,
-				787CE7B7141A393100FAB90A /* libActiveResourceKit.a in Frameworks */,
+				78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */,
+				78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */,
+				78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */,
 				7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */,
 				7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */,
 			);
@@ -235,8 +232,6 @@
 		7846AA16140BAAE100FE58E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				787CE7BB141A395C00FAB90A /* libYAJL.a */,
-				787CE7B9141A395200FAB90A /* libActiveSupportKit.a */,
 				782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */,
 				7846AA1C140BAAE100FE58E5 /* Foundation.framework */,
 				7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */,
@@ -248,6 +243,7 @@
 		7846AA19140BAAE100FE58E5 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78805F1C1445ACB100703E80 /* libActiveSupportKit.a */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -721,7 +717,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.2;
+				CURRENT_PROJECT_VERSION = 80.3;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -750,7 +746,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.2;
+				CURRENT_PROJECT_VERSION = 80.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -770,7 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 80.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug\"",
@@ -788,7 +784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 80.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug\"",
