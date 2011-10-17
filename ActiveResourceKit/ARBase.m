@@ -263,4 +263,22 @@
 	}];
 }
 
+- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+{
+	NSDictionary *prefixOptions = nil;
+	NSDictionary *queryOptions = nil;
+	[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
+	NSString *elementPath = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
+	[self get:elementPath completionHandler:^(id object, NSError *error) {
+		if ([object isKindOfClass:[NSDictionary class]])
+		{
+			completionHandler([self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
+		}
+		else
+		{
+			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+		}
+	}];
+}
+
 @end
