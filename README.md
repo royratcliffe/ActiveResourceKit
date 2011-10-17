@@ -1,5 +1,11 @@
 # Active Resource Kit
 
+## Resource Associations
+
+When resources load at the client side, what binds their associations? How can the client resolve foreign keys? To do so, the client needs to identify the active resources.
+
+Using the principle of convention over configuration, ARBase registers its instances by default, and each ARBase retains its AResources. Hence it can resolve the association whenever a new resource appears with an ID matching some existing foreign key. Similarly when a new record comprising an unresolved foreign key loads, ARBase can resolve it against an existing resource.
+
 ## Incremental Stores
 
 Apple provide a useful Core Data component called `NSIncrementalStore`, designed for interacting with external stores which do not bring all data into memory the way atomic stores do. Data loads and stores incrementally. Incremental stores let you plug RESTful resources into a standard Core Data stack.
