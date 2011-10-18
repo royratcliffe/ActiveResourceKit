@@ -14,7 +14,9 @@ One important drawback exists however. Incremental stores, at the current versio
 
 ## Rails Kit Sub-Framework
 
-Active Resource Kit is designed as a sub-framework on Mac OS X. Not so in iOS.
+Active Resource Kit is designed as a sub-framework on Mac OS X, though not so in iOS. Framework requirements mandate the following build setting within the Rails Kit sub-frameworks.
 
-	DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/RailsKit.framework/Versions/Current/Frameworks" for embedding umbrella RailsKit framework
+	DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/RailsKit.framework/Versions/Current/Frameworks"
+
+It tells an application to look for the sub-framework at the given location relative to the application binary within the application bundle. This makes an assumption: that you locate the RailsKit.framework within the bundle. The sub-frameworks exist as sub-sub-frameworks within the application bundle. Hence the install-name base path specifies the `RailsKit.framework`'s `Frameworks` sub-folder.
 
