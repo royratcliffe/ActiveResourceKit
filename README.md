@@ -12,3 +12,9 @@ Apple provide a useful Core Data component called `NSIncrementalStore`, designed
 
 One important drawback exists however. Incremental stores, at the current version, do not accommodate _asynchronous_ network communication. Core Data sends execute-request messages to the store, expecting the store to respond with results immediately on return. You can respond with faults but doing so requires you to know object identities for faulting. Problem is, you cannot execute a fetch request with faulting object identities without some server interaction. Unless the code blocks for synchronous communication, you cannot return with anything else except an error.
 
+## Rails Kit Sub-Framework
+
+Active Resource Kit is designed as a sub-framework on Mac OS X. Not so in iOS.
+
+	DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/RailsKit.framework/Versions/Current/Frameworks" for embedding umbrella RailsKit framework
+
