@@ -24,6 +24,12 @@
 
 #import "AResource.h"
 
+// for -[ARBase splitOptions:prefixOptions:queryOptions:]
+#import "ARBase+Private.h"
+
+// for ARRemoveRoot(object)
+#import "ARFormatMethods.h"
+
 @implementation AResource
 
 //------------------------------------------------------------------------------
@@ -54,13 +60,23 @@
 	self = [self init];
 	if (self)
 	{
-		[self loadAttributes:attributes];
+		[self loadAttributes:attributes removeRoot:NO];
 	}
 	return self;
 }
 
-- (void)loadAttributes:(NSDictionary *)attributes
+- (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
+	NSDictionary *prefixOptions = nil;
+	[[self base] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
+	if ([attributes count] == 1)
+	{
+		removeRoot = [[[self base] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
+	}
+	if (removeRoot)
+	{
+		attributes = ARRemoveRoot(attributes);
+	}
 	[self setAttributes:attributes];
 }
 

@@ -57,7 +57,12 @@
 
 - (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;
 
-- (void)loadAttributes:(NSDictionary *)attributes;
+/*!
+ * Argument @a removeRoot becomes a do-not-care if @a attributes contains just a
+ * single key-object pair. In such a case, removing the root depends on whether
+ * or not the single key matches the base element name.
+ */
+- (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot;
 
 //--------------------------------------------------------------- Prefix Options
 
