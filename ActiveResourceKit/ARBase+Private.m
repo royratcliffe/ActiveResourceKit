@@ -53,6 +53,11 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return [[ASInflector defaultInflector] pluralize:[self elementNameOrDefault]];
 }
 
+- (NSString *)defaultPrimaryKey
+{
+	return @"id";
+}
+
 - (NSString *)defaultPrefixSource
 {
 	return [[self site] path];

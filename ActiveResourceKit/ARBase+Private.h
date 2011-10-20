@@ -46,6 +46,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 - (id<ARFormat>)defaultFormat;
 - (NSString *)defaultElementName;
 - (NSString *)defaultCollectionName;
+- (NSString *)defaultPrimaryKey;
 - (NSString *)defaultPrefixSource;
 
 - (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;

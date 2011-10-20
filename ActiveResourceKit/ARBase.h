@@ -173,6 +173,12 @@
 - (NSString *)elementNameOrDefault;
 - (NSString *)collectionNameOrDefault;
 
+//------------------------------------------------------------------ Primary Key
+
+@property(copy, NS_NONATOMIC_IOSONLY) NSString *primaryKey;
+
+- (NSString *)primaryKeyOrDefault;
+
 //----------------------------------------------------------------------- Prefix
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *prefixSource;
@@ -216,6 +222,21 @@
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
+/*!
+ * @brief Finds a single resource for a given identifier using the default URL.
+ *
+ * Under the Rails' ActiveResource gem, this method appears as a private
+ * method. Why not here? In Rails, you access the @c find_single(scope, options)
+ * method indirectly as the default @c find(arguments) case when the first scope
+ * argument does not match all, first, last or one (by symbol). Objective-C does
+ * not offer so flexible a syntax. Consequently, this implementation folds the
+ * find-scope interface into distinct methods: find all, find first, find last,
+ * find one and find single. The scope argument resolves to the method @e
+ * name. This approach carries advantages and disadvantages. It eliminates the
+ * @c switch statement necessary to resolve the scope. But at the same stroke
+ * eliminates the flexibility of parameterising the scope in cases where scope
+ * is a dynamic argument.
+ */
 - (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
 @end

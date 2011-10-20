@@ -139,6 +139,22 @@
 }
 
 //------------------------------------------------------------------------------
+#pragma mark                                                         Primary Key
+//------------------------------------------------------------------------------
+
+@synthesize primaryKey = _primaryKey;
+
+- (NSString *)primaryKeyOrDefault
+{
+	NSString *primaryKey = [self primaryKey];
+	if (primaryKey == nil)
+	{
+		[self setPrimaryKey:primaryKey = [self defaultPrimaryKey]];
+	}
+	return primaryKey;
+}
+
+//------------------------------------------------------------------------------
 #pragma mark                                                              Prefix
 //------------------------------------------------------------------------------
 
@@ -268,8 +284,8 @@
 	NSDictionary *prefixOptions = nil;
 	NSDictionary *queryOptions = nil;
 	[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
-	NSString *elementPath = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
-	[self get:elementPath completionHandler:^(id object, NSError *error) {
+	NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
+	[self get:path completionHandler:^(id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
 			completionHandler([self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
