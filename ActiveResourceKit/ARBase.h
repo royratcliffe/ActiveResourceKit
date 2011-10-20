@@ -25,6 +25,9 @@
 #import <Foundation/Foundation.h>
 #import <ActiveResourceKit/ARFormat.h>
 
+extern NSString *const kARFromKey;
+extern NSString *const kARParamsKey;
+
 @class AResource;
 
 /*!

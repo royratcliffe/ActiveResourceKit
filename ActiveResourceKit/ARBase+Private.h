@@ -26,9 +26,6 @@
 
 @class AResource;
 
-extern NSString *const kARFromKey;
-extern NSString *const kARParamsKey;
-
 /*!
  * @brief Builds a query string given a dictionary of query options.
  * @param options Dictionary (a Ruby hash) of query options.
