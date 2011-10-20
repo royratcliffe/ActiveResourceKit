@@ -279,6 +279,25 @@
 	}];
 }
 
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+{
+	NSString *from = [options objectForKey:kARFromKey];
+	if (from && [from isKindOfClass:[NSString class]])
+	{
+		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
+		[self get:path completionHandler:^(id object, NSError *error) {
+			if ([object isKindOfClass:[NSDictionary class]])
+			{
+				completionHandler([self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+			}
+			else
+			{
+				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
+		}];
+	}
+}
+
 - (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
 {
 	NSDictionary *prefixOptions = nil;

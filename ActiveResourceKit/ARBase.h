@@ -223,6 +223,11 @@
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
 
 /*!
+ * @brief Finds a single resource from a one-off URL.
+ */
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+
+/*!
  * @brief Finds a single resource for a given identifier using the default URL.
  *
  * Under the Rails' ActiveResource gem, this method appears as a private
