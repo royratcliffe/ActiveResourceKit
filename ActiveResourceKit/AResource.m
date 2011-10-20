@@ -25,6 +25,9 @@
 #import "AResource.h"
 
 // for -[ARBase splitOptions:prefixOptions:queryOptions:]
+// (This makes you wonder. If other classes need to import the private
+// interface, should not the so-called private methods really become public, not
+// private?)
 #import "ARBase+Private.h"
 
 // for ARRemoveRoot(object)
