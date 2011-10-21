@@ -105,6 +105,16 @@ extern NSString *const kARParamsKey;
  *	- ssl_options
  *	- timeout
  *	- user
+ *
+ * @par Lazy Getters
+ * Use a getter-lazily paradigm in place of actual lazy getting. This has
+ * advantages. First, it obviates the need for defining custom getters and
+ * setters. This is a useful thing, since the exact setter and getter
+ * implementations depend on the memory model being deployed. Automatic
+ * Reference Counting (ARC) has one requirement, garbage-collection another, and
+ * manual retain-release (MRR) another. Strategy employed here: Let the compiler
+ * synthesise the correct setters and getters accordingly. If you want to access
+ * the getter but with lazy initialisation, ask for propertyLazily.
  */
 @interface ARBase : NSObject
 
@@ -144,17 +154,8 @@ extern NSString *const kARParamsKey;
 
 @property(retain, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
 
-// Use a getter-or-default paradigm to replace lazy getting. This has
-// advantages. First, it obviates the need for defining custom getters and
-// setters. This is a useful thing, since the exact setter and getter
-// implementations depending on the memory model being deployed. Automatic
-// Reference Counting (ARC) has one requirement, garbage-collection another, and
-// manual retain-release (MRR) another. Strategy employed here: Let the compiler
-// synthesise the correct setters and getters accordingly. If you want to access
-// the getter but with lazy initialisation, ask for propertyOrDefault.
-
 // lazy getter
-- (id<ARFormat>)formatOrDefault;
+- (id<ARFormat>)formatLazily;
 
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
 
@@ -173,21 +174,21 @@ extern NSString *const kARParamsKey;
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *collectionName;
 
 // lazy getters
-- (NSString *)elementNameOrDefault;
-- (NSString *)collectionNameOrDefault;
+- (NSString *)elementNameLazily;
+- (NSString *)collectionNameLazily;
 
 //------------------------------------------------------------------ Primary Key
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *primaryKey;
 
-- (NSString *)primaryKeyOrDefault;
+- (NSString *)primaryKeyLazily;
 
 //----------------------------------------------------------------------- Prefix
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *prefixSource;
 
 // lazy getter
-- (NSString *)prefixSourceOrDefault;
+- (NSString *)prefixSourceLazily;
 
 /*!
  * Answers the prefix after translating the prefix parameters according to the

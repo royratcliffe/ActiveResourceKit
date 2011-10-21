@@ -50,7 +50,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (NSString *)defaultCollectionName
 {
-	return [[ASInflector defaultInflector] pluralize:[self elementNameOrDefault]];
+	return [[ASInflector defaultInflector] pluralize:[self elementNameLazily]];
 }
 
 - (NSString *)defaultPrimaryKey
@@ -111,7 +111,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (NSSet *)prefixParameters
 {
 	NSMutableSet *parameters = [NSMutableSet set];
-	NSString *prefixSource = [self prefixSourceOrDefault];
+	NSString *prefixSource = [self prefixSourceLazily];
 	for (NSTextCheckingResult *result in [[NSRegularExpression regularExpressionWithPattern:@":\\w+" options:0 error:NULL] matchesInString:prefixSource options:0 range:NSMakeRange(0, [prefixSource length])])
 	{
 		[parameters addObject:[[prefixSource substringWithRange:[result range]] substringFromIndex:1]];
@@ -144,7 +144,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if (data)
 		{
-			id object = [[self formatOrDefault] decode:data error:&error];
+			id object = [[self formatLazily] decode:data error:&error];
 			if (object)
 			{
 				completionHandler(object, nil);

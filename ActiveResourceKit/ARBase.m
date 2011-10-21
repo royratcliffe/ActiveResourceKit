@@ -92,7 +92,7 @@
 @synthesize format = _format;
 
 // lazy getter
-- (id<ARFormat>)formatOrDefault
+- (id<ARFormat>)formatLazily
 {
 	id<ARFormat> format = [self format];
 	if (format == nil)
@@ -111,7 +111,7 @@
 @synthesize elementName = _elementName;
 
 // lazy getter
-- (NSString *)elementNameOrDefault
+- (NSString *)elementNameLazily
 {
 	NSString *elementName = [self elementName];
 	if (elementName == nil)
@@ -128,7 +128,7 @@
 @synthesize collectionName = _collectionName;
 
 // lazy getter
-- (NSString *)collectionNameOrDefault
+- (NSString *)collectionNameLazily
 {
 	NSString *collectionName = [self collectionName];
 	if (collectionName == nil)
@@ -144,7 +144,7 @@
 
 @synthesize primaryKey = _primaryKey;
 
-- (NSString *)primaryKeyOrDefault
+- (NSString *)primaryKeyLazily
 {
 	NSString *primaryKey = [self primaryKey];
 	if (primaryKey == nil)
@@ -161,7 +161,7 @@
 @synthesize prefixSource = _prefixSource;
 
 // lazy getter
-- (NSString *)prefixSourceOrDefault
+- (NSString *)prefixSourceLazily
 {
 	NSString *prefixSource = [self prefixSource];
 	if (prefixSource == nil)
@@ -192,9 +192,9 @@
 	// both; and all at the same time.
 	if (options == nil)
 	{
-		return [self prefixSourceOrDefault];
+		return [self prefixSourceLazily];
 	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSourceOrDefault] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSourceLazily] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
 }
@@ -210,7 +210,7 @@
 		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	}
 	NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], IDString, [[self formatOrDefault] extension], ARQueryStringForOptions(queryOptions)];
+	return [NSString stringWithFormat:@"%@%@/%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameLazily], IDString, [[self formatLazily] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Answers the path for creating a new element. Note, the term “new” appearing
@@ -218,7 +218,7 @@
 // result.
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
 {
-	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], [[self formatOrDefault] extension]];
+	return [NSString stringWithFormat:@"%@%@/new.%@", [self prefixWithOptions:prefixOptions], [self collectionNameLazily], [[self formatLazily] extension]];
 }
 
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
@@ -227,7 +227,7 @@
 	{
 		[self splitOptions:prefixOptions prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	}
-	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameOrDefault], [[self formatOrDefault] extension], ARQueryStringForOptions(queryOptions)];
+	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameLazily], [[self formatLazily] extension], ARQueryStringForOptions(queryOptions)];
 }
 
 // Building with attributes. Should this be a class or instance method? Rails
