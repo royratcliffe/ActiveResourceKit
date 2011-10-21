@@ -1,4 +1,6 @@
 ActiveResourceKitTests::Application.routes.draw do
+  resources :people
+
   resources :posts
 
   # The priority is based upon order of creation:
