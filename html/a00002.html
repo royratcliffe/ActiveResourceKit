@@ -92,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="a00002.html#ae8558e0345b97c3a12b5796a53302ccb">initWithBase:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="a00002.html#a8c018c41428f849642fbcaf4d8fac20e">initWithBase:attributes:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="a00002.html#ab74cb646a5f33f53e44b8837f403a42e">loadAttributes:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="a00002.html#ab507931ea5d8bfcd6fe0d649c477ad3d">loadAttributes:removeRoot:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="a00002.html#a07bffbc6341ff76d940622b9db4f37db">initWithBase:attributes:persisted:</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
@@ -122,7 +122,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00013_source.html#l00035">35</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="a00013_source.html#l00044">44</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -151,7 +151,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00013_source.html#l00052">52</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="a00013_source.html#l00061">61</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -186,11 +186,11 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00013_source.html#l00079">79</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="a00013_source.html#l00106">106</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab74cb646a5f33f53e44b8837f403a42e"></a><!-- doxytag: member="AResource::loadAttributes:" ref="ab74cb646a5f33f53e44b8837f403a42e" args="(NSDictionary *attributes)" -->
+<a class="anchor" id="ab507931ea5d8bfcd6fe0d649c477ad3d"></a><!-- doxytag: member="AResource::loadAttributes:removeRoot:" ref="ab507931ea5d8bfcd6fe0d649c477ad3d" args="(NSDictionary *attributes,[removeRoot] BOOL removeRoot)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -199,13 +199,24 @@ Properties</h2></td></tr>
           <td></td>
           <td class="paramtype">(NSDictionary *)&#160;</td>
           <td class="paramname"><em>attributes</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">removeRoot:</td>
           <td></td>
+          <td class="paramtype">(BOOL)&#160;</td>
+          <td class="paramname"><em>removeRoot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Argument <em>removeRoot</em> becomes a do-not-care if <em>attributes</em> contains just a single key-object pair. In such a case, removing the root depends on whether or not the single key matches the base element name. </p>
 
-<p>Definition at line <a class="el" href="a00013_source.html#l00062">62</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="a00013_source.html#l00071">71</a> of file <a class="el" href="a00013_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -252,7 +263,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00012_source.html#l00068">68</a> of file <a class="el" href="a00012_source.html">AResource.h</a>.</p>
+<p>Definition at line <a class="el" href="a00012_source.html#l00073">73</a> of file <a class="el" href="a00012_source.html">AResource.h</a>.</p>
 
 </div>
 </div>
@@ -267,7 +278,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00012_source.html#l00064">64</a> of file <a class="el" href="a00012_source.html">AResource.h</a>.</p>
+<p>Definition at line <a class="el" href="a00012_source.html#l00069">69</a> of file <a class="el" href="a00012_source.html">AResource.h</a>.</p>
 
 </div>
 </div>
@@ -293,7 +304,7 @@ Properties</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 11 2011 06:50:05 for ActiveResourceKit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 21 2011 05:49:56 for ActiveResourceKit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -1,6 +1,7 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$a00005.html" title="ActiveResourceKit.h" alt="" coords="5,80,144,107"/>
 <area shape="rect" id="node7" href="$a00006.html" title="ARBase+Private.h" alt="" coords="169,80,297,107"/>
-<area shape="rect" id="node10" href="$a00009.html" title="ARBase.m" alt="" coords="242,155,325,181"/>
-<area shape="rect" id="node5" href="$a00007.html" title="ARBase+Private.m" alt="" coords="22,155,153,181"/>
+<area shape="rect" id="node10" href="$a00009.html" title="ARBase.m" alt="" coords="293,155,376,181"/>
+<area shape="rect" id="node5" href="$a00007.html" title="ARBase+Private.m" alt="" coords="10,155,141,181"/>
+<area shape="rect" id="node12" href="$a00013.html" title="AResource.m" alt="" coords="169,155,268,181"/>
 </map>
