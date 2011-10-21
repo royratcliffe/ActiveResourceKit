@@ -33,6 +33,9 @@
 // for ARRemoveRoot(object)
 #import "ARFormatMethods.h"
 
+// for AMName
+#import <ActiveModelKit/ActiveModelKit.h>
+
 @implementation AResource
 
 - (id)initWithBase:(ARBase *)base
@@ -71,6 +74,28 @@
 //------------------------------------------------------------------------------
 
 @synthesize base = _base;
+
+- (ARBase *)baseLazily
+{
+	ARBase *base = [self base];
+	if (base == nil)
+	{
+		[self setBase:base = [[[ARBase alloc] init] autorelease]];
+		if ([[self class] respondsToSelector:@selector(site)])
+		{
+			[base setSite:[[self class] performSelector:@selector(site)]];
+		}
+		if ([[self class] respondsToSelector:@selector(elementName)])
+		{
+			[base setElementName:[[self class] performSelector:@selector(elementName)]];
+		}
+		else if ([self class] != [AResource class])
+		{
+			[base setElementName:[[[[AMName alloc] initWithClass:[self class]] autorelease] element]];
+		}
+	}
+	return base;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark                                                          Attributes

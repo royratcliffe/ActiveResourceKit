@@ -55,6 +55,17 @@
  */
 @property(retain, NS_NONATOMIC_IOSONLY) ARBase *base;
 
+/*!
+ * @brief Asks for the resource base, lazily constructing a base instance if the
+ * resource does not currently retain a base.
+ * @details Asks the class for a site URL and an element name. Optionally
+ * implement @c +site and @c +elementName to supply the URL and element name. If
+ * your class does not supply an implementation for @c +elementName, the element
+ * name derives from the sub-class name. This assumes that you do not directly
+ * instantiate the AResource class. If you do, the element name remains @c nil.
+ */
+- (ARBase *)baseLazily;
+
 //------------------------------------------------------------------- Attributes
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;

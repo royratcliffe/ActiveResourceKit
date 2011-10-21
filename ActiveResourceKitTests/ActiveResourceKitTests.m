@@ -166,12 +166,12 @@
 
 - (void)testElementName
 {
-	STAssertEqualObjects([[[[MyObject alloc] init] autorelease] elementNameLazily], @"my_object", nil);
+	STAssertEqualObjects([[[[[Person alloc] init] autorelease] baseLazily] elementNameLazily], @"person", nil);
 }
 
 - (void)testCollectionName
 {
-	STAssertEqualObjects([[[[MyObject alloc] init] autorelease] collectionNameLazily], @"my_objects", nil);
+	STAssertEqualObjects([[[[[Person alloc] init] autorelease] baseLazily] collectionNameLazily], @"people", nil);
 }
 
 - (void)testElementPath
