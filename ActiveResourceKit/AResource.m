@@ -35,12 +35,6 @@
 
 @implementation AResource
 
-//------------------------------------------------------------------------------
-#pragma mark                                                                Base
-//------------------------------------------------------------------------------
-
-@synthesize base = _base;
-
 - (id)initWithBase:(ARBase *)base
 {
 	// This is not the designated initialiser. Sends -init to self not super.
@@ -52,12 +46,6 @@
 	return self;
 }
 
-//------------------------------------------------------------------------------
-#pragma mark                                                          Attributes
-//------------------------------------------------------------------------------
-
-@synthesize attributes = _attributes;
-
 - (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes
 {
 	self = [self init];
@@ -67,6 +55,28 @@
 	}
 	return self;
 }
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted
+{
+	self = [self initWithBase:base attributes:attributes];
+	if (self)
+	{
+		[self setPersisted:persisted];
+	}
+	return self;
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                                Base
+//------------------------------------------------------------------------------
+
+@synthesize base = _base;
+
+//------------------------------------------------------------------------------
+#pragma mark                                                          Attributes
+//------------------------------------------------------------------------------
+
+@synthesize attributes = _attributes;
 
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
@@ -98,19 +108,27 @@
 @synthesize prefixOptions = _prefixOptions;
 
 //------------------------------------------------------------------------------
+#pragma mark                                         Schema and Known Attributes
+//------------------------------------------------------------------------------
+
+- (NSDictionary *)schema
+{
+	NSDictionary *schema = [[self base] schema];
+	return schema ? schema : [self attributes];
+}
+
+- (NSArray *)knownAttributes
+{
+	NSMutableSet *set = [NSMutableSet set];
+	[set addObjectsFromArray:[[self base] knownAttributes]];
+	[set addObjectsFromArray:[[self attributes] allKeys]];
+	return [set allObjects];
+}
+
+//------------------------------------------------------------------------------
 #pragma mark                                                           Persisted
 //------------------------------------------------------------------------------
 
 @synthesize persisted = _persisted;
-
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted
-{
-	self = [self initWithBase:base attributes:attributes];
-	if (self)
-	{
-		[self setPersisted:persisted];
-	}
-	return self;
-}
 
 @end

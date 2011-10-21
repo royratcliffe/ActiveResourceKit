@@ -40,6 +40,12 @@
  */
 @interface AResource : NSObject
 
+- (id)initWithBase:(ARBase *)base;
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;
+
+- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
+
 //------------------------------------------------------------------------- Base
 
 /*!
@@ -49,13 +55,9 @@
  */
 @property(retain, NS_NONATOMIC_IOSONLY) ARBase *base;
 
-- (id)initWithBase:(ARBase *)base;
-
 //------------------------------------------------------------------- Attributes
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
-
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;
 
 /*!
  * Argument @a removeRoot becomes a do-not-care if @a attributes contains just a
@@ -68,10 +70,22 @@
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *prefixOptions;
 
+//-------------------------------------------------- Schema and Known Attributes
+
+- (NSDictionary *)schema;
+
+/*!
+ * @brief Answers all the known attributes belonging to this active resource, a
+ * unique array of attribute key strings.
+ * @details The resulting array includes all the base's known attributes plus
+ * this resource instance's known attributes. Duplicates if any do @e not
+ * appear. This deviates from Rails at version 3.1.0 where duplicates @e do
+ * appear.
+ */
+- (NSArray *)knownAttributes;
+
 //-------------------------------------------------------------------- Persisted
 
 @property(assign, NS_NONATOMIC_IOSONLY) BOOL persisted;
-
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
 @end
