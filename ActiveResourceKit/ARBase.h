@@ -118,6 +118,9 @@ extern NSString *const kARParamsKey;
  */
 @interface ARBase : NSObject
 
+- (id)initWithSite:(NSURL *)site;
+- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
+
 // The following properties use copy, in general, rather than retain. Why use
 // copy? You can pass a mutable URL or string. The Active Resource retains a
 // non-mutable copy.
@@ -126,17 +129,17 @@ extern NSString *const kARParamsKey;
 // example, format is a class-scoped attribute in Rails. The Objective-C
 // implementation here maps such behaviour to instances rather than classes.
 
-//----------------------------------------------------------------------- Schema
+//-------------------------------------------------- Schema and Known Attributes
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *schema;
 
 /*!
- * Answers the known attributes, known because the resource server publishes
- * them; the server does not necessarily publish everything. Known attributes
- * depend on schema: they amount to the schema's keys. The schema is a
- * dictionary of attribute name-type pairs.
+ * @brief Answers the known attributes, known because the resource server
+ * publishes them; although the server does not necessarily publish everything.
+ * @details Known attributes depend on schema. The result amounts to the
+ * schema's keys. The schema is a dictionary of attribute name-type pairs.
  */
-@property(readonly, NS_NONATOMIC_IOSONLY) NSArray *knownAttributes;
+- (NSArray *)knownAttributes;
 
 //------------------------------------------------------------------------- Site
 
@@ -146,9 +149,6 @@ extern NSString *const kARParamsKey;
  * site's path becomes the default prefix.
  */
 @property(copy, NS_NONATOMIC_IOSONLY) NSURL *site;
-
-- (id)initWithSite:(NSURL *)site;
-- (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
 
 //----------------------------------------------------------------------- Format
 

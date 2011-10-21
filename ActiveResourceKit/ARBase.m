@@ -43,23 +43,6 @@
 	return self;
 }
 
-//------------------------------------------------------------------------------
-#pragma mark                                                              Schema
-//------------------------------------------------------------------------------
-
-@synthesize schema = _schema;
-
-- (NSArray *)knownAttributes
-{
-	return [[self schema] allKeys];
-}
-
-//------------------------------------------------------------------------------
-#pragma mark                                                                Site
-//------------------------------------------------------------------------------
-
-@synthesize site = _site;
-
 // The following initialisers are not designated initialisers. Note the messages
 // to -[self init] rather than -[super init], a small but important
 // difference. These are just convenience initialisers: a way to initialise and
@@ -84,6 +67,23 @@
 	}
 	return self;
 }
+
+//------------------------------------------------------------------------------
+#pragma mark                                         Schema and Known Attributes
+//------------------------------------------------------------------------------
+
+@synthesize schema = _schema;
+
+- (NSArray *)knownAttributes
+{
+	return [[self schema] allKeys];
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                                Site
+//------------------------------------------------------------------------------
+
+@synthesize site = _site;
 
 //------------------------------------------------------------------------------
 #pragma mark                                                              Format
