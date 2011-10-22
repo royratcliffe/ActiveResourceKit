@@ -104,6 +104,13 @@
 
 //------------------------------------------------------------------ Primary Key
 
+/*!
+ * @brief Answers the primary key.
+ * @details By convention, Rails' primary keys appear in the column named @c
+ * id. Column type is integer. Hence the ActiveResourceKit implementation
+ * answers the primary key only if the type is a number. This includes other
+ * types of number. Otherwise it answers @c nil.
+ */
 - (NSNumber *)ID;
 
 - (void)setID:(NSNumber *)ID;
