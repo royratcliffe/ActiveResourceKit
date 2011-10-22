@@ -156,4 +156,36 @@
 
 @synthesize persisted = _persisted;
 
+- (BOOL)isNew
+{
+	return ![self persisted];
+}
+
+- (BOOL)isNewRecord
+{
+	return [self isNew];
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                         Primary Key
+//------------------------------------------------------------------------------
+
+- (NSNumber *)ID
+{
+	id ID = [[self attributes] objectForKey:[[self base] primaryKey]];
+	return ID && [ID isKindOfClass:[NSNumber class]] ? ID : nil;
+}
+
+- (void)setID:(NSNumber *)ID
+{
+	// The (current) implementation does not retain a mutable dictionary
+	// suitable for modification. Consequently, setting the ID requires a
+	// mutable duplicate temporarily. Resetting the attributes with an updated
+	// primary key snapshots an immutable copy of the mutable dictionary. The
+	// attributes thereby return to their immutable state.
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributes]];
+	[attributes setObject:ID forKey:[[self base] primaryKey]];
+	[self setAttributes:attributes];
+}
+
 @end

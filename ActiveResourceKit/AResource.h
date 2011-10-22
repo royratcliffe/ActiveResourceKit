@@ -99,4 +99,13 @@
 
 @property(assign, NS_NONATOMIC_IOSONLY) BOOL persisted;
 
+- (BOOL)isNew;
+- (BOOL)isNewRecord;
+
+//------------------------------------------------------------------ Primary Key
+
+- (NSNumber *)ID;
+
+- (void)setID:(NSNumber *)ID;
+
 @end
