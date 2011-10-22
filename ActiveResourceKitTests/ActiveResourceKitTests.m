@@ -121,9 +121,9 @@
 {
 	// Empty URL paths should become empty strings after parsing. This tests the
 	// Foundation frameworks implementation of an URL.
-	ARBase *resource = [[[ARBase alloc] init] autorelease];
-	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
-	STAssertEqualObjects([[resource site] path], @"", nil);
+	ARBase *base = [[[ARBase alloc] init] autorelease];
+	[base setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
+	STAssertEqualObjects([[base site] path], @"", nil);
 }
 
 - (void)testPrefixSource
