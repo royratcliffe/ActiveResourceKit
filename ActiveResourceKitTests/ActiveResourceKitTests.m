@@ -23,7 +23,60 @@
 //------------------------------------------------------------------------------
 
 #import "ActiveResourceKitTests.h"
+
 #import <ActiveResourceKit/ActiveResourceKit.h>
+
+//------------------------------------------------------------------------------
+#pragma mark                                                        Person Class
+//------------------------------------------------------------------------------
+
+// Person and PersonResource inherit from AResource, as active resource instances.
+
+//
+//	require 'active_resource'
+//
+//	class Person < ActiveResource::Base
+//	  self.site = "http://localhost:3000/"
+//	end
+//
+
+@interface Person : AResource
+@end
+
+@implementation Person
+
++ (NSURL *)site
+{
+	return [NSURL URLWithString:@"http://localhost:3000/"];
+}
+
+@end
+
+//
+//	require 'active_resource'
+//
+//	class PersonResource < ActiveResource::Base
+//	  self.site = "http://localhost:3000/"
+//	  self.element_name = "person"
+//	end
+//
+
+@interface PersonResource : AResource
+@end
+
+@implementation PersonResource
+
++ (NSURL *)site
+{
+	return [NSURL URLWithString:@"http://localhost:3000/"];
+}
+
++ (NSString *)elementName
+{
+	return @"person";
+}
+
+@end
 
 @interface MyObject : ARBase
 @end
