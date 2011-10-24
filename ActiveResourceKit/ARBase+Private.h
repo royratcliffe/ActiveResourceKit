@@ -73,11 +73,19 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 - (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions;
 
 /*!
- * Sends an asynchronous GET request. When the response successfully arrives,
+ * @brief Sends an asynchronous GET request.
+ * @details  When the response successfully arrives,
  * the format decodes the data. If the response body decodes successfully,
  * finally sends the decoded object (or objects) to your given completion
  * handler. Objects may be hashes (dictionaries) or arrays, or even primitives.
  */
 - (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler;
+
+/*!
+ * @brief Submits an asynchronous request, returning immediately.
+ * @details The given @a request object asynchronously transmits to the remote
+ * RESTful service.
+ */
+- (void)request:(NSURLRequest *)request completionHandler:(void (^)(id object, NSError *error))completionHandler;
 
 @end

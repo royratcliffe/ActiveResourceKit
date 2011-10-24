@@ -141,7 +141,17 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+	[self request:request completionHandler:completionHandler];
+}
+
+- (void)request:(NSURLRequest *)request completionHandler:(void (^)(id object, NSError *error))completionHandler
+{
+	NSOperationQueue *operationQueue = [self operationQueue];
+	if (operationQueue == nil)
+	{
+		operationQueue = [NSOperationQueue currentQueue];
+	}
+	[NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if (data)
 		{
 			id object = [[self formatLazily] decode:data error:&error];
