@@ -109,8 +109,13 @@
  * @brief Answers the primary key.
  * @details By convention, Rails' primary keys appear in the column named @c
  * id. Column type is integer. Hence the ActiveResourceKit implementation
- * answers the primary key only if the type is a number. This includes other
- * types of number. Otherwise it answers @c nil.
+ * answers the primary key only if the type is a number. (This includes other
+ * types of number.) Otherwise it answers @c nil.
+ * @par Integer Width
+ * The exact integer type depends on the database implementation and
+ * configuration at the server side. Databases typically store integers as
+ * signed 32-bit integers. Send -[NSNumber intValue] to the resulting number to
+ * retrieve the signed 32-bit identifier in such cases.
  */
 - (NSNumber *)ID;
 
