@@ -27,12 +27,13 @@
 @class ARBase;
 
 /*!
- * AResource is the core class mirroring Rails' ActiveResource::Base class. An
- * active resource mimics an active record. Resources behave as records. Only
- * their connection fundamentally differs. Active Records connect to a database
- * whereas Active Resources connect to a RESTful API accessed via HTTP
- * transport.
+ * @brief Provides the core class mirroring Rails' @c ActiveResource::Base class.
+ * @details An active resource mimics an active record. Resources behave as
+ * records. Only their connection fundamentally differs. Active Records connect
+ * to a database whereas Active Resources connect to a RESTful API accessed via
+ * HTTP transport.
  *
+ * @par AResource or ARResource?
  * This class uses AResource as the class name rather than ARResource. A is for
  * Active, R for Resource. But the namespace convention for Objective-C lends
  * itself to AResource if you eliminate the repeated term. Hence, ARResource

@@ -31,11 +31,14 @@ extern NSString *const kARParamsKey;
 @class AResource;
 
 /*!
- * @brief An active resource's baseline configuration, defining its site,
- * schema, attributes; but not defining an active resource @e instance.
+ * @brief An active resource's base configuration.
+ * @details Defines an active resource's site, schema and known attributes,
+ * etc. Does not however define an active resource @e instance. Active resources
+ * binding to the same remote element at the same remote site associate with a
+ * common base.
  *
- * ARBase corresponds to the singleton class aspects of
- * ActiveResource::Base. Under Rails ActiveResource, the ActiveResource::Base
+ * ARBase corresponds to the singleton class aspects of @c
+ * ActiveResource::Base. Under Rails ActiveResource, the @c ActiveResource::Base
  * singleton class carries the following state. See list below.
  *
  *	- auth_type
@@ -58,13 +61,13 @@ extern NSString *const kARParamsKey;
  *
  * This might help to define what ARBase actually does, its purpose. ARBase
  * implements the anonymous singleton class behaviours belonging to
- * ActiveResource::Base. AResource defines the class for Active Resource
+ * @c ActiveResource::Base. AResource defines the class for Active Resource
  * instances, but ARBase defines the class for Active Resource @e classes,
  * singleton classes that is. Objective-C 2.0 does not provide anything
  * comparable singleton classes. The Rails singleton class becomes the
  * Objective-C “base” class.
  *
- * Singleton methods for ActiveResource::Base include the following.
+ * Singleton methods for @c ActiveResource::Base include the following.
  *
  *	- all
  *	- auth_type

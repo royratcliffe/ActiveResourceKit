@@ -4,7 +4,7 @@
 
 When resources load at the client side, what binds their associations? How can the client resolve foreign keys? To do so, the client needs to identify the active resources.
 
-Using the principle of convention over configuration, ARBase registers its instances by default, and each ARBase retains its AResources. Hence it can resolve the association whenever a new resource appears with an ID matching some existing foreign key. Similarly when a new record comprising an unresolved foreign key loads, ARBase can resolve it against an existing resource.
+Using the principle of convention over configuration, `ARBase` registers its instances by default, and each `ARBase` retains its `AResource`s. Hence it can resolve the association whenever a new resource appears with an ID matching some existing foreign key. Similarly when a new record comprising an unresolved foreign key loads, `ARBase` can resolve it against an existing resource.
 
 ## Incremental Stores
 
