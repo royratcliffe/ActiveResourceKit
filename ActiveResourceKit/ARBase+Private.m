@@ -171,4 +171,46 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	}];
 }
 
+- (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
+{
+	static struct
+	{
+		NSString *const HTTPMethod;
+		NSString *const headerName;
+	}
+	const HTTPFormatHeaderNames[] =
+	{
+		{ @"GET",    @"Accept" },
+		{ @"PUT",    @"Content-Type" },
+		{ @"POST",   @"Content-Type" },
+		{ @"DELETE", @"Accept" },
+		{ @"HEAD",   @"Accept" },
+	};
+#define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
+	// Is this too ugly? A dictionary could implement the look-up. But that
+	// requires building a static dictionary initially and does not allow
+	// optimisation of searching. Using a simple linear look-up speeds up the
+	// more common request types, i.e. GET requests. There is a cost, that of
+	// slower look-up for less common types, e.g. HEAD. Is this a reasonable
+	// trade-off?
+	NSUInteger index;
+	for (index = 0; index < DIMOF(HTTPFormatHeaderNames); index++)
+	{
+		if ([HTTPMethod isEqualToString:HTTPFormatHeaderNames[index].HTTPMethod])
+		{
+			break;
+		}
+	}
+	NSDictionary *formatHeader;
+	if (index < DIMOF(HTTPFormatHeaderNames))
+	{
+		formatHeader = [NSDictionary dictionaryWithObject:[[self formatLazily] MIMEType] forKey:HTTPFormatHeaderNames[index].headerName];
+	}
+	else
+	{
+		formatHeader = [NSDictionary dictionary];
+	}
+	return formatHeader;
+}
+
 @end
