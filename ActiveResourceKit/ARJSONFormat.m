@@ -41,7 +41,7 @@
 
 - (id)decode:(NSData *)data error:(NSError **)outError
 {
-	return ARRemoveRoot(ASJSONDecode(data, outError));
+	return ARRemoveRoot(ASJSONDecodeFromData(data, outError));
 }
 
 //------------------------------------------------------------------------------
