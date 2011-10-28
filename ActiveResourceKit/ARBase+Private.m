@@ -94,9 +94,9 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions
 {
 	NSMutableArray *resources = [NSMutableArray array];
-	for (NSDictionary *attrs in collection)
+	for (NSDictionary *attributes in collection)
 	{
-		[resources addObject:[self instantiateRecordWithAttributes:attrs prefixOptions:prefixOptions]];
+		[resources addObject:[self instantiateRecordWithAttributes:attributes prefixOptions:prefixOptions]];
 	}
 	return [[resources copy] autorelease];
 }
