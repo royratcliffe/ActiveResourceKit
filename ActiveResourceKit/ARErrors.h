@@ -29,4 +29,5 @@ extern NSString *const ARErrorDomain;
 enum
 {
 	ARUnsupportedRootObjectTypeError = 'urot',
+	ARResponseIsNotHTTPError = 'rinh',
 };
