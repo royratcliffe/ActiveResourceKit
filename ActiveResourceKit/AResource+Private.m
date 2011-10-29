@@ -24,9 +24,7 @@
 
 #import "AResource+Private.h"
 
-@implementation AResource(Private)
-
-- (NSNumber *)IDFromResponse:(NSHTTPURLResponse *)response
+NSNumber *ARIDFromResource(NSHTTPURLResponse *response)
 {
 	NSString *location = [[response allHeaderFields] objectForKey:@"Location"];
 	if (location == nil)
@@ -43,5 +41,7 @@
 	NSNumberFormatter *numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
 	return [numberFormatter numberFromString:string];
 }
+
+@implementation AResource(Private)
 
 @end

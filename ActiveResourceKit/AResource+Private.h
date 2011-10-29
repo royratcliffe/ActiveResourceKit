@@ -24,8 +24,18 @@
 
 #import <ActiveResourceKit/AResource.h>
 
-@interface AResource(Private)
+/*!
+ * @brief Extracts the resource identifier from the given HTTP response.
+ * @details The HTTP response includes a Location header field specifying the
+ * resource's full resource location. Rails places the resource ID at the last
+ * element in the location path. The implementation extracts this element using
+ * a regular expression.
+ * @result Answers an NSNumber numerical identifier based on the response
+ * location field. Answers @c nil if the response does not contain a Location
+ * header, or if the Location field does not match the format @c "/foo/bar/1".
+ */
+NSNumber *ARIDFromResource(NSHTTPURLResponse *response);
 
-- (NSNumber *)IDFromResponse:(NSHTTPURLResponse *)response;
+@interface AResource(Private)
 
 @end

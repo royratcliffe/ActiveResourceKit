@@ -26,6 +26,13 @@
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
 
+// Import the Private interfaces. Normal targets cannot see these interfaces
+// because the project gives them Project scope. Therefore they do not appear in
+// the framework for OS X targets, nor in the include/ActiveResourceKit folder
+// for iOS targets.
+#import "ARBase+Private.h"
+#import "AResource+Private.h"
+
 //------------------------------------------------------------------------------
 #pragma mark                                                        Person Class
 //------------------------------------------------------------------------------
@@ -328,9 +335,7 @@
 {
 	NSDictionary *headerFields = [NSDictionary dictionaryWithObject:@"/foo/bar/1" forKey:@"Location"];
 	NSHTTPURLResponse *response = [[[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:nil headerFields:headerFields] autorelease];
-	Person *person = [[[Person alloc] init] autorelease];
-	NSNumber *ID = [person IDFromResponse:response];
-	STAssertEqualObjects(ID, [NSNumber numberWithInt:1], nil);
+	STAssertEqualObjects(ARIDFromResource(response), [NSNumber numberWithInt:1], nil);
 }
 
 @end
