@@ -105,10 +105,12 @@
 @synthesize timeout = _timeout;
 
 //------------------------------------------------------------------------------
-#pragma mark                                                        Element Name
+#pragma mark                                        Element and Collection Names
 //------------------------------------------------------------------------------
 
 @synthesize elementName = _elementName;
+
+@synthesize collectionName = _collectionName;
 
 // lazy getter
 - (NSString *)elementNameLazily
@@ -120,12 +122,6 @@
 	}
 	return elementName;
 }
-
-//------------------------------------------------------------------------------
-#pragma mark                                                     Collection Name
-//------------------------------------------------------------------------------
-
-@synthesize collectionName = _collectionName;
 
 // lazy getter
 - (NSString *)collectionNameLazily
