@@ -42,6 +42,11 @@ NSNumber *ARIDFromResource(NSHTTPURLResponse *response)
 	return [numberFormatter numberFromString:string];
 }
 
+BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
+{
+	return !((100 <= statusCode && statusCode <= 199) || statusCode == 204 || statusCode == 304);
+}
+
 @implementation AResource(Private)
 
 @end

@@ -36,6 +36,12 @@
  */
 NSNumber *ARIDFromResource(NSHTTPURLResponse *response);
 
+/*!
+ * @brief Determines whether the HTTP 1.1 specification allows a response to
+ * have a body (see section 4.4.1 of the specification).
+ */
+BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
+
 @interface AResource(Private)
 
 @end
