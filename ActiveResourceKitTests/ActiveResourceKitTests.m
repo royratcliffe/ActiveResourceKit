@@ -159,6 +159,25 @@
 	STAssertEquals(kActiveResourceKitVersionNumber, (double)CURRENT_PROJECT_VERSION, nil);
 }
 
+- (void)testNewPerson
+{
+	Person *ryan = [[[Person alloc] init] autorelease];
+	[ryan setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"Ryan", @"first", @"Daigle", @"last", nil]];
+	
+	// At this point, base should be nil because nothing has as yet accessed the
+	// base lazily! The resource only exists in memory; hence not persisted, a
+	// new resource, a new record.
+	STAssertNil([ryan base], nil);
+	STAssertFalse([ryan persisted], nil);
+	STAssertTrue([ryan isNew], nil);
+	STAssertTrue([ryan isNewRecord], nil);
+	
+	// Use key-value coding to verify the contents of the active resource
+	// instance, albeit not yet persisted.
+	STAssertEqualObjects([ryan valueForKey:@"first"], @"Ryan", nil);
+	STAssertEqualObjects([ryan valueForKey:@"last"], @"Daigle", nil);
+}
+
 - (void)testSetUpSite
 {
 	// Start off with a very simple test. Just set up a resource. Load it with
