@@ -52,14 +52,13 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 @implementation AResource(Private)
 
 - (void)loadAttributesFromResponse:(NSHTTPURLResponse *)response data:(NSData *)data
+- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes
 {
 	NSDictionary *headerFields;
 	NSString *contentLength;
-	NSDictionary *attributes;
 	
-	if (ARResponseCodeAllowsBody([response statusCode]) &&
-		((contentLength = [headerFields = [response allHeaderFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]) &&
-		data && (attributes = [[[self baseLazily] formatLazily] decode:data error:NULL]))
+	if (ARResponseCodeAllowsBody([HTTPResponse statusCode]) &&
+		((contentLength = [headerFields = [HTTPResponse allHeaderFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]))
 	{
 		[self loadAttributes:attributes removeRoot:YES];
 		[self setPersisted:YES];

@@ -44,6 +44,10 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 
 @interface AResource(Private)
 
-- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)response data:(NSData *)data;
+
+/*!
+ * @param attributes Set of attributes decoded from the response body.
+ */
+- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes;
 
 @end
