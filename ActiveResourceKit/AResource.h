@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import <ActiveModelKit/ActiveModelKit.h>
 
 @class ARBase;
 
@@ -39,7 +40,7 @@
  * itself to AResource if you eliminate the repeated term. Hence, ARResource
  * becomes AResource!
  */
-@interface AResource : NSObject
+@interface AResource : NSObject<AMAttributeMethods>
 
 - (id)initWithBase:(ARBase *)base;
 
