@@ -335,7 +335,7 @@
 {
 	NSDictionary *headerFields = [NSDictionary dictionaryWithObject:@"/foo/bar/1" forKey:@"Location"];
 	NSHTTPURLResponse *response = [[[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:nil headerFields:headerFields] autorelease];
-	STAssertEqualObjects(ARIDFromResource(response), [NSNumber numberWithInt:1], nil);
+	STAssertEqualObjects(ARIDFromResponse(response), [NSNumber numberWithInt:1], nil);
 }
 
 @end
