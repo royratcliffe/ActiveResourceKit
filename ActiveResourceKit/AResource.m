@@ -184,9 +184,10 @@
 	// mutable duplicate temporarily. Resetting the attributes with an updated
 	// primary key snapshots an immutable copy of the mutable dictionary. The
 	// attributes thereby return to their immutable state.
-	NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributes]];
-	[attributes setObject:ID forKey:[[self baseLazily] primaryKey]];
-	[self setAttributes:attributes];
+	NSDictionary *attributes = [self attributes];
+	NSMutableDictionary *newAttributes = attributes ? [NSMutableDictionary dictionaryWithDictionary:attributes] : [NSMutableDictionary dictionary];
+	[newAttributes setObject:ID forKey:[[self baseLazily] primaryKeyLazily]];
+	[self setAttributes:newAttributes];
 }
 
 @end
