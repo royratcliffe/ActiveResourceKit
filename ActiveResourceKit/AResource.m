@@ -106,10 +106,10 @@
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
 	NSDictionary *prefixOptions = nil;
-	[[self base] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
+	[[self baseLazily] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
 	if ([attributes count] == 1)
 	{
-		removeRoot = [[[self base] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
+		removeRoot = [[[self baseLazily] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
 	}
 	if (removeRoot)
 	{
@@ -138,14 +138,14 @@
 
 - (NSDictionary *)schema
 {
-	NSDictionary *schema = [[self base] schema];
+	NSDictionary *schema = [[self baseLazily] schema];
 	return schema ? schema : [self attributes];
 }
 
 - (NSArray *)knownAttributes
 {
 	NSMutableSet *set = [NSMutableSet set];
-	[set addObjectsFromArray:[[self base] knownAttributes]];
+	[set addObjectsFromArray:[[self baseLazily] knownAttributes]];
 	[set addObjectsFromArray:[[self attributes] allKeys]];
 	return [set allObjects];
 }
@@ -172,7 +172,7 @@
 
 - (NSNumber *)ID
 {
-	id ID = [[self attributes] objectForKey:[[self base] primaryKey]];
+	id ID = [[self attributes] objectForKey:[[self baseLazily] primaryKey]];
 	return ID && [ID isKindOfClass:[NSNumber class]] ? ID : nil;
 }
 
@@ -184,7 +184,7 @@
 	// primary key snapshots an immutable copy of the mutable dictionary. The
 	// attributes thereby return to their immutable state.
 	NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributes]];
-	[attributes setObject:ID forKey:[[self base] primaryKey]];
+	[attributes setObject:ID forKey:[[self baseLazily] primaryKey]];
 	[self setAttributes:attributes];
 }
 
