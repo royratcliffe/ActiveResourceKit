@@ -171,6 +171,10 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	}];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                            Format Header for Method
+//------------------------------------------------------------------------------
+
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
 {
 	static struct
