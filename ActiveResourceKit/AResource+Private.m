@@ -24,6 +24,8 @@
 
 #import "AResource+Private.h"
 
+#import "ARBase.h"
+
 NSNumber *ARIDFromResource(NSHTTPURLResponse *response)
 {
 	NSString *location = [[response allHeaderFields] objectForKey:@"Location"];
@@ -48,5 +50,20 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 }
 
 @implementation AResource(Private)
+
+- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)response data:(NSData *)data
+{
+	NSDictionary *headerFields;
+	NSString *contentLength;
+	NSDictionary *attributes;
+	
+	if (ARResponseCodeAllowsBody([response statusCode]) &&
+		((contentLength = [headerFields = [response allHeaderFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]) &&
+		data && (attributes = [[[self baseLazily] formatLazily] decode:data error:NULL]))
+	{
+		[self loadAttributes:attributes removeRoot:YES];
+		[self setPersisted:YES];
+	}
+}
 
 @end

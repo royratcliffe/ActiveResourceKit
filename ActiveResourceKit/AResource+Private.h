@@ -44,4 +44,6 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 
 @interface AResource(Private)
 
+- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)response data:(NSData *)data;
+
 @end
