@@ -141,26 +141,30 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 #pragma mark                                                       HTTP Requests
 //------------------------------------------------------------------------------
 
-- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *response, id object, NSError *error))completionHandler
+- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
-	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[self request:request completionHandler:completionHandler];
+	[self requestHTTPMethod:@"GET" path:path completionHandler:completionHandler];
 }
 
-- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *response, id object, NSError *error))completionHandler
+- (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+{
+	[self requestHTTPMethod:@"PUT" path:path completionHandler:completionHandler];
+}
+
+- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+{
+	[self requestHTTPMethod:@"POST" path:path completionHandler:completionHandler];
+}
+
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[request setHTTPMethod:@"POST"];
+	[request setHTTPMethod:HTTPMethod];
 	NSMutableDictionary *headerFields = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
 	[headerFields addEntriesFromDictionary:[self HTTPFormatHeaderForHTTPMethod:[request HTTPMethod]]];
 	[request setAllHTTPHeaderFields:headerFields];
-	[self request:request completionHandler:completionHandler];
-}
-
-- (void)request:(NSURLRequest *)request completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
-{
+	
 	NSOperationQueue *operationQueue = [self operationQueue];
 	if (operationQueue == nil) operationQueue = [NSOperationQueue currentQueue];
 	[NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {

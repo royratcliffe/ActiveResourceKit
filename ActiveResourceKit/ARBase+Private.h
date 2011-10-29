@@ -84,16 +84,21 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 - (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
+ * @brief Sends an asynchronous PUT request.
+ */
+- (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+
+/*!
  * @brief Sends an asynchronous POST request.
  */
 - (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Submits an asynchronous request, returning immediately.
- * @details The given @a request object asynchronously transmits to the remote
- * RESTful service. The completion handler executes in the resource base's
- * operation queue, or the current queue (the operation queue running at the
- * time of the request) if the resource base has no queue.
+ * @details Constructs a request object and asynchronously transmits it to the
+ * remote RESTful service. The completion handler executes in the resource
+ * base's operation queue, or the current queue (the operation queue running at
+ * the time of the request) if the resource base has no queue.
  *
  * The completion handler receives three arguments: the HTTP response, the
  * decoded object and any error. The decoded object derives from the response
@@ -103,7 +108,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * handler receives a @c nil response @a HTTPResponse argument and an @ref
  * ARResponseIsNotHTTPError.
  */
-- (void)request:(NSURLRequest *)request completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 //----------------------------------------------------- Format Header for Method
 
