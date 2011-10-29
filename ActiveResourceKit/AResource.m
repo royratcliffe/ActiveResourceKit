@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "AResource.h"
+#import "AResource+Private.h"
 
 // for -[ARBase splitOptions:prefixOptions:queryOptions:]
 // (This makes you wonder. If other classes need to import the private
