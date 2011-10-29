@@ -355,7 +355,9 @@
 	Person *person = [[[Person alloc] init] autorelease];
 	[person saveWithCompletionHandler:^(id object, NSError *error) {
 		STAssertEqualObjects(object, person, nil);
+		[self setStop:YES];
 	}];
+	[self runUntilStop];
 }
 
 - (void)testIDFromResponse
