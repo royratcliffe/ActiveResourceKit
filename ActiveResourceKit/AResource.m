@@ -190,4 +190,16 @@
 	[self setAttributes:newAttributes];
 }
 
+- (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+{
+	if ([self isNew])
+	{
+		[self createWithCompletionHandler:completionHandler];
+	}
+	else
+	{
+		[self updateWithCompletionHandler:completionHandler];
+	}
+}
+
 @end

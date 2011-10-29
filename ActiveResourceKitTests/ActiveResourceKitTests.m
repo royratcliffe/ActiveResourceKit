@@ -350,6 +350,14 @@
 	[self runUntilStop];
 }
 
+- (void)testCreate
+{
+	Person *person = [[[Person alloc] init] autorelease];
+	[person saveWithCompletionHandler:^(id object, NSError *error) {
+		STAssertEqualObjects(object, person, nil);
+	}];
+}
+
 - (void)testIDFromResponse
 {
 	NSDictionary *headerFields = [NSDictionary dictionaryWithObject:@"/foo/bar/1" forKey:@"Location"];

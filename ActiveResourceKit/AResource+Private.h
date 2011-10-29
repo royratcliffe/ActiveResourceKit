@@ -44,6 +44,9 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 
 @interface AResource(Private)
 
+- (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
+
+- (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
 
 /*!
  * @param attributes Set of attributes decoded from the response body.

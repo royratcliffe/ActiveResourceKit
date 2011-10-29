@@ -160,6 +160,8 @@ extern NSString *const kARParamsKey;
 // lazy getter
 - (id<ARFormat>)formatLazily;
 
+//---------------------------------------------------------------------- Timeout
+
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
 
 //------------------------------------------------- Element and Collection Names
@@ -237,6 +239,7 @@ extern NSString *const kARParamsKey;
 /*!
  * @brief Finds a single resource for a given identifier using the default URL.
  *
+ * @par Ruby on Rails Comparison
  * Under the Rails' ActiveResource gem, this method appears as a private
  * method. Why not here? In Rails, you access the @c find_single(scope, options)
  * method indirectly as the default @c find(arguments) case when the first scope

@@ -23,8 +23,8 @@
 //------------------------------------------------------------------------------
 
 #import "AResource+Private.h"
-
-#import "ARBase.h"
+#import "ARBase+Private.h"
+#import "ARErrors.h"
 
 NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse)
 {
@@ -51,7 +51,35 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 
 @implementation AResource(Private)
 
-- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)response data:(NSData *)data
+- (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+{
+	
+}
+
+- (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+{
+	NSString *path = [[self baseLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
+	[[self baseLazily] post:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+		if (attributes)
+		{
+			if ([attributes isKindOfClass:[NSDictionary class]])
+			{
+				[self setID:ARIDFromResponse(HTTPResponse)];
+				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
+				completionHandler(self, nil);
+			}
+			else
+			{
+				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
+		}
+		else
+		{
+			completionHandler(nil, error);
+		}
+	}];
+}
+
 - (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes
 {
 	NSDictionary *headerFields;

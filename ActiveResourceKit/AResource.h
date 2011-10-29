@@ -121,4 +121,6 @@
 
 - (void)setID:(NSNumber *)ID;
 
+- (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
+
 @end
