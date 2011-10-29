@@ -26,7 +26,7 @@
 
 #import "ARBase.h"
 
-NSNumber *ARIDFromResource(NSHTTPURLResponse *response)
+NSNumber *ARIDFromResponse(NSHTTPURLResponse *response)
 {
 	NSString *location = [[response allHeaderFields] objectForKey:@"Location"];
 	if (location == nil)
