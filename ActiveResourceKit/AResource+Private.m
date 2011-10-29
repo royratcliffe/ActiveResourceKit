@@ -53,7 +53,25 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 
 - (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
 {
-	
+	NSString *path = [[self baseLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
+	[[self baseLazily] put:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+		if (attributes)
+		{
+			if ([attributes isKindOfClass:[NSDictionary class]])
+			{
+				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
+				completionHandler(self, nil);
+			}
+			else
+			{
+				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
+		}
+		else
+		{
+			completionHandler(nil, error);
+		}
+	}];
 }
 
 - (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
