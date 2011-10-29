@@ -52,7 +52,7 @@
 
 - (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes
 {
-	self = [self init];
+	self = [self initWithBase:base];
 	if (self)
 	{
 		[self loadAttributes:attributes removeRoot:NO];
