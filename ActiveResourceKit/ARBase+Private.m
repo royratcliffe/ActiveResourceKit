@@ -79,7 +79,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 		path = [self collectionPathWithPrefixOptions:prefixOptions queryOptions:queryOptions];
 	}
-	[self get:path completionHandler:^(id object, NSError *error) {
+	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 		if ([object isKindOfClass:[NSArray class]])
 		{
 			completionHandler([self instantiateCollection:object prefixOptions:prefixOptions], nil);
@@ -137,36 +137,61 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	}
 }
 
-- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler
+//------------------------------------------------------------------------------
+#pragma mark                                                       HTTP Requests
+//------------------------------------------------------------------------------
+
+- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *response, id object, NSError *error))completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
 	[self request:request completionHandler:completionHandler];
 }
 
-- (void)request:(NSURLRequest *)request completionHandler:(void (^)(id object, NSError *error))completionHandler
+- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *response, id object, NSError *error))completionHandler
+{
+	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
+	[request setHTTPMethod:@"POST"];
+	NSMutableDictionary *headerFields = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
+	[headerFields addEntriesFromDictionary:[self HTTPFormatHeaderForHTTPMethod:[request HTTPMethod]]];
+	[request setAllHTTPHeaderFields:headerFields];
+	[self request:request completionHandler:completionHandler];
+}
+
+- (void)request:(NSURLRequest *)request completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSOperationQueue *operationQueue = [self operationQueue];
-	if (operationQueue == nil)
-	{
-		operationQueue = [NSOperationQueue currentQueue];
-	}
+	if (operationQueue == nil) operationQueue = [NSOperationQueue currentQueue];
 	[NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-		if (data)
+		if ([response isKindOfClass:[NSHTTPURLResponse class]])
 		{
-			id object = [[self formatLazily] decode:data error:&error];
-			if (object)
+			NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+			// This method exists for two main purposes: (1) to cast the
+			// generalised URL response to a protocol-specific HTTP response;
+			// (2) to decode the body. Purpose number two presumes that all
+			// responses require format-specific decoding. This seems like a
+			// safe assumption, at present.
+			if (data)
 			{
-				completionHandler(object, nil);
+				id object = [[self formatLazily] decode:data error:&error];
+				if (object)
+				{
+					completionHandler(HTTPResponse, object, nil);
+				}
+				else
+				{
+					completionHandler(HTTPResponse, nil, error);
+				}
 			}
 			else
 			{
-				completionHandler(nil, error);
+				completionHandler(HTTPResponse, nil, error);
 			}
 		}
 		else
 		{
-			completionHandler(nil, error);
+			completionHandler(nil, nil, error ? error : [NSError errorWithDomain:ARErrorDomain code:ARResponseIsNotHTTPError userInfo:nil]);
 		}
 	}];
 }

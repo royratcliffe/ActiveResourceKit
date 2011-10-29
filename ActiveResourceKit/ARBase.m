@@ -237,7 +237,7 @@
 	// make it relative to the site URL. The NSURL class combines the new
 	// element path with the site, using the site's scheme, host and port.
 	NSString *path = [self newElementPathWithPrefixOptions:nil];
-	[self get:path completionHandler:^(id object, NSError *error) {
+	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
@@ -281,7 +281,7 @@
 	if (from && [from isKindOfClass:[NSString class]])
 	{
 		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
-		[self get:path completionHandler:^(id object, NSError *error) {
+		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 			if ([object isKindOfClass:[NSDictionary class]])
 			{
 				completionHandler([self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
@@ -300,7 +300,7 @@
 	NSDictionary *queryOptions = nil;
 	[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
-	[self get:path completionHandler:^(id object, NSError *error) {
+	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
 			completionHandler([self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);

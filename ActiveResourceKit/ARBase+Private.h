@@ -72,6 +72,8 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  */
 - (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions;
 
+//---------------------------------------------------------------- HTTP Requests
+
 /*!
  * @brief Sends an asynchronous GET request.
  * @details When the response successfully arrives, the format decodes the
@@ -79,7 +81,12 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * object (or objects) to your given completion handler. Objects may be hashes
  * (dictionaries) or arrays, or even primitives.
  */
-- (void)get:(NSString *)path completionHandler:(void (^)(id object, NSError *error))completionHandler;
+- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+
+/*!
+ * @brief Sends an asynchronous POST request.
+ */
+- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Submits an asynchronous request, returning immediately.
@@ -87,8 +94,18 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * RESTful service. The completion handler executes in the resource base's
  * operation queue, or the current queue (the operation queue running at the
  * time of the request) if the resource base has no queue.
+ *
+ * The completion handler receives three arguments: the HTTP response, the
+ * decoded object and any error. The decoded object derives from the response
+ * body, decoded according to the base format. Decoding itself can encounter
+ * errors. If successful, the completion handler receives a non-nil object and a
+ * @c nil error. If the response is not an HTTP-based response, the completion
+ * handler receives a @c nil response @a HTTPResponse argument and an @ref
+ * ARResponseIsNotHTTPError.
  */
-- (void)request:(NSURLRequest *)request completionHandler:(void (^)(id object, NSError *error))completionHandler;
+- (void)request:(NSURLRequest *)request completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+
+//----------------------------------------------------- Format Header for Method
 
 /*!
  * @brief Answers a format header for the given HTTP request method.
