@@ -324,4 +324,13 @@
 	[self runUntilStop];
 }
 
+- (void)testIDFromResponse
+{
+	NSDictionary *headerFields = [NSDictionary dictionaryWithObject:@"/foo/bar/1" forKey:@"Location"];
+	NSHTTPURLResponse *response = [[[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:nil headerFields:headerFields] autorelease];
+	Person *person = [[[Person alloc] init] autorelease];
+	NSNumber *ID = [person IDFromResponse:response];
+	STAssertEqualObjects(ID, [NSNumber numberWithInt:1], nil);
+}
+
 @end

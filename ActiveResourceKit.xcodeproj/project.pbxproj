@@ -52,6 +52,10 @@
 		78D3D6F3140BC3B800DD4278 /* ARBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D3D6F4140BC3B800DD4278 /* ARBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARBase.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78E4DFEB145B1BF700AB4BCB /* AResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */; };
+		78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */; };
+		78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
+		78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
 		78FB0D86141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78FB0D87141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78FB0D88141A1820007AFB3D /* ARErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB0D85141A1820007AFB3D /* ARErrors.m */; };
@@ -148,6 +152,8 @@
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
+		78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AResource+Private.h"; sourceTree = "<group>"; };
+		78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AResource+Private.m"; sourceTree = "<group>"; };
 		78FB0D84141A1820007AFB3D /* ARErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrors.h; sourceTree = "<group>"; };
 		78FB0D85141A1820007AFB3D /* ARErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARErrors.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +264,8 @@
 				784450141428EFCB0014B4C6 /* ARBase+Private.m */,
 				784450071428CE250014B4C6 /* AResource.h */,
 				784450081428CE250014B4C6 /* AResource.m */,
+				78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */,
+				78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */,
 				7832702E14110B7B00ECCE7D /* ARFormat.h */,
 				78444FFB142896330014B4C6 /* ARFormatMethods.h */,
 				78444FFC142896330014B4C6 /* ARFormatMethods.m */,
@@ -317,6 +325,7 @@
 				78444FFE142896330014B4C6 /* ARFormatMethods.h in Headers */,
 				7844500A1428CE250014B4C6 /* AResource.h in Headers */,
 				784450161428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
+				78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +342,7 @@
 				78444FFD142896330014B4C6 /* ARFormatMethods.h in Headers */,
 				784450091428CE250014B4C6 /* AResource.h in Headers */,
 				784450151428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
+				78E4DFEB145B1BF700AB4BCB /* AResource+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +559,7 @@
 				78445000142896330014B4C6 /* ARFormatMethods.m in Sources */,
 				7844500C1428CE250014B4C6 /* AResource.m in Sources */,
 				784450181428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
+				78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +582,7 @@
 				78444FFF142896330014B4C6 /* ARFormatMethods.m in Sources */,
 				7844500B1428CE250014B4C6 /* AResource.m in Sources */,
 				784450171428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
+				78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
