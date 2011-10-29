@@ -34,7 +34,7 @@
  * location field. Answers @c nil if the response does not contain a Location
  * header, or if the Location field does not match the format @c "/foo/bar/1".
  */
-NSNumber *ARIDFromResponse(NSHTTPURLResponse *response);
+NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse);
 
 /*!
  * @brief Determines whether the HTTP 1.1 specification allows a response to
