@@ -160,10 +160,10 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	[request setHTTPMethod:HTTPMethod];
 	NSMutableDictionary *headerFields = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
-	[headerFields addEntriesFromDictionary:[self HTTPFormatHeaderForHTTPMethod:[request HTTPMethod]]];
+	[headerFields addEntriesFromDictionary:[self HTTPFormatHeaderForHTTPMethod:HTTPMethod]];
 	[request setAllHTTPHeaderFields:headerFields];
+	[request setHTTPMethod:HTTPMethod];
 	
 	NSOperationQueue *operationQueue = [self operationQueue];
 	if (operationQueue == nil) operationQueue = [NSOperationQueue currentQueue];
