@@ -75,13 +75,18 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 //---------------------------------------------------------------- HTTP Requests
 
 /*!
- * @brief Sends an asynchronous GET request.
+ * @brief Sends an asynchronous GET request. Used to find a resource.
  * @details When the response successfully arrives, the format decodes the
  * data. If the response body decodes successfully, finally sends the decoded
  * object (or objects) to your given completion handler. Objects may be hashes
  * (dictionaries) or arrays, or even primitives.
  */
 - (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+
+/*!
+ * @brief Used to delete resources. Sends an asynchronous DELETE request.
+ */
+- (void)delete:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Sends an asynchronous PUT request.
@@ -92,6 +97,12 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * @brief Sends an asynchronous POST request.
  */
 - (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+
+/*!
+ * @brief Used to obtain meta-information about resources, whether they exist or
+ * their size. Sends an asynchronous HEAD request.
+ */
+- (void)head:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Submits an asynchronous request, returning immediately.

@@ -141,9 +141,22 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 #pragma mark                                                       HTTP Requests
 //------------------------------------------------------------------------------
 
+// Under Rails, the HTTP request methods belong to a separate connection class,
+// ActiveResource::Connection. That class acts as a shim in-between active
+// resources and the Net::HTTP library, handling authentication and encryption
+// if the connection requires such features. The Objective-C implementation
+// obviates the connection class by delegating to the underlying Apple
+// NSURLConnection implementation for the handling of authentication and
+// encryption.
+
 - (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	[self requestHTTPMethod:@"GET" path:path completionHandler:completionHandler];
+}
+
+- (void)delete:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+{
+	[self requestHTTPMethod:@"DELETE" path:path completionHandler:completionHandler];
 }
 
 - (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
@@ -154,6 +167,11 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	[self requestHTTPMethod:@"POST" path:path completionHandler:completionHandler];
+}
+
+- (void)head:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+{
+	[self requestHTTPMethod:@"HEAD" path:path completionHandler:completionHandler];
 }
 
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
