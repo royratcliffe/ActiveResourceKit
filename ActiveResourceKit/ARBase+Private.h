@@ -90,11 +90,16 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
 
 /*!
  * @brief Sends an asynchronous PUT request.
+ * @details PUT is idempotent, meaning that multiple PUT requests result in an
+ * identical resource state. There should be no side effects. PUT really amounts
+ * to an “upsert” database operation where it updates the resource if it already
+ * exists but alternatively creates the resource if it does not already exist.
  */
 - (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Sends an asynchronous POST request.
+ * @details POST is not idempotent.
  */
 - (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
