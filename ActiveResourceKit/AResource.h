@@ -42,6 +42,18 @@
  */
 @interface AResource : NSObject<AMAttributeMethods>
 
+/*!
+ * @brief Constructs an active resource base using class methods to establish
+ * the site and element name.
+ * @details If the AResource sub-class has a class method called +site, use its
+ * answer to set up the Active Resource site. This assumes that +site answers an
+ * NSURL object. Similarly, sets up the base element name by sending
+ * +elementName to the sub-class, answering a string. However, if the sub-class
+ * does not implement the +elementName class method, the element name derives
+ * from the AResource sub-class name.
+ */
++ (ARBase *)base;
+
 - (id)initWithBase:(ARBase *)base;
 
 - (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;

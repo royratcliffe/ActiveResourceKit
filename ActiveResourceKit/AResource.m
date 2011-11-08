@@ -39,6 +39,24 @@
 
 @implementation AResource
 
++ (ARBase *)base
+{
+	ARBase *base = [[[ARBase alloc] init] autorelease];
+	if ([self respondsToSelector:@selector(site)])
+	{
+		[base setSite:[self performSelector:@selector(site)]];
+	}
+	if ([self respondsToSelector:@selector(elementName)])
+	{
+		[base setElementName:[self performSelector:@selector(elementName)]];
+	}
+	else if (self != [AResource class] && [self isSubclassOfClass:[AResource class]])
+	{
+		[base setElementName:[[[[AMName alloc] initWithClass:self] autorelease] element]];
+	}
+	return base;
+}
+
 - (id)initWithBase:(ARBase *)base
 {
 	// This is not the designated initialiser. Sends -init to self not super.
@@ -81,19 +99,7 @@
 	ARBase *base = [self base];
 	if (base == nil)
 	{
-		[self setBase:base = [[[ARBase alloc] init] autorelease]];
-		if ([[self class] respondsToSelector:@selector(site)])
-		{
-			[base setSite:[[self class] performSelector:@selector(site)]];
-		}
-		if ([[self class] respondsToSelector:@selector(elementName)])
-		{
-			[base setElementName:[[self class] performSelector:@selector(elementName)]];
-		}
-		else if ([self class] != [AResource class])
-		{
-			[base setElementName:[[[[AMName alloc] initWithClass:[self class]] autorelease] element]];
-		}
+		[self setBase:base = [[self class] base]];
 	}
 	return base;
 }
