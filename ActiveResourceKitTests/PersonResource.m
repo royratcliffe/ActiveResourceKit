@@ -24,11 +24,15 @@
 
 #import "PersonResource.h"
 
+// for ActiveResourceKitTestsURLString
+#import "ActiveResourceKitTests.h"
+
 @implementation PersonResource
 
 + (NSURL *)site
 {
-	return [NSURL URLWithString:@"https://active-resource-kit-tests.herokuapp.com"];
+	// Note: use HTTPS and add a trailing slash.
+	return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/", ActiveResourceKitTestsURLString]];
 }
 
 + (NSString *)elementName

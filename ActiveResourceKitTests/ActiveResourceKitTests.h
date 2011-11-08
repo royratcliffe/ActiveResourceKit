@@ -22,17 +22,17 @@
 //
 //------------------------------------------------------------------------------
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ARTestCase.h"
+
+extern NSString *const ActiveResourceKitTestsURLString;
 
 @class Post;
 @class PostComment;
 
-@interface ActiveResourceKitTests : SenTestCase
+@interface ActiveResourceKitTests : ARTestCase
 {
 	Post *post;
 	PostComment *postComment;
 }
-
-@property(NS_NONATOMIC_IOSONLY) BOOL stop;
 
 @end

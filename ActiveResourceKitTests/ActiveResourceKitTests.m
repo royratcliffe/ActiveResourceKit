@@ -26,64 +26,16 @@
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
 
-// Import the Private interfaces. Normal targets cannot see these interfaces
-// because the project gives them Project scope. Therefore they do not appear in
-// the framework for OS X targets, nor in the include/ActiveResourceKit folder
-// for iOS targets.
-#import "ARBase+Private.h"
-#import "AResource+Private.h"
+#import "Person.h"
+
+// for ARIDFromResponse
+#import "Private.h"
+
+NSString *const ActiveResourceKitTestsURLString = @"active-resource-kit-tests.herokuapp.com";
 
 //------------------------------------------------------------------------------
 #pragma mark                                                        Person Class
 //------------------------------------------------------------------------------
-
-// Person and PersonResource inherit from AResource, as active resource instances.
-
-//
-//	require 'active_resource'
-//
-//	class Person < ActiveResource::Base
-//	  self.site = "http://localhost:3000/"
-//	end
-//
-
-@interface Person : AResource
-@end
-
-@implementation Person
-
-+ (NSURL *)site
-{
-	return [NSURL URLWithString:@"http://localhost:3000/"];
-}
-
-@end
-
-//
-//	require 'active_resource'
-//
-//	class PersonResource < ActiveResource::Base
-//	  self.site = "http://localhost:3000/"
-//	  self.element_name = "person"
-//	end
-//
-
-@interface PersonResource : AResource
-@end
-
-@implementation PersonResource
-
-+ (NSURL *)site
-{
-	return [NSURL URLWithString:@"http://localhost:3000/"];
-}
-
-+ (NSString *)elementName
-{
-	return @"person";
-}
-
-@end
 
 @interface MyObject : ARBase
 @end
@@ -104,14 +56,6 @@
 @end
 
 @implementation ActiveResourceKitTests
-
-@synthesize stop;
-
-- (void)runUntilStop
-{
-	[self setStop:NO];
-	while (![self stop] && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
-}
 
 - (void)setUp
 {
