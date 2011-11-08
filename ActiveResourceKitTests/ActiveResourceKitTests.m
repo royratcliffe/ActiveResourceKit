@@ -31,7 +31,16 @@
 // for ARIDFromResponse
 #import "Private.h"
 
-NSString *const ActiveResourceKitTestsURLString = @"active-resource-kit-tests.herokuapp.com";
+#if 1
+#define HOST "active-resource-kit-tests.herokuapp.com"
+#else
+// If you prefer, point the host and port at localhost:5000. You will need to
+// launch Foreman using "foreman start" on the local host. Although the
+// encrypted tests will fail, unless you set up Foreman to handle SSL locally.
+#define HOST "localhost:5000"
+#endif
+
+NSString *const ActiveResourceKitTestsURLString = @HOST;
 
 //------------------------------------------------------------------------------
 #pragma mark                                                        Person Class
