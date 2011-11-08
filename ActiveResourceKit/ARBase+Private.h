@@ -38,6 +38,17 @@
  */
 NSString *ARQueryStringForOptions(NSDictionary *options);
 
+/*!
+ * @brief Defines the request completion handler type.
+ * @details Request completion handlers are C blocks receiving: (1) the HTTP
+ * response, (2) the @a object decoded and (3) the @a error object in case of
+ * error. The response always appears. The object decoded is non-nil if the
+ * response body successfully decodes according to the expected format (JSON or
+ * XML) and error is @c nil. On error, object is @c nil and @a error describes
+ * the error condition.
+ */
+typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error);
+
 @interface ARBase(Private)
 
 - (id<ARFormat>)defaultFormat;
@@ -56,6 +67,15 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * resources.
  */
 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions;
+
+/*!
+ * @brief Instantiates a resource element (a record) using the given attributes
+ * and prefix options.
+ * @details The implementation looks for a class matching the element name. It
+ * converts the element name to class name by camel-casing the name. The answer
+ * becomes an instance of that class if the class exists and derives from
+ * AResource. Otherwise the answer is a plain instance of AResource.
+ */
 - (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
 
 /*!
@@ -81,12 +101,12 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * object (or objects) to your given completion handler. Objects may be hashes
  * (dictionaries) or arrays, or even primitives.
  */
-- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Used to delete resources. Sends an asynchronous DELETE request.
  */
-- (void)delete:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Sends an asynchronous PUT request.
@@ -95,19 +115,19 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * to an “upsert” database operation where it updates the resource if it already
  * exists but alternatively creates the resource if it does not already exist.
  */
-- (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Sends an asynchronous POST request.
  * @details POST is not idempotent.
  */
-- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Used to obtain meta-information about resources, whether they exist or
  * their size. Sends an asynchronous HEAD request.
  */
-- (void)head:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Submits an asynchronous request, returning immediately.
@@ -124,7 +144,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * handler receives a @c nil response @a HTTPResponse argument and an @ref
  * ARResponseIsNotHTTPError.
  */
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 //----------------------------------------------------- Format Header for Method
 

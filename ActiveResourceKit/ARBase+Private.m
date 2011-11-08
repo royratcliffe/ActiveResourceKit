@@ -103,7 +103,12 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
 {
-	AResource *resource = [[[AResource alloc] initWithBase:self attributes:attributes persisted:YES] autorelease];
+	Class klass = NSClassFromString(ASInflectorCamelize([self elementNameLazily], YES));
+	if (klass == nil || ![klass isSubclassOfClass:[AResource class]])
+	{
+		klass = [AResource class];
+	}
+	AResource *resource = [[[klass alloc] initWithBase:self attributes:attributes persisted:YES] autorelease];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
 }
@@ -149,32 +154,32 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 // NSURLConnection implementation for the handling of authentication and
 // encryption.
 
-- (void)get:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:@"GET" path:path completionHandler:completionHandler];
 }
 
-- (void)delete:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:@"DELETE" path:path completionHandler:completionHandler];
 }
 
-- (void)put:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:@"PUT" path:path completionHandler:completionHandler];
 }
 
-- (void)post:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:@"POST" path:path completionHandler:completionHandler];
 }
 
-- (void)head:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:@"HEAD" path:path completionHandler:completionHandler];
 }
 
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
@@ -184,7 +189,10 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	[request setHTTPMethod:HTTPMethod];
 	
 	NSOperationQueue *operationQueue = [self operationQueue];
-	if (operationQueue == nil) operationQueue = [NSOperationQueue currentQueue];
+	if (operationQueue == nil)
+	{
+		operationQueue = [NSOperationQueue currentQueue];
+	}
 	[NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if ([response isKindOfClass:[NSHTTPURLResponse class]])
 		{
