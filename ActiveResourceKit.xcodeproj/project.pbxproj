@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78054AF614691D16007E947E /* PersonResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AF514691D16007E947E /* PersonResource.m */; };
+		78054AF714691D16007E947E /* PersonResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AF514691D16007E947E /* PersonResource.m */; };
+		78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
+		78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
 		7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
+		78282278146869A3005D9BD2 /* FinderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78282273146867F5005D9BD2 /* FinderTests.m */; };
+		78282279146869A4005D9BD2 /* FinderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78282273146867F5005D9BD2 /* FinderTests.m */; };
+		7828228014686A2E005D9BD2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828227F14686A2E005D9BD2 /* Person.m */; };
+		7828228114686A2E005D9BD2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828227F14686A2E005D9BD2 /* Person.m */; };
+		7828228414686DFD005D9BD2 /* ARTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828228314686DFD005D9BD2 /* ARTestCase.m */; };
+		7828228514686DFD005D9BD2 /* ARTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828228314686DFD005D9BD2 /* ARTestCase.m */; };
 		782B5B1D1421CE6100A74579 /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */; };
 		78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */; };
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,7 +27,6 @@
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
-		78440D75141927E000EFBB93 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78440D77141928B000EFBB93 /* ARBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78440D78141928B000EFBB93 /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,7 +51,6 @@
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
-		7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
 		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
@@ -122,8 +130,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78054AF414691D16007E947E /* PersonResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonResource.h; sourceTree = "<group>"; };
+		78054AF514691D16007E947E /* PersonResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonResource.m; sourceTree = "<group>"; };
+		78054AF81469299E007E947E /* Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78282272146867F5005D9BD2 /* FinderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderTests.h; sourceTree = "<group>"; };
+		78282273146867F5005D9BD2 /* FinderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderTests.m; sourceTree = "<group>"; };
+		7828227E14686A2E005D9BD2 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		7828227F14686A2E005D9BD2 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		7828228214686DFD005D9BD2 /* ARTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTestCase.h; sourceTree = "<group>"; };
+		7828228314686DFD005D9BD2 /* ARTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTestCase.m; sourceTree = "<group>"; };
 		782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveSupportKit.framework; path = "../../Library/Developer/Xcode/DerivedData/ActiveResourceKit-hgvxhithevtlgmgbxarrecbvimyi/Build/Products/Debug/ActiveSupportKit.framework"; sourceTree = "<group>"; };
 		78326FBB140FE38A00ECCE7D /* ActiveModelKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActiveModelKit.xcodeproj; path = ../ActiveModelKit/ActiveModelKit.xcodeproj; sourceTree = "<group>"; };
 		7832702E14110B7B00ECCE7D /* ARFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormat.h; sourceTree = "<group>"; };
@@ -295,6 +312,15 @@
 			children = (
 				7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */,
 				7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */,
+				7828228214686DFD005D9BD2 /* ARTestCase.h */,
+				7828228314686DFD005D9BD2 /* ARTestCase.m */,
+				78282272146867F5005D9BD2 /* FinderTests.h */,
+				78282273146867F5005D9BD2 /* FinderTests.m */,
+				7828227E14686A2E005D9BD2 /* Person.h */,
+				7828227F14686A2E005D9BD2 /* Person.m */,
+				78054AF414691D16007E947E /* PersonResource.h */,
+				78054AF514691D16007E947E /* PersonResource.m */,
+				78054AF81469299E007E947E /* Private.h */,
 				7846AA34140BAAE100FE58E5 /* Supporting Files */,
 			);
 			path = ActiveResourceKitTests;
@@ -567,7 +593,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78440D75141927E000EFBB93 /* ActiveResourceKitTests.m in Sources */,
+				78282279146869A4005D9BD2 /* FinderTests.m in Sources */,
+				7828228114686A2E005D9BD2 /* Person.m in Sources */,
+				7828228514686DFD005D9BD2 /* ARTestCase.m in Sources */,
+				78054AF714691D16007E947E /* PersonResource.m in Sources */,
+				78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,7 +620,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7846AA3C140BAAE100FE58E5 /* ActiveResourceKitTests.m in Sources */,
+				78282278146869A3005D9BD2 /* FinderTests.m in Sources */,
+				7828228014686A2E005D9BD2 /* Person.m in Sources */,
+				7828228414686DFD005D9BD2 /* ARTestCase.m in Sources */,
+				78054AF614691D16007E947E /* PersonResource.m in Sources */,
+				78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
