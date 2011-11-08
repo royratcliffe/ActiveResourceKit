@@ -24,6 +24,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+/*!
+ * Adds test case methods for cycling the current run-loop until you say
+ * stop. Useful for waiting until concurrent connection requests complete. Adds
+ * new methods to your test cases: -runUntilStop and -setStop:YES.
+ */
 @interface ARTestCase : SenTestCase
 
 @property(NS_NONATOMIC_IOSONLY) BOOL stop;
