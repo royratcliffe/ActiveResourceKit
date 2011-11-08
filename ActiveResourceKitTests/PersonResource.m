@@ -32,7 +32,7 @@
 + (NSURL *)site
 {
 	// Note: use HTTPS and add a trailing slash.
-	return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/", ActiveResourceKitTestsURLString]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/", ActiveResourceKitTestsHostAndPortString]];
 }
 
 + (NSString *)elementName

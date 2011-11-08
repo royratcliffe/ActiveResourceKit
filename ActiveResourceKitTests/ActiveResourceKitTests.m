@@ -40,7 +40,7 @@
 #define HOST "localhost:5000"
 #endif
 
-NSString *const ActiveResourceKitTestsURLString = @HOST;
+NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 
 //------------------------------------------------------------------------------
 #pragma mark                                                        Person Class

@@ -31,7 +31,7 @@
 
 + (NSURL *)site
 {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", ActiveResourceKitTestsURLString]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", ActiveResourceKitTestsHostAndPortString]];
 }
 
 @end

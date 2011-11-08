@@ -24,7 +24,7 @@
 
 #import "ARTestCase.h"
 
-extern NSString *const ActiveResourceKitTestsURLString;
+extern NSString *const ActiveResourceKitTestsHostAndPortString;
 
 @class Post;
 @class PostComment;
