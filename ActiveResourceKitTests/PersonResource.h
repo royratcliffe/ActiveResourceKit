@@ -28,7 +28,7 @@
 //	require 'active_resource'
 //
 //	class PersonResource < ActiveResource::Base
-//	  self.site = "http://localhost:3000/"
+//	  self.site = "https://active-resource-kit-tests.herokuapp.com/"
 //	  self.element_name = "person"
 //	end
 //
