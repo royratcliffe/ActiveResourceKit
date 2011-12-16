@@ -30,8 +30,8 @@
 
 - (void)runUntilStop
 {
-	self.stop = NO;
-	while (!self.stop && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]]);
+	[self setStop:NO];
+	while (![self stop] && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]]);
 }
 
 @end
