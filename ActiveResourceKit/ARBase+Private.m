@@ -230,6 +230,20 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 #pragma mark                                            Format Header for Method
 //------------------------------------------------------------------------------
 
+/*!
+ * @param array A standard C array of fixed-sized elements.
+ * @brief Answers the number of elements in the given array, the array's dimension.
+ * @details Assumes that the array argument is a standard C-style array where
+ * the compiler can assess the number of elements by dividing the size of the
+ * entire array by the size of its elements; the answer always equals an integer
+ * since array size is a multiple of element size. Both measurements must be
+ * static, otherwise the compiler cannot supply a fixed integer dimension.  The
+ * implementation wraps the argument in parenthesis in order to enforce the
+ * necessary operator precedence.
+ * @note Beware of side effects if you pass operators in the @a array expression.
+ */
+#define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
+
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
 {
 	static struct
@@ -245,7 +259,6 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 		{ @"DELETE", @"Accept" },
 		{ @"HEAD",   @"Accept" },
 	};
-#define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
 	// Is this too ugly? A dictionary could implement the look-up. But that
 	// requires building a static dictionary initially and does not allow
 	// optimisation of searching. Using a simple linear look-up speeds up the
