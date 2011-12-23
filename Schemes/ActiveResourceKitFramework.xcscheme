@@ -31,7 +31,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/server.pid ] || &quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;rails s -d -P `pwd`/tmp/pids/server-xcode.pid&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/thin.pid ] || &quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec thin --ssl -d -P tmp/pids/thin-xcode.pid start&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -49,7 +49,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/server-xcode.pid ] &amp;&amp; kill -INT `cat tmp/pids/server-xcode.pid`">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/thin-xcode.pid ] &amp;&amp; kill -INT `cat tmp/pids/thin-xcode.pid`">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
