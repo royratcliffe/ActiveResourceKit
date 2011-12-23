@@ -1,4 +1,4 @@
-// ActiveResourceKit RVM.m
+// ActiveResourceKitTests RVM.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //

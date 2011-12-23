@@ -1,4 +1,4 @@
-// ActiveResourceKit Rails.m
+// ActiveResourceKitTests Rails.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
