@@ -121,6 +121,14 @@ extern NSString *const kARParamsKey;
  */
 @interface ARBase : NSObject
 
+/*!
+ * @brief Initialises a new Active Resource Base instance using a given @a site.
+ * @param site An URL specifying the remote HTTP or HTTPS resource.
+ * @details This is @em not the designated initialiser but rather a shorthand
+ * for sending @c -init followed by @c -setSite:. The element name, if you do
+ * not subsequently assign one, derives from the @ref ARBase sub-class
+ * name. This assumes that you derive ARBase.
+ */
 - (id)initWithSite:(NSURL *)site;
 - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
 
