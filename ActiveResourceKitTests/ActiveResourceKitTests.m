@@ -31,13 +31,13 @@
 // for ARIDFromResponse
 #import "Private.h"
 
-#if 1
+#if 0
 #define HOST "active-resource-kit-tests.herokuapp.com"
 #else
 // If you prefer, point the host and port at localhost:5000. You will need to
 // launch Foreman using "foreman start" on the local host. Although the
 // encrypted tests will fail, unless you set up Foreman to handle SSL locally.
-#define HOST "localhost:5000"
+#define HOST "localhost:3000"
 #endif
 
 NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
@@ -68,8 +68,8 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 
 - (void)setUp
 {
-	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000"]];
-	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"http://localhost:3000/posts/:post_id"]];
+	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"https://localhost:3000"]];
+	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"https://localhost:3000/posts/:post_id"]];
 	
 	// You cannot use Comment as a class name. The CarbonCore framework (a
 	// CoreServices sub-framework) steals this symbol first. Apple has already
