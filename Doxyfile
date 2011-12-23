@@ -1,4 +1,5 @@
 GENERATE_DOCSET        = YES
+
 DOCSET_FEEDNAME        = "Active Resource Kit Documentation Set"
 DOCSET_BUNDLE_ID       = org.rubyonrails.api.ActiveResourceKitDocSet
 DOCSET_PUBLISHER_ID    = uk.co.pioneeringsoftware.ActiveResourceKitDocSet.documentation
