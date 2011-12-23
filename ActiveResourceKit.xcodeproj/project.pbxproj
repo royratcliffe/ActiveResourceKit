@@ -139,7 +139,7 @@
 		78054AFC14694531007E947E /* VersioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersioningTests.m; sourceTree = "<group>"; };
 		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		78282272146867F5005D9BD2 /* FinderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FinderTests.h; sourceTree = "<group>"; };
+		78282272146867F5005D9BD2 /* FinderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderTests.h; sourceTree = "<group>"; };
 		78282273146867F5005D9BD2 /* FinderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderTests.m; sourceTree = "<group>"; };
 		7828227E14686A2E005D9BD2 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		7828227F14686A2E005D9BD2 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
