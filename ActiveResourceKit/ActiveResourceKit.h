@@ -30,3 +30,7 @@
 
 #import <ActiveResourceKit/ARErrors.h>
 #import <ActiveResourceKit/Versioning.h>
+
+/*!
+ * @mainpage Active Resource Kit
+ */
