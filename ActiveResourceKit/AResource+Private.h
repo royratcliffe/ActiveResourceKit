@@ -49,6 +49,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 - (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
 
 /*!
+ * @param HTTPResponse A HTTP response wrapper.
  * @param attributes Set of attributes decoded from the response body.
  */
 - (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes;
