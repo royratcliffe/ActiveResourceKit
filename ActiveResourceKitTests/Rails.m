@@ -24,7 +24,24 @@
 
 #import "Rails.h"
 
+// for Ruby Version Manager helper
+#import "RVM.h"
+
 NSString *RailsRoot()
 {
 	return [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingPathComponent:@"active-resource-kit-tests"];
+}
+
+NSTask *RailsTask()
+{
+	NSTask *task = RVMShellTask();
+	[task setCurrentDirectoryPath:RailsRoot()];
+	return task;
+}
+
+NSTask *RailsTaskWithCommand(NSString *command)
+{
+	NSTask *task = RailsTask();
+	[task setArguments:[NSArray arrayWithObjects:@"-c", command, nil]];
+	return task;
 }

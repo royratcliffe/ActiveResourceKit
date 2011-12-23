@@ -31,3 +31,12 @@
  * folder.
  */
 NSString *RailsRoot(void);
+
+/*!
+ * @brief Answers an unlaunched Rails task where the launch path contains the
+ * Ruby Version Manager shell and the current working directory contains the
+ * Rails test application root folder.
+ */
+NSTask *RailsTask(void);
+
+NSTask *RailsTaskWithCommand(NSString *command);
