@@ -26,20 +26,6 @@
 
 @implementation ARTestCase
 
-// See http://www.sente.ch/software/ocunit/ for details. The class methods
-// +setUp and +tearDown run once before, and respectively after, all SenTestCase
-// tests within the case.
-
-+ (void)setUp
-{
-	[super setUp];
-}
-
-+ (void)tearDown
-{
-	[super tearDown];
-}
-
 @synthesize stop;
 
 - (void)runUntilStop
