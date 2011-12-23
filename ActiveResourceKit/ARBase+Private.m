@@ -36,6 +36,14 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
 }
 
+@interface ARURLConnectionDelegate : NSObject<NSURLConnectionDelegate>
+
+@property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
+@property(strong) NSURLResponse *response;
+@property(strong) NSMutableData *data;
+
+@end
+
 @implementation ARBase(Private)
 
 - (id<ARFormat>)defaultFormat
@@ -193,7 +201,8 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	{
 		operationQueue = [NSOperationQueue currentQueue];
 	}
-	[NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+	ARURLConnectionDelegate *delegate = [[[ARURLConnectionDelegate alloc] init] autorelease];
+	[delegate setCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if ([response isKindOfClass:[NSHTTPURLResponse class]])
 		{
 			NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
@@ -224,6 +233,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 			completionHandler(nil, nil, error ? error : [NSError errorWithDomain:ARErrorDomain code:ARResponseIsNotHTTPError userInfo:nil]);
 		}
 	}];
+	[[NSURLConnection connectionWithRequest:request delegate:delegate] start];
 }
 
 //------------------------------------------------------------------------------
@@ -283,6 +293,45 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 		formatHeader = [NSDictionary dictionary];
 	}
 	return formatHeader;
+}
+
+@end
+
+@implementation ARURLConnectionDelegate
+
+@synthesize completionHandler = _completionHandler;
+@synthesize response          = _response;
+@synthesize data              = _data;
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+	return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	[self setResponse:response];
+	[self setData:[NSMutableData data]];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	[[self data] appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	[self completionHandler]([self response], [[[self data] copy] autorelease], nil);
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[self completionHandler]([self response], nil, error);
 }
 
 @end
