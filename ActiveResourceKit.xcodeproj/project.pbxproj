@@ -386,6 +386,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		78C21F7A14A467FD00750476 /* ActiveResourceKitPages */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-c \"$HOME/.rvm/bin/rvm-auto-ruby -r XcodePages -e XcodePages.doxygen_docset_install\"";
+			buildConfigurationList = 78C21F7B14A467FD00750476 /* Build configuration list for PBXLegacyTarget "ActiveResourceKitPages" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = ActiveResourceKitPages;
+			passBuildSettingsInEnvironment = 1;
+			productName = ActiveResourceKitPages;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		7813AA991419270400523ECD /* ActiveResourceKitLibrary */ = {
 			isa = PBXNativeTarget;
@@ -493,6 +510,7 @@
 				7846AA2B140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests */,
 				7813AA991419270400523ECD /* ActiveResourceKitLibrary */,
 				7813AAA61419270400523ECD /* ActiveResourceKitLibraryTests */,
+				78C21F7A14A467FD00750476 /* ActiveResourceKitPages */,
 			);
 		};
 /* End PBXProject section */
@@ -779,7 +797,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 86.0;
+				CURRENT_PROJECT_VERSION = 155.16;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -808,7 +826,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 86.0;
+				CURRENT_PROJECT_VERSION = 155.16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -828,7 +846,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 86.0;
+				DYLIB_CURRENT_VERSION = 155.16;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/RailsKit.framework/Versions/Current/Frameworks";
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -843,7 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 86.0;
+				DYLIB_CURRENT_VERSION = 155.16;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/RailsKit.framework/Versions/Current/Frameworks";
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -896,6 +914,27 @@
 			};
 			name = Release;
 		};
+		78C21F7C14A467FD00750476 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		78C21F7D14A467FD00750476 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -940,6 +979,15 @@
 			buildConfigurations = (
 				7846AA43140BAAE100FE58E5 /* Debug */,
 				7846AA44140BAAE100FE58E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78C21F7B14A467FD00750476 /* Build configuration list for PBXLegacyTarget "ActiveResourceKitPages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78C21F7C14A467FD00750476 /* Debug */,
+				78C21F7D14A467FD00750476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
