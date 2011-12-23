@@ -28,7 +28,7 @@
  * @brief Answers a new task whose launch path points to the Ruby Version
  * Manager shell installed within the current user's home folder.
  * @details This helper function encapsulates the dependency between this
- * project and RVM. Xcode launches tasks in a basic Unix environment. It does
- * not set up your Bash or Zsh profile.
+ * project and RVM. @note Xcode launches tasks in a basic Unix environment. It
+ * does not set up your Bash or Zsh profile.
  */
 NSTask *RVMShellTask(void);
