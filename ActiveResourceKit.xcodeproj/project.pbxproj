@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78054AF614691D16007E947E /* PersonResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AF514691D16007E947E /* PersonResource.m */; };
-		78054AF714691D16007E947E /* PersonResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AF514691D16007E947E /* PersonResource.m */; };
 		78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78054AFD14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
@@ -132,8 +130,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		78054AF414691D16007E947E /* PersonResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonResource.h; sourceTree = "<group>"; };
-		78054AF514691D16007E947E /* PersonResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonResource.m; sourceTree = "<group>"; };
 		78054AF81469299E007E947E /* Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		78054AFB14694531007E947E /* VersioningTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersioningTests.h; sourceTree = "<group>"; };
 		78054AFC14694531007E947E /* VersioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersioningTests.m; sourceTree = "<group>"; };
@@ -324,8 +320,6 @@
 				78282273146867F5005D9BD2 /* FinderTests.m */,
 				7828227E14686A2E005D9BD2 /* Person.h */,
 				7828227F14686A2E005D9BD2 /* Person.m */,
-				78054AF414691D16007E947E /* PersonResource.h */,
-				78054AF514691D16007E947E /* PersonResource.m */,
 				78054AF81469299E007E947E /* Private.h */,
 				7846AA34140BAAE100FE58E5 /* Supporting Files */,
 			);
@@ -620,7 +614,6 @@
 				78282279146869A4005D9BD2 /* FinderTests.m in Sources */,
 				7828228114686A2E005D9BD2 /* Person.m in Sources */,
 				7828228514686DFD005D9BD2 /* ARTestCase.m in Sources */,
-				78054AF714691D16007E947E /* PersonResource.m in Sources */,
 				78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFE14694531007E947E /* VersioningTests.m in Sources */,
 			);
@@ -648,7 +641,6 @@
 				78282278146869A3005D9BD2 /* FinderTests.m in Sources */,
 				7828228014686A2E005D9BD2 /* Person.m in Sources */,
 				7828228414686DFD005D9BD2 /* ARTestCase.m in Sources */,
-				78054AF614691D16007E947E /* PersonResource.m in Sources */,
 				78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFD14694531007E947E /* VersioningTests.m in Sources */,
 			);

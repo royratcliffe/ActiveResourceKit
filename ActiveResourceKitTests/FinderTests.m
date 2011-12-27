@@ -25,28 +25,12 @@
 #import "FinderTests.h"
 
 #import "Person.h"
-#import "PersonResource.h"
 
 @implementation FinderTests
 
 - (void)testFindByID
 {
 	[[Person base] findSingleForID:[NSNumber numberWithInt:1] options:nil completionHandler:^(AResource *matz, NSError *error) {
-		STAssertNotNil(matz, nil);
-		STAssertNil(error, nil);
-		
-		STAssertTrue([matz isKindOfClass:[Person class]], nil);
-		STAssertEqualObjects([matz valueForKey:@"name"], @"Matz", nil);
-		STAssertNotNil([[matz attributes] objectForKey:@"name"], nil);
-		
-		[self setStop:YES];
-	}];
-	[self runUntilStop];
-}
-
-- (void)testFindByIDSecurely
-{
-	[[PersonResource base] findSingleForID:[NSNumber numberWithInt:1] options:nil completionHandler:^(AResource *matz, NSError *error) {
 		STAssertNotNil(matz, nil);
 		STAssertNil(error, nil);
 		
