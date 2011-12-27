@@ -4,7 +4,7 @@
 
 Run tests by selecting either the ActiveResourceKitFramework or ActiveResourceKitLibrary targets. Selecting Run » Tests (Cmd+U shortcut) launches the tests.
 
-In the background, the schemes run a Thin server. This assumes that you do not already have a Thin server up and running for the Rails test application. If you do have a server already running, the tests terminate the current instance in order to set up and prime the fixtures, before launching a new server instance. This happens quite quickly; Thin is a fast-loading web server.
+In the background, the schemes run a Thin server. This assumes that you do not already have a Thin server up and running for the Rails test application. If you do have a server already running in the background, the tests terminate the current background instance in order to set up and prime the fixtures, before launching a new server instance. This happens quite quickly; Thin is a fast-loading web server.
 
 ### Viewing the Test Server Log
 
