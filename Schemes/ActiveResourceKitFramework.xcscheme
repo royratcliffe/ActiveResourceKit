@@ -31,13 +31,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/thin.pid ] || &quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec thin --ssl -d -P tmp/pids/thin-xcode.pid start&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec &apos;thin stop ; rake db:setup db:fixtures:load ; thin -d --ssl start&apos;&quot; &amp;&amp; sleep 2">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
-                     BlueprintName = "ActiveResourceKitFrameworkTests"
+                     BlueprintIdentifier = "7846AA13140BAAE100FE58E5"
+                     BuildableName = "ActiveResourceKit.framework"
+                     BlueprintName = "ActiveResourceKitFramework"
                      ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -49,13 +49,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[ -f tmp/pids/thin-xcode.pid ] &amp;&amp; kill -INT `cat tmp/pids/thin-xcode.pid`">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec thin stop&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
-                     BlueprintName = "ActiveResourceKitFrameworkTests"
+                     BlueprintIdentifier = "7846AA13140BAAE100FE58E5"
+                     BuildableName = "ActiveResourceKit.framework"
+                     BlueprintName = "ActiveResourceKitFramework"
                      ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
