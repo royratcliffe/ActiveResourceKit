@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(182.3)</span>
+   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
    </div>
    
   </td>
@@ -104,41 +104,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00025"></a>00025 <span class="preprocessor">#import &quot;<a class="code" href="_finder_tests_8h.html">FinderTests.h</a>&quot;</span>
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="preprocessor">#import &quot;<a class="code" href="_person_8h.html">Person.h</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#import &quot;<a class="code" href="_person_resource_8h.html">PersonResource.h</a>&quot;</span>
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 <span class="keyword">@implementation </span><a class="code" href="interface_finder_tests.html">FinderTests</a>
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="interface_finder_tests.html#a3a366604d5ca8b87d96b89ffa8cff18b">00032</a> - (void)<a class="code" href="interface_finder_tests.html#a3a366604d5ca8b87d96b89ffa8cff18b">testFindByID</a>
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034     [[<a class="code" href="interface_person.html">Person</a> <a class="code" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">base</a>] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">findSingleForID</a>:[NSNumber numberWithInt:1] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">options</a>:nil <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">completionHandler</a>:^(AResource *matz, NSError *error) {
-<a name="l00035"></a>00035         STAssertNotNil(matz, nil);
-<a name="l00036"></a>00036         STAssertNil(error, nil);
-<a name="l00037"></a>00037         
-<a name="l00038"></a>00038         STAssertTrue([matz isKindOfClass:[<a class="code" href="interface_person.html">Person</a> class]], nil);
-<a name="l00039"></a>00039         STAssertEqualObjects([matz valueForKey:@&quot;name&quot;], @&quot;Matz&quot;, nil);
-<a name="l00040"></a>00040         STAssertNotNil([[matz attributes] objectForKey:@&quot;name&quot;], nil);
-<a name="l00041"></a>00041         
-<a name="l00042"></a>00042         [<span class="keyword">self</span> setStop:YES];
-<a name="l00043"></a>00043     }];
-<a name="l00044"></a>00044     [<span class="keyword">self</span> <a class="code" href="interface_a_r_test_case.html#a52b9aa57cac6e1563c0ee7199d3b9b02">runUntilStop</a>];
-<a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a><a class="code" href="interface_finder_tests.html#a2b9632a39d0555f872be88f184876fe4">00047</a> - (void)<a class="code" href="interface_finder_tests.html#a2b9632a39d0555f872be88f184876fe4">testFindByIDSecurely</a>
-<a name="l00048"></a>00048 {
-<a name="l00049"></a>00049     [[<a class="code" href="interface_person_resource.html">PersonResource</a> <a class="code" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">base</a>] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">findSingleForID</a>:[NSNumber numberWithInt:1] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">options</a>:nil <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">completionHandler</a>:^(AResource *matz, NSError *error) {
-<a name="l00050"></a>00050         STAssertNotNil(matz, nil);
-<a name="l00051"></a>00051         STAssertNil(error, nil);
-<a name="l00052"></a>00052         
-<a name="l00053"></a>00053         STAssertTrue([matz isKindOfClass:[<a class="code" href="interface_person.html">Person</a> class]], nil);
-<a name="l00054"></a>00054         STAssertEqualObjects([matz valueForKey:@&quot;name&quot;], @&quot;Matz&quot;, nil);
-<a name="l00055"></a>00055         STAssertNotNil([[matz attributes] objectForKey:@&quot;name&quot;], nil);
-<a name="l00056"></a>00056         
-<a name="l00057"></a>00057         [<span class="keyword">self</span> setStop:YES];
-<a name="l00058"></a>00058     }];
-<a name="l00059"></a>00059     [<span class="keyword">self</span> <a class="code" href="interface_a_r_test_case.html#a52b9aa57cac6e1563c0ee7199d3b9b02">runUntilStop</a>];
-<a name="l00060"></a>00060 }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="keyword">@end</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="keyword">@implementation </span><a class="code" href="interface_finder_tests.html">FinderTests</a>
+<a name="l00030"></a>00030 
+<a name="l00031"></a><a class="code" href="interface_finder_tests.html#a3a366604d5ca8b87d96b89ffa8cff18b">00031</a> - (void)<a class="code" href="interface_finder_tests.html#a3a366604d5ca8b87d96b89ffa8cff18b">testFindByID</a>
+<a name="l00032"></a>00032 {
+<a name="l00033"></a>00033     [[<a class="code" href="interface_person.html">Person</a> <a class="code" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">base</a>] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">findSingleForID</a>:[NSNumber numberWithInt:1] <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">options</a>:nil <a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b" title="Finds a single resource for a given identifier using the default URL.">completionHandler</a>:^(AResource *matz, NSError *error) {
+<a name="l00034"></a>00034         STAssertNotNil(matz, nil);
+<a name="l00035"></a>00035         STAssertNil(error, nil);
+<a name="l00036"></a>00036         
+<a name="l00037"></a>00037         STAssertTrue([matz isKindOfClass:[<a class="code" href="interface_person.html">Person</a> class]], nil);
+<a name="l00038"></a>00038         STAssertEqualObjects([matz valueForKey:@&quot;name&quot;], @&quot;Matz&quot;, nil);
+<a name="l00039"></a>00039         STAssertNotNil([[matz attributes] objectForKey:@&quot;name&quot;], nil);
+<a name="l00040"></a>00040         
+<a name="l00041"></a>00041         [<span class="keyword">self</span> setStop:YES];
+<a name="l00042"></a>00042     }];
+<a name="l00043"></a>00043     [<span class="keyword">self</span> <a class="code" href="interface_a_r_test_case.html#a52b9aa57cac6e1563c0ee7199d3b9b02">runUntilStop</a>];
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="interface_finder_tests.html#ac7b1d095b8eff166e6e17218a2957c21">00046</a> - (void)<a class="code" href="interface_finder_tests.html#ac7b1d095b8eff166e6e17218a2957c21">testFindByIDWithCustomPrefix</a>
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048     
+<a name="l00049"></a>00049 }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
