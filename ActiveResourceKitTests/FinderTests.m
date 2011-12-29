@@ -43,4 +43,9 @@
 	[self runUntilStop];
 }
 
+- (void)testFindByIDWithCustomPrefix
+{
+	
+}
+
 @end
