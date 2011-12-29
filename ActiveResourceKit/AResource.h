@@ -34,6 +34,8 @@
  * to a database whereas Active Resources connect to a RESTful API accessed via
  * HTTP transport.
  *
+ * @image html Class_Diagram__Base_and_Resource.png
+ *
  * @par AResource or ARResource?
  * This class uses AResource as the class name rather than ARResource. A is for
  * Active, R for Resource. But the namespace convention for Objective-C lends

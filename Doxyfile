@@ -18,3 +18,5 @@ GENERATE_DEPRECATEDLIST= YES
 STRIP_CODE_COMMENTS    = NO
 
 HAVE_DOT               = YES
+
+IMAGE_PATH             = Documents
