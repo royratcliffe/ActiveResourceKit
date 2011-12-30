@@ -230,7 +230,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	}];
 	NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
 	NSOperationQueue *operationQueue = [self operationQueue];
-	if (operationQueue == nil)
+	if (operationQueue)
 	{
 		[connection setDelegateQueue:operationQueue];
 	}
