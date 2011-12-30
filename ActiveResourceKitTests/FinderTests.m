@@ -43,9 +43,24 @@
 	[self runUntilStop];
 }
 
-- (void)testFindByIDWithCustomPrefix
+- (void)testFindByIDWithOptions
 {
-	
+	// The following tests sends exactly the same GET request as above, only it
+	// also carries a query string as follows.
+	//
+	//	/people/1.json?auth_token=XYZ
+	//
+	[[Person base] findSingleForID:[NSNumber numberWithInt:1] options:[NSDictionary dictionaryWithObject:@"XYZ" forKey:@"auth_token"] completionHandler:^(AResource *matz, NSError *error) {
+		STAssertNotNil(matz, nil);
+		STAssertNil(error, nil);
+		
+		STAssertTrue([matz isKindOfClass:[Person class]], nil);
+		STAssertEqualObjects([matz valueForKey:@"name"], @"Matz", nil);
+		STAssertNotNil([[matz attributes] objectForKey:@"name"], nil);
+		
+		[self setStop:YES];
+	}];
+	[self runUntilStop];
 }
 
 @end
