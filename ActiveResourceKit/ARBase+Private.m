@@ -196,11 +196,6 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	[request setAllHTTPHeaderFields:headerFields];
 	[request setHTTPMethod:HTTPMethod];
 	
-	NSOperationQueue *operationQueue = [self operationQueue];
-	if (operationQueue == nil)
-	{
-		operationQueue = [NSOperationQueue currentQueue];
-	}
 	ARURLConnectionDelegate *delegate = [[[ARURLConnectionDelegate alloc] init] autorelease];
 	[delegate setCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if ([response isKindOfClass:[NSHTTPURLResponse class]])
@@ -233,7 +228,13 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 			completionHandler(nil, nil, error ? error : [NSError errorWithDomain:ARErrorDomain code:ARResponseIsNotHTTPError userInfo:nil]);
 		}
 	}];
-	[[NSURLConnection connectionWithRequest:request delegate:delegate] start];
+	NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
+	NSOperationQueue *operationQueue = [self operationQueue];
+	if (operationQueue == nil)
+	{
+		[connection setDelegateQueue:operationQueue];
+	}
+	[connection start];
 }
 
 //------------------------------------------------------------------------------
