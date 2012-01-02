@@ -37,6 +37,9 @@
 // for AMName
 #import <ActiveModelKit/ActiveModelKit.h>
 
+// for ASInflectorUnderscore
+#import <ActiveSupportKit/ActiveSupportKit.h>
+
 @implementation AResource
 
 + (ARBase *)base
@@ -128,9 +131,14 @@
 // Supports key-value coding. Returns attribute values for undefined keys. Hence
 // you can access resource attributes on the resource itself rather than
 // indirectly via the attributes property.
+//
+// The “key” argument specifies the key using Cocoa conventions of property
+// keys, namely camel-cased with an initial lower-case letter. The method
+// implementation converts this to Rails conventions for attribute names, namely
+// underscored.
 - (id)valueForUndefinedKey:(NSString *)key
 {
-	return [[self attributes] objectForKey:key];
+	return [[self attributes] objectForKey:ASInflectorUnderscore(key)];
 }
 
 //------------------------------------------------------------------------------
