@@ -242,7 +242,7 @@
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			completionHandler([[[AResource alloc] initWithBase:self attributes:attrs] autorelease], nil);
+			completionHandler([[AResource alloc] initWithBase:self attributes:attrs], nil);
 		}
 		else
 		{

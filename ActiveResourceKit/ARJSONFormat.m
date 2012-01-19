@@ -60,30 +60,10 @@
 
 + (id)allocWithZone:(NSZone *)zone
 {
-	return [[self JSONFormat] retain];
+	return [self JSONFormat];
 }
 
 - (id)copyWithZone:(NSZone *)zone
-{
-	return self;
-}
-
-- (id)retain
-{
-	return self;
-}
-
-- (NSUInteger)retainCount
-{
-	return NSUIntegerMax;
-}
-
-- (oneway void)release
-{
-	;
-}
-
-- (id)autorelease
 {
 	return self;
 }

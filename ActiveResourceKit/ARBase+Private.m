@@ -53,7 +53,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (NSString *)defaultElementName
 {
-	return [[[[AMName alloc] initWithClass:[self class]] autorelease] element];
+	return [[[AMName alloc] initWithClass:[self class]] element];
 }
 
 - (NSString *)defaultCollectionName
@@ -106,7 +106,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	{
 		[resources addObject:[self instantiateRecordWithAttributes:attributes prefixOptions:prefixOptions]];
 	}
-	return [[resources copy] autorelease];
+	return [resources copy];
 }
 
 - (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
@@ -116,7 +116,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	{
 		klass = [AResource class];
 	}
-	AResource *resource = [[[klass alloc] initWithBase:self attributes:attributes persisted:YES] autorelease];
+	AResource *resource = [[klass alloc] initWithBase:self attributes:attributes persisted:YES];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
 }
@@ -129,7 +129,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	{
 		[parameters addObject:[[prefixSource substringWithRange:[result range]] substringFromIndex:1]];
 	}
-	return [[parameters copy] autorelease];
+	return [parameters copy];
 }
 
 - (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions
@@ -142,11 +142,11 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	}];
 	if (outPrefixOptions)
 	{
-		*outPrefixOptions = [[prefixOptions copy] autorelease];
+		*outPrefixOptions = [prefixOptions copy];
 	}
 	if (outQueryOptions)
 	{
-		*outQueryOptions = [[queryOptions copy] autorelease];
+		*outQueryOptions = [queryOptions copy];
 	}
 }
 
@@ -196,7 +196,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	[request setAllHTTPHeaderFields:headerFields];
 	[request setHTTPMethod:HTTPMethod];
 	
-	ARURLConnectionDelegate *delegate = [[[ARURLConnectionDelegate alloc] init] autorelease];
+	ARURLConnectionDelegate *delegate = [[ARURLConnectionDelegate alloc] init];
 	[delegate setCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		if ([response isKindOfClass:[NSHTTPURLResponse class]])
 		{
@@ -251,24 +251,29 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
  * static, otherwise the compiler cannot supply a fixed integer dimension.  The
  * implementation wraps the argument in parenthesis in order to enforce the
  * necessary operator precedence.
- * @note Beware of side effects if you pass operators in the @a array expression.
+ * @note Beware of side effects if you pass operators in the @a array
+ * expression. The macro argument evaluates twice.
  */
 #define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
 
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
 {
+	// Use CFStringRefs rather than NSString pointers when using Automatic
+	// Reference Counting. ARC does not allow references within C
+	// structures. Toll-free bridging exists between Core Foundation and Next
+	// Step strings.
 	static struct
 	{
-		NSString *const HTTPMethod;
-		NSString *const headerName;
+		CFStringRef const HTTPMethod;
+		CFStringRef const headerName;
 	}
 	const HTTPFormatHeaderNames[] =
 	{
-		{ @"GET",    @"Accept" },
-		{ @"PUT",    @"Content-Type" },
-		{ @"POST",   @"Content-Type" },
-		{ @"DELETE", @"Accept" },
-		{ @"HEAD",   @"Accept" },
+		{ CFSTR("GET"),    CFSTR("Accept") },
+		{ CFSTR("PUT"),    CFSTR("Content-Type") },
+		{ CFSTR("POST"),   CFSTR("Content-Type") },
+		{ CFSTR("DELETE"), CFSTR("Accept") },
+		{ CFSTR("HEAD"),   CFSTR("Accept") },
 	};
 	// Is this too ugly? A dictionary could implement the look-up. But that
 	// requires building a static dictionary initially and does not allow
@@ -279,7 +284,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	NSUInteger index;
 	for (index = 0; index < DIMOF(HTTPFormatHeaderNames); index++)
 	{
-		if ([HTTPMethod isEqualToString:HTTPFormatHeaderNames[index].HTTPMethod])
+		if ([HTTPMethod isEqualToString:(__bridge NSString *)HTTPFormatHeaderNames[index].HTTPMethod])
 		{
 			break;
 		}
@@ -287,7 +292,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	NSDictionary *formatHeader;
 	if (index < DIMOF(HTTPFormatHeaderNames))
 	{
-		formatHeader = [NSDictionary dictionaryWithObject:[[self formatLazily] MIMEType] forKey:HTTPFormatHeaderNames[index].headerName];
+		formatHeader = [NSDictionary dictionaryWithObject:[[self formatLazily] MIMEType] forKey:(__bridge NSString *)HTTPFormatHeaderNames[index].headerName];
 	}
 	else
 	{
@@ -327,7 +332,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	[self completionHandler]([self response], [[[self data] copy] autorelease], nil);
+	[self completionHandler]([self response], [[self data] copy], nil);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

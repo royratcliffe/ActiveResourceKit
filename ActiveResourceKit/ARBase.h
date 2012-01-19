@@ -163,7 +163,7 @@ extern NSString *const kARParamsKey;
 
 //----------------------------------------------------------------------- Format
 
-@property(retain, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
+@property(strong, NS_NONATOMIC_IOSONLY) id<ARFormat> format;
 
 // lazy getter
 - (id<ARFormat>)formatLazily;
@@ -270,6 +270,6 @@ extern NSString *const kARParamsKey;
  * @details All completion handlers run in the given operation queue. If @c nil,
  * the completion handler runs in the operation queue used to issue the request.
  */
-@property(retain, NS_NONATOMIC_IOSONLY) NSOperationQueue *operationQueue;
+@property(strong, NS_NONATOMIC_IOSONLY) NSOperationQueue *operationQueue;
 
 @end

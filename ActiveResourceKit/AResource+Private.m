@@ -40,7 +40,7 @@ NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse)
 		return nil;
 	}
 	NSString *string = [location substringWithRange:[match rangeAtIndex:1]];
-	NSNumberFormatter *numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
 	return [numberFormatter numberFromString:string];
 }
 

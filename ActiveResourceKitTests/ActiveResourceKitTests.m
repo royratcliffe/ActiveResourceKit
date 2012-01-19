@@ -84,15 +84,9 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 	[postComment setElementName:@"comment"];
 }
 
-- (void)tearDown
-{
-	[post release];
-	[postComment release];
-}
-
 - (void)testNewPerson
 {
-	Person *ryan = [[[Person alloc] init] autorelease];
+	Person *ryan = [[Person alloc] init];
 	[ryan setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"Ryan", @"first", @"Daigle", @"last", nil]];
 	
 	// At this point, base should be nil because nothing has as yet accessed the
@@ -120,7 +114,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 	// them. This term refers to path elements beginning with a colon and
 	// followed by a regular-expression word. ActiveResourceKit substitutes
 	// these for actual parameters.
-	ARBase *resource = [[[ARBase alloc] init] autorelease];
+	ARBase *resource = [[ARBase alloc] init];
 	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y;a=b"]];
 	STAssertEqualObjects([[resource site] scheme], @"http", nil);
 	STAssertEqualObjects([[resource site] user], @"user", nil);
@@ -135,7 +129,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 {
 	// Empty URL paths should become empty strings after parsing. This tests the
 	// Foundation frameworks implementation of an URL.
-	ARBase *base = [[[ARBase alloc] init] autorelease];
+	ARBase *base = [[ARBase alloc] init];
 	[base setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
 	STAssertEqualObjects([[base site] path], @"", nil);
 }
@@ -163,7 +157,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 	// object answering to the prefix-parameter key (resource_id in this test
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
-	ARBase *base = [[[ARBase alloc] init] autorelease];
+	ARBase *base = [[ARBase alloc] init];
 	[base setPrefixSource:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
 	NSString *prefix = [base prefixWithOptions:options];
@@ -172,7 +166,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 
 - (void)testPrefixParameterWithPercentEscapes
 {
-	ARBase *base = [[[ARBase alloc] init] autorelease];
+	ARBase *base = [[ARBase alloc] init];
 	[base setPrefixSource:@"/resources/:resource_id"];
 	NSString *prefix = [base prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
@@ -180,12 +174,12 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 
 - (void)testElementName
 {
-	STAssertEqualObjects([[[[[Person alloc] init] autorelease] baseLazily] elementNameLazily], @"person", nil);
+	STAssertEqualObjects([[[[Person alloc] init] baseLazily] elementNameLazily], @"person", nil);
 }
 
 - (void)testCollectionName
 {
-	STAssertEqualObjects([[[[[Person alloc] init] autorelease] baseLazily] collectionNameLazily], @"people", nil);
+	STAssertEqualObjects([[[[Person alloc] init] baseLazily] collectionNameLazily], @"people", nil);
 }
 
 - (void)testElementPath
@@ -283,7 +277,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 
 - (void)testCreate
 {
-	Person *person = [[[Person alloc] init] autorelease];
+	Person *person = [[Person alloc] init];
 	[person saveWithCompletionHandler:^(id object, NSError *error) {
 		STAssertEqualObjects(object, person, nil);
 		[self setStop:YES];
@@ -294,7 +288,7 @@ NSString *const ActiveResourceKitTestsHostAndPortString = @HOST;
 - (void)testIDFromResponse
 {
 	NSDictionary *headerFields = [NSDictionary dictionaryWithObject:@"/foo/bar/1" forKey:@"Location"];
-	NSHTTPURLResponse *response = [[[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:nil headerFields:headerFields] autorelease];
+	NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:nil headerFields:headerFields];
 	STAssertEqualObjects(ARIDFromResponse(response), [NSNumber numberWithInt:1], nil);
 }
 

@@ -69,7 +69,7 @@
  * implications. If you alter base properties, the changes affect all the
  * resources which depend upon it.
  */
-@property(retain, NS_NONATOMIC_IOSONLY) ARBase *base;
+@property(strong, NS_NONATOMIC_IOSONLY) ARBase *base;
 
 /*!
  * @brief Asks for the resource base, lazily constructing a base instance if the

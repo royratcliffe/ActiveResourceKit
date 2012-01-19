@@ -26,8 +26,8 @@
 
 @interface ARJSONFormat : NSObject<ARFormat>
 
-@property(readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
-@property(readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
+@property(weak, readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
+@property(weak, readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
 
 - (id)decode:(NSData *)data error:(NSError **)outError;
 

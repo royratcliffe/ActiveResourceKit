@@ -44,7 +44,7 @@
 
 + (ARBase *)base
 {
-	ARBase *base = [[[ARBase alloc] init] autorelease];
+	ARBase *base = [[ARBase alloc] init];
 	if ([self respondsToSelector:@selector(site)])
 	{
 		[base setSite:[self performSelector:@selector(site)]];
@@ -55,7 +55,7 @@
 	}
 	else if (self != [AResource class] && [self isSubclassOfClass:[AResource class]])
 	{
-		[base setElementName:[[[[AMName alloc] initWithClass:self] autorelease] element]];
+		[base setElementName:[[[AMName alloc] initWithClass:self] element]];
 	}
 	return base;
 }
