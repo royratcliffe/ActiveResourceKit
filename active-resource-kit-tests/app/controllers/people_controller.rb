@@ -1,12 +1,14 @@
 class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
+  # GET /people.xml
   def index
     @people = Person.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @people }
+      format.xml { render xml: @people }
     end
   end
 

@@ -36,6 +36,10 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
 }
 
+/*!
+ * @brief Implements a simple connection delegate designed for collecting the
+ * response, including the body data, and for working around SSL challenges.
+ */
 @interface ARURLConnectionDelegate : NSObject<NSURLConnectionDelegate>
 
 @property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
@@ -314,9 +318,18 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return YES;
 }
 
+/*!
+ * @brief Responds to authentication challenges.
+ * @details The connection @em cannot continue without credentials in order to
+ * access HTTPS resources. Creates a credential, passing it to the
+ * authentication challenge's sender. Sends “server trust” provided by the
+ * protection space of the authentication challenge.
+ */
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-	[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+	SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+	NSURLCredential *credential = [NSURLCredential credentialForTrust:serverTrust];
+	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
