@@ -24,14 +24,14 @@
 
 #import "Person.h"
 
-// for ActiveResourceKitTestsURLString
+// for ActiveResourceKitTestsBaseURL
 #import "ActiveResourceKitTests.h"
 
 @implementation Person
 
 + (NSURL *)site
 {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@", ActiveResourceKitTestsHostAndPortString]];
+	return ActiveResourceKitTestsBaseURL();
 }
 
 @end

@@ -24,7 +24,20 @@
 
 #import "ARTestCase.h"
 
-extern NSString *const ActiveResourceKitTestsHostAndPortString;
+/*!
+ * @brief Defines base URL for testing against.
+ * @details Tests access this base URL assuming you have launched the
+ * active-resource-kit-tests Rails application. The shared schemas launch a
+ * Rails Thin server on localhost:3000. All tests access the base URL here. That
+ * makes it easy to change once for all tests to redirect their attention to
+ * some other host and port using a different protocol.
+ *
+ * Why define a function rather than an NSURL constant reference? Objective-C
+ * does not allow for defining NSObjects at load time. You have to run some
+ * instructions to construct objects; only string constants delineate a special
+ * case.
+ */
+NSURL *ActiveResourceKitTestsBaseURL(void);
 
 @class Post;
 @class PostComment;
