@@ -81,6 +81,11 @@
 			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)kARClientErrorCode, nil);
 		}
 	}
+	// server errors: 5xx
+	for (NSInteger statusCode = 500; statusCode <= 599; statusCode++)
+	{
+		STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)kARServerErrorCode, nil);
+	}
 }
 
 - (void)testGet
