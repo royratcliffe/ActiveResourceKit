@@ -129,7 +129,9 @@ NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";
 	NSError *error;
 	if (code != '    ')
 	{
-		error = [NSError errorWithDomain:kARConnectionErrorDomain code:code userInfo:[NSDictionary dictionaryWithObjectsAndKeys:HTTPResponse, kARConnectionHTTPResponseKey, [NSHTTPURLResponse localizedStringForStatusCode:[HTTPResponse statusCode]], NSLocalizedDescriptionKey, nil]];
+		NSString *localizedDescription = [NSHTTPURLResponse localizedStringForStatusCode:[HTTPResponse statusCode]];
+		NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:HTTPResponse, kARConnectionHTTPResponseKey, localizedDescription, NSLocalizedDescriptionKey, nil];
+		error = [NSError errorWithDomain:kARConnectionErrorDomain code:code userInfo:userInfo];
 	}
 	else
 	{
@@ -142,32 +144,51 @@ NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";
 #pragma mark                                                          HTTP Verbs
 //------------------------------------------------------------------------------
 
-- (NSData *)get:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)get:(NSString *)path
+		headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		  error:(NSError **)outError;
 {
 	return [self requestWithHTTPMethod:kARHTTPGetMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
-- (NSData *)delete:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)delete:(NSString *)path
+		   headers:(NSDictionary *)headers
+ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+			 error:(NSError **)outError;
 {
 	return [self requestWithHTTPMethod:kARHTTPDeleteMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
-- (NSData *)put:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)put:(NSString *)path
+		headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		  error:(NSError **)outError;
 {
 	return [self requestWithHTTPMethod:kARHTTPPutMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
-- (NSData *)post:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)post:(NSString *)path
+		 headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		   error:(NSError **)outError;
 {
 	return [self requestWithHTTPMethod:kARHTTPPostMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
-- (NSData *)head:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)head:(NSString *)path
+		 headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		   error:(NSError **)outError;
 {
 	return [self requestWithHTTPMethod:kARHTTPHeadMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
-- (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError
+- (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod
+							 path:(NSString *)path
+						  headers:(NSDictionary *)headers
+				returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+							error:(NSError **)outError
 {
 	NSMutableURLRequest *request = [self requestForHTTPMethod:HTTPMethod path:path headers:headers];
 	NSURLResponse *__autoreleasing response = nil;

@@ -96,15 +96,30 @@ extern NSString *const kARConnectionHTTPResponseKey;
 
 //------------------------------------------------------------------- HTTP Verbs
 
-- (NSData *)get:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)get:(NSString *)path
+		headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		  error:(NSError **)outError;
 
-- (NSData *)delete:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)delete:(NSString *)path
+           headers:(NSDictionary *)headers
+ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+             error:(NSError **)outError;
 
-- (NSData *)put:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)put:(NSString *)path
+		headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		  error:(NSError **)outError;
 
-- (NSData *)post:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)post:(NSString *)path
+		 headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		   error:(NSError **)outError;
 
-- (NSData *)head:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)head:(NSString *)path
+		 headers:(NSDictionary *)headers
+returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+		   error:(NSError **)outError;
 
 /*!
  * @brief Performs a @em synchronous HTTP request.
@@ -120,7 +135,11 @@ extern NSString *const kARConnectionHTTPResponseKey;
  * @result Answers the response body as raw data bytes if successful. Answers @c
  * nil on error.
  */
-- (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse error:(NSError **)outError;
+- (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod
+							 path:(NSString *)path
+						  headers:(NSDictionary *)headers
+				returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+							error:(NSError **)outError;
 
 //------------------------------------------------------------ Building Requests
 
