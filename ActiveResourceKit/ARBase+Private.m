@@ -169,27 +169,27 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:@"GET" path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:kARHTTPGetMethod path:path completionHandler:completionHandler];
 }
 
 - (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:@"DELETE" path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:kARHTTPDeleteMethod path:path completionHandler:completionHandler];
 }
 
 - (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:@"PUT" path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:kARHTTPPutMethod path:path completionHandler:completionHandler];
 }
 
 - (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:@"POST" path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:kARHTTPPostMethod path:path completionHandler:completionHandler];
 }
 
 - (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:@"HEAD" path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:kARHTTPHeadMethod path:path completionHandler:completionHandler];
 }
 
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
