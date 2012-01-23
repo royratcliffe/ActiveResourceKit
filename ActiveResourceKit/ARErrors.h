@@ -34,21 +34,21 @@ enum
 
 //------------------------------------------------------------ Connection Errors
 
-extern NSString *const kARConnectionErrorDomain;
-extern NSString *const kARConnectionHTTPResponseKey;
+extern NSString *const ARConnectionErrorDomain;
+extern NSString *const ARConnectionHTTPResponseKey;
 
 enum
 {
-	kARRedirectionErrorCode        = 'redi',
-	kARBadRequestErrorCode         = 'badr',
-	kARUnauthorizedAccessErrorCode = 'auth',
-	kARForbiddenAccessErrorCode    = 'forb',
-	kARResourceNotFoundErrorCode   = 'reso',
-	kARMethodNotAllowedErrorCode   = 'meth',
-	kARResourceConflictErrorCode   = 'conf',
-	kARResourceGoneErrorCode       = 'gone',
-	kARResourceInvalidErrorCode    = 'inva',
-	kARClientErrorCode             = 'clie',
-	kARServerErrorCode             = 'serv',
-	kARConnectionErrorCode         = 'conn',
+	ARRedirectionErrorCode        = 'redi',
+	ARBadRequestErrorCode         = 'badr',
+	ARUnauthorizedAccessErrorCode = 'auth',
+	ARForbiddenAccessErrorCode    = 'forb',
+	ARResourceNotFoundErrorCode   = 'reso',
+	ARMethodNotAllowedErrorCode   = 'meth',
+	ARResourceConflictErrorCode   = 'conf',
+	ARResourceGoneErrorCode       = 'gone',
+	ARResourceInvalidErrorCode    = 'inva',
+	ARClientErrorCode             = 'clie',
+	ARServerErrorCode             = 'serv',
+	ARConnectionErrorCode         = 'conn',
 };

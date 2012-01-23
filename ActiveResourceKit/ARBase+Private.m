@@ -29,8 +29,8 @@
 #import <ActiveModelKit/ActiveModelKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
-NSString *const kARFromKey = @"from";
-NSString *const kARParamsKey = @"params";
+NSString *const ARFromKey = @"from";
+NSString *const ARParamsKey = @"params";
 
 NSString *ARQueryStringForOptions(NSDictionary *options)
 {
@@ -80,11 +80,11 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	NSString *path;
 	NSDictionary *prefixOptions;
-	NSString *from = [options objectForKey:kARFromKey];
+	NSString *from = [options objectForKey:ARFromKey];
 	if (from && [from isKindOfClass:[NSString class]])
 	{
 		prefixOptions = nil;
-		path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
+		path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
 	}
 	else
 	{
@@ -169,27 +169,27 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:kARHTTPGetMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPGetMethod path:path completionHandler:completionHandler];
 }
 
 - (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:kARHTTPDeleteMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPDeleteMethod path:path completionHandler:completionHandler];
 }
 
 - (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:kARHTTPPutMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPPutMethod path:path completionHandler:completionHandler];
 }
 
 - (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:kARHTTPPostMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPPostMethod path:path completionHandler:completionHandler];
 }
 
 - (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:kARHTTPHeadMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPHeadMethod path:path completionHandler:completionHandler];
 }
 
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler

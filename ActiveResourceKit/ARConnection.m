@@ -84,31 +84,31 @@
 			// 302: found (but redirect)
 			// 303: see other (redirect)
 			// 307: temporarily redirected (redirect)
-			code = kARRedirectionErrorCode;
+			code = ARRedirectionErrorCode;
 			break;
 		case 400:
-			code = kARBadRequestErrorCode;
+			code = ARBadRequestErrorCode;
 			break;
 		case 401:
-			code = kARUnauthorizedAccessErrorCode;
+			code = ARUnauthorizedAccessErrorCode;
 			break;
 		case 403:
-			code = kARForbiddenAccessErrorCode;
+			code = ARForbiddenAccessErrorCode;
 			break;
 		case 404:
-			code = kARResourceNotFoundErrorCode;
+			code = ARResourceNotFoundErrorCode;
 			break;
 		case 405:
-			code = kARMethodNotAllowedErrorCode;
+			code = ARMethodNotAllowedErrorCode;
 			break;
 		case 409:
-			code = kARResourceConflictErrorCode;
+			code = ARResourceConflictErrorCode;
 			break;
 		case 410:
-			code = kARResourceGoneErrorCode;
+			code = ARResourceGoneErrorCode;
 			break;
 		case 422:
-			code = kARResourceInvalidErrorCode;
+			code = ARResourceInvalidErrorCode;
 			break;
 		default:
 			if (200 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 400)
@@ -117,23 +117,23 @@
 			}
 			else if (401 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 500)
 			{
-				code = kARClientErrorCode;
+				code = ARClientErrorCode;
 			}
 			else if (500 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 600)
 			{
-				code = kARServerErrorCode;
+				code = ARServerErrorCode;
 			}
 			else
 			{
-				code = kARConnectionErrorCode;
+				code = ARConnectionErrorCode;
 			}
 	}
 	NSError *error;
 	if (code != '    ')
 	{
 		NSString *localizedDescription = [NSHTTPURLResponse localizedStringForStatusCode:[HTTPResponse statusCode]];
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:HTTPResponse, kARConnectionHTTPResponseKey, localizedDescription, NSLocalizedDescriptionKey, nil];
-		error = [NSError errorWithDomain:kARConnectionErrorDomain code:code userInfo:userInfo];
+		NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:HTTPResponse, ARConnectionHTTPResponseKey, localizedDescription, NSLocalizedDescriptionKey, nil];
+		error = [NSError errorWithDomain:ARConnectionErrorDomain code:code userInfo:userInfo];
 	}
 	else
 	{
@@ -151,7 +151,7 @@
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 		  error:(NSError **)outError;
 {
-	return [self requestWithHTTPMethod:kARHTTPGetMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
+	return [self requestWithHTTPMethod:ARHTTPGetMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
 - (NSData *)delete:(NSString *)path
@@ -159,7 +159,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 			 error:(NSError **)outError;
 {
-	return [self requestWithHTTPMethod:kARHTTPDeleteMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
+	return [self requestWithHTTPMethod:ARHTTPDeleteMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
 - (NSData *)put:(NSString *)path
@@ -167,7 +167,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 		  error:(NSError **)outError;
 {
-	return [self requestWithHTTPMethod:kARHTTPPutMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
+	return [self requestWithHTTPMethod:ARHTTPPutMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
 - (NSData *)post:(NSString *)path
@@ -175,7 +175,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 		   error:(NSError **)outError;
 {
-	return [self requestWithHTTPMethod:kARHTTPPostMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
+	return [self requestWithHTTPMethod:ARHTTPPostMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
 - (NSData *)head:(NSString *)path
@@ -183,7 +183,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 		   error:(NSError **)outError;
 {
-	return [self requestWithHTTPMethod:kARHTTPHeadMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
+	return [self requestWithHTTPMethod:ARHTTPHeadMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
 
 - (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod
@@ -208,27 +208,27 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 
 - (NSMutableURLRequest *)getRequestForPath:(NSString *)path headers:(NSDictionary *)headers
 {
-	return [self requestForHTTPMethod:kARHTTPGetMethod path:path headers:headers];
+	return [self requestForHTTPMethod:ARHTTPGetMethod path:path headers:headers];
 }
 
 - (NSMutableURLRequest *)deleteRequestForPath:(NSString *)path headers:(NSDictionary *)headers
 {
-	return [self requestForHTTPMethod:kARHTTPDeleteMethod path:path headers:headers];
+	return [self requestForHTTPMethod:ARHTTPDeleteMethod path:path headers:headers];
 }
 
 - (NSMutableURLRequest *)putRequestForPath:(NSString *)path headers:(NSDictionary *)headers
 {
-	return [self requestForHTTPMethod:kARHTTPPutMethod path:path headers:headers];
+	return [self requestForHTTPMethod:ARHTTPPutMethod path:path headers:headers];
 }
 
 - (NSMutableURLRequest *)postRequestForPath:(NSString *)path headers:(NSDictionary *)headers
 {
-	return [self requestForHTTPMethod:kARHTTPPostMethod path:path headers:headers];
+	return [self requestForHTTPMethod:ARHTTPPostMethod path:path headers:headers];
 }
 
 - (NSMutableURLRequest *)headRequestForPath:(NSString *)path headers:(NSDictionary *)headers
 {
-	return [self requestForHTTPMethod:kARHTTPHeadMethod path:path headers:headers];
+	return [self requestForHTTPMethod:ARHTTPHeadMethod path:path headers:headers];
 }
 
 - (NSMutableURLRequest *)requestForHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers

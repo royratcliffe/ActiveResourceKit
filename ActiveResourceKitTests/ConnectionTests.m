@@ -47,7 +47,7 @@
 	{
 		NSError *error = handleHTTPResponse([code integerValue]);
 		STAssertNotNil(error, nil);
-		STAssertEquals([error code], (NSInteger)kARRedirectionErrorCode, nil);
+		STAssertEquals([error code], (NSInteger)ARRedirectionErrorCode, nil);
 		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
 	}
 	// client errors: 4xx
@@ -58,14 +58,14 @@
 	}
 	clientCodesAndErrors[] =
 	{
-		{ 400, (NSInteger)kARBadRequestErrorCode },
-		{ 401, (NSInteger)kARUnauthorizedAccessErrorCode },
-		{ 403, (NSInteger)kARForbiddenAccessErrorCode },
-		{ 404, (NSInteger)kARResourceNotFoundErrorCode },
-		{ 405, (NSInteger)kARMethodNotAllowedErrorCode },
-		{ 409, (NSInteger)kARResourceConflictErrorCode },
-		{ 410, (NSInteger)kARResourceGoneErrorCode },
-		{ 422, (NSInteger)kARResourceInvalidErrorCode },
+		{ 400, (NSInteger)ARBadRequestErrorCode },
+		{ 401, (NSInteger)ARUnauthorizedAccessErrorCode },
+		{ 403, (NSInteger)ARForbiddenAccessErrorCode },
+		{ 404, (NSInteger)ARResourceNotFoundErrorCode },
+		{ 405, (NSInteger)ARMethodNotAllowedErrorCode },
+		{ 409, (NSInteger)ARResourceConflictErrorCode },
+		{ 410, (NSInteger)ARResourceGoneErrorCode },
+		{ 422, (NSInteger)ARResourceInvalidErrorCode },
 	};
 	NSUInteger const clientCodesAndErrorsCount = sizeof(clientCodesAndErrors)/sizeof(clientCodesAndErrors[0]);
 	for (NSUInteger i = 0; i < clientCodesAndErrorsCount; i++)
@@ -78,13 +78,13 @@
 		for (i = 0; i < clientCodesAndErrorsCount && statusCode != clientCodesAndErrors[i].statusCode; i++);
 		if (i == clientCodesAndErrorsCount)
 		{
-			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)kARClientErrorCode, nil);
+			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
 		}
 	}
 	// server errors: 5xx
 	for (NSInteger statusCode = 500; statusCode <= 599; statusCode++)
 	{
-		STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)kARServerErrorCode, nil);
+		STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)ARServerErrorCode, nil);
 	}
 }
 

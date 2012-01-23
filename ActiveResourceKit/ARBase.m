@@ -277,10 +277,10 @@
 
 - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
 {
-	NSString *from = [options objectForKey:kARFromKey];
+	NSString *from = [options objectForKey:ARFromKey];
 	if (from && [from isKindOfClass:[NSString class]])
 	{
-		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
+		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
 		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 			if ([object isKindOfClass:[NSDictionary class]])
 			{

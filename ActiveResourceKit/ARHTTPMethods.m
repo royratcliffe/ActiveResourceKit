@@ -24,8 +24,8 @@
 
 #import "ARHTTPMethods.h"
 
-NSString *const kARHTTPGetMethod    = @"GET";
-NSString *const kARHTTPDeleteMethod = @"DELETE";
-NSString *const kARHTTPPutMethod    = @"PUT";
-NSString *const kARHTTPPostMethod   = @"POST";
-NSString *const kARHTTPHeadMethod   = @"HEAD";
+NSString *const ARHTTPGetMethod    = @"GET";
+NSString *const ARHTTPDeleteMethod = @"DELETE";
+NSString *const ARHTTPPutMethod    = @"PUT";
+NSString *const ARHTTPPostMethod   = @"POST";
+NSString *const ARHTTPHeadMethod   = @"HEAD";

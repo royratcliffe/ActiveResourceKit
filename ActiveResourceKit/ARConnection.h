@@ -67,7 +67,7 @@
  * nil otherwise. The error object's error code and localised description
  * outline the issue. You can also retrieve the HTTP response object itself by
  * accessing the error's user information dictionary with the @ref
- * kARConnectionHTTPResponseKey key.
+ * ARConnectionHTTPResponseKey key.
  */
 + (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
 
@@ -122,7 +122,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 
 /*!
  * @brief Builds a GET request for the given @a path with the given @a headers.
- * @details Shortcut for -[ARConnection requestForHTTPMethod:kARHTTPGetMethod
+ * @details Shortcut for -[ARConnection requestForHTTPMethod:ARHTTPGetMethod
  * path:path headers:headers].
  * @par Please Note
  * This method builds a GET request for the given path with the given

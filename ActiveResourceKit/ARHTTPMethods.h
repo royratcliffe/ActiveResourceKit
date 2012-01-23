@@ -24,8 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kARHTTPGetMethod;
-extern NSString *const kARHTTPDeleteMethod;
-extern NSString *const kARHTTPPutMethod;
-extern NSString *const kARHTTPPostMethod;
-extern NSString *const kARHTTPHeadMethod;
+extern NSString *const ARHTTPGetMethod;
+extern NSString *const ARHTTPDeleteMethod;
+extern NSString *const ARHTTPPutMethod;
+extern NSString *const ARHTTPPostMethod;
+extern NSString *const ARHTTPHeadMethod;
