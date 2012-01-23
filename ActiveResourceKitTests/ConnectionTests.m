@@ -50,6 +50,37 @@
 		STAssertEquals([error code], (NSInteger)kARRedirectionErrorCode, nil);
 		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
 	}
+	// client errors: 4xx
+	struct
+	{
+		NSInteger statusCode;
+		NSInteger errorCode;
+	}
+	clientCodesAndErrors[] =
+	{
+		{ 400, (NSInteger)kARBadRequestErrorCode },
+		{ 401, (NSInteger)kARUnauthorizedAccessErrorCode },
+		{ 403, (NSInteger)kARForbiddenAccessErrorCode },
+		{ 404, (NSInteger)kARResourceNotFoundErrorCode },
+		{ 405, (NSInteger)kARMethodNotAllowedErrorCode },
+		{ 409, (NSInteger)kARResourceConflictErrorCode },
+		{ 410, (NSInteger)kARResourceGoneErrorCode },
+		{ 422, (NSInteger)kARResourceInvalidErrorCode },
+	};
+	NSUInteger const clientCodesAndErrorsCount = sizeof(clientCodesAndErrors)/sizeof(clientCodesAndErrors[0]);
+	for (NSUInteger i = 0; i < clientCodesAndErrorsCount; i++)
+	{
+		STAssertEquals([handleHTTPResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
+	}
+	for (NSInteger statusCode = 402; statusCode <= 499; statusCode++)
+	{
+		NSUInteger i;
+		for (i = 0; i < clientCodesAndErrorsCount && statusCode != clientCodesAndErrors[i].statusCode; i++);
+		if (i == clientCodesAndErrorsCount)
+		{
+			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)kARClientErrorCode, nil);
+		}
+	}
 }
 
 - (void)testGet
