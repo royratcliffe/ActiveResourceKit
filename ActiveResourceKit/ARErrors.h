@@ -29,5 +29,26 @@ extern NSString *const ARErrorDomain;
 enum
 {
 	ARUnsupportedRootObjectTypeError = 'urot',
-	ARResponseIsNotHTTPError = 'rinh',
+	ARResponseIsNotHTTPError         = 'rinh',
+};
+
+//------------------------------------------------------------ Connection Errors
+
+extern NSString *const kARConnectionErrorDomain;
+extern NSString *const kARConnectionHTTPResponseKey;
+
+enum
+{
+	kARRedirectionErrorCode        = 'redi',
+	kARBadRequestErrorCode         = 'badr',
+	kARUnauthorizedAccessErrorCode = 'auth',
+	kARForbiddenAccessErrorCode    = 'forb',
+	kARResourceNotFoundErrorCode   = 'reso',
+	kARMethodNotAllowedErrorCode   = 'meth',
+	kARResourceConflictErrorCode   = 'conf',
+	kARResourceGoneErrorCode       = 'gone',
+	kARResourceInvalidErrorCode    = 'inva',
+	kARClientErrorCode             = 'clie',
+	kARServerErrorCode             = 'serv',
+	kARConnectionErrorCode         = 'conn',
 };

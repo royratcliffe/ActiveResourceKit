@@ -25,3 +25,6 @@
 #import "ARErrors.h"
 
 NSString *const ARErrorDomain = @"org.rubyonrails.api.ARErrorDomain";
+
+NSString *const kARConnectionErrorDomain = @"ARConnectionError";
+NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";

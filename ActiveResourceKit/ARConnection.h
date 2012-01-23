@@ -24,29 +24,6 @@
 
 #import <ActiveResourceKit/ARFormat.h>
 
-enum
-{
-	/*!
-	 * @brief Code for redirection; not really an error code as such.
-	 */
-	kARRedirectionErrorCode        = 'redi',
-	
-	kARBadRequestErrorCode         = 'badr',
-	kARUnauthorizedAccessErrorCode = 'auth',
-	kARForbiddenAccessErrorCode    = 'forb',
-	kARResourceNotFoundErrorCode   = 'reso',
-	kARMethodNotAllowedErrorCode   = 'meth',
-	kARResourceConflictErrorCode   = 'conf',
-	kARResourceGoneErrorCode       = 'gone',
-	kARResourceInvalidErrorCode    = 'inva',
-	kARClientErrorCode             = 'clie',
-	kARServerErrorCode             = 'serv',
-	kARConnectionErrorCode         = 'conn',
-};
-
-extern NSString *const kARConnectionErrorDomain;
-extern NSString *const kARConnectionHTTPResponseKey;
-
 /*!
  * @brief Connects to a site using a format.
  */

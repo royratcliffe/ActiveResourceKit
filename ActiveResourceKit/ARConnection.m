@@ -27,9 +27,7 @@
 
 #import "ARJSONFormat.h"
 #import "ARHTTPMethods.h"
-
-NSString *const kARConnectionErrorDomain = @"ARConnectionError";
-NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";
+#import "ARErrors.h"
 
 @implementation ARConnection
 
