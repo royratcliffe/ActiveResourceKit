@@ -24,6 +24,9 @@
 
 #import "ARConnection+Private.h"
 
+// for ASDimOf
+#import "ARMacros.h"
+
 @implementation ARConnection(Private)
 
 - (NSDictionary *)defaultHeaders
@@ -45,21 +48,6 @@
 //------------------------------------------------------------------------------
 #pragma mark                                            Format Header for Method
 //------------------------------------------------------------------------------
-
-/*!
- * @param array A standard C array of fixed-sized elements.
- * @brief Answers the number of elements in the given array, the array's dimension.
- * @details Assumes that the array argument is a standard C-style array where
- * the compiler can assess the number of elements by dividing the size of the
- * entire array by the size of its elements; the answer always equals an integer
- * since array size is a multiple of element size. Both measurements must be
- * static, otherwise the compiler cannot supply a fixed integer dimension.  The
- * implementation wraps the argument in parenthesis in order to enforce the
- * necessary operator precedence.
- * @note Beware of side effects if you pass operators in the @a array
- * expression. The macro argument evaluates twice.
- */
-#define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
 
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
 {
@@ -87,7 +75,7 @@
 	// slower look-up for less common types, e.g. HEAD. Is this a reasonable
 	// trade-off?
 	NSUInteger index;
-	for (index = 0; index < DIMOF(HTTPFormatHeaderNames); index++)
+	for (index = 0; index < ASDimOf(HTTPFormatHeaderNames); index++)
 	{
 		if ([HTTPMethod isEqualToString:(__bridge NSString *)HTTPFormatHeaderNames[index].HTTPMethod])
 		{
@@ -95,7 +83,7 @@
 		}
 	}
 	NSDictionary *formatHeader;
-	if (index < DIMOF(HTTPFormatHeaderNames))
+	if (index < ASDimOf(HTTPFormatHeaderNames))
 	{
 		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:(__bridge NSString *)HTTPFormatHeaderNames[index].headerName];
 	}

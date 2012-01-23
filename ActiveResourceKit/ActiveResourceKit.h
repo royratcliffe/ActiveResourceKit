@@ -31,6 +31,7 @@
 
 #import <ActiveResourceKit/ARHTTPMethods.h>
 #import <ActiveResourceKit/ARErrors.h>
+#import <ActiveResourceKit/ARMacros.h>
 #import <ActiveResourceKit/Versioning.h>
 
 /*!

@@ -51,6 +51,8 @@
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
+		7870D53A14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7870D53B14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
 		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
@@ -179,6 +181,7 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		7870D53814CDFED800934195 /* ARMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMacros.h; sourceTree = "<group>"; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
 		78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPMethods.h; sourceTree = "<group>"; };
 		78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPMethods.m; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 				78F7972E14CC48E8007A1262 /* ARConnection+Private.m */,
 				78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */,
 				78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */,
+				7870D53814CDFED800934195 /* ARMacros.h */,
 				7832702E14110B7B00ECCE7D /* ARFormat.h */,
 				78444FFB142896330014B4C6 /* ARFormatMethods.h */,
 				78444FFC142896330014B4C6 /* ARFormatMethods.m */,
@@ -385,6 +389,7 @@
 				78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */,
 				78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
+				7870D53B14CDFED800934195 /* ARMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +410,7 @@
 				78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */,
 				78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
+				7870D53A14CDFED800934195 /* ARMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
