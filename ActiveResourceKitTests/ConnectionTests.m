@@ -109,4 +109,28 @@
 	STAssertEquals([HTTPResponse statusCode], (NSInteger)200, nil);
 }
 
+- (void)testGetWithHeader
+{
+	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	NSHTTPURLResponse *HTTPResponse = nil;
+	NSDictionary *headers = [NSDictionary dictionaryWithObject:@"value" forKey:@"key"];
+	NSData *data = [connection get:@"/people/2.json" headers:headers returningResponse:&HTTPResponse error:NULL];
+	// This is not a real test of GET with headers. The test cannot assert
+	// anything about headers being successfully sent along with the GET
+	// request; the server does not echo the headers. However, if you check the
+	// server log at log/thin.log, you should see traces of a GET request
+	// containing, amongst other bits and pieces, the following:
+	//
+	//	GET /people/2.json HTTP/1.1
+	//	Host: localhost:3000
+	//	Accept: application/json
+	//	key: value
+	//	Accept-Language: en-gb
+	//	Accept-Encoding: gzip, deflate
+	//	Connection: keep-alive
+	//
+	NSDictionary *david = [[connection format] decode:data error:NULL];
+	STAssertEqualObjects(@"David", [david valueForKey:@"name"], nil);
+}
+
 @end
