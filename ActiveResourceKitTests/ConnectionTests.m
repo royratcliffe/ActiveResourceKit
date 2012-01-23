@@ -38,6 +38,18 @@
 		NSError *error = [ARConnection handleHTTPResponse:response];
 		STAssertNil(error, nil);
 	}
+	// redirection
+	NSArray *redirectCodes = [NSArray arrayWithObjects:[NSNumber numberWithInt:301], [NSNumber numberWithInt:302], [NSNumber numberWithInt:303], [NSNumber numberWithInt:307], nil];
+	NSArray *redirectDescriptions = [NSArray arrayWithObjects:@"moved permanently", @"found", @"see other", @"temporarily redirected", nil];
+	NSDictionary *redirectDescriptionForCode = [NSDictionary dictionaryWithObjects:redirectDescriptions forKeys:redirectCodes];
+	for (NSNumber *code in redirectCodes)
+	{
+		NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:[code integerValue] HTTPVersion:@"HTTP/1.1" headerFields:nil];
+		NSError *error = [ARConnection handleHTTPResponse:response];
+		STAssertNotNil(error, nil);
+		STAssertEquals([error code], (NSInteger)kARRedirectionErrorCode, nil);
+		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
+	}
 }
 
 - (void)testGet
