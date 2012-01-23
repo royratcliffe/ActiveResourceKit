@@ -82,6 +82,10 @@ NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";
 		case 302:
 		case 303:
 		case 307:
+			// 301: moved permanently (redirect)
+			// 302: found (but redirect)
+			// 303: see other (redirect)
+			// 307: temporarily moved (redirect)
 			code = kARRedirectionErrorCode;
 			break;
 		case 400:
