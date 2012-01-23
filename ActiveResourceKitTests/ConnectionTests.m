@@ -39,4 +39,15 @@
 	STAssertEqualObjects(@"Matz", [matz valueForKey:@"name"], nil);
 }
 
+- (void)testHead
+{
+	// Test against the same path as above in testGet, same headers, only the
+	// HTTP request method differs: HEAD rather than GET. In response, the
+	// server should answer with an empty body and response code 200.
+	NSHTTPURLResponse *HTTPResponse = nil;
+	NSData *data = [[[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()] head:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:NULL];
+	STAssertEquals([data length], (NSUInteger)0, nil);
+	STAssertEquals([HTTPResponse statusCode], (NSInteger)200, nil);
+}
+
 @end

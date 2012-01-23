@@ -24,10 +24,12 @@
 
 #import <ActiveResourceKit/AResource.h>
 #import <ActiveResourceKit/ARBase.h>
+#import <ActiveResourceKit/ARConnection.h>
 
 #import <ActiveResourceKit/ARFormatMethods.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
 
+#import <ActiveResourceKit/ARHTTPMethods.h>
 #import <ActiveResourceKit/ARErrors.h>
 #import <ActiveResourceKit/Versioning.h>
 

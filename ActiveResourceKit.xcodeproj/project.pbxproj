@@ -54,6 +54,10 @@
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
 		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
+		78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */; };
+		78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */; };
 		78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		78BF7F7214164FE100DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		78BF7F731416512200DB0DEA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
@@ -64,6 +68,16 @@
 		78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
 		78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
+		78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA80014CB7CEC0049AE28 /* ARConnection.m */; };
+		78EEA80414CB7CEC0049AE28 /* ARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA80014CB7CEC0049AE28 /* ARConnection.m */; };
+		78F7972514CC3D01007A1262 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972414CC3D01007A1262 /* ConnectionTests.m */; };
+		78F7972614CC3D01007A1262 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972414CC3D01007A1262 /* ConnectionTests.m */; };
+		78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F7972D14CC48E8007A1262 /* ARConnection+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F7972D14CC48E8007A1262 /* ARConnection+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972E14CC48E8007A1262 /* ARConnection+Private.m */; };
+		78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972E14CC48E8007A1262 /* ARConnection+Private.m */; };
 		78FB0D86141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78FB0D87141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78FB0D88141A1820007AFB3D /* ARErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB0D85141A1820007AFB3D /* ARErrors.m */; };
@@ -166,11 +180,19 @@
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
+		78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPMethods.h; sourceTree = "<group>"; };
+		78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPMethods.m; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
 		78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AResource+Private.h"; sourceTree = "<group>"; };
 		78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AResource+Private.m"; sourceTree = "<group>"; };
+		78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConnection.h; sourceTree = "<group>"; };
+		78EEA80014CB7CEC0049AE28 /* ARConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARConnection.m; sourceTree = "<group>"; };
+		78F7972314CC3D01007A1262 /* ConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionTests.h; sourceTree = "<group>"; };
+		78F7972414CC3D01007A1262 /* ConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionTests.m; sourceTree = "<group>"; };
+		78F7972D14CC48E8007A1262 /* ARConnection+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARConnection+Private.h"; sourceTree = "<group>"; };
+		78F7972E14CC48E8007A1262 /* ARConnection+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARConnection+Private.m"; sourceTree = "<group>"; };
 		78FB0D84141A1820007AFB3D /* ARErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrors.h; sourceTree = "<group>"; };
 		78FB0D85141A1820007AFB3D /* ARErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARErrors.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -283,6 +305,12 @@
 				784450081428CE250014B4C6 /* AResource.m */,
 				78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */,
 				78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */,
+				78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */,
+				78EEA80014CB7CEC0049AE28 /* ARConnection.m */,
+				78F7972D14CC48E8007A1262 /* ARConnection+Private.h */,
+				78F7972E14CC48E8007A1262 /* ARConnection+Private.m */,
+				78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */,
+				78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */,
 				7832702E14110B7B00ECCE7D /* ARFormat.h */,
 				78444FFB142896330014B4C6 /* ARFormatMethods.h */,
 				78444FFC142896330014B4C6 /* ARFormatMethods.m */,
@@ -318,6 +346,8 @@
 				7828228314686DFD005D9BD2 /* ARTestCase.m */,
 				78282272146867F5005D9BD2 /* FinderTests.h */,
 				78282273146867F5005D9BD2 /* FinderTests.m */,
+				78F7972314CC3D01007A1262 /* ConnectionTests.h */,
+				78F7972414CC3D01007A1262 /* ConnectionTests.m */,
 				7828227E14686A2E005D9BD2 /* Person.h */,
 				7828227F14686A2E005D9BD2 /* Person.m */,
 				78054AF81469299E007E947E /* Private.h */,
@@ -352,6 +382,9 @@
 				7844500A1428CE250014B4C6 /* AResource.h in Headers */,
 				784450161428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
 				78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */,
+				78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */,
+				78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */,
+				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +402,9 @@
 				784450091428CE250014B4C6 /* AResource.h in Headers */,
 				784450151428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
 				78E4DFEB145B1BF700AB4BCB /* AResource+Private.h in Headers */,
+				78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */,
+				78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */,
+				78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +640,9 @@
 				7844500C1428CE250014B4C6 /* AResource.m in Sources */,
 				784450181428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
 				78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */,
+				78EEA80414CB7CEC0049AE28 /* ARConnection.m in Sources */,
+				78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */,
+				78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +655,7 @@
 				7828228514686DFD005D9BD2 /* ARTestCase.m in Sources */,
 				78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFE14694531007E947E /* VersioningTests.m in Sources */,
+				78F7972614CC3D01007A1262 /* ConnectionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +671,9 @@
 				7844500B1428CE250014B4C6 /* AResource.m in Sources */,
 				784450171428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
 				78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */,
+				78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */,
+				78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */,
+				78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +686,7 @@
 				7828228414686DFD005D9BD2 /* ARTestCase.m in Sources */,
 				78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFD14694531007E947E /* VersioningTests.m in Sources */,
+				78F7972514CC3D01007A1262 /* ConnectionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -146,16 +146,4 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  */
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
-//----------------------------------------------------- Format Header for Method
-
-/*!
- * @brief Answers a format header for the given HTTP request method.
- * @param HTTPMethod String containing either GET, PUT, POST, DELETE or HEAD
- * that specifies the HTTP request method. Case must match.
- * @result A dictionary containing either an Accept or Content-Type format
- * header along with the appropriate MIME type. Merge this dictionary with any
- * other request header fields.
- */
-- (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod;
-
 @end

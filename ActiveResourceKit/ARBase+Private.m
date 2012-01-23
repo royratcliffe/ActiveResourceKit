@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARBase+Private.h"
+#import "ARConnection.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
 #import <ActiveModelKit/ActiveModelKit.h>
@@ -194,11 +195,9 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[self timeout]];
-	NSMutableDictionary *headerFields = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
-	[headerFields addEntriesFromDictionary:[self HTTPFormatHeaderForHTTPMethod:HTTPMethod]];
-	[request setAllHTTPHeaderFields:headerFields];
-	[request setHTTPMethod:HTTPMethod];
+	ARConnection *connection = [[ARConnection alloc] initWithSite:URL format:[self formatLazily]];
+	[connection setTimeout:[self timeout]];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:nil];
 	
 	ARURLConnectionDelegate *delegate = [[ARURLConnectionDelegate alloc] init];
 	[delegate setCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -232,77 +231,13 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 			completionHandler(nil, nil, error ? error : [NSError errorWithDomain:ARErrorDomain code:ARResponseIsNotHTTPError userInfo:nil]);
 		}
 	}];
-	NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
+	NSURLConnection *HTTP = [connection HTTPWithRequest:request delegate:delegate];
 	NSOperationQueue *operationQueue = [self operationQueue];
 	if (operationQueue)
 	{
-		[connection setDelegateQueue:operationQueue];
+		[HTTP setDelegateQueue:operationQueue];
 	}
-	[connection start];
-}
-
-//------------------------------------------------------------------------------
-#pragma mark                                            Format Header for Method
-//------------------------------------------------------------------------------
-
-/*!
- * @param array A standard C array of fixed-sized elements.
- * @brief Answers the number of elements in the given array, the array's dimension.
- * @details Assumes that the array argument is a standard C-style array where
- * the compiler can assess the number of elements by dividing the size of the
- * entire array by the size of its elements; the answer always equals an integer
- * since array size is a multiple of element size. Both measurements must be
- * static, otherwise the compiler cannot supply a fixed integer dimension.  The
- * implementation wraps the argument in parenthesis in order to enforce the
- * necessary operator precedence.
- * @note Beware of side effects if you pass operators in the @a array
- * expression. The macro argument evaluates twice.
- */
-#define DIMOF(array) (sizeof(array)/sizeof((array)[0]))
-
-- (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
-{
-	// Use CFStringRefs rather than NSString pointers when using Automatic
-	// Reference Counting. ARC does not allow references within C
-	// structures. Toll-free bridging exists between Core Foundation and Next
-	// Step strings.
-	static struct
-	{
-		CFStringRef const HTTPMethod;
-		CFStringRef const headerName;
-	}
-	const HTTPFormatHeaderNames[] =
-	{
-		{ CFSTR("GET"),    CFSTR("Accept") },
-		{ CFSTR("PUT"),    CFSTR("Content-Type") },
-		{ CFSTR("POST"),   CFSTR("Content-Type") },
-		{ CFSTR("DELETE"), CFSTR("Accept") },
-		{ CFSTR("HEAD"),   CFSTR("Accept") },
-	};
-	// Is this too ugly? A dictionary could implement the look-up. But that
-	// requires building a static dictionary initially and does not allow
-	// optimisation of searching. Using a simple linear look-up speeds up the
-	// more common request types, i.e. GET requests. There is a cost, that of
-	// slower look-up for less common types, e.g. HEAD. Is this a reasonable
-	// trade-off?
-	NSUInteger index;
-	for (index = 0; index < DIMOF(HTTPFormatHeaderNames); index++)
-	{
-		if ([HTTPMethod isEqualToString:(__bridge NSString *)HTTPFormatHeaderNames[index].HTTPMethod])
-		{
-			break;
-		}
-	}
-	NSDictionary *formatHeader;
-	if (index < DIMOF(HTTPFormatHeaderNames))
-	{
-		formatHeader = [NSDictionary dictionaryWithObject:[[self formatLazily] MIMEType] forKey:(__bridge NSString *)HTTPFormatHeaderNames[index].headerName];
-	}
-	else
-	{
-		formatHeader = [NSDictionary dictionary];
-	}
-	return formatHeader;
+	[HTTP start];
 }
 
 @end
