@@ -167,7 +167,7 @@
 		784450071428CE250014B4C6 /* AResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AResource.h; sourceTree = "<group>"; };
 		784450081428CE250014B4C6 /* AResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AResource.m; sourceTree = "<group>"; };
 		784450131428EFCB0014B4C6 /* ARBase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARBase+Private.h"; sourceTree = "<group>"; };
-		784450141428EFCB0014B4C6 /* ARBase+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARBase+Private.m"; sourceTree = "<group>"; };
+		784450141428EFCB0014B4C6 /* ARBase+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ARBase+Private.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActiveResourceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7846AA1C140BAAE100FE58E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7846AA1F140BAAE100FE58E5 /* ActiveResourceKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActiveResourceKit-Info.plist"; sourceTree = "<group>"; };
@@ -182,8 +182,8 @@
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
 		78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPMethods.h; sourceTree = "<group>"; };
 		78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPMethods.m; sourceTree = "<group>"; };
-		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBase.h; sourceTree = "<group>"; };
-		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBase.m; sourceTree = "<group>"; };
+		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ARBase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ARBase.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
 		78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AResource+Private.h"; sourceTree = "<group>"; };
 		78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AResource+Private.m"; sourceTree = "<group>"; };
