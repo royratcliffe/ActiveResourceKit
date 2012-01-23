@@ -31,12 +31,13 @@
 
 - (void)testHandleResponse
 {
+	NSError *(^handleHTTPResponse)(NSInteger statusCode) = ^(NSInteger statusCode) {
+		return [ARConnection handleHTTPResponse:[[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil]];
+	};
 	// valid responses: 2xx and 3xx
 	for (NSNumber *code in [NSArray arrayWithObjects:[NSNumber numberWithInt:200], [NSNumber numberWithInt:299], [NSNumber numberWithInt:300], [NSNumber numberWithInt:399], nil])
 	{
-		NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:[code integerValue] HTTPVersion:@"HTTP/1.1" headerFields:nil];
-		NSError *error = [ARConnection handleHTTPResponse:response];
-		STAssertNil(error, nil);
+		STAssertNil(handleHTTPResponse([code integerValue]), nil);
 	}
 	// redirection
 	NSArray *redirectCodes = [NSArray arrayWithObjects:[NSNumber numberWithInt:301], [NSNumber numberWithInt:302], [NSNumber numberWithInt:303], [NSNumber numberWithInt:307], nil];
@@ -44,8 +45,7 @@
 	NSDictionary *redirectDescriptionForCode = [NSDictionary dictionaryWithObjects:redirectDescriptions forKeys:redirectCodes];
 	for (NSNumber *code in redirectCodes)
 	{
-		NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:[code integerValue] HTTPVersion:@"HTTP/1.1" headerFields:nil];
-		NSError *error = [ARConnection handleHTTPResponse:response];
+		NSError *error = handleHTTPResponse([code integerValue]);
 		STAssertNotNil(error, nil);
 		STAssertEquals([error code], (NSInteger)kARRedirectionErrorCode, nil);
 		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
