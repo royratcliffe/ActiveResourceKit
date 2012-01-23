@@ -73,7 +73,7 @@ NSString *const kARConnectionHTTPResponseKey = @"ARConnectionHTTPResponse";
 	return [NSURLConnection connectionWithRequest:request delegate:delegate];
 }
 
-- (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
++ (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
 {
 	NSInteger code;
 	switch ([HTTPResponse statusCode])

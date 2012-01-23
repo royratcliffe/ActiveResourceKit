@@ -92,7 +92,7 @@ extern NSString *const kARConnectionHTTPResponseKey;
  * accessing the error's user information dictionary with the @ref
  * kARConnectionHTTPResponseKey key.
  */
-- (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
++ (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
 
 //------------------------------------------------------------------- HTTP Verbs
 
