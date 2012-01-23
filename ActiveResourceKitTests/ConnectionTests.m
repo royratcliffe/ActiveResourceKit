@@ -67,16 +67,15 @@
 		{ 410, (NSInteger)ARResourceGoneErrorCode },
 		{ 422, (NSInteger)ARResourceInvalidErrorCode },
 	};
-	NSUInteger const clientCodesAndErrorsCount = sizeof(clientCodesAndErrors)/sizeof(clientCodesAndErrors[0]);
-	for (NSUInteger i = 0; i < clientCodesAndErrorsCount; i++)
+	for (NSUInteger i = 0; i < ASDimOf(clientCodesAndErrors); i++)
 	{
 		STAssertEquals([handleHTTPResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
 	}
 	for (NSInteger statusCode = 402; statusCode <= 499; statusCode++)
 	{
 		NSUInteger i;
-		for (i = 0; i < clientCodesAndErrorsCount && statusCode != clientCodesAndErrors[i].statusCode; i++);
-		if (i == clientCodesAndErrorsCount)
+		for (i = 0; i < ASDimOf(clientCodesAndErrors) && statusCode != clientCodesAndErrors[i].statusCode; i++);
+		if (i == ASDimOf(clientCodesAndErrors))
 		{
 			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
 		}
