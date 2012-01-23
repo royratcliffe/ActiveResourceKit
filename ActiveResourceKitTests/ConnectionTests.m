@@ -29,6 +29,17 @@
 
 @implementation ConnectionTests
 
+- (void)testHandleResponse
+{
+	// valid responses: 2xx and 3xx
+	for (NSNumber *code in [NSArray arrayWithObjects:[NSNumber numberWithInt:200], [NSNumber numberWithInt:299], [NSNumber numberWithInt:300], [NSNumber numberWithInt:399], nil])
+	{
+		NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:[code integerValue] HTTPVersion:@"HTTP/1.1" headerFields:nil];
+		NSError *error = [ARConnection handleHTTPResponse:response];
+		STAssertNil(error, nil);
+	}
+}
+
 - (void)testGet
 {
 	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
