@@ -62,8 +62,8 @@ NSURL *ActiveResourceKitTestsBaseURL()
 
 - (void)setUp
 {
-	post = [[Post alloc] initWithSite:[NSURL URLWithString:@"https://localhost:3000"]];
-	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"https://localhost:3000/posts/:post_id"]];
+	post = [[Post alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"/posts/:post_id" relativeToURL:ActiveResourceKitTestsBaseURL()]];
 	
 	// You cannot use Comment as a class name. The CarbonCore framework (a
 	// CoreServices sub-framework) steals this symbol first. Apple has already
