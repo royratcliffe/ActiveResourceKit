@@ -45,7 +45,10 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * error. The response always appears. The object decoded is non-nil if the
  * response body successfully decodes according to the expected format (JSON or
  * XML) and error is @c nil. On error, object is @c nil and @a error describes
- * the error condition.
+ * the error condition. Asynchronous connection methods utilise this completion
+ * handler type. C blocks of this type receive completion results, whether
+ * success or failure. Operation or dispatch queue assignment depends on which
+ * object invokes the block.
  */
 typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error);
 

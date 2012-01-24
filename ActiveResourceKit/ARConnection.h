@@ -120,6 +120,13 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 
 //------------------------------------------------------------ Building Requests
 
+// The following request-building methods follow the form ‘something request for
+// something else,’ e.g. get request for path with headers. The first
+// ‘something’ qualifies the request: what kind of request. The second
+// ‘something’ describes what the request is for. All the methods build HTTP
+// requests only. They do not start the requests, nor attach the requests to a
+// connection. These interfaces only prepare requests for connection.
+
 /*!
  * @brief Builds a GET request for the given @a path with the given @a headers.
  * @details Shortcut for -[ARConnection requestForHTTPMethod:ARHTTPGetMethod
