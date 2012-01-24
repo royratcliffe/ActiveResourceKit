@@ -33,7 +33,7 @@
 
 NSURL *ActiveResourceKitTestsBaseURL()
 {
-	return [NSURL URLWithString:@"https://localhost:3000"];
+	return [NSURL URLWithString:@RAILS_BASE_URL];
 }
 
 //------------------------------------------------------------------------------
