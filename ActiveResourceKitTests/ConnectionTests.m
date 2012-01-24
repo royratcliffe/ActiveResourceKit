@@ -132,4 +132,12 @@
 	STAssertEqualObjects(@"David", [david valueForKey:@"name"], nil);
 }
 
+- (void)testPost
+{
+	NSHTTPURLResponse *HTTPResponse = nil;
+	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	[connection post:@"/people.json" headers:nil returningResponse:&HTTPResponse error:NULL];
+	STAssertNotNil([[HTTPResponse allHeaderFields] objectForKey:@"Location"], nil);
+}
+
 @end
