@@ -24,20 +24,20 @@
    <TestAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       buildConfiguration = "Debug">
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec &apos;thin stop ; rake db:setup db:fixtures:load ; thin -d --ssl -D -V start&apos;&quot; &amp;&amp; sleep 2">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop db:setup db:fixtures:load thin:start&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA13140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKit.framework"
-                     BlueprintName = "ActiveResourceKitFramework"
+                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
+                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
+                     BlueprintName = "ActiveResourceKitFrameworkTests"
                      ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -49,13 +49,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec thin stop&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA13140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKit.framework"
-                     BlueprintName = "ActiveResourceKitFramework"
+                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
+                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
+                     BlueprintName = "ActiveResourceKitFrameworkTests"
                      ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
