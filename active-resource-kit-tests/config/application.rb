@@ -45,7 +45,9 @@ module ActiveResourceKitTests
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Enforce SSL; Rails 3.1 builds in support for Rack::SSL
-    config.force_ssl = true
+    # Enforce SSL but only if environment variable RAILS_BASE_URL
+    # indicates an SSL over HTTP scheme; Rails 3.1 builds in support
+    # for Rack::SSL
+    config.force_ssl = URI(ENV['RAILS_BASE_URL']).scheme == 'https' if ENV['RAILS_BASE_URL']
   end
 end
