@@ -25,6 +25,10 @@
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
+		7834B5DD14D167C90062BB04 /* ARIncrementalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7834B5DF14D167C90062BB04 /* ARIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */; };
+		7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
 		78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -163,6 +167,8 @@
 		7832702E14110B7B00ECCE7D /* ARFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormat.h; sourceTree = "<group>"; };
 		7832703014110BAE00ECCE7D /* ARJSONFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARJSONFormat.h; sourceTree = "<group>"; };
 		7832703114110BAE00ECCE7D /* ARJSONFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARJSONFormat.m; sourceTree = "<group>"; };
+		7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARIncrementalStore.h; sourceTree = "<group>"; };
+		7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARIncrementalStore.m; sourceTree = "<group>"; };
 		7835BC8D1414C47900CC4B56 /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
 		78444FFB142896330014B4C6 /* ARFormatMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormatMethods.h; sourceTree = "<group>"; };
@@ -304,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */,
+				7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */,
+				7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */,
 				78D3D6F1140BC3B800DD4278 /* ARBase.h */,
 				78D3D6F2140BC3B800DD4278 /* ARBase.m */,
 				784450131428EFCB0014B4C6 /* ARBase+Private.h */,
@@ -394,6 +402,7 @@
 				78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 				7870D53B14CDFED800934195 /* ARMacros.h in Headers */,
+				7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +424,7 @@
 				78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 				7870D53A14CDFED800934195 /* ARMacros.h in Headers */,
+				7834B5DD14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +663,7 @@
 				78EEA80414CB7CEC0049AE28 /* ARConnection.m in Sources */,
 				78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
+				7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +695,7 @@
 				78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */,
 				78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
+				7834B5DF14D167C90062BB04 /* ARIncrementalStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
