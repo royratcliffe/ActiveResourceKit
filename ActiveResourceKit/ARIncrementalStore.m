@@ -59,4 +59,43 @@
 	return YES;
 }
 
+- (id)executeRequest:(NSPersistentStoreRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+{
+	switch ([request requestType])
+	{
+		case NSFetchRequestType:
+			return [self executeFetchRequest:(NSFetchRequest *)request withContext:context error:outError];
+		case NSSaveRequestType:
+			return [self executeSaveRequest:(NSSaveChangesRequest *)request withContext:context error:outError];
+	}
+	return nil;
+}
+
+/*!
+ * @result If the request is a fetch request whose result type is set to one of
+ * @c NSManagedObjectResultType, @c NSManagedObjectIDResultType, @c
+ * NSDictionaryResultType, returns an array containing all objects in the store
+ * matching the request. If the request is a fetch request whose result type is
+ * set to @c NSCountResultType, returns an array containing an @c NSNumber of
+ * all objects in the store matching the request.
+ */
+- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+{
+	id result;
+	switch ([request resultType])
+	{
+		case NSCountResultType:
+			result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:0]];
+			break;
+		default:
+			result = [NSArray array];
+	}
+	return result;
+}
+
+- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+{
+	return [NSArray array];
+}
+
 @end

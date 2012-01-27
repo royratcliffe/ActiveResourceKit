@@ -77,4 +77,8 @@
  */
 + (void)registerStoreTypeForClass:(Class)klass;
 
+- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+
+- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+
 @end
