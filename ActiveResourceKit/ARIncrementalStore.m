@@ -78,6 +78,10 @@
  * matching the request. If the request is a fetch request whose result type is
  * set to @c NSCountResultType, returns an array containing an @c NSNumber of
  * all objects in the store matching the request.
+ *
+ * This method runs on iOS, for instance, when a fetched results controller
+ * performs a fetch in response to a table view controller determining the
+ * number of sections in the table view.
  */
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
 {
