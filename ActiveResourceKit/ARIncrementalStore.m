@@ -44,6 +44,11 @@
 // NSIncrementalStore. Implementations below override the abstract interface
 // laid out by Core Data.
 
+/*!
+ * @brief Validates the store URL.
+ * @details Is the store URL usable? Does it exist? Can the store receive save
+ * requests? Are the schemas compatible?
+ */
 - (BOOL)loadMetadata:(NSError *__autoreleasing *)outError
 {
 	NSMutableDictionary *metadata = [NSMutableDictionary dictionary];
