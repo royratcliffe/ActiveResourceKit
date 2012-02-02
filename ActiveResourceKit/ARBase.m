@@ -190,7 +190,7 @@
 	{
 		return [self prefixSourceLazily];
 	}
-	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] replaceMatchesInString:[self prefixSourceLazily] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+	return [[NSRegularExpression regularExpressionWithPattern:@":(\\w+)" options:0 error:NULL] stringByReplacingMatchesInString:[self prefixSourceLazily] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
 		return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@"$1"]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}];
 }
