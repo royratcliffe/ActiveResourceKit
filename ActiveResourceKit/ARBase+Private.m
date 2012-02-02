@@ -194,8 +194,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];
-	ARConnection *connection = [[ARConnection alloc] initWithSite:URL format:[self formatLazily]];
+	ARConnection *connection = [[ARConnection alloc] initWithSite:[self site] format:[self formatLazily]];
 	[connection setTimeout:[self timeout]];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:nil];
 	
