@@ -36,6 +36,28 @@
 	[NSPersistentStoreCoordinator registerStoreClass:klass forStoreType:[self storeTypeForClass:klass]];
 }
 
+// designated initialiser
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		contexts = [NSMutableDictionary dictionary];
+	}
+	return self;
+}
+
+- (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext
+{
+	NSManagedObjectContext *childContext = [contexts objectForKey:parentContext];
+	if (childContext == nil)
+	{
+		[childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType] setParentContext:parentContext];
+		[contexts setObject:childContext forKey:parentContext];
+	}
+	return childContext;
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                  Incremental Store Method Overrides
 //------------------------------------------------------------------------------
