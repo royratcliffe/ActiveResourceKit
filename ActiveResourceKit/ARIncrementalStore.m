@@ -26,14 +26,14 @@
 
 @implementation ARIncrementalStore
 
-+ (NSString *)storeTypeForClass:(Class)klass
++ (NSString *)storeTypeForClass:(Class)aClass
 {
-	return NSStringFromClass(klass);
+	return NSStringFromClass(aClass);
 }
 
-+ (void)registerStoreTypeForClass:(Class)klass
++ (void)registerStoreTypeForClass:(Class)aClass
 {
-	[NSPersistentStoreCoordinator registerStoreClass:klass forStoreType:[self storeTypeForClass:klass]];
+	[NSPersistentStoreCoordinator registerStoreClass:aClass forStoreType:[self storeTypeForClass:aClass]];
 }
 
 // designated initialiser

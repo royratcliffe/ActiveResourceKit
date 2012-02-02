@@ -52,14 +52,14 @@
  * metadata does not match the specified store type." Make them match to avoid
  * this error. Best way to make them match? Make store type equal to class name.
  */
-+ (NSString *)storeTypeForClass:(Class)klass;
++ (NSString *)storeTypeForClass:(Class)aClass;
 
 /*!
  * @brief Registers an incremental store subclass.
  * @details You need to register the store class before using it. If your
  * run-time loading sequence prevents you registering the store type
  * automatically during class initialisation, that is, during @c +initialize,
- * then in such cases you need to invoke @c +registerStoreTypeForClass:klass
+ * then in such cases you need to invoke @c +registerStoreTypeForClass:aClass
  * explicitly @em before using the store type. Typically though, you can
  * register the store type during class initialisation. Your sub-class interface
  * will contain method declarations along these lines:
@@ -88,7 +88,7 @@
  *	}
  * @endcode
  */
-+ (void)registerStoreTypeForClass:(Class)klass;
++ (void)registerStoreTypeForClass:(Class)aClass;
 
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
 
