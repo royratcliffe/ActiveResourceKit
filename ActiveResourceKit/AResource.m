@@ -40,7 +40,26 @@
 // for ASInflectorUnderscore
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+// continuation class
+@interface AResource()
+{
+	NSMutableDictionary *__strong _attributes;
+}
+
+@end
+
 @implementation AResource
+
+// designated initialiser
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		_attributes = [NSMutableDictionary dictionary];
+	}
+	return self;
+}
 
 + (ARBase *)base
 {
@@ -111,7 +130,20 @@
 #pragma mark                                                          Attributes
 //------------------------------------------------------------------------------
 
-@synthesize attributes = _attributes;
+// Store attributes using a mutable dictionary. Take care, however, not to
+// expose the implementation. The interface only exposes an immutable dictionary
+// when answering -attributes. The attributes getter makes an immutable copy of
+// the mutable dictionary.
+
+- (NSDictionary *)attributes
+{
+	return [_attributes copy];
+}
+
+- (void)setAttributes:(NSDictionary *)attributes
+{
+	[_attributes setValuesForKeysWithDictionary:attributes];
+}
 
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
@@ -138,7 +170,12 @@
 // underscored.
 - (id)valueForUndefinedKey:(NSString *)key
 {
-	return [[self attributes] objectForKey:ASInflectorUnderscore(key)];
+	return [_attributes objectForKey:[[ASInflector defaultInflector] underscore:key]];
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+	[_attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:key]];
 }
 
 //------------------------------------------------------------------------------
@@ -193,15 +230,7 @@
 
 - (void)setID:(NSNumber *)ID
 {
-	// The (current) implementation does not retain a mutable dictionary
-	// suitable for modification. Consequently, setting the ID requires a
-	// mutable duplicate temporarily. Resetting the attributes with an updated
-	// primary key snapshots an immutable copy of the mutable dictionary. The
-	// attributes thereby return to their immutable state.
-	NSDictionary *attributes = [self attributes];
-	NSMutableDictionary *newAttributes = attributes ? [NSMutableDictionary dictionaryWithDictionary:attributes] : [NSMutableDictionary dictionary];
-	[newAttributes setObject:ID forKey:[[self baseLazily] primaryKeyLazily]];
-	[self setAttributes:newAttributes];
+	[_attributes setObject:ID forKey:[[self baseLazily] primaryKeyLazily]];
 }
 
 - (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
