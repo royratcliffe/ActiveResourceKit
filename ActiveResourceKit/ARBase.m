@@ -231,7 +231,7 @@
 // method. Objective-C does not provide the singleton class
 // paradigm. ActiveResourceKit folds the Rails singleton methods to instance
 // methods.
-- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	// Use the new element path. Construct the request URL using this path but
 	// make it relative to the site URL. The NSURL class combines the new
@@ -256,26 +256,26 @@
 	}];
 }
 
-- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:completionHandler];
 }
 
-- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
 		completionHandler(resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
 	}];
 }
 
-- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
 		completionHandler(resources && [resources count] ? [resources lastObject] : nil, error);
 	}];
 }
 
-- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	NSString *from = [options objectForKey:ARFromKey];
 	if (from && [from isKindOfClass:[NSString class]])
@@ -294,7 +294,7 @@
 	}
 }
 
-- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler
+- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	NSDictionary *prefixOptions = nil;
 	NSDictionary *queryOptions = nil;

@@ -31,6 +31,22 @@ extern NSString *const ARParamsKey;
 @class AResource;
 
 /*!
+ * @brief Defines a completion handler block type where the results of
+ * completion yield a single resource.
+ * @details Successful completion gives a single instance.
+ */
+typedef void (^ARResourceCompletionHandler)(AResource *resource, NSError *error);
+
+/*!
+ * @brief Defines a type of completion handler block where successful completion
+ * yields an array of resources.
+ * @details The completion handler's @a resources argument equals @c nil when
+ * completion ends unsuccessfully. In this case, the second argument @a error
+ * supplies the reason.
+ */
+typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error);
+
+/*!
  * @brief An active resource's base configuration.
  * @details Defines an active resource's site, schema and known attributes,
  * etc. Does not however define an active resource @e instance. Active resources
@@ -226,23 +242,23 @@ extern NSString *const ARParamsKey;
  * arguments signal the outcome: non-nil attributes indicate successful
  * completion. In such case, error always equals nil. There is no error.
  */
-- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+- (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+- (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler;
 
 /*!
  * Answers just the first resource in a collection of resources. Finds all the
  * resources first, then extracts the first element. Acts as a convenience
  * wrapper.
  */
-- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+- (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+- (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 /*!
  * @brief Finds a single resource from a one-off URL.
  */
-- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 /*!
  * @brief Finds a single resource for a given identifier using the default URL.
@@ -260,7 +276,7 @@ extern NSString *const ARParamsKey;
  * eliminates the flexibility of parameterising the scope in cases where scope
  * is a dynamic argument.
  */
-- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(AResource *resource, NSError *error))completionHandler;
+- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 //-------------------------------------------------------------- Operation Queue
 
