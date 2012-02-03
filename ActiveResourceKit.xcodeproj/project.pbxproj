@@ -59,6 +59,10 @@
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
 		786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
+		786D637514DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		786D637614DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		786D637714DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */; };
+		786D637814DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */; };
 		7870D53A14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7870D53B14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7879809B14D1704900825C1E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879809A14D1704900825C1E /* CoreData.framework */; };
@@ -195,6 +199,8 @@
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
 		786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueCodingTests.h; sourceTree = "<group>"; };
 		786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueCodingTests.m; sourceTree = "<group>"; };
+		786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARURLConnectionDelegate.h; sourceTree = "<group>"; };
+		786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARURLConnectionDelegate.m; sourceTree = "<group>"; };
 		7870D53814CDFED800934195 /* ARMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMacros.h; sourceTree = "<group>"; };
 		7879809A14D1704900825C1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
@@ -326,6 +332,8 @@
 				78D3D6F2140BC3B800DD4278 /* ARBase.m */,
 				784450131428EFCB0014B4C6 /* ARBase+Private.h */,
 				784450141428EFCB0014B4C6 /* ARBase+Private.m */,
+				786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */,
+				786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */,
 				784450071428CE250014B4C6 /* ARResource.h */,
 				784450081428CE250014B4C6 /* ARResource.m */,
 				78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */,
@@ -415,6 +423,7 @@
 				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 				7870D53B14CDFED800934195 /* ARMacros.h in Headers */,
 				7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
+				786D637614DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +446,7 @@
 				78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
 				7870D53A14CDFED800934195 /* ARMacros.h in Headers */,
 				7834B5DD14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
+				786D637514DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +686,7 @@
 				78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
 				7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */,
+				786D637814DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +720,7 @@
 				78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
 				7834B5DF14D167C90062BB04 /* ARIncrementalStore.m in Sources */,
+				786D637714DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

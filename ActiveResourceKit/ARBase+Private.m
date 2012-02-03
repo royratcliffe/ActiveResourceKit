@@ -24,6 +24,7 @@
 
 #import "ARBase+Private.h"
 #import "ARConnection.h"
+#import "ARURLConnectionDelegate.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
 #import <ActiveModelKit/ActiveModelKit.h>
@@ -36,18 +37,6 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 {
 	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
 }
-
-/*!
- * @brief Implements a simple connection delegate designed for collecting the
- * response, including the body data, and for working around SSL challenges.
- */
-@interface ARURLConnectionDelegate : NSObject<NSURLConnectionDelegate>
-
-@property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
-@property(strong) NSURLResponse *response;
-@property(strong) NSMutableData *data;
-
-@end
 
 @implementation ARBase(Private)
 
@@ -237,54 +226,6 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 		[HTTP setDelegateQueue:operationQueue];
 	}
 	[HTTP start];
-}
-
-@end
-
-@implementation ARURLConnectionDelegate
-
-@synthesize completionHandler = _completionHandler;
-@synthesize response          = _response;
-@synthesize data              = _data;
-
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-{
-	return YES;
-}
-
-/*!
- * @brief Responds to authentication challenges.
- * @details The connection @em cannot continue without credentials in order to
- * access HTTPS resources. Creates a credential, passing it to the
- * authentication challenge's sender. Sends “server trust” provided by the
- * protection space of the authentication challenge.
- */
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-	SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
-	NSURLCredential *credential = [NSURLCredential credentialForTrust:serverTrust];
-	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	[self setResponse:response];
-	[self setData:[NSMutableData data]];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	[[self data] appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	[self completionHandler]([self response], [[self data] copy], nil);
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-	[self completionHandler]([self response], nil, error);
 }
 
 @end
