@@ -82,9 +82,9 @@
 
 /*!
  * @brief Loads resource attributes from a dictionary of key-value pairs.
- * Argument @a removeRoot becomes a do-not-care if @a attributes contains just a
- * single key-object pair. In such a case, removing the root depends on whether
- * or not the single key matches the base element name.
+ * @details Argument @a removeRoot becomes a do-not-care if @a attributes
+ * contains just a single key-object pair. In such a case, removing the root
+ * depends on whether or not the single key matches the base element name.
  *
  * Attribute keys use Rails conventions: underscored and lower case. You can
  * also access the attribute values using Key-Value Coding where the keys follow
