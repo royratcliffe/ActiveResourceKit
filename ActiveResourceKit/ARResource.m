@@ -180,7 +180,7 @@
 
 - (void)setNilValueForKey:(NSString *)key
 {
-	[_attributes setNilValueForKey:[[ASInflector defaultInflector] underscore:key]];
+	[self setValue:[NSNull null] forKey:key];
 }
 
 /*!
