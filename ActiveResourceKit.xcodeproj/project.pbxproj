@@ -57,6 +57,8 @@
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
+		786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
+		786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		7870D53A14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7870D53B14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7879809B14D1704900825C1E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879809A14D1704900825C1E /* CoreData.framework */; };
@@ -191,6 +193,8 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueCodingTests.h; sourceTree = "<group>"; };
+		786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueCodingTests.m; sourceTree = "<group>"; };
 		7870D53814CDFED800934195 /* ARMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMacros.h; sourceTree = "<group>"; };
 		7879809A14D1704900825C1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
@@ -364,6 +368,8 @@
 				7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */,
 				78054AFB14694531007E947E /* VersioningTests.h */,
 				78054AFC14694531007E947E /* VersioningTests.m */,
+				786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */,
+				786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */,
 				7828228214686DFD005D9BD2 /* ARTestCase.h */,
 				7828228314686DFD005D9BD2 /* ARTestCase.m */,
 				78282272146867F5005D9BD2 /* FinderTests.h */,
@@ -683,6 +689,7 @@
 				78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFE14694531007E947E /* VersioningTests.m in Sources */,
 				78F7972614CC3D01007A1262 /* ConnectionTests.m in Sources */,
+				786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +722,7 @@
 				78054AF914692ABC007E947E /* ActiveResourceKitTests.m in Sources */,
 				78054AFD14694531007E947E /* VersioningTests.m in Sources */,
 				78F7972514CC3D01007A1262 /* ConnectionTests.m in Sources */,
+				786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

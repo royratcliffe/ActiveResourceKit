@@ -178,6 +178,35 @@
 	[_attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:key]];
 }
 
+- (void)setNilValueForKey:(NSString *)key
+{
+	[_attributes setNilValueForKey:[[ASInflector defaultInflector] underscore:key]];
+}
+
+/*!
+ * @brief Transfers values from the resource attributes to a dictionary,
+ * answering the dictionary.
+ * @details Accesses the values by sending @c -valueForKey:aKey to @c self,
+ * where @c aKey conforms to key-value coding requirements, i.e. lower
+ * camel-case. This invokes @c -valueForUndefinedKey:aKey on @c self which
+ * performs the @c aKey to @c a_key translation to Rails resource attribute
+ * name.
+ */
+- (NSDictionary *)dictionaryWithValuesForKeys:(NSArray *)keys
+{
+	NSMutableDictionary *keyedValues = [NSMutableDictionary dictionary];
+	for (NSString *key in keys)
+	{
+		[keyedValues setObject:[self valueForKey:key] forKey:key];
+	}
+	return [keyedValues copy];
+}
+
+- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues
+{
+	[_attributes setValuesForKeysWithDictionary:keyedValues];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                      Prefix Options
 //------------------------------------------------------------------------------
