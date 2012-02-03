@@ -11,6 +11,8 @@
 		78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78054AFD14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
 		78054AFE14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
+		78107B3714DAD54D00662E9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78107B3614DAD54D00662E9B /* CoreData.framework */; };
+		78107B3814DAD59B00662E9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78107B3614DAD54D00662E9B /* CoreData.framework */; };
 		7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
 		7813AAA81419270400523ECD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA2D140BAAE100FE58E5 /* SenTestingKit.framework */; };
 		7813AAAB1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
@@ -154,6 +156,7 @@
 		78054AF81469299E007E947E /* Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		78054AFB14694531007E947E /* VersioningTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersioningTests.h; sourceTree = "<group>"; };
 		78054AFC14694531007E947E /* VersioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersioningTests.m; sourceTree = "<group>"; };
+		78107B3614DAD54D00662E9B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78282272146867F5005D9BD2 /* FinderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderTests.h; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78107B3714DAD54D00662E9B /* CoreData.framework in Frameworks */,
 				7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78107B3814DAD59B00662E9B /* CoreData.framework in Frameworks */,
 				78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */,
 				78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */,
 				78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */,
@@ -301,6 +306,7 @@
 		7846AA19140BAAE100FE58E5 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78107B3614DAD54D00662E9B /* CoreData.framework */,
 				78805F1C1445ACB100703E80 /* libActiveSupportKit.a */,
 			);
 			name = "Other Frameworks";
