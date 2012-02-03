@@ -47,4 +47,19 @@
 	STAssertEqualObjects([NSNumber numberWithInt:0], [[self resource] valueForKey:@"zero"], nil);
 }
 
+- (void)testSetNilValue
+{
+	[[self resource] setValue:@"" forKey:@"key"];
+	STAssertEqualObjects(@"", [[self resource] valueForKey:@"key"], nil);
+	
+	[[self resource] setNilValueForKey:@"key"];
+	STAssertEqualObjects([NSNull null], [[self resource] valueForKey:@"key"], nil);
+}
+
+- (void)testAttributeKeyVersusKVCKey
+{
+	[[self resource] setValue:@"123" forKey:@"theKey"];
+	STAssertEqualObjects(@"123", [[[self resource] attributes] objectForKey:@"the_key"], nil);
+}
+
 @end
