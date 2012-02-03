@@ -58,7 +58,7 @@
 
 - (void)testAttributeKeyVersusKVCKey
 {
-	[[self resource] setValue:@"123" forKey:@"theKey"];
+	[[self resource] setValue:@"123" forKey:@"TheKey"];
 	STAssertEqualObjects(@"123", [[[self resource] attributes] objectForKey:@"the_key"], nil);
 }
 
