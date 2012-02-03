@@ -27,4 +27,4 @@
 // the framework for OS X targets, nor in the include/ActiveResourceKit folder
 // for iOS targets.
 #import "ARBase+Private.h"
-#import "AResource+Private.h"
+#import "ARResource+Private.h"

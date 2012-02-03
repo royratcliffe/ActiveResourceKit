@@ -114,14 +114,14 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return [resources copy];
 }
 
-- (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
+- (ARResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
 {
 	Class klass = NSClassFromString(ASInflectorCamelize([self elementNameLazily], YES));
-	if (klass == nil || ![klass isSubclassOfClass:[AResource class]])
+	if (klass == nil || ![klass isSubclassOfClass:[ARResource class]])
 	{
-		klass = [AResource class];
+		klass = [ARResource class];
 	}
-	AResource *resource = [[klass alloc] initWithBase:self attributes:attributes persisted:YES];
+	ARResource *resource = [[klass alloc] initWithBase:self attributes:attributes persisted:YES];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
 }

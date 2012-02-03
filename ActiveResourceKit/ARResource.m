@@ -22,8 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "AResource.h"
-#import "AResource+Private.h"
+#import "ARResource.h"
+#import "ARResource+Private.h"
 
 // for -[ARBase splitOptions:prefixOptions:queryOptions:]
 // (This makes you wonder. If other classes need to import the private
@@ -41,14 +41,14 @@
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
 // continuation class
-@interface AResource()
+@interface ARResource()
 {
 	NSMutableDictionary *__strong _attributes;
 }
 
 @end
 
-@implementation AResource
+@implementation ARResource
 
 // designated initialiser
 - (id)init
@@ -72,7 +72,7 @@
 	{
 		[base setElementName:[self performSelector:@selector(elementName)]];
 	}
-	else if (self != [AResource class] && [self isSubclassOfClass:[AResource class]])
+	else if (self != [ARResource class] && [self isSubclassOfClass:[ARResource class]])
 	{
 		[base setElementName:[[[AMName alloc] initWithClass:self] element]];
 	}

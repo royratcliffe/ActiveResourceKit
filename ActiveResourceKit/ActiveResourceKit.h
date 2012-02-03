@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 #import <ActiveResourceKit/ARIncrementalStore.h>
-#import <ActiveResourceKit/AResource.h>
+#import <ActiveResourceKit/ARResource.h>
 #import <ActiveResourceKit/ARBase.h>
 #import <ActiveResourceKit/ARConnection.h>
 

@@ -25,7 +25,7 @@
 #import "ARBase.h"
 #import "ARBase+Private.h"
 
-#import "AResource.h"
+#import "ARResource.h"
 #import "ARErrors.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
@@ -242,7 +242,7 @@
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			completionHandler([[AResource alloc] initWithBase:self attributes:attrs], nil);
+			completionHandler([[ARResource alloc] initWithBase:self attributes:attrs], nil);
 		}
 		else
 		{

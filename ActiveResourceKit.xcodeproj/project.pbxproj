@@ -43,10 +43,10 @@
 		78444FFE142896330014B4C6 /* ARFormatMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78444FFB142896330014B4C6 /* ARFormatMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78444FFF142896330014B4C6 /* ARFormatMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78444FFC142896330014B4C6 /* ARFormatMethods.m */; };
 		78445000142896330014B4C6 /* ARFormatMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78444FFC142896330014B4C6 /* ARFormatMethods.m */; };
-		784450091428CE250014B4C6 /* AResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* AResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7844500A1428CE250014B4C6 /* AResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* AResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7844500B1428CE250014B4C6 /* AResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* AResource.m */; };
-		7844500C1428CE250014B4C6 /* AResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* AResource.m */; };
+		784450091428CE250014B4C6 /* ARResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* ARResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7844500A1428CE250014B4C6 /* ARResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* ARResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7844500B1428CE250014B4C6 /* ARResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* ARResource.m */; };
+		7844500C1428CE250014B4C6 /* ARResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* ARResource.m */; };
 		784450151428EFCB0014B4C6 /* ARBase+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450131428EFCB0014B4C6 /* ARBase+Private.h */; };
 		784450161428EFCB0014B4C6 /* ARBase+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450131428EFCB0014B4C6 /* ARBase+Private.h */; };
 		784450171428EFCB0014B4C6 /* ARBase+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450141428EFCB0014B4C6 /* ARBase+Private.m */; };
@@ -71,10 +71,10 @@
 		78D3D6F3140BC3B800DD4278 /* ARBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D3D6F4140BC3B800DD4278 /* ARBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARBase.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78E4DFEB145B1BF700AB4BCB /* AResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */; settings = {ATTRIBUTES = (); }; };
-		78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */; settings = {ATTRIBUTES = (); }; };
-		78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
-		78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */; };
+		78E4DFEB145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
+		78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
+		78E4DFED145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
+		78E4DFEE145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
 		78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA80014CB7CEC0049AE28 /* ARConnection.m */; };
@@ -173,8 +173,8 @@
 		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
 		78444FFB142896330014B4C6 /* ARFormatMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormatMethods.h; sourceTree = "<group>"; };
 		78444FFC142896330014B4C6 /* ARFormatMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFormatMethods.m; sourceTree = "<group>"; };
-		784450071428CE250014B4C6 /* AResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AResource.h; sourceTree = "<group>"; };
-		784450081428CE250014B4C6 /* AResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AResource.m; sourceTree = "<group>"; };
+		784450071428CE250014B4C6 /* ARResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARResource.h; sourceTree = "<group>"; };
+		784450081428CE250014B4C6 /* ARResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARResource.m; sourceTree = "<group>"; };
 		784450131428EFCB0014B4C6 /* ARBase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARBase+Private.h"; sourceTree = "<group>"; };
 		784450141428EFCB0014B4C6 /* ARBase+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ARBase+Private.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActiveResourceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,8 +196,8 @@
 		78D3D6F1140BC3B800DD4278 /* ARBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ARBase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78D3D6F2140BC3B800DD4278 /* ARBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ARBase.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
-		78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AResource+Private.h"; sourceTree = "<group>"; };
-		78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AResource+Private.m"; sourceTree = "<group>"; };
+		78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARResource+Private.h"; sourceTree = "<group>"; };
+		78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARResource+Private.m"; sourceTree = "<group>"; };
 		78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConnection.h; sourceTree = "<group>"; };
 		78EEA80014CB7CEC0049AE28 /* ARConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARConnection.m; sourceTree = "<group>"; };
 		78F7972314CC3D01007A1262 /* ConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionTests.h; sourceTree = "<group>"; };
@@ -316,10 +316,10 @@
 				78D3D6F2140BC3B800DD4278 /* ARBase.m */,
 				784450131428EFCB0014B4C6 /* ARBase+Private.h */,
 				784450141428EFCB0014B4C6 /* ARBase+Private.m */,
-				784450071428CE250014B4C6 /* AResource.h */,
-				784450081428CE250014B4C6 /* AResource.m */,
-				78E4DFE9145B1BF700AB4BCB /* AResource+Private.h */,
-				78E4DFEA145B1BF700AB4BCB /* AResource+Private.m */,
+				784450071428CE250014B4C6 /* ARResource.h */,
+				784450081428CE250014B4C6 /* ARResource.m */,
+				78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */,
+				78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */,
 				78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */,
 				78EEA80014CB7CEC0049AE28 /* ARConnection.m */,
 				78F7972D14CC48E8007A1262 /* ARConnection+Private.h */,
@@ -395,9 +395,9 @@
 				78440D7A141928B000EFBB93 /* Versioning.h in Headers */,
 				78FB0D87141A1820007AFB3D /* ARErrors.h in Headers */,
 				78444FFE142896330014B4C6 /* ARFormatMethods.h in Headers */,
-				7844500A1428CE250014B4C6 /* AResource.h in Headers */,
+				7844500A1428CE250014B4C6 /* ARResource.h in Headers */,
 				784450161428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
-				78E4DFEC145B1BF700AB4BCB /* AResource+Private.h in Headers */,
+				78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */,
 				78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */,
 				78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
@@ -417,9 +417,9 @@
 				7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */,
 				78FB0D86141A1820007AFB3D /* ARErrors.h in Headers */,
 				78444FFD142896330014B4C6 /* ARFormatMethods.h in Headers */,
-				784450091428CE250014B4C6 /* AResource.h in Headers */,
+				784450091428CE250014B4C6 /* ARResource.h in Headers */,
 				784450151428EFCB0014B4C6 /* ARBase+Private.h in Headers */,
-				78E4DFEB145B1BF700AB4BCB /* AResource+Private.h in Headers */,
+				78E4DFEB145B1BF700AB4BCB /* ARResource+Private.h in Headers */,
 				78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */,
 				78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */,
 				78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
@@ -657,9 +657,9 @@
 				78440D7D141928D100EFBB93 /* Versioning.m in Sources */,
 				78FB0D89141A1820007AFB3D /* ARErrors.m in Sources */,
 				78445000142896330014B4C6 /* ARFormatMethods.m in Sources */,
-				7844500C1428CE250014B4C6 /* AResource.m in Sources */,
+				7844500C1428CE250014B4C6 /* ARResource.m in Sources */,
 				784450181428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
-				78E4DFEE145B1BF700AB4BCB /* AResource+Private.m in Sources */,
+				78E4DFEE145B1BF700AB4BCB /* ARResource+Private.m in Sources */,
 				78EEA80414CB7CEC0049AE28 /* ARConnection.m in Sources */,
 				78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,
@@ -689,9 +689,9 @@
 				7835BC901414C47900CC4B56 /* Versioning.m in Sources */,
 				78FB0D88141A1820007AFB3D /* ARErrors.m in Sources */,
 				78444FFF142896330014B4C6 /* ARFormatMethods.m in Sources */,
-				7844500B1428CE250014B4C6 /* AResource.m in Sources */,
+				7844500B1428CE250014B4C6 /* ARResource.m in Sources */,
 				784450171428EFCB0014B4C6 /* ARBase+Private.m in Sources */,
-				78E4DFED145B1BF700AB4BCB /* AResource+Private.m in Sources */,
+				78E4DFED145B1BF700AB4BCB /* ARResource+Private.m in Sources */,
 				78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */,
 				78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */,
 				78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */,

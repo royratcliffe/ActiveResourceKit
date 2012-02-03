@@ -1,4 +1,4 @@
-// ActiveResourceKit AResource+Private.m
+// ActiveResourceKit ARResource+Private.m
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "AResource+Private.h"
+#import "ARResource+Private.h"
 #import "ARBase+Private.h"
 #import "ARErrors.h"
 
@@ -49,7 +49,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 	return !((100 <= statusCode && statusCode <= 199) || statusCode == 204 || statusCode == 304);
 }
 
-@implementation AResource(Private)
+@implementation ARResource(Private)
 
 - (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
 {

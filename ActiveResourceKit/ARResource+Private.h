@@ -1,4 +1,4 @@
-// ActiveResourceKit AResource+Private.h
+// ActiveResourceKit ARResource+Private.h
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import <ActiveResourceKit/AResource.h>
+#import <ActiveResourceKit/ARResource.h>
 
 /*!
  * @brief Extracts the resource identifier from the given HTTP response.
@@ -42,7 +42,7 @@ NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse);
  */
 BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 
-@interface AResource(Private)
+@interface ARResource(Private)
 
 - (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
 

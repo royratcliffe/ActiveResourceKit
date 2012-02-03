@@ -24,7 +24,7 @@
 
 #import <ActiveResourceKit/ARBase.h>
 
-@class AResource;
+@class ARResource;
 
 /*!
  * @brief Builds a query string given a dictionary of query options.
@@ -77,9 +77,9 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  * @details The implementation looks for a class matching the element name. It
  * converts the element name to class name by camel-casing the name. The answer
  * becomes an instance of that class if the class exists and derives from
- * AResource. Otherwise the answer is a plain instance of AResource.
+ * ARResource. Otherwise the answer is a plain instance of ARResource.
  */
-- (AResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
+- (ARResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
 
 /*!
  * Answers a set of prefix parameters based on the current prefix source. These

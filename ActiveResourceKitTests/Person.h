@@ -32,6 +32,6 @@
 //	end
 //
 
-@interface Person : AResource
+@interface Person : ARResource
 
 @end

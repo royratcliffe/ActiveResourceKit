@@ -234,7 +234,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	//	cd "$SRCROOT/active-resource-kit-tests"
 	//	[ -f tmp/pids/server-xcode.pid ] && kill -INT `cat tmp/pids/server-xcode.pid`
 	//
-	[post buildWithAttributes:nil completionHandler:^(AResource *resource, NSError *error) {
+	[post buildWithAttributes:nil completionHandler:^(ARResource *resource, NSError *error) {
 		STAssertNotNil(resource, nil);
 		STAssertNil(error, nil);
 		[self setStop:YES];
@@ -249,7 +249,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 		STAssertNil(error, nil);
 		// Without assuming exactly what the server-side records contain, just
 		// assert that there are some then log their contents.
-		for (AResource *resource in resources)
+		for (ARResource *resource in resources)
 		{
 			NSLog(@"%@", [resource attributes]);
 		}
@@ -260,7 +260,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 
 - (void)testFindFirst
 {
-	[post findFirstWithOptions:nil completionHandler:^(AResource *resource, NSError *error) {
+	[post findFirstWithOptions:nil completionHandler:^(ARResource *resource, NSError *error) {
 		STAssertNotNil(resource, nil);
 		STAssertNil(error, nil);
 		NSLog(@"%@", [resource attributes]);

@@ -28,14 +28,14 @@
 extern NSString *const ARFromKey;
 extern NSString *const ARParamsKey;
 
-@class AResource;
+@class ARResource;
 
 /*!
  * @brief Defines a completion handler block type where the results of
  * completion yield a single resource.
  * @details Successful completion gives a single instance.
  */
-typedef void (^ARResourceCompletionHandler)(AResource *resource, NSError *error);
+typedef void (^ARResourceCompletionHandler)(ARResource *resource, NSError *error);
 
 /*!
  * @brief Defines a type of completion handler block where successful completion
@@ -77,7 +77,7 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  *
  * This might help to define what ARBase actually does, its purpose. ARBase
  * implements the anonymous singleton class behaviours belonging to
- * @c ActiveResource::Base. AResource defines the class for Active Resource
+ * @c ActiveResource::Base. ARResource defines the class for Active Resource
  * instances, but ARBase defines the class for Active Resource @e classes,
  * singleton classes that is. Objective-C 2.0 does not provide anything
  * comparable singleton classes. The Rails singleton class becomes the

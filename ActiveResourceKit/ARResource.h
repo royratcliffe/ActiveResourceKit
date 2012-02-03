@@ -1,4 +1,4 @@
-// ActiveResourceKit AResource.h
+// ActiveResourceKit ARResource.h
 //
 // Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -35,24 +35,18 @@
  * HTTP transport.
  *
  * @image html Class_Diagram__Base_and_Resource.png
- *
- * @par AResource or ARResource?
- * This class uses AResource as the class name rather than ARResource. A is for
- * Active, R for Resource. But the namespace convention for Objective-C lends
- * itself to AResource if you eliminate the repeated term. Hence, ARResource
- * becomes AResource!
  */
-@interface AResource : NSObject<AMAttributeMethods>
+@interface ARResource : NSObject<AMAttributeMethods>
 
 /*!
  * @brief Constructs an active resource base using class methods to establish
  * the site and element name.
- * @details If the AResource sub-class has a class method called +site, use its
+ * @details If the ARResource sub-class has a class method called +site, use its
  * answer to set up the Active Resource site. This assumes that +site answers an
  * NSURL object. Similarly, sets up the base element name by sending
  * +elementName to the sub-class, answering a string. However, if the sub-class
  * does not implement the +elementName class method, the element name derives
- * from the AResource sub-class name.
+ * from the ARResource sub-class name.
  */
 + (ARBase *)base;
 
@@ -78,7 +72,7 @@
  * implement @c +site and @c +elementName to supply the URL and element name. If
  * your class does not supply an implementation for @c +elementName, the element
  * name derives from the sub-class name. This assumes that you do not directly
- * instantiate the AResource class. If you do, the element name remains @c nil.
+ * instantiate the ARResource class. If you do, the element name remains @c nil.
  */
 - (ARBase *)baseLazily;
 
