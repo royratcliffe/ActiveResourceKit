@@ -149,7 +149,7 @@
 - (NSData *)get:(NSString *)path
 		headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError **)outError;
+		  error:(NSError *__autoreleasing *)outError;
 {
 	return [self requestWithHTTPMethod:ARHTTPGetMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
@@ -157,7 +157,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 - (NSData *)delete:(NSString *)path
 		   headers:(NSDictionary *)headers
  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-			 error:(NSError **)outError;
+			 error:(NSError *__autoreleasing *)outError;
 {
 	return [self requestWithHTTPMethod:ARHTTPDeleteMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
@@ -165,7 +165,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 - (NSData *)put:(NSString *)path
 		headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError **)outError;
+		  error:(NSError *__autoreleasing *)outError;
 {
 	return [self requestWithHTTPMethod:ARHTTPPutMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
@@ -173,7 +173,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 - (NSData *)post:(NSString *)path
 		 headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError **)outError;
+		   error:(NSError *__autoreleasing *)outError;
 {
 	return [self requestWithHTTPMethod:ARHTTPPostMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
@@ -181,7 +181,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 - (NSData *)head:(NSString *)path
 		 headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError **)outError;
+		   error:(NSError *__autoreleasing *)outError;
 {
 	return [self requestWithHTTPMethod:ARHTTPHeadMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
 }
@@ -190,7 +190,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 							 path:(NSString *)path
 						  headers:(NSDictionary *)headers
 				returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-							error:(NSError **)outError
+							error:(NSError *__autoreleasing *)outError
 {
 	NSMutableURLRequest *request = [self requestForHTTPMethod:HTTPMethod path:path headers:headers];
 	NSURLResponse *__autoreleasing response = nil;

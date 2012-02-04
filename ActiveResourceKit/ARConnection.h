@@ -76,27 +76,27 @@
 - (NSData *)get:(NSString *)path
 		headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError **)outError;
+		  error:(NSError *__autoreleasing *)outError;
 
 - (NSData *)delete:(NSString *)path
            headers:(NSDictionary *)headers
  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-             error:(NSError **)outError;
+             error:(NSError *__autoreleasing *)outError;
 
 - (NSData *)put:(NSString *)path
 		headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError **)outError;
+		  error:(NSError *__autoreleasing *)outError;
 
 - (NSData *)post:(NSString *)path
 		 headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError **)outError;
+		   error:(NSError *__autoreleasing *)outError;
 
 - (NSData *)head:(NSString *)path
 		 headers:(NSDictionary *)headers
 returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError **)outError;
+		   error:(NSError *__autoreleasing *)outError;
 
 /*!
  * @brief Performs a @em synchronous HTTP request.
@@ -116,7 +116,7 @@ returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
 							 path:(NSString *)path
 						  headers:(NSDictionary *)headers
 				returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-							error:(NSError **)outError;
+							error:(NSError *__autoreleasing *)outError;
 
 //------------------------------------------------------------ Building Requests
 

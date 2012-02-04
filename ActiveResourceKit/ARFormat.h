@@ -29,6 +29,6 @@
 @property(readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
 @property(readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
 
-- (id)decode:(NSData *)data error:(NSError **)outError;
+- (id)decode:(NSData *)data error:(NSError *__autoreleasing *)outError;
 
 @end

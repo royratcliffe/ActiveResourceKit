@@ -39,7 +39,7 @@
 	return @"application/json";
 }
 
-- (id)decode:(NSData *)data error:(NSError **)outError
+- (id)decode:(NSData *)data error:(NSError *__autoreleasing *)outError
 {
 	return ARRemoveRoot(ASJSONDecodeFromData(data, outError));
 }
