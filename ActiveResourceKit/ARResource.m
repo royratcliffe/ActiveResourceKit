@@ -142,6 +142,14 @@
 
 - (void)setAttributes:(NSDictionary *)attributes
 {
+	// Remove all objects in order to maintain "setter" semantics. Otherwise,
+	// setting really means merging attributes.
+	[_attributes removeAllObjects];
+	[self mergeAttributes:attributes];
+}
+
+- (void)mergeAttributes:(NSDictionary *)attributes
+{
 	[_attributes setValuesForKeysWithDictionary:attributes];
 }
 

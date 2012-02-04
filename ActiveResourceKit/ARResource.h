@@ -81,6 +81,16 @@
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
 
 /*!
+ * @brief Merges the contents of a dictionary into the receiver's attributes.
+ * @param attributes The dictionary (or hash) of attribute key-value pairs used
+ * for merging with the receiver's attributes.
+ * @details If keys within the given dictionary of @a attributes match keys in
+ * the receiver's current attributes, merging replaces the objects in the
+ * receiver by those in the given dictionary.
+ */
+- (void)mergeAttributes:(NSDictionary *)attributes;
+
+/*!
  * @brief Loads resource attributes from a dictionary of key-value pairs.
  * @details Argument @a removeRoot becomes a do-not-care if @a attributes
  * contains just a single key-object pair. In such a case, removing the root
