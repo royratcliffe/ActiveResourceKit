@@ -204,7 +204,10 @@
 
 - (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues
 {
-	[_attributes setValuesForKeysWithDictionary:keyedValues];
+	for (NSString *key in keyedValues)
+	{
+		[self setValue:[keyedValues objectForKey:key] forKey:key];
+	}
 }
 
 //------------------------------------------------------------------------------
