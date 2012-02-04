@@ -62,4 +62,13 @@
 	STAssertEqualObjects(@"123", [[[self resource] attributes] objectForKey:@"the_key"], nil);
 }
 
+- (void)testValuesForKeys
+{
+	[[self resource] setValue:@"abc" forKey:@"KeyA"];
+	[[self resource] setValue:@"def" forKey:@"KeyB"];
+	NSDictionary *valuesForKeys = [[self resource] dictionaryWithValuesForKeys:[NSArray arrayWithObjects:@"KeyA", @"KeyB", nil]];
+	NSDictionary *shouldBeValuesForKeys = [NSDictionary dictionaryWithObjectsAndKeys:@"abc", @"KeyA", @"def", @"KeyB", nil];
+	STAssertEqualObjects(shouldBeValuesForKeys, valuesForKeys, nil);
+}
+
 @end
