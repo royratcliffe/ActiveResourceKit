@@ -28,7 +28,7 @@
  * @brief Implements a simple connection delegate designed for collecting the
  * response, including the body data, and for working around SSL challenges.
  */
-@interface ARURLConnectionDelegate : NSObject<NSURLConnectionDelegate>
+@interface ARURLConnectionDelegate : NSObject<NSURLConnectionDataDelegate>
 
 @property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
 @property(strong) NSURLResponse *response;
