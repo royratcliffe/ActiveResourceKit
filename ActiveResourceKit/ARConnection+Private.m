@@ -57,16 +57,16 @@
 	// Step strings.
 	static struct
 	{
-		CFStringRef const HTTPMethod;
-		CFStringRef const headerName;
+		NSString *const __unsafe_unretained HTTPMethod;
+		NSString *const __unsafe_unretained headerName;
 	}
 	const HTTPFormatHeaderNames[] =
 	{
-		{ CFSTR("GET"),    CFSTR("Accept") },
-		{ CFSTR("PUT"),    CFSTR("Content-Type") },
-		{ CFSTR("POST"),   CFSTR("Content-Type") },
-		{ CFSTR("DELETE"), CFSTR("Accept") },
-		{ CFSTR("HEAD"),   CFSTR("Accept") },
+		{ @"GET",    @"Accept" },
+		{ @"PUT",    @"Content-Type" },
+		{ @"POST",   @"Content-Type" },
+		{ @"DELETE", @"Accept" },
+		{ @"HEAD",   @"Accept" },
 	};
 	// Is this too ugly? A dictionary could implement the look-up. But that
 	// requires building a static dictionary initially and does not allow
@@ -77,7 +77,7 @@
 	NSUInteger index;
 	for (index = 0; index < ASDimOf(HTTPFormatHeaderNames); index++)
 	{
-		if ([HTTPMethod isEqualToString:(__bridge NSString *)HTTPFormatHeaderNames[index].HTTPMethod])
+		if ([HTTPMethod isEqualToString:HTTPFormatHeaderNames[index].HTTPMethod])
 		{
 			break;
 		}
@@ -85,7 +85,7 @@
 	NSDictionary *formatHeader;
 	if (index < ASDimOf(HTTPFormatHeaderNames))
 	{
-		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:(__bridge NSString *)HTTPFormatHeaderNames[index].headerName];
+		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:HTTPFormatHeaderNames[index].headerName];
 	}
 	else
 	{
