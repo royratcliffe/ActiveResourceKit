@@ -29,6 +29,7 @@
 @property(weak, readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
 @property(weak, readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
 
+- (NSData *)encode:(id)object error:(NSError *__autoreleasing *)outError;
 - (id)decode:(NSData *)data error:(NSError *__autoreleasing *)outError;
 
 + (ARJSONFormat *)JSONFormat;
