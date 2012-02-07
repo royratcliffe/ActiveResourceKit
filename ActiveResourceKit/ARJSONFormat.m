@@ -55,7 +55,7 @@
 
 + (ARJSONFormat *)JSONFormat
 {
-	static ARJSONFormat *JSONFormat;
+	static ARJSONFormat *__strong JSONFormat;
 	if (JSONFormat == nil)
 	{
 		JSONFormat = [[super allocWithZone:nil] init];
