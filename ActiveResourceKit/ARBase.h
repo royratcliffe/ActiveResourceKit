@@ -256,11 +256,6 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 /*!
- * @brief Finds a single resource from a one-off URL.
- */
-- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
-
-/*!
  * @brief Finds a single resource for a given identifier using the default URL.
  *
  * @par Ruby on Rails Comparison
@@ -278,14 +273,12 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  */
 - (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-//-------------------------------------------------------------- Operation Queue
-
 /*!
- * @brief Specifies the operation queue on which to handle response completions
- * for resources associated with this base.
- * @details All completion handlers run in the given operation queue. If @c nil,
- * the completion handler runs in the operation queue used to issue the request.
+ * @brief Finds a single resource from a one-off URL.
+ * @details This method expects you to provide the one-off URL using the @ref
+ * ARFromKey within the options dictionary. You must also specify query string
+ * parameters using the @ref ARParamsKey within the options.
  */
-@property(strong, NS_NONATOMIC_IOSONLY) NSOperationQueue *operationQueue;
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 @end

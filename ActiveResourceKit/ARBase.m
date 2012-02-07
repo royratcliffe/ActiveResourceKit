@@ -275,25 +275,6 @@
 	}];
 }
 
-- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
-{
-	NSString *from = [options objectForKey:ARFromKey];
-	if (from && [from isKindOfClass:[NSString class]])
-	{
-		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
-		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-			if ([object isKindOfClass:[NSDictionary class]])
-			{
-				completionHandler([self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
-			}
-			else
-			{
-				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-			}
-		}];
-	}
-}
-
 - (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	NSDictionary *prefixOptions = nil;
@@ -312,10 +293,23 @@
 	}];
 }
 
-//------------------------------------------------------------------------------
-#pragma mark                                                     Operation Queue
-//------------------------------------------------------------------------------
-
-@synthesize operationQueue;
+- (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
+{
+	NSString *from = [options objectForKey:ARFromKey];
+	if (from && [from isKindOfClass:[NSString class]])
+	{
+		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
+		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+			if ([object isKindOfClass:[NSDictionary class]])
+			{
+				completionHandler([self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+			}
+			else
+			{
+				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
+		}];
+	}
+}
 
 @end
