@@ -264,6 +264,13 @@
 	}];
 }
 
+- (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler
+{
+	[[[ARResource alloc] initWithBase:self attributes:attributes] saveWithCompletionHandler:^(id object, NSError *error) {
+		completionHandler(object, error);
+	}];
+}
+
 - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler
 {
 	return [self findEveryWithOptions:options completionHandler:completionHandler];

@@ -257,6 +257,12 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  */
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler;
 
+/*!
+ * @brief Creates a new resource instance, requesting that the remote service
+ * saves the new resource.
+ */
+- (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler;
+
 - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler;
 
 /*!
