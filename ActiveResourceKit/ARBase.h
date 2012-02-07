@@ -235,6 +235,19 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions;
 - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions;
 
+//------------------------------------------------------------- RESTful Services
+
+// The remote RESTful services offer the following basic actions.
+//
+//	- build
+//	- create
+//	- find
+//		* every
+//		* single
+//		* one
+//	- delete
+//	- exists?
+
 /*!
  * Asynchronously builds an Active Resource.
  *

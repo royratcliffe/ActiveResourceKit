@@ -102,6 +102,10 @@
 	return format;
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                                             Timeout
+//------------------------------------------------------------------------------
+
 @synthesize timeout = _timeout;
 
 //------------------------------------------------------------------------------
@@ -225,6 +229,10 @@
 	}
 	return [NSString stringWithFormat:@"%@%@.%@%@", [self prefixWithOptions:prefixOptions], [self collectionNameLazily], [[self formatLazily] extension], ARQueryStringForOptions(queryOptions)];
 }
+
+//------------------------------------------------------------------------------
+#pragma mark                                                    RESTful Services
+//------------------------------------------------------------------------------
 
 // Building with attributes. Should this be a class or instance method? Rails
 // implements this as a class method, or to be more specific, a singleton
