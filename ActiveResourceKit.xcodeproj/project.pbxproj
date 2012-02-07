@@ -11,10 +11,14 @@
 		78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78054AFD14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
 		78054AFE14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
-		780D959D14E1264F005689CA /* ARAsynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARAsynchronousConnection.h */; };
-		780D959E14E1264F005689CA /* ARAsynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARAsynchronousConnection.h */; };
+		780D959D14E1264F005689CA /* ARAsynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARAsynchronousConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		780D959E14E1264F005689CA /* ARAsynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARAsynchronousConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D959F14E1264F005689CA /* ARAsynchronousConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D959C14E1264F005689CA /* ARAsynchronousConnection.m */; };
 		780D95A014E1264F005689CA /* ARAsynchronousConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D959C14E1264F005689CA /* ARAsynchronousConnection.m */; };
+		780D95A714E12D74005689CA /* ARSynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95A514E12D74005689CA /* ARSynchronousConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		780D95A814E12D74005689CA /* ARSynchronousConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95A514E12D74005689CA /* ARSynchronousConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		780D95A914E12D74005689CA /* ARSynchronousConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95A614E12D74005689CA /* ARSynchronousConnection.m */; };
+		780D95AA14E12D74005689CA /* ARSynchronousConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95A614E12D74005689CA /* ARSynchronousConnection.m */; };
 		78107B3714DAD54D00662E9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78107B3614DAD54D00662E9B /* CoreData.framework */; };
 		78107B3814DAD59B00662E9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78107B3614DAD54D00662E9B /* CoreData.framework */; };
 		7813AA9B1419270400523ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
@@ -168,6 +172,8 @@
 		78054AFC14694531007E947E /* VersioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersioningTests.m; sourceTree = "<group>"; };
 		780D959B14E1264F005689CA /* ARAsynchronousConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAsynchronousConnection.h; sourceTree = "<group>"; };
 		780D959C14E1264F005689CA /* ARAsynchronousConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARAsynchronousConnection.m; sourceTree = "<group>"; };
+		780D95A514E12D74005689CA /* ARSynchronousConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSynchronousConnection.h; sourceTree = "<group>"; };
+		780D95A614E12D74005689CA /* ARSynchronousConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSynchronousConnection.m; sourceTree = "<group>"; };
 		78107B3614DAD54D00662E9B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		7813AA9A1419270400523ECD /* libActiveResourceKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActiveResourceKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7813AAA71419270400523ECD /* ActiveResourceKitLibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveResourceKitLibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +354,8 @@
 				78EEA80014CB7CEC0049AE28 /* ARConnection.m */,
 				78F7972D14CC48E8007A1262 /* ARConnection+Private.h */,
 				78F7972E14CC48E8007A1262 /* ARConnection+Private.m */,
+				780D95A514E12D74005689CA /* ARSynchronousConnection.h */,
+				780D95A614E12D74005689CA /* ARSynchronousConnection.m */,
 				780D959B14E1264F005689CA /* ARAsynchronousConnection.h */,
 				780D959C14E1264F005689CA /* ARAsynchronousConnection.m */,
 				78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */,
@@ -433,6 +441,7 @@
 				7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
 				786D637614DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */,
 				780D959E14E1264F005689CA /* ARAsynchronousConnection.h in Headers */,
+				780D95A814E12D74005689CA /* ARSynchronousConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,7 @@
 				7834B5DD14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
 				786D637514DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */,
 				780D959D14E1264F005689CA /* ARAsynchronousConnection.h in Headers */,
+				780D95A714E12D74005689CA /* ARSynchronousConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +708,7 @@
 				7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */,
 				786D637814DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */,
 				780D95A014E1264F005689CA /* ARAsynchronousConnection.m in Sources */,
+				780D95AA14E12D74005689CA /* ARSynchronousConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +744,7 @@
 				7834B5DF14D167C90062BB04 /* ARIncrementalStore.m in Sources */,
 				786D637714DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */,
 				780D959F14E1264F005689CA /* ARAsynchronousConnection.m in Sources */,
+				780D95A914E12D74005689CA /* ARSynchronousConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
