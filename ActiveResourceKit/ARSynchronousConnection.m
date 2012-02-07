@@ -23,61 +23,17 @@
 //------------------------------------------------------------------------------
 
 #import "ARSynchronousConnection.h"
-#import "ARHTTPMethods.h"
 
 @implementation ARSynchronousConnection
 
 //------------------------------------------------------------------------------
-#pragma mark                                                          HTTP Verbs
+#pragma mark                                                       HTTP Requests
 //------------------------------------------------------------------------------
 
-- (NSData *)get:(NSString *)path
-		headers:(NSDictionary *)headers
-returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError *__autoreleasing *)outError;
+- (NSData *)sendRequest:(NSURLRequest *)request
+	  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+				  error:(NSError *__autoreleasing *)outError
 {
-	return [self requestWithHTTPMethod:ARHTTPGetMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
-}
-
-- (NSData *)delete:(NSString *)path
-		   headers:(NSDictionary *)headers
- returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-			 error:(NSError *__autoreleasing *)outError;
-{
-	return [self requestWithHTTPMethod:ARHTTPDeleteMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
-}
-
-- (NSData *)put:(NSString *)path
-		headers:(NSDictionary *)headers
-returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		  error:(NSError *__autoreleasing *)outError;
-{
-	return [self requestWithHTTPMethod:ARHTTPPutMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
-}
-
-- (NSData *)post:(NSString *)path
-		 headers:(NSDictionary *)headers
-returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError *__autoreleasing *)outError;
-{
-	return [self requestWithHTTPMethod:ARHTTPPostMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
-}
-
-- (NSData *)head:(NSString *)path
-		 headers:(NSDictionary *)headers
-returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-		   error:(NSError *__autoreleasing *)outError;
-{
-	return [self requestWithHTTPMethod:ARHTTPHeadMethod path:path headers:headers returningResponse:outHTTPResponse error:outError];
-}
-
-- (NSData *)requestWithHTTPMethod:(NSString *)HTTPMethod
-							 path:(NSString *)path
-						  headers:(NSDictionary *)headers
-				returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
-							error:(NSError *__autoreleasing *)outError
-{
-	NSMutableURLRequest *request = [self requestForHTTPMethod:HTTPMethod path:path headers:headers];
 	NSURLResponse *__autoreleasing response = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:outError];
 	if (outHTTPResponse)
