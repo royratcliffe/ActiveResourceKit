@@ -69,7 +69,7 @@
  * accessing the error's user information dictionary with the @ref
  * ARConnectionHTTPResponseKey key.
  */
-+ (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
++ (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
 
 //------------------------------------------------------------ Building Requests
 

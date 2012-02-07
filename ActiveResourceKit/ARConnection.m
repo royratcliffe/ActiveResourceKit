@@ -72,6 +72,7 @@
 }
 
 + (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
++ (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
 {
 	NSInteger code;
 	switch ([HTTPResponse statusCode])

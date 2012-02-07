@@ -29,15 +29,15 @@
 
 @implementation ConnectionTests
 
-- (void)testHandleResponse
+- (void)testErrorForResponse
 {
-	NSError *(^handleHTTPResponse)(NSInteger statusCode) = ^(NSInteger statusCode) {
-		return [ARConnection handleHTTPResponse:[[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil]];
+	NSError *(^errorForHTTPResponse)(NSInteger statusCode) = ^(NSInteger statusCode) {
+		return [ARConnection errorForHTTPResponse:[[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil]];
 	};
 	// valid responses: 2xx and 3xx
 	for (NSNumber *code in [NSArray arrayWithObjects:[NSNumber numberWithInt:200], [NSNumber numberWithInt:299], [NSNumber numberWithInt:300], [NSNumber numberWithInt:399], nil])
 	{
-		STAssertNil(handleHTTPResponse([code integerValue]), nil);
+		STAssertNil(errorForHTTPResponse([code integerValue]), nil);
 	}
 	// redirection
 	NSArray *redirectCodes = [NSArray arrayWithObjects:[NSNumber numberWithInt:301], [NSNumber numberWithInt:302], [NSNumber numberWithInt:303], [NSNumber numberWithInt:307], nil];
@@ -45,7 +45,7 @@
 	NSDictionary *redirectDescriptionForCode = [NSDictionary dictionaryWithObjects:redirectDescriptions forKeys:redirectCodes];
 	for (NSNumber *code in redirectCodes)
 	{
-		NSError *error = handleHTTPResponse([code integerValue]);
+		NSError *error = errorForHTTPResponse([code integerValue]);
 		STAssertNotNil(error, nil);
 		STAssertEquals([error code], (NSInteger)ARRedirectionErrorCode, nil);
 		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
@@ -69,7 +69,7 @@
 	};
 	for (NSUInteger i = 0; i < ASDimOf(clientCodesAndErrors); i++)
 	{
-		STAssertEquals([handleHTTPResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
+		STAssertEquals([errorForHTTPResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
 	}
 	for (NSInteger statusCode = 402; statusCode <= 499; statusCode++)
 	{
@@ -77,13 +77,13 @@
 		for (i = 0; i < ASDimOf(clientCodesAndErrors) && statusCode != clientCodesAndErrors[i].statusCode; i++);
 		if (i == ASDimOf(clientCodesAndErrors))
 		{
-			STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
+			STAssertEquals([errorForHTTPResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
 		}
 	}
 	// server errors: 5xx
 	for (NSInteger statusCode = 500; statusCode <= 599; statusCode++)
 	{
-		STAssertEquals([handleHTTPResponse(statusCode) code], (NSInteger)ARServerErrorCode, nil);
+		STAssertEquals([errorForHTTPResponse(statusCode) code], (NSInteger)ARServerErrorCode, nil);
 	}
 }
 
