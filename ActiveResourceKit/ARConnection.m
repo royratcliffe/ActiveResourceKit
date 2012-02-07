@@ -146,31 +146,6 @@
 #pragma mark                                                   Building Requests
 //------------------------------------------------------------------------------
 
-- (NSMutableURLRequest *)getRequestForPath:(NSString *)path headers:(NSDictionary *)headers
-{
-	return [self requestForHTTPMethod:ARHTTPGetMethod path:path headers:headers];
-}
-
-- (NSMutableURLRequest *)deleteRequestForPath:(NSString *)path headers:(NSDictionary *)headers
-{
-	return [self requestForHTTPMethod:ARHTTPDeleteMethod path:path headers:headers];
-}
-
-- (NSMutableURLRequest *)putRequestForPath:(NSString *)path headers:(NSDictionary *)headers
-{
-	return [self requestForHTTPMethod:ARHTTPPutMethod path:path headers:headers];
-}
-
-- (NSMutableURLRequest *)postRequestForPath:(NSString *)path headers:(NSDictionary *)headers
-{
-	return [self requestForHTTPMethod:ARHTTPPostMethod path:path headers:headers];
-}
-
-- (NSMutableURLRequest *)headRequestForPath:(NSString *)path headers:(NSDictionary *)headers
-{
-	return [self requestForHTTPMethod:ARHTTPHeadMethod path:path headers:headers];
-}
-
 - (NSMutableURLRequest *)requestForHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers
 {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:[self site]];

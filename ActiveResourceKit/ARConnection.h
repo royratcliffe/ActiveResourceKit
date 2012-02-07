@@ -73,32 +73,6 @@
 
 //------------------------------------------------------------ Building Requests
 
-// The following request-building methods follow the form ‘something request for
-// something else,’ e.g. get request for path with headers. The first
-// ‘something’ qualifies the request: what kind of request. The second
-// ‘something’ describes what the request is for. All the methods build HTTP
-// requests only. They do not start the requests, nor attach the requests to a
-// connection. These interfaces only prepare requests for connection.
-
-/*!
- * @brief Builds a GET request for the given @a path with the given @a headers.
- * @details Shortcut for -[ARConnection requestForHTTPMethod:ARHTTPGetMethod
- * path:path headers:headers].
- * @par Please Note
- * This method builds a GET request for the given path with the given
- * headers. It does not @em get the request. The term “get” refers to the HTTP
- * method and @em not to the act of getting a request as in a getter accessor.
- */
-- (NSMutableURLRequest *)getRequestForPath:(NSString *)path headers:(NSString *)headers;
-
-- (NSMutableURLRequest *)deleteRequestForPath:(NSString *)path headers:(NSString *)headers;
-
-- (NSMutableURLRequest *)putRequestForPath:(NSString *)path headers:(NSString *)headers;
-
-- (NSMutableURLRequest *)postRequestForPath:(NSString *)path headers:(NSString *)headers;
-
-- (NSMutableURLRequest *)headRequestForPath:(NSString *)path headers:(NSString *)headers;
-
 /*!
  * @brief Builds a mutable HTTP request given a HTTP method, a path and headers.
  * @details The request site and timeout originates with the message
