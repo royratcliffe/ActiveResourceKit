@@ -92,7 +92,8 @@
 	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSHTTPURLResponse *HTTPResponse = nil;
 	NSError *error = nil;
-	NSData *data = [connection get:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:&error];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPGetMethod path:@"/people/1.json" headers:nil];
+	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:&error];
 	NSDictionary *matz = [[connection format] decode:data error:&error];
 	STAssertEqualObjects(@"Matz", [matz valueForKey:@"name"], nil);
 }
@@ -103,7 +104,9 @@
 	// HTTP request method differs: HEAD rather than GET. In response, the
 	// server should answer with an empty body and response code 200.
 	NSHTTPURLResponse *HTTPResponse = nil;
-	NSData *data = [[[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()] head:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:NULL];
+	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPHeadMethod path:@"/people/1.json" headers:nil];
+	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
 	STAssertEquals([data length], (NSUInteger)0, nil);
 	STAssertEquals([HTTPResponse statusCode], (NSInteger)200, nil);
 }
@@ -113,7 +116,8 @@
 	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSHTTPURLResponse *HTTPResponse = nil;
 	NSDictionary *headers = [NSDictionary dictionaryWithObject:@"value" forKey:@"key"];
-	NSData *data = [connection get:@"/people/2.json" headers:headers returningResponse:&HTTPResponse error:NULL];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPGetMethod path:@"/people/2.json" headers:headers];
+	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
 	// This is not a real test of GET with headers. The test cannot assert
 	// anything about headers being successfully sent along with the GET
 	// request; the server does not echo the headers. However, if you check the
@@ -136,7 +140,8 @@
 {
 	NSHTTPURLResponse *HTTPResponse = nil;
 	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
-	[connection post:@"/people.json" headers:nil returningResponse:&HTTPResponse error:NULL];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPPostMethod path:@"/people.json" headers:nil];
+	[connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
 	STAssertNotNil([[HTTPResponse allHeaderFields] objectForKey:@"Location"], nil);
 }
 
