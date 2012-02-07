@@ -36,4 +36,17 @@
 	[self runUntilStop];
 }
 
+- (void)testToJSON
+{
+	[[Person base] findSingleWithID:[NSNumber numberWithInt:6] options:nil completionHandler:^(ARResource *joe, NSError *error) {
+		NSString *string = [[NSString alloc] initWithData:[joe encode] encoding:NSUTF8StringEncoding];
+		for (NSString *re in [NSArray arrayWithObjects:@"^\\{\"person\":\\{", @"\"id\":6", @"\"name\":\"Joe\"", @"\\}\\}$", nil])
+		{
+			STAssertNotNil([[NSRegularExpression regularExpressionWithPattern:re options:0 error:NULL] firstMatchInString:string options:0 range:NSMakeRange(0, [string length])], nil);
+		}
+		[self setStop:YES];
+	}];
+	[self runUntilStop];
+}
+
 @end
