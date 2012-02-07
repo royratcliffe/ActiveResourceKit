@@ -89,7 +89,7 @@
 
 - (void)testGet
 {
-	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSHTTPURLResponse *HTTPResponse = nil;
 	NSError *error = nil;
 	NSData *data = [connection get:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:&error];
@@ -103,14 +103,14 @@
 	// HTTP request method differs: HEAD rather than GET. In response, the
 	// server should answer with an empty body and response code 200.
 	NSHTTPURLResponse *HTTPResponse = nil;
-	NSData *data = [[[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()] head:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:NULL];
+	NSData *data = [[[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()] head:@"/people/1.json" headers:nil returningResponse:&HTTPResponse error:NULL];
 	STAssertEquals([data length], (NSUInteger)0, nil);
 	STAssertEquals([HTTPResponse statusCode], (NSInteger)200, nil);
 }
 
 - (void)testGetWithHeader
 {
-	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSHTTPURLResponse *HTTPResponse = nil;
 	NSDictionary *headers = [NSDictionary dictionaryWithObject:@"value" forKey:@"key"];
 	NSData *data = [connection get:@"/people/2.json" headers:headers returningResponse:&HTTPResponse error:NULL];
@@ -135,7 +135,7 @@
 - (void)testPost
 {
 	NSHTTPURLResponse *HTTPResponse = nil;
-	ARConnection *connection = [[ARConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
+	ARSynchronousConnection *connection = [[ARSynchronousConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	[connection post:@"/people.json" headers:nil returningResponse:&HTTPResponse error:NULL];
 	STAssertNotNil([[HTTPResponse allHeaderFields] objectForKey:@"Location"], nil);
 }

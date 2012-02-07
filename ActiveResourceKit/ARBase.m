@@ -275,7 +275,7 @@
 	}];
 }
 
-- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
+- (void)findSingleWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
 	NSDictionary *prefixOptions = nil;
 	NSDictionary *queryOptions = nil;

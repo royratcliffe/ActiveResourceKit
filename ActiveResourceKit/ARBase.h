@@ -271,7 +271,7 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  * eliminates the flexibility of parameterising the scope in cases where scope
  * is a dynamic argument.
  */
-- (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
+- (void)findSingleWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 /*!
  * @brief Finds a single resource from a one-off URL.
