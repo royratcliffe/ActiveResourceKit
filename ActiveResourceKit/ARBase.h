@@ -311,4 +311,8 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  */
 - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler;
+
+- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler;
+
 @end

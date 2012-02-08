@@ -363,4 +363,26 @@ Class ARBaseDefaultConnectionClass;
 	}
 }
 
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler
+{
+	NSString *path = [self elementPathForID:ID prefixOptions:options queryOptions:nil];
+	[self delete:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+		completionHandler(error);
+	}];
+}
+
+- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler
+{
+	if (ID)
+	{
+		NSDictionary *prefixOptions = nil;
+		NSDictionary *queryOptions = nil;
+		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
+		NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
+		[self head:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+			completionHandler([HTTPResponse statusCode] == 200);
+		}];
+	}
+}
+
 @end
