@@ -225,6 +225,9 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 
 //----------------------------------------------------------------------- Prefix
 
+/*!
+ * By default, the prefix source equals the site URL's path.
+ */
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *prefixSource;
 
 // lazy getter
