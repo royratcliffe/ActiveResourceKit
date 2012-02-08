@@ -71,7 +71,6 @@
 	return [NSURLConnection connectionWithRequest:request delegate:delegate];
 }
 
-+ (NSError *)handleHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
 + (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
 {
 	NSInteger code;
