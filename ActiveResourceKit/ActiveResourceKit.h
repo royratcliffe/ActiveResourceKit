@@ -26,8 +26,9 @@
 #import <ActiveResourceKit/ARResource.h>
 #import <ActiveResourceKit/ARBase.h>
 #import <ActiveResourceKit/ARConnection.h>
+#import <ActiveResourceKit/ARURLConnection.h>
 #import <ActiveResourceKit/ARSynchronousLoadingURLConnection.h>
-#import <ActiveResourceKit/ARAsynchronousConnection.h>
+#import <ActiveResourceKit/ARQueuedLoadingURLConnection.h>
 
 #import <ActiveResourceKit/ARFormatMethods.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
