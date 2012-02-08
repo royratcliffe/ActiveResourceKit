@@ -1,4 +1,4 @@
-// ActiveResourceKit ARSynchronousConnection.m
+// ActiveResourceKit ARSynchronousLoadingURLConnection.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,9 +22,9 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARSynchronousConnection.h"
+#import "ARSynchronousLoadingURLConnection.h"
 
-@implementation ARSynchronousConnection
+@implementation ARSynchronousLoadingURLConnection
 
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
 {
