@@ -29,7 +29,7 @@
  */
 @interface ARIncrementalStore : NSIncrementalStore
 {
-	NSMutableDictionary *__strong contexts;
+	NSMutableDictionary *__strong _childContextsByParent;
 }
 
 /*!

@@ -43,18 +43,18 @@
 	self = [super init];
 	if (self)
 	{
-		contexts = [NSMutableDictionary dictionary];
+		_childContextsByParent = [NSMutableDictionary dictionary];
 	}
 	return self;
 }
 
 - (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext
 {
-	NSManagedObjectContext *childContext = [contexts objectForKey:parentContext];
+	NSManagedObjectContext *childContext = [_childContextsByParent objectForKey:parentContext];
 	if (childContext == nil)
 	{
 		[childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType] setParentContext:parentContext];
-		[contexts setObject:childContext forKey:parentContext];
+		[_childContextsByParent setObject:childContext forKey:parentContext];
 	}
 	return childContext;
 }
