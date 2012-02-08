@@ -60,6 +60,13 @@ typedef void (^ARConnectionCompletionHandler)(NSURLResponse *response, NSData *d
 - (id)initWithSite:(NSURL *)site format:(id<ARFormat>)format;
 - (id)initWithSite:(NSURL *)site;
 
+/*!
+ * @brief Sends a request.
+ * @details Sending a request answers the raw body data. At this level, the
+ * connection only handles the actual sending. It does not attempt to handle the
+ * response. Other object methods interpret the response code and decode the
+ * response body according to the expected format.
+ */
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
 /*!
