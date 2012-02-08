@@ -273,6 +273,10 @@
 	[_attributes setObject:ID forKey:[[self baseLazily] primaryKeyLazily]];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                                    RESTful Services
+//------------------------------------------------------------------------------
+
 - (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
 {
 	if ([self isNew])
@@ -283,6 +287,11 @@
 	{
 		[self updateWithCompletionHandler:completionHandler];
 	}
+}
+
+- (NSData *)encode
+{
+	return [[[self base] format] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[[self base] elementName]] error:NULL];
 }
 
 @end
