@@ -26,21 +26,19 @@
 
 @implementation ARSynchronousConnection
 
-//------------------------------------------------------------------------------
-#pragma mark                                                       HTTP Requests
-//------------------------------------------------------------------------------
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
+{
+	NSURLResponse *response = nil;
+	NSError *error = nil;
+	NSData *data = [self sendRequest:request returningResponse:&response error:&error];
+	completionHandler(response, data, error);
+}
 
 - (NSData *)sendRequest:(NSURLRequest *)request
-	  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+	  returningResponse:(NSURLResponse *__autoreleasing *)outResponse
 				  error:(NSError *__autoreleasing *)outError
 {
-	NSURLResponse *__autoreleasing response = nil;
-	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:outError];
-	if (outHTTPResponse)
-	{
-		*outHTTPResponse = [response isKindOfClass:[NSHTTPURLResponse class]] ? (NSHTTPURLResponse *)response : nil;
-	}
-	return data;
+	return [NSURLConnection sendSynchronousRequest:request returningResponse:outResponse error:outError];
 }
 
 @end

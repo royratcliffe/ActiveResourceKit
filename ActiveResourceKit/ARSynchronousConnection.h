@@ -26,20 +26,18 @@
 
 @interface ARSynchronousConnection : ARConnection
 
-//---------------------------------------------------------------- HTTP Requests
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
 /*!
- * @brief Performs a @em synchronous HTTP request.
- * @details The implementation handles conversion of the basic URL response to a
- * HTTP response. The latter carries more information including header fields
- * and HTTP status code.
- * @param outHTTPResponse Receives the HTTP response if not @c NULL.
+ * @brief Performs a @em synchronous request.
+ * @param request Passes the request wrapper.
+ * @param outResponse Receives the response if not @c NULL.
  * @param outError Receives any error if not @c NULL.
  * @result Answers the response body as raw data bytes if successful. Answers @c
  * nil on error.
  */
 - (NSData *)sendRequest:(NSURLRequest *)request
-	  returningResponse:(NSHTTPURLResponse *__autoreleasing *)outHTTPResponse
+	  returningResponse:(NSURLResponse *__autoreleasing *)outResponse
 				  error:(NSError *__autoreleasing *)outError;
 
 @end
