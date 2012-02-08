@@ -28,7 +28,21 @@
  * @brief Implements a simple connection delegate designed for collecting the
  * response, including the body data, and for working around SSL challenges.
  */
-@interface ARURLConnectionDelegate : NSObject<NSURLConnectionDataDelegate>
+@interface ARURLConnectionDelegate : NSObject
+// Connection delegate is Data or non-Data according to platform. Mac OS X and
+// iOS diverge with respect to URL connection delegate protocols. iOS divides up
+// the protocol by inheritance whereas OS X combines all the delegate methods
+// into one big protocol. On iOS, the connection "data" delegate protocol
+// inherits from the connection delegate protocol. The Active Resource Kit
+// connection delegate, used by delegated connections, implements both plain
+// connection and data-oriented protocols. Adjust the definition according to
+// target: either OS X or iOS.
+#if __MAC_OS_X_VERSION_MIN_REQUIRED
+<NSURLConnectionDelegate>
+#endif
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+<NSURLConnectionDataDelegate>
+#endif
 
 @property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
 @property(strong) NSURLResponse *response;
