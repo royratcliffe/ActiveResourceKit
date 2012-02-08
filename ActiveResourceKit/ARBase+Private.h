@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import <ActiveResourceKit/ARBase.h>
+#import <ActiveResourceKit/ARConnection.h>
 
 @class ARResource;
 
@@ -148,5 +149,16 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  * ARResponseIsNotHTTPError.
  */
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+
+/*!
+ * @brief Answers a decoding handler which, in turn, after decoding, invokes
+ * another given completion block.
+ * @details Active Resource Kit methods utilise this common response block for
+ * decoding according to the required format. In fact, the decoding does a
+ * little more than just decode the format. It also handles URL response to HTTP
+ * response type casting. The latter carries more information including header
+ * fields and HTTP status code.
+ */
+- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARBaseRequestCompletionHandler)completionHandler;
 
 @end

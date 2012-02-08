@@ -28,6 +28,7 @@
 extern NSString *const ARFromKey;
 extern NSString *const ARParamsKey;
 
+@class ARConnection;
 @class ARResource;
 
 /*!
@@ -137,6 +138,9 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  */
 @interface ARBase : NSObject
 
++ (Class)defaultConnectionClass;
++ (void)setDefaultConnectionClass:(Class)aClass;
+
 /*!
  * @brief Initialises a new Active Resource Base instance using a given @a site.
  * @param site An URL specifying the remote HTTP or HTTPS resource.
@@ -187,6 +191,13 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 //---------------------------------------------------------------------- Timeout
 
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval timeout;
+
+//------------------------------------------------------------------- Connection
+
+@property(strong, NS_NONATOMIC_IOSONLY) ARConnection *connection;
+
+// lazy getter
+- (ARConnection *)connectionLazily;
 
 //------------------------------------------------- Element and Collection Names
 

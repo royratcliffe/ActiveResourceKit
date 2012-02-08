@@ -25,12 +25,30 @@
 #import "ARBase.h"
 #import "ARBase+Private.h"
 
+#import "ARURLConnection.h"
 #import "ARResource.h"
 #import "ARErrors.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+Class ARBaseDefaultConnectionClass;
+
 @implementation ARBase
+
+// Should this method exist at class-scope or instance-scope?
++ (Class)defaultConnectionClass
+{
+	if (ARBaseDefaultConnectionClass == NULL)
+	{
+		ARBaseDefaultConnectionClass = [ARURLConnection class];
+	}
+	return ARBaseDefaultConnectionClass;
+}
+
++ (void)setDefaultConnectionClass:(Class)aClass
+{
+	ARBaseDefaultConnectionClass = aClass;
+}
 
 // designated initialiser
 - (id)init
@@ -107,6 +125,24 @@
 //------------------------------------------------------------------------------
 
 @synthesize timeout = _timeout;
+
+//------------------------------------------------------------------------------
+#pragma mark                                                          Connection
+//------------------------------------------------------------------------------
+
+@synthesize connection = _connection;
+
+// Lazily constructs a connection using the default connection class.
+- (ARConnection *)connectionLazily
+{
+	ARConnection *connection = [self connection];
+	if (connection == nil)
+	{
+		[self setConnection:connection = [[[[self class] defaultConnectionClass] alloc] initWithSite:[self site] format:[self formatLazily]]];
+		[connection setTimeout:[self timeout]];
+	}
+	return connection;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark                                        Element and Collection Names

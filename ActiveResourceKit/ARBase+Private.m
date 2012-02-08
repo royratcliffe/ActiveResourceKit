@@ -24,7 +24,6 @@
 
 #import "ARBase+Private.h"
 #import "ARConnection.h"
-#import "ARURLConnectionDelegate.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
 #import <ActiveModelKit/ActiveModelKit.h>
@@ -183,49 +182,60 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
 {
-	ARConnection *connection = [[ARConnection alloc] initWithSite:[self site] format:[self formatLazily]];
-	[connection setTimeout:[self timeout]];
+	ARConnection *connection = [self connectionLazily];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:nil];
-	
-	ARURLConnectionDelegate *delegate = [[ARURLConnectionDelegate alloc] init];
-	[delegate setCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+	[connection sendRequest:request completionHandler:[self decodeHandlerWithCompletionHandler:completionHandler]];
+}
+
+- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARBaseRequestCompletionHandler)completionHandler
+{
+	// This response handler exists for two main purposes: (1) to cast the
+	// generalised URL response to a protocol-specific HTTP response; (2) to
+	// decode the body. Purpose number two presumes that all responses arriving
+	// here require format-specific decoding. If this is not true, do not use
+	// this handler. Instead, roll your own.
+	//
+	// Sends -copy to the block thereby transferring the block from the local
+	// stack to the heap. Copy for use after the destruction of this
+	// scope. Compiling for iOS raises a warning unless you copy the block, but
+	// not so for OS X.
+	return [^(NSURLResponse *response, NSData *data, NSError *error) {
 		if ([response isKindOfClass:[NSHTTPURLResponse class]])
 		{
-			NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
-			// This method exists for two main purposes: (1) to cast the
-			// generalised URL response to a protocol-specific HTTP response;
-			// (2) to decode the body. Purpose number two presumes that all
-			// responses require format-specific decoding. This seems like a
-			// safe assumption, at present.
 			if (data)
 			{
-				id object = [[self formatLazily] decode:data error:&error];
-				if (object)
+				error = [ARConnection errorForHTTPResponse:(NSHTTPURLResponse *)response];
+				if (error == nil)
 				{
-					completionHandler(HTTPResponse, object, nil);
+					id object = [[self formatLazily] decode:data error:&error];
+					if (object)
+					{
+						completionHandler((NSHTTPURLResponse *)response, object, nil);
+					}
+					else
+					{
+						// decoding error
+						completionHandler((NSHTTPURLResponse *)response, nil, error);
+					}
 				}
 				else
 				{
-					completionHandler(HTTPResponse, nil, error);
+					// response error
+					completionHandler((NSHTTPURLResponse *)response, nil, error);
 				}
 			}
 			else
 			{
-				completionHandler(HTTPResponse, nil, error);
+				// connection error
+				completionHandler((NSHTTPURLResponse *)response, nil, error);
 			}
 		}
 		else
 		{
+			// type error
 			completionHandler(nil, nil, error ? error : [NSError errorWithDomain:ARErrorDomain code:ARResponseIsNotHTTPError userInfo:nil]);
 		}
-	}];
-	NSURLConnection *HTTP = [connection HTTPWithRequest:request delegate:delegate];
-	NSOperationQueue *operationQueue = [self operationQueue];
-	if (operationQueue)
-	{
-		[HTTP setDelegateQueue:operationQueue];
-	}
-	[HTTP start];
+	} copy];
 }
 
 @end
