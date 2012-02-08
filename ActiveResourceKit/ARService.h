@@ -137,6 +137,9 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  * the getter but with lazy initialisation, ask for propertyLazily.
  */
 @interface ARService : NSObject
+{
+	ARConnection *__strong _connection;
+}
 
 + (Class)defaultConnectionClass;
 + (void)setDefaultConnectionClass:(Class)aClass;
@@ -194,10 +197,16 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 
 //------------------------------------------------------------------- Connection
 
-@property(strong, NS_NONATOMIC_IOSONLY) ARConnection *connection;
-
-// lazy getter
+// Lazy Getter
+// ARService has no non-lazily getter.
 - (ARConnection *)connectionLazily;
+
+/*!
+ * @details Setting the connection overwrites the given connection's site,
+ * format and time-out. You can easily reset any of these attributes afterwards,
+ * even though that defeats the purpose.
+ */
+- (void)setConnection:(ARConnection *)connection;
 
 //------------------------------------------------- Element and Collection Names
 
@@ -208,7 +217,7 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
 // typically accesses other values and possibly other defaults. This Rails-like
 // ‘lazy getter’ approach means that you can always override defaults using the
 // setter, either before accessing the getter or even afterwards, only provided
-// that the property has remained unrequired.
+// that the property has remained unrequested.
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *elementName;
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *collectionName;

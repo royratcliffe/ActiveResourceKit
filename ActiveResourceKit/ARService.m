@@ -130,18 +130,22 @@ Class ARServiceDefaultConnectionClass;
 #pragma mark                                                          Connection
 //------------------------------------------------------------------------------
 
-@synthesize connection = _connection;
-
 // Lazily constructs a connection using the default connection class.
 - (ARConnection *)connectionLazily
 {
-	ARConnection *connection = [self connection];
-	if (connection == nil)
+	if (_connection == nil)
 	{
-		[self setConnection:connection = [[[[self class] defaultConnectionClass] alloc] initWithSite:[self site] format:[self formatLazily]]];
-		[connection setTimeout:[self timeout]];
+		[self setConnection:[[[[self class] defaultConnectionClass] alloc] init]];
 	}
-	return connection;
+	return _connection;
+}
+
+- (void)setConnection:(ARConnection *)connection
+{
+	[connection setSite:[self site]];
+	[connection setFormat:[self formatLazily]];
+	[connection setTimeout:[self timeout]];
+	_connection = connection;
 }
 
 //------------------------------------------------------------------------------
