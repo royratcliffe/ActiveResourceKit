@@ -24,7 +24,7 @@
 
 #import <ActiveResourceKit/ARIncrementalStore.h>
 #import <ActiveResourceKit/ARResource.h>
-#import <ActiveResourceKit/ARBase.h>
+#import <ActiveResourceKit/ARService.h>
 #import <ActiveResourceKit/ARConnection.h>
 #import <ActiveResourceKit/ARURLConnection.h>
 #import <ActiveResourceKit/ARSynchronousLoadingURLConnection.h>

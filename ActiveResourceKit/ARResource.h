@@ -25,7 +25,7 @@
 #import <Foundation/Foundation.h>
 #import <ActiveModelKit/ActiveModelKit.h>
 
-@class ARBase;
+@class ARService;
 
 /*!
  * @brief Provides the core class mirroring Rails' @c ActiveResource::Base class.
@@ -39,42 +39,42 @@
 @interface ARResource : NSObject<AMAttributeMethods>
 
 /*!
- * @brief Constructs an active resource base using class methods to establish
+ * @brief Constructs an active resource service using class methods to establish
  * the site and element name.
  * @details If the ARResource sub-class has a class method called +site, use its
  * answer to set up the Active Resource site. This assumes that +site answers an
- * NSURL object. Similarly, sets up the base element name by sending
+ * NSURL object. Similarly, sets up the service element name by sending
  * +elementName to the sub-class, answering a string. However, if the sub-class
  * does not implement the +elementName class method, the element name derives
  * from the ARResource sub-class name.
  */
-+ (ARBase *)base;
++ (ARService *)service;
 
-- (id)initWithBase:(ARBase *)base;
+- (id)initWithService:(ARService *)service;
 
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes;
+- (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes;
 
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
+- (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
 //------------------------------------------------------------------------- Base
 
 /*!
- * Retains the active-resource base. Does not copy the base. This has important
- * implications. If you alter base properties, the changes affect all the
+ * Retains the active-resource service. Does not copy the service. This has important
+ * implications. If you alter service properties, the changes affect all the
  * resources which depend upon it.
  */
-@property(strong, NS_NONATOMIC_IOSONLY) ARBase *base;
+@property(strong, NS_NONATOMIC_IOSONLY) ARService *service;
 
 /*!
- * @brief Asks for the resource base, lazily constructing a base instance if the
- * resource does not currently retain a base.
+ * @brief Asks for the resource service, lazily constructing a service instance if the
+ * resource does not currently retain a service.
  * @details Asks the class for a site URL and an element name. Optionally
  * implement @c +site and @c +elementName to supply the URL and element name. If
  * your class does not supply an implementation for @c +elementName, the element
  * name derives from the sub-class name. This assumes that you do not directly
  * instantiate the ARResource class. If you do, the element name remains @c nil.
  */
-- (ARBase *)baseLazily;
+- (ARService *)serviceLazily;
 
 //------------------------------------------------------------------- Attributes
 
@@ -94,7 +94,7 @@
  * @brief Loads resource attributes from a dictionary of key-value pairs.
  * @details Argument @a removeRoot becomes a do-not-care if @a attributes
  * contains just a single key-object pair. In such a case, removing the root
- * depends on whether or not the single key matches the base element name.
+ * depends on whether or not the single key matches the service element name.
  *
  * Attribute keys use Rails conventions: underscored and lower case. You can
  * also access the attribute values using Key-Value Coding where the keys follow
@@ -115,7 +115,7 @@
 /*!
  * @brief Answers all the known attributes belonging to this active resource, a
  * unique array of attribute key strings.
- * @details The resulting array includes all the base's known attributes plus
+ * @details The resulting array includes all the service's known attributes plus
  * this resource instance's known attributes. Duplicates if any do @e not
  * appear. This deviates from Rails at version 3.1.0 where duplicates @e do
  * appear.

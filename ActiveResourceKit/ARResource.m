@@ -25,11 +25,11 @@
 #import "ARResource.h"
 #import "ARResource+Private.h"
 
-// for -[ARBase splitOptions:prefixOptions:queryOptions:]
+// for -[ARService splitOptions:prefixOptions:queryOptions:]
 // (This makes you wonder. If other classes need to import the private
 // interface, should not the so-called private methods really become public, not
 // private?)
-#import "ARBase+Private.h"
+#import "ARService+Private.h"
 
 // for ARRemoveRoot(object)
 #import "ARFormatMethods.h"
@@ -61,38 +61,38 @@
 	return self;
 }
 
-+ (ARBase *)base
++ (ARService *)service
 {
-	ARBase *base = [[ARBase alloc] init];
+	ARService *service = [[ARService alloc] init];
 	if ([self respondsToSelector:@selector(site)])
 	{
-		[base setSite:[self performSelector:@selector(site)]];
+		[service setSite:[self performSelector:@selector(site)]];
 	}
 	if ([self respondsToSelector:@selector(elementName)])
 	{
-		[base setElementName:[self performSelector:@selector(elementName)]];
+		[service setElementName:[self performSelector:@selector(elementName)]];
 	}
 	else if (self != [ARResource class] && [self isSubclassOfClass:[ARResource class]])
 	{
-		[base setElementName:[[[AMName alloc] initWithClass:self] element]];
+		[service setElementName:[[[AMName alloc] initWithClass:self] element]];
 	}
-	return base;
+	return service;
 }
 
-- (id)initWithBase:(ARBase *)base
+- (id)initWithService:(ARService *)service
 {
 	// This is not the designated initialiser. Sends -init to self not super.
 	self = [self init];
 	if (self)
 	{
-		[self setBase:base];
+		[self setService:service];
 	}
 	return self;
 }
 
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes
+- (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes
 {
-	self = [self initWithBase:base];
+	self = [self initWithService:service];
 	if (self)
 	{
 		[self loadAttributes:attributes removeRoot:NO];
@@ -100,9 +100,9 @@
 	return self;
 }
 
-- (id)initWithBase:(ARBase *)base attributes:(NSDictionary *)attributes persisted:(BOOL)persisted
+- (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted
 {
-	self = [self initWithBase:base attributes:attributes];
+	self = [self initWithService:service attributes:attributes];
 	if (self)
 	{
 		[self setPersisted:persisted];
@@ -114,16 +114,16 @@
 #pragma mark                                                                Base
 //------------------------------------------------------------------------------
 
-@synthesize base = _base;
+@synthesize service = _service;
 
-- (ARBase *)baseLazily
+- (ARService *)serviceLazily
 {
-	ARBase *base = [self base];
-	if (base == nil)
+	ARService *service = [self service];
+	if (service == nil)
 	{
-		[self setBase:base = [[self class] base]];
+		[self setService:service = [[self class] service]];
 	}
-	return base;
+	return service;
 }
 
 //------------------------------------------------------------------------------
@@ -156,10 +156,10 @@
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
 	NSDictionary *prefixOptions = nil;
-	[[self baseLazily] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
+	[[self serviceLazily] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
 	if ([attributes count] == 1)
 	{
-		removeRoot = [[[self baseLazily] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
+		removeRoot = [[[self serviceLazily] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
 	}
 	if (removeRoot)
 	{
@@ -230,14 +230,14 @@
 
 - (NSDictionary *)schema
 {
-	NSDictionary *schema = [[self baseLazily] schema];
+	NSDictionary *schema = [[self serviceLazily] schema];
 	return schema ? schema : [self attributes];
 }
 
 - (NSArray *)knownAttributes
 {
 	NSMutableSet *set = [NSMutableSet set];
-	[set addObjectsFromArray:[[self baseLazily] knownAttributes]];
+	[set addObjectsFromArray:[[self serviceLazily] knownAttributes]];
 	[set addObjectsFromArray:[[self attributes] allKeys]];
 	return [set allObjects];
 }
@@ -264,13 +264,13 @@
 
 - (NSNumber *)ID
 {
-	id ID = [[self attributes] objectForKey:[[self baseLazily] primaryKey]];
+	id ID = [[self attributes] objectForKey:[[self serviceLazily] primaryKey]];
 	return ID && [ID isKindOfClass:[NSNumber class]] ? ID : nil;
 }
 
 - (void)setID:(NSNumber *)ID
 {
-	[_attributes setObject:ID forKey:[[self baseLazily] primaryKeyLazily]];
+	[_attributes setObject:ID forKey:[[self serviceLazily] primaryKeyLazily]];
 }
 
 //------------------------------------------------------------------------------
@@ -291,7 +291,7 @@
 
 - (NSData *)encode
 {
-	return [[[self base] format] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[[self base] elementName]] error:NULL];
+	return [[[self service] format] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[[self service] elementName]] error:NULL];
 }
 
 @end

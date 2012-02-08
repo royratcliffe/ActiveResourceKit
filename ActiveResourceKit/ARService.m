@@ -1,4 +1,4 @@
-// ActiveResourceKit ARBase.m
+// ActiveResourceKit ARService.m
 //
 // Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,8 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARBase.h"
-#import "ARBase+Private.h"
+#import "ARService.h"
+#import "ARService+Private.h"
 
 #import "ARURLConnection.h"
 #import "ARResource.h"
@@ -31,23 +31,23 @@
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
-Class ARBaseDefaultConnectionClass;
+Class ARServiceDefaultConnectionClass;
 
-@implementation ARBase
+@implementation ARService
 
 // Should this method exist at class-scope or instance-scope?
 + (Class)defaultConnectionClass
 {
-	if (ARBaseDefaultConnectionClass == NULL)
+	if (ARServiceDefaultConnectionClass == NULL)
 	{
-		ARBaseDefaultConnectionClass = [ARURLConnection class];
+		ARServiceDefaultConnectionClass = [ARURLConnection class];
 	}
-	return ARBaseDefaultConnectionClass;
+	return ARServiceDefaultConnectionClass;
 }
 
 + (void)setDefaultConnectionClass:(Class)aClass
 {
-	ARBaseDefaultConnectionClass = aClass;
+	ARServiceDefaultConnectionClass = aClass;
 }
 
 // designated initialiser
@@ -286,7 +286,7 @@ Class ARBaseDefaultConnectionClass;
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			completionHandler([[ARResource alloc] initWithBase:self attributes:attrs], nil);
+			completionHandler([[ARResource alloc] initWithService:self attributes:attrs], nil);
 		}
 		else
 		{
@@ -302,7 +302,7 @@ Class ARBaseDefaultConnectionClass;
 
 - (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	[[[ARResource alloc] initWithBase:self attributes:attributes] saveWithCompletionHandler:^(id object, NSError *error) {
+	[[[ARResource alloc] initWithService:self attributes:attributes] saveWithCompletionHandler:^(id object, NSError *error) {
 		completionHandler(object, error);
 	}];
 }

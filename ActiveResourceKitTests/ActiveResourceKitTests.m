@@ -40,19 +40,19 @@ NSURL *ActiveResourceKitTestsBaseURL()
 #pragma mark                                                        Person Class
 //------------------------------------------------------------------------------
 
-@interface MyObject : ARBase
+@interface MyObject : ARService
 @end
 
 @implementation MyObject
 @end
 
-@interface Post : ARBase
+@interface Post : ARService
 @end
 
 @implementation Post
 @end
 
-@interface PostComment : ARBase
+@interface PostComment : ARService
 @end
 
 @implementation PostComment
@@ -69,7 +69,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	// CoreServices sub-framework) steals this symbol first. Apple has already
 	// polluted the namespace with a Comment type definition. So we will call it
 	// PostComment instead, meaning a comment on a post within a blog. However,
-	// by default, ARBase will translate PostComment to post_comment when
+	// by default, ARService will translate PostComment to post_comment when
 	// constructing the resource paths. There is an incongruence between
 	// Objective-C and Rails, unless Rails uses the same name of course. But the
 	// comments are just comments in the imaginary Rails application. Hence we
@@ -83,10 +83,10 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	Person *ryan = [[Person alloc] init];
 	[ryan setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"Ryan", @"first", @"Daigle", @"last", nil]];
 	
-	// At this point, base should be nil because nothing has as yet accessed the
-	// base lazily! The resource only exists in memory; hence not persisted, a
+	// At this point, service should be nil because nothing has as yet accessed the
+	// service lazily! The resource only exists in memory; hence not persisted, a
 	// new resource, a new record.
-	STAssertNil([ryan base], nil);
+	STAssertNil([ryan service], nil);
 	STAssertFalse([ryan persisted], nil);
 	STAssertTrue([ryan isNew], nil);
 	STAssertTrue([ryan isNewRecord], nil);
@@ -108,24 +108,24 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	// them. This term refers to path elements beginning with a colon and
 	// followed by a regular-expression word. ActiveResourceKit substitutes
 	// these for actual parameters.
-	ARBase *resource = [[ARBase alloc] init];
-	[resource setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y;a=b"]];
-	STAssertEqualObjects([[resource site] scheme], @"http", nil);
-	STAssertEqualObjects([[resource site] user], @"user", nil);
-	STAssertEqualObjects([[resource site] password], @"password", nil);
-	STAssertEqualObjects([[resource site] host], @"localhost", nil);
-	STAssertEqualObjects([[resource site] port], [NSNumber numberWithInt:3000], nil);
-	STAssertEqualObjects([[resource site] path], @"/resources/:resource_id", nil);
-	STAssertEqualObjects([[resource site] query], @"x=y;a=b", nil);
+	ARService *service = [[ARService alloc] init];
+	[service setSite:[NSURL URLWithString:@"http://user:password@localhost:3000/resources/:resource_id?x=y;a=b"]];
+	STAssertEqualObjects([[service site] scheme], @"http", nil);
+	STAssertEqualObjects([[service site] user], @"user", nil);
+	STAssertEqualObjects([[service site] password], @"password", nil);
+	STAssertEqualObjects([[service site] host], @"localhost", nil);
+	STAssertEqualObjects([[service site] port], [NSNumber numberWithInt:3000], nil);
+	STAssertEqualObjects([[service site] path], @"/resources/:resource_id", nil);
+	STAssertEqualObjects([[service site] query], @"x=y;a=b", nil);
 }
 
 - (void)testEmptyPath
 {
 	// Empty URL paths should become empty strings after parsing. This tests the
 	// Foundation frameworks implementation of an URL.
-	ARBase *base = [[ARBase alloc] init];
-	[base setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
-	STAssertEqualObjects([[base site] path], @"", nil);
+	ARService *service = [[ARService alloc] init];
+	[service setSite:[NSURL URLWithString:@"http://user:password@localhost:3000"]];
+	STAssertEqualObjects([[service site] path], @"", nil);
 }
 
 - (void)testPrefixSource
@@ -151,29 +151,29 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	// object answering to the prefix-parameter key (resource_id in this test
 	// case). Hence the options dictionary can contain various types answering
 	// to -[NSObject description], not just strings.
-	ARBase *base = [[ARBase alloc] init];
-	[base setPrefixSource:@"/resources/:resource_id"];
+	ARService *service = [[ARService alloc] init];
+	[service setPrefixSource:@"/resources/:resource_id"];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"resource_id"];
-	NSString *prefix = [base prefixWithOptions:options];
+	NSString *prefix = [service prefixWithOptions:options];
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
 }
 
 - (void)testPrefixParameterWithPercentEscapes
 {
-	ARBase *base = [[ARBase alloc] init];
-	[base setPrefixSource:@"/resources/:resource_id"];
-	NSString *prefix = [base prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
+	ARService *service = [[ARService alloc] init];
+	[service setPrefixSource:@"/resources/:resource_id"];
+	NSString *prefix = [service prefixWithOptions:[NSDictionary dictionaryWithObject:@"some text" forKey:@"resource_id"]];
 	STAssertEqualObjects(prefix, @"/resources/some%20text", nil);
 }
 
 - (void)testElementName
 {
-	STAssertEqualObjects([[[[Person alloc] init] baseLazily] elementNameLazily], @"person", nil);
+	STAssertEqualObjects([[[[Person alloc] init] serviceLazily] elementNameLazily], @"person", nil);
 }
 
 - (void)testCollectionName
 {
-	STAssertEqualObjects([[[[Person alloc] init] baseLazily] collectionNameLazily], @"people", nil);
+	STAssertEqualObjects([[[[Person alloc] init] serviceLazily] collectionNameLazily], @"people", nil);
 }
 
 - (void)testElementPath

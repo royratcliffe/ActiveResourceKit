@@ -32,7 +32,7 @@
 
 /*!
  * @brief Specifies the operation queue on which to handle response completions
- * for resources associated with this base.
+ * for resources associated with this connection.
  * @details All completion handlers run in the given operation queue. If @c nil,
  * the completion handler runs in the operation queue used to issue the request.
  */

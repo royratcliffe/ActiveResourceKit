@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARIncrementalStore.h"
+#import "ARService.h"
 
 @implementation ARIncrementalStore
 

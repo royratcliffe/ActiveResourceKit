@@ -32,8 +32,8 @@
 
 - (void)setUp
 {
-	ARBase *base = [[ARBase alloc] initWithSite:[NSURL URLWithString:@"http://localhost"] elementName:@"resource"];
-	[self setResource:[[ARResource alloc] initWithBase:base]];
+	ARService *service = [[ARService alloc] initWithSite:[NSURL URLWithString:@"http://localhost"] elementName:@"resource"];
+	[self setResource:[[ARResource alloc] initWithService:service]];
 	[[self resource] setValue:[NSNumber numberWithInt:0] forKey:@"zero"];
 }
 

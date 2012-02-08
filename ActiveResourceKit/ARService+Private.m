@@ -1,4 +1,4 @@
-// ActiveResourceKit ARBase+Private.m
+// ActiveResourceKit ARService+Private.m
 //
 // Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARBase+Private.h"
+#import "ARService+Private.h"
 #import "ARConnection.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
@@ -37,7 +37,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return options == nil || [options count] == 0 ? @"" : [NSString stringWithFormat:@"?%@", [options toQueryWithNamespace:nil]];
 }
 
-@implementation ARBase(Private)
+@implementation ARService(Private)
 
 - (id<ARFormat>)defaultFormat
 {
@@ -109,7 +109,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	{
 		klass = [ARResource class];
 	}
-	ARResource *resource = [[klass alloc] initWithBase:self attributes:attributes persisted:YES];
+	ARResource *resource = [[klass alloc] initWithService:self attributes:attributes persisted:YES];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
 }
@@ -155,39 +155,39 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 // NSURLConnection implementation for the handling of authentication and
 // encryption.
 
-- (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)get:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:ARHTTPGetMethod path:path completionHandler:completionHandler];
 }
 
-- (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)delete:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:ARHTTPDeleteMethod path:path completionHandler:completionHandler];
 }
 
-- (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)put:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:ARHTTPPutMethod path:path completionHandler:completionHandler];
 }
 
-- (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)post:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:ARHTTPPostMethod path:path completionHandler:completionHandler];
 }
 
-- (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)head:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	[self requestHTTPMethod:ARHTTPHeadMethod path:path completionHandler:completionHandler];
 }
 
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	ARConnection *connection = [self connectionLazily];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:nil];
 	[connection sendRequest:request completionHandler:[self decodeHandlerWithCompletionHandler:completionHandler]];
 }
 
-- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARBaseRequestCompletionHandler)completionHandler
+- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	// This response handler exists for two main purposes: (1) to cast the
 	// generalised URL response to a protocol-specific HTTP response; (2) to

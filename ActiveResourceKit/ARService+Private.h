@@ -1,4 +1,4 @@
-// ActiveResourceKit ARBase+Private.h
+// ActiveResourceKit ARService+Private.h
 //
 // Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import <ActiveResourceKit/ARBase.h>
+#import <ActiveResourceKit/ARService.h>
 #import <ActiveResourceKit/ARConnection.h>
 
 @class ARResource;
@@ -51,9 +51,9 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * success or failure. Operation or dispatch queue assignment depends on which
  * object invokes the block.
  */
-typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error);
+typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error);
 
-@interface ARBase(Private)
+@interface ARService(Private)
 
 - (id<ARFormat>)defaultFormat;
 - (NSString *)defaultElementName;
@@ -105,12 +105,12 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  * object (or objects) to your given completion handler. Objects may be hashes
  * (dictionaries) or arrays, or even primitives.
  */
-- (void)get:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)get:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Used to delete resources. Sends an asynchronous DELETE request.
  */
-- (void)delete:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)delete:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Sends an asynchronous PUT request.
@@ -119,36 +119,36 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  * to an “upsert” database operation where it updates the resource if it already
  * exists but alternatively creates the resource if it does not already exist.
  */
-- (void)put:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)put:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Sends an asynchronous POST request.
  * @details POST is not idempotent.
  */
-- (void)post:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)post:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Used to obtain meta-information about resources, whether they exist or
  * their size. Sends an asynchronous HEAD request.
  */
-- (void)head:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)head:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Submits an asynchronous request, returning immediately.
  * @details Constructs a request object and asynchronously transmits it to the
  * remote RESTful service. The completion handler executes in the resource
- * base's operation queue, or the current queue (the operation queue running at
- * the time of the request) if the resource base has no queue.
+ * service's operation queue, or the current queue (the operation queue running at
+ * the time of the request) if the resource service has no queue.
  *
  * The completion handler receives three arguments: the HTTP response, the
  * decoded object and any error. The decoded object derives from the response
- * body, decoded according to the base format. Decoding itself can encounter
+ * body, decoded according to the service format. Decoding itself can encounter
  * errors. If successful, the completion handler receives a non-nil object and a
  * @c nil error. If the response is not an HTTP-based response, the completion
  * handler receives a @c nil response @a HTTPResponse argument and an @ref
  * ARResponseIsNotHTTPError.
  */
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Answers a decoding handler which, in turn, after decoding, invokes
@@ -159,6 +159,6 @@ typedef void (^ARBaseRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, 
  * response type casting. The latter carries more information including header
  * fields and HTTP status code.
  */
-- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARBaseRequestCompletionHandler)completionHandler;
+- (ARConnectionCompletionHandler)decodeHandlerWithCompletionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 @end

@@ -1,4 +1,4 @@
-// ActiveResourceKit ARBase.h
+// ActiveResourceKit ARService.h
 //
 // Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -48,13 +48,13 @@ typedef void (^ARResourceCompletionHandler)(ARResource *resource, NSError *error
 typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error);
 
 /*!
- * @brief An active resource's base configuration.
+ * @brief An active resource's service configuration.
  * @details Defines an active resource's site, schema and known attributes,
  * etc. Does not however define an active resource @e instance. Active resources
  * binding to the same remote element at the same remote site associate with a
  * common base.
  *
- * ARBase corresponds to the singleton class aspects of @c
+ * ARService corresponds to the singleton class aspects of @c
  * ActiveResource::Base. Under Rails ActiveResource, the @c ActiveResource::Base
  * singleton class carries the following state. See list below.
  *
@@ -76,13 +76,13 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  *	- timeout
  *	- user
  *
- * This might help to define what ARBase actually does, its purpose. ARBase
+ * This might help to define what ARService actually does, its purpose. ARService
  * implements the anonymous singleton class behaviours belonging to
  * @c ActiveResource::Base. ARResource defines the class for Active Resource
- * instances, but ARBase defines the class for Active Resource @e classes,
+ * instances, but ARService defines the class for Active Resource @e classes,
  * singleton classes that is. Objective-C 2.0 does not provide anything
  * comparable singleton classes. The Rails singleton class becomes the
- * Objective-C “base” class.
+ * Objective-C “service” class.
  *
  * Singleton methods for @c ActiveResource::Base include the following.
  *
@@ -136,7 +136,7 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  * synthesise the correct setters and getters accordingly. If you want to access
  * the getter but with lazy initialisation, ask for propertyLazily.
  */
-@interface ARBase : NSObject
+@interface ARService : NSObject
 
 + (Class)defaultConnectionClass;
 + (void)setDefaultConnectionClass:(Class)aClass;
@@ -146,8 +146,8 @@ typedef void (^ARResourcesCompletionHandler)(NSArray *resources, NSError *error)
  * @param site An URL specifying the remote HTTP or HTTPS resource.
  * @details This is @em not the designated initialiser but rather a shorthand
  * for sending @c -init followed by @c -setSite:. The element name, if you do
- * not subsequently assign one, derives from the @ref ARBase sub-class
- * name. This assumes that you derive ARBase.
+ * not subsequently assign one, derives from the @ref ARService sub-class
+ * name. This assumes that you derive ARService.
  */
 - (id)initWithSite:(NSURL *)site;
 - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;

@@ -26,5 +26,5 @@
 // because the project gives them Project scope. Therefore they do not appear in
 // the framework for OS X targets, nor in the include/ActiveResourceKit folder
 // for iOS targets.
-#import "ARBase+Private.h"
+#import "ARService+Private.h"
 #import "ARResource+Private.h"

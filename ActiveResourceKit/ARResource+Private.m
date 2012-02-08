@@ -23,7 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARResource+Private.h"
-#import "ARBase+Private.h"
+#import "ARService+Private.h"
 #import "ARErrors.h"
 
 NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse)
@@ -53,8 +53,8 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 
 - (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
 {
-	NSString *path = [[self baseLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
-	[[self baseLazily] put:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	NSString *path = [[self serviceLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
+	[[self serviceLazily] put:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
@@ -76,8 +76,8 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 
 - (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
 {
-	NSString *path = [[self baseLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
-	[[self baseLazily] post:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	NSString *path = [[self serviceLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
+	[[self serviceLazily] post:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
