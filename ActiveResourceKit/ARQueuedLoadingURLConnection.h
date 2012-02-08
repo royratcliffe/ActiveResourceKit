@@ -1,4 +1,4 @@
-// ActiveResourceKit ARAsynchronousConnection.m
+// ActiveResourceKit ARQueuedLoadingURLConnection.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,19 +22,20 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARAsynchronousConnection.h"
+#import <ActiveResourceKit/ARConnection.h>
 
-@implementation ARAsynchronousConnection
+@interface ARQueuedLoadingURLConnection : ARConnection
 
-- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
-{
-	[NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:completionHandler];
-}
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
-//------------------------------------------------------------------------------
-#pragma mark                                                     Operation Queue
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------- Operation Queue
 
-@synthesize operationQueue;
+/*!
+ * @brief Specifies the operation queue on which to handle response completions
+ * for resources associated with this base.
+ * @details All completion handlers run in the given operation queue. If @c nil,
+ * the completion handler runs in the operation queue used to issue the request.
+ */
+@property(strong, NS_NONATOMIC_IOSONLY) NSOperationQueue *operationQueue;
 
 @end
