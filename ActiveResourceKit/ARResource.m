@@ -1,4 +1,4 @@
-// ActiveResourceKit AResource.m
+// ActiveResourceKit ARResource.m
 //
 // Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
