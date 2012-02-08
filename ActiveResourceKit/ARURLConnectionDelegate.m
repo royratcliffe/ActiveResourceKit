@@ -30,6 +30,15 @@
 @synthesize response          = _response;
 @synthesize data              = _data;
 
+//------------------------------------------------------------------------------
+#pragma mark                                                 Connection Delegate
+//------------------------------------------------------------------------------
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[self completionHandler]([self response], nil, error);
+}
+
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
 {
 	return YES;
@@ -49,6 +58,10 @@
 	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                            Connection Data Delegate
+//------------------------------------------------------------------------------
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	[self setResponse:response];
@@ -63,11 +76,6 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	[self completionHandler]([self response], [[self data] copy], nil);
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-	[self completionHandler]([self response], nil, error);
 }
 
 @end
