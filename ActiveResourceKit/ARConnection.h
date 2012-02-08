@@ -25,7 +25,20 @@
 #import <ActiveResourceKit/ARFormat.h>
 
 /*!
+ * @brief Defines a lower-level connection-oriented completion handler.
+ * @details The handler accepts a basic URL response, not a HTTP response
+ * necessarily. Though typically, URL responses will be HTTP responses. Apple's
+ * @c NSHTTPURLResponse derives from @c NSURLResponse. The @a data argument
+ * accepts the body data verbatim. When connection completes, the body remains
+ * un-decoded.
+ */
+typedef void (^ARConnectionCompletionHandler)(NSURLResponse *response, NSData *data, NSError *error);
+
+/*!
  * @brief Connects to a site using a format.
+ * @details Connections do not have responsibility for decoding response
+ * bodies. With respect to formatting, connections only carry responsibility for
+ * setting up the correct header fields.
  */
 @interface ARConnection : NSObject
 
@@ -47,13 +60,7 @@
 - (id)initWithSite:(NSURL *)site format:(id<ARFormat>)format;
 - (id)initWithSite:(NSURL *)site;
 
-/*!
- * @brief Answers an asynchronous HTTP connection ready for use.
- * @details Unlike Rails, the Cocoa connection requires a request upfront. You
- * supply the request as a parameter for the connection constructor. You do @em
- * not construct first then configure the request second.
- */
-- (NSURLConnection *)HTTPWithRequest:(NSURLRequest *)request delegate:(id)delegate;
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
 /*!
  * @brief Decides how to handle the given HTTP response based on the response

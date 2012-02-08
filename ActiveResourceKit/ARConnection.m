@@ -66,9 +66,9 @@
 	return [self initWithSite:site format:[ARJSONFormat JSONFormat]];
 }
 
-- (NSURLConnection *)HTTPWithRequest:(NSURLRequest *)request delegate:(id)delegate
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
 {
-	return [NSURLConnection connectionWithRequest:request delegate:delegate];
+	;
 }
 
 + (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
