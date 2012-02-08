@@ -26,6 +26,8 @@
 
 @interface ARAsynchronousConnection : ARConnection
 
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
+
 //-------------------------------------------------------------- Operation Queue
 
 /*!

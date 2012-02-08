@@ -26,6 +26,11 @@
 
 @implementation ARAsynchronousConnection
 
+- (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
+{
+	[NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:completionHandler];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                     Operation Queue
 //------------------------------------------------------------------------------
