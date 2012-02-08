@@ -1,4 +1,4 @@
-// ActiveResourceKit ConnectionTests.m
+// ActiveResourceKitTests ConnectionTests.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //

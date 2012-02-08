@@ -1,4 +1,4 @@
-// ActiveResourceKit ConnectionTests.h
+// ActiveResourceKitTests ConnectionTests.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
