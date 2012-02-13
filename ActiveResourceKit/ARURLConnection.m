@@ -34,9 +34,4 @@
 	[NSURLConnection connectionWithRequest:request delegate:delegate];
 }
 
-- (NSURLConnection *)HTTPWithRequest:(NSURLRequest *)request delegate:(id)delegate
-{
-	return [[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO];
-}
-
 @end

@@ -31,12 +31,4 @@
 
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
-/*!
- * @brief Answers an asynchronous HTTP connection ready for use.
- * @details Unlike Rails, the Cocoa connection requires a request upfront. You
- * supply the request as a parameter for the connection constructor. You do @em
- * not construct first then configure the request second.
- */
-- (NSURLConnection *)HTTPWithRequest:(NSURLRequest *)request delegate:(id)delegate;
-
 @end
