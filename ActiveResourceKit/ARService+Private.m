@@ -64,7 +64,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return [[self site] path];
 }
 
-- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error))completionHandler
 {
 	NSString *path;
 	NSDictionary *prefixOptions;
@@ -83,11 +83,11 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 		if ([object isKindOfClass:[NSArray class]])
 		{
-			completionHandler([self instantiateCollection:object prefixOptions:prefixOptions], nil);
+			completionHandler(HTTPResponse, [self instantiateCollection:object prefixOptions:prefixOptions], nil);
 		}
 		else
 		{
-			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }

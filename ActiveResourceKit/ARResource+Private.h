@@ -44,9 +44,9 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
 
 @interface ARResource(Private)
 
-- (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
+- (void)updateWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
-- (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
+- (void)createWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @param HTTPResponse A HTTP response wrapper.

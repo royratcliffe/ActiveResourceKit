@@ -61,7 +61,7 @@ typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPRespons
 - (NSString *)defaultPrimaryKey;
 - (NSString *)defaultPrefixSource;
 
-- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSArray *resources, NSError *error))completionHandler;
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error))completionHandler;
 
 /*!
  * Instantiates a collection of active resources given a collection of

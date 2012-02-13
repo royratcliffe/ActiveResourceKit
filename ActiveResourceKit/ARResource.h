@@ -149,7 +149,7 @@
 
 //------------------------------------------------------------- RESTful Services
 
-- (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler;
+- (void)saveWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
 
 /*!
  * @brief Answers a serialised data representation of the resource according to

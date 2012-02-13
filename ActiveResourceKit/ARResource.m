@@ -277,7 +277,7 @@
 #pragma mark                                                    RESTful Services
 //------------------------------------------------------------------------------
 
-- (void)saveWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+- (void)saveWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	if ([self isNew])
 	{

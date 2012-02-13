@@ -51,7 +51,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 
 @implementation ARResource(Private)
 
-- (void)updateWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+- (void)updateWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
 	[[self serviceLazily] put:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
@@ -60,21 +60,21 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 			if ([attributes isKindOfClass:[NSDictionary class]])
 			{
 				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
-				completionHandler(self, nil);
+				completionHandler(HTTPResponse, self, nil);
 			}
 			else
 			{
-				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}
 		else
 		{
-			completionHandler(nil, error);
+			completionHandler(HTTPResponse, nil, error);
 		}
 	}];
 }
 
-- (void)createWithCompletionHandler:(void (^)(id object, NSError *error))completionHandler
+- (void)createWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
 	[[self serviceLazily] post:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
@@ -84,16 +84,16 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 			{
 				[self setID:ARIDFromResponse(HTTPResponse)];
 				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
-				completionHandler(self, nil);
+				completionHandler(HTTPResponse, self, nil);
 			}
 			else
 			{
-				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}
 		else
 		{
-			completionHandler(nil, error);
+			completionHandler(HTTPResponse, nil, error);
 		}
 	}];
 }

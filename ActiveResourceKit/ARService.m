@@ -290,7 +290,7 @@ Class ARServiceDefaultConnectionClass;
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			completionHandler([[ARResource alloc] initWithService:self attributes:attrs], nil);
+			completionHandler(HTTPResponse, [[ARResource alloc] initWithService:self attributes:attrs], nil);
 		}
 		else
 		{
@@ -299,15 +299,15 @@ Class ARServiceDefaultConnectionClass;
 			// an array, a string or some other primitive type. In which
 			// case, building with attributes must fail even though
 			// ostensibly the operation has succeeded. Set up an error.
-			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
 
 - (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	[[[ARResource alloc] initWithService:self attributes:attributes] saveWithCompletionHandler:^(id object, NSError *error) {
-		completionHandler(object, error);
+	[[[ARResource alloc] initWithService:self attributes:attributes] saveWithCompletionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+		completionHandler(HTTPResponse, object, error);
 	}];
 }
 
@@ -318,15 +318,15 @@ Class ARServiceDefaultConnectionClass;
 
 - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
-		completionHandler(resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
+	return [self findEveryWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
+		completionHandler(HTTPResponse, resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
 	}];
 }
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(NSArray *resources, NSError *error) {
-		completionHandler(resources && [resources count] ? [resources lastObject] : nil, error);
+	return [self findEveryWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
+		completionHandler(HTTPResponse, resources && [resources count] ? [resources lastObject] : nil, error);
 	}];
 }
 
@@ -339,11 +339,11 @@ Class ARServiceDefaultConnectionClass;
 	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
-			completionHandler([self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
+			completionHandler(HTTPResponse, [self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
 		}
 		else
 		{
-			completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
@@ -357,11 +357,11 @@ Class ARServiceDefaultConnectionClass;
 		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
 			if ([object isKindOfClass:[NSDictionary class]])
 			{
-				completionHandler([self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+				completionHandler(HTTPResponse, [self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
 			}
 			else
 			{
-				completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}];
 	}
