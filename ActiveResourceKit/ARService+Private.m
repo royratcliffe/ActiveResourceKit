@@ -183,7 +183,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	ARConnection *connection = [self connectionLazily];
-	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:nil];
+	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:[[self headers] copy]];
 	[connection sendRequest:request completionHandler:[self decodeHandlerWithCompletionHandler:completionHandler]];
 }
 

@@ -208,6 +208,12 @@ typedef void (^ARResourcesCompletionHandler)(NSHTTPURLResponse *response, NSArra
  */
 - (void)setConnection:(ARConnection *)connection;
 
+//---------------------------------------------------------------------- Headers
+
+@property(strong, NS_NONATOMIC_IOSONLY) NSMutableDictionary *headers;
+
+- (NSMutableDictionary *)headersLazily;
+
 //------------------------------------------------- Element and Collection Names
 
 // Setters and getters for element and collection name follow Rails

@@ -149,6 +149,22 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
+#pragma mark                                                             Headers
+//------------------------------------------------------------------------------
+
+@synthesize headers = _headers;
+
+- (NSMutableDictionary *)headersLazily
+{
+	NSMutableDictionary *headers = [self headers];
+	if (headers == nil)
+	{
+		[self setHeaders:headers = [NSMutableDictionary dictionary]];
+	}
+	return headers;
+}
+
+//------------------------------------------------------------------------------
 #pragma mark                                        Element and Collection Names
 //------------------------------------------------------------------------------
 
