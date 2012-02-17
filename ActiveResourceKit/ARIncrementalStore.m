@@ -83,6 +83,9 @@
 
 - (ARService *)serviceForEntityName:(NSString *)entityName
 {
+	// The entity name may not correspond to a class name. You can use
+	// managed-object entities even without deriving a sub-class. However, the
+	// entity name follows class naming conventions: capitalised camel-case.
 	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
 	[service setConnection:[[ARURLConnection alloc] init]];
 	return service;
