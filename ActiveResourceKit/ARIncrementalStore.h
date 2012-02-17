@@ -26,6 +26,14 @@
 
 /*!
  * @brief Core Data incremental store based on active resources.
+ * @details The ARIncrementalStore class performs one simple function:
+ * translating Core Data requests to Active Resource requests, and translating
+ * Active Resource responses to Core Data responses. The class mediates between
+ * Core Data and Active Resource. You can easily access remote resources using
+ * Core Data by hooking up an ARIncrementStore-type store to your Core Data
+ * context. Specify the site URL when you add the store. The store automatically
+ * derives the resources and their properties using the managed-object model
+ * along with standard Rails-compatible conventions for naming.
  */
 @interface ARIncrementalStore : NSIncrementalStore
 {
