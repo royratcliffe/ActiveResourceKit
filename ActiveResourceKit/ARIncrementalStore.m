@@ -27,6 +27,24 @@
 
 @implementation ARIncrementalStore
 
++ (void)initialize
+{
+	if (self == [ARIncrementalStore class])
+	{
+		[self registerStoreClass];
+	}
+}
+
++ (NSString *)storeType
+{
+	return [ARIncrementalStore storeTypeForClass:self];
+}
+
++ (void)registerStoreClass
+{
+	[ARIncrementalStore registerStoreTypeForClass:self];
+}
+
 + (NSString *)storeTypeForClass:(Class)aClass
 {
 	return NSStringFromClass(aClass);
