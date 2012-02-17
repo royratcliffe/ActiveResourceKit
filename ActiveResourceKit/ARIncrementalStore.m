@@ -77,6 +77,13 @@
 	return childContext;
 }
 
+- (NSArray *)otherAffectedStores
+{
+	NSMutableSet *stores = [NSMutableSet setWithArray:[[self persistentStoreCoordinator] persistentStores]];
+	[stores removeObject:self];
+	return [stores allObjects];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                  Incremental Store Method Overrides
 //------------------------------------------------------------------------------

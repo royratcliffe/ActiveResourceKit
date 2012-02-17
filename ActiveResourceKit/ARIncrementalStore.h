@@ -105,6 +105,17 @@
  */
 - (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext;
 
+/*!
+ * @brief Stores attach to coordinators, persistent store coordinators. Answers
+ * all the stores attached to this store's coordinator @em except this
+ * store. Hence answers all other affected stores.
+ * @details This step is very important when building a fetch request: Narrow
+ * the scope of the affected stores to eliminate recursion. Fetch requests apply
+ * to all the stores within a context by default, including self.
+ * @result An array for persistent stores excluding this store.
+ */
+- (NSArray *)otherAffectedStores;
+
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
 
 - (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
