@@ -24,6 +24,8 @@
 
 #import <CoreData/CoreData.h>
 
+@class ARService;
+
 /*!
  * @brief Core Data incremental store based on active resources.
  * @details The ARIncrementalStore class performs one simple function:
@@ -104,6 +106,16 @@
  * coordinator.
  */
 - (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext;
+
+/*!
+ * @brief Answers a suitably-connected Active Resource service for interacting
+ * with the given entity.
+ * @details Performs Core Data entity-name to Active Resource element name
+ * mapping. Uses a standard delegate-based URL connection. The connection runs
+ * asynchronously but delegates synchronously and conveniently handles
+ * authentication if needed.
+ */
+- (ARService *)serviceForEntityName:(NSString *)entityName;
 
 /*!
  * @brief Stores attach to coordinators, persistent store coordinators. Answers

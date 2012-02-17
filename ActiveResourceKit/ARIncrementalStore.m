@@ -23,7 +23,11 @@
 //------------------------------------------------------------------------------
 
 #import "ARIncrementalStore.h"
+#import "ARResource.h"
 #import "ARService.h"
+#import "ARURLConnection.h"
+
+#import <ActiveSupportKit/ActiveSupportKit.h>
 
 @implementation ARIncrementalStore
 
@@ -75,6 +79,13 @@
 		[_childContextsByParent setObject:childContext forKey:parentContext];
 	}
 	return childContext;
+}
+
+- (ARService *)serviceForEntityName:(NSString *)entityName
+{
+	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
+	[service setConnection:[[ARURLConnection alloc] init]];
+	return service;
 }
 
 - (NSArray *)otherAffectedStores
