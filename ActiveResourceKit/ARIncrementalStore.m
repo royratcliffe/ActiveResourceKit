@@ -128,6 +128,44 @@
  * This method runs on iOS, for instance, when a fetched results controller
  * performs a fetch in response to a table view controller determining the
  * number of sections in the table view.
+ *
+ * @par Fetch Request State
+ * Executing a fetch request requires decoding the fetch request. Fetch requests
+ * include numerous additional parameters, including:
+ *
+ *	- group-by properties
+ *	- predicate
+ *	- values to fetch
+ *	- entity description
+ *	- offset
+ *	- sort descriptors
+ *	- batch size
+ *	- fetch limit
+ *	- relationship key paths for pre-fetching
+ *	- flags
+ *
+ * Requests can be complex. In Objective-C terms, you can acquire the full
+ * fetch-request state using:
+ * @code
+ *	NSString *entityName = [request entityName];
+ *	NSPredicate *predicate = [request predicate];
+ *	NSArray *sortDescriptors = [request sortDescriptors];
+ *	NSUInteger fetchLimit = [request fetchLimit];
+ *	NSArray *affectedStores = [request affectedStores];
+ *	NSFetchRequestResultType resultType = [request resultType];
+ *	BOOL includesSubentities = [request includesSubentities];
+ *	BOOL includesPropertyValues = [request includesPropertyValues];
+ *	BOOL returnsObjectsAsFaults = [request returnsObjectsAsFaults];
+ *	NSArray *relationshipKeyPathsForPrefetching = [request relationshipKeyPathsForPrefetching];
+ *	BOOL includesPendingChanges = [request includesPendingChanges];
+ *	BOOL returnsDistinctResults = [request returnsDistinctResults];
+ *	NSArray *propertiesToFetch = [request propertiesToFetch];
+ *	NSUInteger fetchOffset = [request fetchOffset];
+ *	NSUInteger fetchBatchSize = [request fetchBatchSize];
+ *	BOOL shouldRefreshRefetchedObjects = [request shouldRefreshRefetchedObjects];
+ *	NSArray *propertiesToGroupBy = [request propertiesToGroupBy];
+ *	NSPredicate *havingPredicate = [request havingPredicate];
+ * @endcode
  */
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
 {
