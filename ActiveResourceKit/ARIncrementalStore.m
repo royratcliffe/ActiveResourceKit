@@ -61,7 +61,7 @@
 	self = [super init];
 	if (self)
 	{
-		_childContextsByParent = [NSMutableDictionary dictionary];
+		_childContextsByParent = [[NSCache alloc] init];
 	}
 	return self;
 }

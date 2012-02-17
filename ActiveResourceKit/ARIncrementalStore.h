@@ -29,7 +29,11 @@
  */
 @interface ARIncrementalStore : NSIncrementalStore
 {
-	NSMutableDictionary *__strong _childContextsByParent;
+	// Use a cache for retaining child contexts by parent; iOS does not yet
+	// support collections with zeroing weak references, e.g. hash tables. No
+	// need to keep references to child contexts indefinitely. Recreate on
+	// demand.
+	NSCache *__strong _childContextsByParent;
 }
 
 + (NSString *)storeType;
