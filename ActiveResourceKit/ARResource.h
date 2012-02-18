@@ -36,7 +36,7 @@
  *
  * @image html Class_Diagram__Base_and_Resource.png
  */
-@interface ARResource : NSObject<AMAttributeMethods>
+@interface ARResource : NSObject<AMAttributeMethods, NSCopying>
 
 /*!
  * @brief Constructs an active resource service using class methods to establish

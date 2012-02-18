@@ -61,6 +61,19 @@
 	return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	ARResource *copy = [[[self class] allocWithZone:zone] init];
+	[copy setService:[self service]];
+	// Copy attributes using the standard getter and setter. This does not
+	// deep-copy the objects and thereby assumes a simple set of primitive
+	// attributes.
+	[copy setAttributes:[self attributes]];
+	[copy setPrefixOptions:[self prefixOptions]];
+	[copy setPersisted:[self persisted]];
+	return copy;
+}
+
 + (ARService *)service
 {
 	ARService *service = [[ARService alloc] init];
