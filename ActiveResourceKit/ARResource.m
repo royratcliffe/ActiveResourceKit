@@ -264,7 +264,7 @@
 
 - (NSNumber *)ID
 {
-	id ID = [[self attributes] objectForKey:[[self serviceLazily] primaryKeyLazily]];
+	id ID = [_attributes objectForKey:[[self serviceLazily] primaryKeyLazily]];
 	return ID && [ID isKindOfClass:[NSNumber class]] ? ID : nil;
 }
 
