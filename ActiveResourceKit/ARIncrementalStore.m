@@ -25,8 +25,7 @@
 #import "ARIncrementalStore.h"
 #import "ARResource.h"
 #import "ARService.h"
-#import "ARURLConnection.h"
-#import "NSPersistentStore+ActiveResource.h"
+#import "ARSynchronousLoadingURLConnection.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
@@ -88,7 +87,7 @@
 	// managed-object entities even without deriving a sub-class. However, the
 	// entity name follows class naming conventions: capitalised camel-case.
 	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
-	[service setConnection:[[ARURLConnection alloc] init]];
+	[service setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
 	return service;
 }
 
