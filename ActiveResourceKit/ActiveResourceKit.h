@@ -30,6 +30,7 @@
 #import <ActiveResourceKit/ARSynchronousLoadingURLConnection.h>
 #import <ActiveResourceKit/ARQueuedLoadingURLConnection.h>
 #import <ActiveResourceKit/ARHTTPResponse.h>
+#import <ActiveResourceKit/NSPersistentStore+ActiveResource.h>
 
 #import <ActiveResourceKit/ARFormatMethods.h>
 #import <ActiveResourceKit/ARJSONFormat.h>
