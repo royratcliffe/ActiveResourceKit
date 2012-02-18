@@ -26,6 +26,7 @@
 #import "ARResource.h"
 #import "ARService.h"
 #import "ARURLConnection.h"
+#import "NSPersistentStore+ActiveResource.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
@@ -89,13 +90,6 @@
 	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
 	[service setConnection:[[ARURLConnection alloc] init]];
 	return service;
-}
-
-- (NSArray *)otherAffectedStores
-{
-	NSMutableSet *stores = [NSMutableSet setWithArray:[[self persistentStoreCoordinator] persistentStores]];
-	[stores removeObject:self];
-	return [stores allObjects];
 }
 
 //------------------------------------------------------------------------------
