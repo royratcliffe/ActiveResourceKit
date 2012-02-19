@@ -41,7 +41,31 @@
 			case NSDateAttributeType:
 				value = ASDateFromRFC3339String(value);
 		}
-		[attributes setValue:value forKey:attributeName];
+		if (value)
+		{
+			[attributes setObject:value forKey:attributeName];
+		}
+	}
+	return [attributes copy];
+}
+
+- (NSDictionary *)attributesFromObject:(NSManagedObject *)object
+{
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+	NSDictionary *attributesByName = [self attributesByName];
+	for (NSString *attributeName in attributesByName)
+	{
+		NSAttributeDescription *attribute = [attributesByName objectForKey:attributeName];
+		id value = [object valueForKey:attributeName];
+		switch ([attribute attributeType])
+		{
+			case NSDateAttributeType:
+				value = ASRFC3339StringFromDate(value);
+		}
+		if (value)
+		{
+			[attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:attributeName]];
+		}
 	}
 	return [attributes copy];
 }

@@ -42,4 +42,18 @@
  */
 - (NSDictionary *)attributesFromResource:(ARResource *)resource;
 
+/*!
+ * @brief Answers a dictionary of Active Resource-style attributes derived from
+ * the given managed object.
+ * @details Performs reverse-date conversions: from @c NSDate to RFC
+ * 3339-formatted strings suitable for Rails applications. The method iterates
+ * through all attributes, attributes only, no relationships. The implementation
+ * uses Key-Value Coding to access the given managed object. For date
+ * attributes, it converts from @c NSDate to RFC 3339 date-time strings. The
+ * resulting dictionary of attributes keys by Rails-convention attribute names,
+ * i.e. underscored keys rather than camel-cased keys. Use the results for
+ * Active Resource attributes, not for Core Data attributes.
+ */
+- (NSDictionary *)attributesFromObject:(NSManagedObject *)object;
+
 @end
