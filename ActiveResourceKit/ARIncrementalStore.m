@@ -61,9 +61,9 @@
 }
 
 // designated initialiser
-- (id)init
+- (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)root configurationName:(NSString *)name URL:(NSURL *)url options:(NSDictionary *)options
 {
-	self = [super init];
+	self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:url options:options];
 	if (self)
 	{
 		_childContextsByParent = [[NSCache alloc] init];
