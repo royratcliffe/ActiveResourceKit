@@ -11,6 +11,10 @@
 		78054AFA14692ABD007E947E /* ActiveResourceKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */; };
 		78054AFD14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
 		78054AFE14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
+		780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */; };
+		780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */; };
 		780D959D14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D959E14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D959F14E1264F005689CA /* ARQueuedLoadingURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D959C14E1264F005689CA /* ARQueuedLoadingURLConnection.m */; };
@@ -184,6 +188,8 @@
 		78054AF81469299E007E947E /* Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		78054AFB14694531007E947E /* VersioningTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersioningTests.h; sourceTree = "<group>"; };
 		78054AFC14694531007E947E /* VersioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersioningTests.m; sourceTree = "<group>"; };
+		780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ActiveResource.h"; sourceTree = "<group>"; };
+		780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ActiveResource.m"; sourceTree = "<group>"; };
 		780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARQueuedLoadingURLConnection.h; sourceTree = "<group>"; };
 		780D959C14E1264F005689CA /* ARQueuedLoadingURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARQueuedLoadingURLConnection.m; sourceTree = "<group>"; };
 		780D95A514E12D74005689CA /* ARSynchronousLoadingURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSynchronousLoadingURLConnection.h; sourceTree = "<group>"; };
@@ -364,6 +370,8 @@
 				7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */,
 				7870471814EFA2BC00510373 /* NSPersistentStore+ActiveResource.h */,
 				7870471914EFA2BC00510373 /* NSPersistentStore+ActiveResource.m */,
+				780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */,
+				780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */,
 				78D3D6F1140BC3B800DD4278 /* ARService.h */,
 				78D3D6F2140BC3B800DD4278 /* ARService.m */,
 				784450131428EFCB0014B4C6 /* ARService+Private.h */,
@@ -475,6 +483,7 @@
 				780D95B214E1D178005689CA /* ARURLConnection.h in Headers */,
 				78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
+				780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +512,7 @@
 				780D95B114E1D178005689CA /* ARURLConnection.h in Headers */,
 				78D9884114E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471A14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
+				780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +758,7 @@
 				780D95B414E1D178005689CA /* ARURLConnection.m in Sources */,
 				78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471D14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
+				780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +799,7 @@
 				780D95B314E1D178005689CA /* ARURLConnection.m in Sources */,
 				78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471C14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
+				780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
