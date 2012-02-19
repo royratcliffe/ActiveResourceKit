@@ -51,6 +51,10 @@
 		7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
+		78404E6814F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78404E6A14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */; };
+		78404E6B14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */; };
 		78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78440D77141928B000EFBB93 /* ARService.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78440D78141928B000EFBB93 /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -216,6 +220,8 @@
 		7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARIncrementalStore.m; sourceTree = "<group>"; };
 		7835BC8D1414C47900CC4B56 /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		7835BC8E1414C47900CC4B56 /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
+		78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+ActiveResource.h"; sourceTree = "<group>"; };
+		78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+ActiveResource.m"; sourceTree = "<group>"; };
 		78444FFB142896330014B4C6 /* ARFormatMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFormatMethods.h; sourceTree = "<group>"; };
 		78444FFC142896330014B4C6 /* ARFormatMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFormatMethods.m; sourceTree = "<group>"; };
 		784450071428CE250014B4C6 /* ARResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARResource.h; sourceTree = "<group>"; };
@@ -372,6 +378,8 @@
 				7870471914EFA2BC00510373 /* NSPersistentStore+ActiveResource.m */,
 				780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */,
 				780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */,
+				78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */,
+				78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */,
 				78D3D6F1140BC3B800DD4278 /* ARService.h */,
 				78D3D6F2140BC3B800DD4278 /* ARService.m */,
 				784450131428EFCB0014B4C6 /* ARService+Private.h */,
@@ -484,6 +492,7 @@
 				78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 				780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
+				78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +522,7 @@
 				78D9884114E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471A14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 				780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
+				78404E6814F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,6 +769,7 @@
 				78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471D14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 				780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
+				78404E6B14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +811,7 @@
 				78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471C14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 				780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
+				78404E6A14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,4 @@
-// ActiveResourceKit NSManagedObject+ActiveResource.h
+// ActiveResourceKit NSEntityDescription+ActiveResource.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,12 +22,28 @@
 //
 //------------------------------------------------------------------------------
 
-#import <CoreData/CoreData.h>
+#import "NSEntityDescription+ActiveResource.h"
 
-@class ARResource;
+#import <ActiveSupportKit/ActiveSupportKit.h>
 
-@interface NSManagedObject(ActiveResource)
+@implementation NSEntityDescription(ActiveResource)
 
-- (void)loadAttributesFromResource:(ARResource *)resource;
+- (NSDictionary *)attributesFromResource:(ARResource *)resource
+{
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+	NSDictionary *attributesByName = [self attributesByName];
+	for (NSString *attributeName in attributesByName)
+	{
+		NSAttributeDescription *attribute = [attributesByName objectForKey:attributeName];
+		id value = [resource valueForKey:attributeName];
+		switch ([attribute attributeType])
+		{
+			case NSDateAttributeType:
+				value = ASDateFromRFC3339String(value);
+		}
+		[attributes setValue:value forKey:attributeName];
+	}
+	return [attributes copy];
+}
 
 @end

@@ -23,26 +23,13 @@
 //------------------------------------------------------------------------------
 
 #import "NSManagedObject+ActiveResource.h"
-#import "ARResource.h"
-
-#import <ActiveSupportKit/ActiveSupportKit.h>
+#import "NSEntityDescription+ActiveResource.h"
 
 @implementation NSManagedObject(ActiveResource)
 
 - (void)loadAttributesFromResource:(ARResource *)resource
 {
-	NSDictionary *attributesByName = [[self entity] attributesByName];
-	for (NSString *attributeName in attributesByName)
-	{
-		NSAttributeDescription *attribute = [attributesByName objectForKey:attributeName];
-		id value = [resource valueForKey:attributeName];
-		switch ([attribute attributeType])
-		{
-			case NSDateAttributeType:
-				value = ASDateFromRFC3339String(value);
-		}
-		[self setValue:value forKey:attributeName];
-	}
+	[self setValuesForKeysWithDictionary:[[self entity] attributesFromResource:resource]];
 }
 
 @end

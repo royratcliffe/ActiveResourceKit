@@ -1,4 +1,4 @@
-// ActiveResourceKit NSManagedObject+ActiveResource.h
+// ActiveResourceKit NSEntityDescription+ActiveResource.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -26,8 +26,20 @@
 
 @class ARResource;
 
-@interface NSManagedObject(ActiveResource)
+@interface NSEntityDescription(ActiveResource)
 
-- (void)loadAttributesFromResource:(ARResource *)resource;
+/*!
+ * @brief Derives attributes from a given resource using this entity
+ * description's attributes.
+ * @details Performs date conversions, using the managed object's entity
+ * description to discover attributes. This approach makes an important
+ * assumption: that your managed-object model represents the Active Resource
+ * schema, or at least part of the schema. There is only one difference: naming
+ * convention. The Core Data schema uses camel-case; the resource schema uses
+ * underscored names. This method does not validate the schema however. It
+ * silently ignores resource attributes that do not appear in the managed-object
+ * model.
+ */
+- (NSDictionary *)attributesFromResource:(ARResource *)resource;
 
 @end
