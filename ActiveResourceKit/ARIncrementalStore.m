@@ -26,6 +26,7 @@
 #import "ARResource.h"
 #import "ARService.h"
 #import "ARSynchronousLoadingURLConnection.h"
+#import "NSManagedObject+ActiveResource.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
@@ -183,15 +184,45 @@
  */
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
 {
-	id result;
-	switch ([request resultType])
+	id __block result = nil;
+	
+	NSMutableDictionary *options = [NSMutableDictionary dictionary];
+	NSUInteger fetchLimit = [request fetchLimit];
+	if (fetchLimit)
 	{
-		case NSCountResultType:
-			result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:0]];
-			break;
-		default:
-			result = [NSArray array];
+		[options setValue:[NSNumber numberWithUnsignedInteger:fetchLimit] forKey:@"limit"];
 	}
+	NSUInteger fetchOffset = [request fetchOffset];
+	if (fetchOffset)
+	{
+		[options setValue:[NSNumber numberWithUnsignedInteger:fetchOffset] forKey:@"offset"];
+	}
+	[[self serviceForEntityName:[request entityName]] findAllWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
+		if (resources)
+		{
+			switch ([request resultType])
+			{
+				case NSManagedObjectResultType:
+					result = [NSMutableArray array];
+					NSEntityDescription *entity = [NSEntityDescription entityForName:[request entityName] inManagedObjectContext:context];
+					for (ARResource *resource in resources)
+					{
+						NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+						[object loadAttributesFromResource:resource];
+						[result addObject:object];
+					}
+					result = [result copy];
+					break;
+				case NSCountResultType:
+					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[resources count]]];
+			}
+		}
+		else
+		{
+			
+		}
+	}];
+	
 	return result;
 }
 
