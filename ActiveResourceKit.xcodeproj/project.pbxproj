@@ -97,6 +97,10 @@
 		78D3D6F3140BC3B800DD4278 /* ARService.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D3D6F4140BC3B800DD4278 /* ARService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARService.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78D9884114E9378E0081C350 /* ARHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
+		78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
 		78E4DFEB145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFED145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
@@ -237,6 +241,8 @@
 		78D3D6F1140BC3B800DD4278 /* ARService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ARService.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78D3D6F2140BC3B800DD4278 /* ARService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ARService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
+		78D9883F14E9378E0081C350 /* ARHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPResponse.h; sourceTree = "<group>"; };
+		78D9884014E9378E0081C350 /* ARHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPResponse.m; sourceTree = "<group>"; };
 		78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARResource+Private.h"; sourceTree = "<group>"; };
 		78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARResource+Private.m"; sourceTree = "<group>"; };
 		78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConnection.h; sourceTree = "<group>"; };
@@ -378,6 +384,8 @@
 				780D95A614E12D74005689CA /* ARSynchronousLoadingURLConnection.m */,
 				780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */,
 				780D959C14E1264F005689CA /* ARQueuedLoadingURLConnection.m */,
+				78D9883F14E9378E0081C350 /* ARHTTPResponse.h */,
+				78D9884014E9378E0081C350 /* ARHTTPResponse.m */,
 				78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */,
 				78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */,
 				7870D53814CDFED800934195 /* ARMacros.h */,
@@ -465,6 +473,7 @@
 				780D959E14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */,
 				780D95A814E12D74005689CA /* ARSynchronousLoadingURLConnection.h in Headers */,
 				780D95B214E1D178005689CA /* ARURLConnection.h in Headers */,
+				78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +501,7 @@
 				780D959D14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */,
 				780D95A714E12D74005689CA /* ARSynchronousLoadingURLConnection.h in Headers */,
 				780D95B114E1D178005689CA /* ARURLConnection.h in Headers */,
+				78D9884114E9378E0081C350 /* ARHTTPResponse.h in Headers */,
 				7870471A14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +746,7 @@
 				780D95A014E1264F005689CA /* ARQueuedLoadingURLConnection.m in Sources */,
 				780D95AA14E12D74005689CA /* ARSynchronousLoadingURLConnection.m in Sources */,
 				780D95B414E1D178005689CA /* ARURLConnection.m in Sources */,
+				78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471D14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,6 +786,7 @@
 				780D959F14E1264F005689CA /* ARQueuedLoadingURLConnection.m in Sources */,
 				780D95A914E12D74005689CA /* ARSynchronousLoadingURLConnection.m in Sources */,
 				780D95B314E1D178005689CA /* ARURLConnection.m in Sources */,
+				78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */,
 				7870471C14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
