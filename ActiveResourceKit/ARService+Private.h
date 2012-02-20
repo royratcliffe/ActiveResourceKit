@@ -119,13 +119,13 @@ typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPRespons
  * to an “upsert” database operation where it updates the resource if it already
  * exists but alternatively creates the resource if it does not already exist.
  */
-- (void)put:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
+- (void)put:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Sends an asynchronous POST request.
  * @details POST is not idempotent.
  */
-- (void)post:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
+- (void)post:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Used to obtain meta-information about resources, whether they exist or
@@ -148,7 +148,7 @@ typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPRespons
  * handler receives a @c nil response @a HTTPResponse argument and an @ref
  * ARResponseIsNotHTTPError.
  */
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
 
 /*!
  * @brief Answers a decoding handler which, in turn, after decoding, invokes

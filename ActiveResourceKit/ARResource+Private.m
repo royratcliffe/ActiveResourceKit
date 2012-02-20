@@ -54,7 +54,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 - (void)updateWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
-	[[self serviceLazily] put:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	[[self serviceLazily] put:path body:[self encode] completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
@@ -77,7 +77,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
 - (void)createWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
-	[[self serviceLazily] post:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	[[self serviceLazily] post:path body:[self encode] completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])

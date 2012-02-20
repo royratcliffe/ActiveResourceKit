@@ -157,33 +157,37 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (void)get:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:ARHTTPGetMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPGetMethod path:path body:nil completionHandler:completionHandler];
 }
 
 - (void)delete:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:ARHTTPDeleteMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPDeleteMethod path:path body:nil completionHandler:completionHandler];
 }
 
-- (void)put:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
+- (void)put:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:ARHTTPPutMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPPutMethod path:path body:data completionHandler:completionHandler];
 }
 
-- (void)post:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
+- (void)post:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:ARHTTPPostMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPPostMethod path:path body:data completionHandler:completionHandler];
 }
 
 - (void)head:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
-	[self requestHTTPMethod:ARHTTPHeadMethod path:path completionHandler:completionHandler];
+	[self requestHTTPMethod:ARHTTPHeadMethod path:path body:nil completionHandler:completionHandler];
 }
 
-- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(ARServiceRequestCompletionHandler)completionHandler
+- (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler
 {
 	ARConnection *connection = [self connectionLazily];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:HTTPMethod path:path headers:[[self headers] copy]];
+	if (data)
+	{
+		[request setHTTPBody:data];
+	}
 	[connection sendRequest:request completionHandler:[self decodeHandlerWithCompletionHandler:completionHandler]];
 }
 
