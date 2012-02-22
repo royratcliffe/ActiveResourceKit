@@ -201,6 +201,16 @@
 	[[self serviceForEntityName:[request entityName]] findAllWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
 		if (resources)
 		{
+			// Load up the resource cache first. Let new resources replace old
+			// ones. The cache exists as a communication buffer between fetch
+			// requests and other incremental-store interface methods. Do this
+			// regardless of result type. It refreshes the cache with the latest
+			// available resource attributes.
+			for (ARResource *resource in resources)
+			{
+				[_resourcesByObjectID setObject:resource forKey:[self newObjectIDForEntity:[request entity] referenceObject:[resource ID]]];
+			}
+			
 			switch ([request resultType])
 			{
 				case NSManagedObjectResultType:
