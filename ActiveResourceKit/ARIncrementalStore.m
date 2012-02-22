@@ -67,6 +67,7 @@
 	if (self)
 	{
 		_childContextsByParent = [[NSCache alloc] init];
+		_resourcesByObjectID = [[NSCache alloc] init];
 	}
 	return self;
 }
