@@ -27,6 +27,7 @@
 #import "ARService.h"
 #import "ARSynchronousLoadingURLConnection.h"
 #import "NSManagedObject+ActiveResource.h"
+#import "NSEntityDescription+ActiveResource.h"
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
@@ -242,9 +243,103 @@
 	return result;
 }
 
+/*!
+ * @brief Core Data sends this message when managed-object contexts save.
+ * @details The save-changes request encapsulates inserted, updated and deleted
+ * objects.
+ */
 - (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
 {
-	return [NSArray array];
+	NSMutableArray *errors = [NSMutableArray array];
+	for (NSManagedObject *object in [request insertedObjects])
+	{
+		;
+	}
+	for (NSManagedObject *object in [request updatedObjects])
+	{
+		
+	}
+	for (NSManagedObject *object in [request deletedObjects])
+	{
+		NSNumber *ID = [self referenceObjectForObjectID:[object objectID]];
+		NSEntityDescription *entity = [object entity];
+		ARService *service = [self serviceForEntityName:[entity name]];
+		[service deleteWithID:ID options:nil completionHandler:^(NSError *error) {
+			if (error)
+			{
+				[errors addObject:error];
+			}
+		}];
+	}
+	BOOL success = [errors count] == 0;
+	if (!success && outError && *outError == nil)
+	{
+		*outError = [errors objectAtIndex:0];
+	}
+	return success ? [NSArray array] : nil;
+}
+
+- (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+{
+	NSIncrementalStoreNode *node;
+	ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
+	if (resource)
+	{
+		node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:[[objectID entity] attributesFromResource:resource] version:0];
+	}
+	else
+	{
+		node = nil;
+	}
+	return node;
+}
+
+- (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+{
+	return [super newValueForRelationship:relationship forObjectWithID:objectID withContext:context error:outError];
+}
+
+/*!
+ * @details Invoked just before sending a save-changes request. Objects sent
+ * here have only a temporary object ID. Objective: to assign permanent IDs to
+ * newly inserted objects. Answers a set of matching object IDs. The
+ * implementation assumes that the given object's have IDs always of nil. It
+ * sends Active Resource "create with attributes" requests for each object in
+ * order to obtain each object's permanent ID, as assigned by the resource
+ * server.
+ */
+- (NSArray *)obtainPermanentIDsForObjects:(NSArray *)objects error:(NSError *__autoreleasing *)outError
+{
+	NSMutableArray *objectIDs = [NSMutableArray array];
+	NSMutableArray *errors = [NSMutableArray array];
+	for (NSManagedObject *object in objects)
+	{
+		NSEntityDescription *entity = [object entity];
+		ARService *service = [self serviceForEntityName:[entity name]];
+		[service createWithAttributes:[entity attributesFromObject:object] completionHandler:^(NSHTTPURLResponse *response, ARResource *resource, NSError *error) {
+			if (resource)
+			{
+				NSManagedObjectID *objectID = [self newObjectIDForEntity:entity referenceObject:[resource ID]];
+				[_resourcesByObjectID setObject:resource forKey:objectID];
+				[objectIDs addObject:objectID];
+			}
+			else
+			{
+				// Balance the object IDs against the objects. Resource creation
+				// failure adds null to the resulting array. This is just a
+				// token to assert this interface's object-to-object-ID mapping
+				// principle.
+				[objectIDs addObject:[NSNull null]];
+				[errors addObject:error];
+			}
+		}];
+	}
+	BOOL success = [errors count] == 0;
+	if (!success && outError && *outError == nil)
+	{
+		*outError = [errors objectAtIndex:0];
+	}
+	return success ? [objectIDs copy] : nil;
 }
 
 @end
