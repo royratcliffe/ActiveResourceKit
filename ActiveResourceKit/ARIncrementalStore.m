@@ -215,12 +215,17 @@
 			{
 				case NSManagedObjectResultType:
 					result = [NSMutableArray array];
-					NSEntityDescription *entity = [NSEntityDescription entityForName:[request entityName] inManagedObjectContext:context];
 					for (ARResource *resource in resources)
 					{
-						NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
-						[object loadAttributesFromResource:resource];
-						[result addObject:object];
+						NSManagedObject *object = [context objectWithID:[self newObjectIDForEntity:[request entity] referenceObject:[resource ID]]];
+						// Tempting to load up the object attributes at this
+						// point, right away. Do not however. Doing so triggers
+						// the realisation of attributes before Core Data
+						// expects.
+						//
+						//	[object loadAttributesFromResource:resource];
+						//
+						[(NSMutableArray *)result addObject:object];
 					}
 					result = [result copy];
 					break;
