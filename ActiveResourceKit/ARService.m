@@ -383,7 +383,7 @@ Class ARServiceDefaultConnectionClass;
 	}
 }
 
-- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler
 {
 	NSString *path = [self elementPathForID:ID prefixOptions:options queryOptions:nil];
 	[self delete:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
