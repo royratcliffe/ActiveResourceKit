@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARURLConnectionDelegate.h"
+#import "ARHTTPResponse.h"
 
 @implementation ARURLConnectionDelegate
 
@@ -36,7 +37,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[self completionHandler]([self response], nil, error);
+	[self completionHandler]([[ARHTTPResponse alloc] initWithURLResponse:[self response] body:nil], error);
 }
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
@@ -75,7 +76,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	[self completionHandler]([self response], [[self data] copy], nil);
+	[self completionHandler]([[ARHTTPResponse alloc] initWithURLResponse:[self response] body:[[self data] copy]], nil);
 }
 
 @end

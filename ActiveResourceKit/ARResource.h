@@ -26,6 +26,7 @@
 #import <ActiveModelKit/ActiveModelKit.h>
 
 @class ARService;
+@class ARHTTPResponse;
 
 /*!
  * @brief Provides the core class mirroring Rails' @c ActiveResource::Base class.
@@ -149,7 +150,7 @@
 
 //------------------------------------------------------------- RESTful Services
 
-- (void)saveWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)saveWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
 /*!
  * @brief Answers a serialised data representation of the resource according to

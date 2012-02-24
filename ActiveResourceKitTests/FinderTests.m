@@ -30,7 +30,7 @@
 
 - (void)testFindByID
 {
-	[[Person service] findSingleWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(NSHTTPURLResponse *HTTPResponse, ARResource *matz, NSError *error) {
+	[[Person service] findSingleWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(ARHTTPResponse *response, ARResource *matz, NSError *error) {
 		STAssertNotNil(matz, nil);
 		STAssertNil(error, nil);
 		
@@ -50,7 +50,7 @@
 	//
 	//	/people/1.json?auth_token=XYZ
 	//
-	[[Person service] findSingleWithID:[NSNumber numberWithInt:1] options:[NSDictionary dictionaryWithObject:@"XYZ" forKey:@"auth_token"] completionHandler:^(NSHTTPURLResponse *HTTPResponse, ARResource *matz, NSError *error) {
+	[[Person service] findSingleWithID:[NSNumber numberWithInt:1] options:[NSDictionary dictionaryWithObject:@"XYZ" forKey:@"auth_token"] completionHandler:^(ARHTTPResponse *response, ARResource *matz, NSError *error) {
 		STAssertNotNil(matz, nil);
 		STAssertNil(error, nil);
 		

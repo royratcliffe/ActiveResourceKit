@@ -24,6 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ARHTTPResponse;
+
 /*!
  * @brief Implements a simple connection delegate designed for collecting the
  * response, including the body data, and for working around SSL challenges.
@@ -44,7 +46,7 @@
 <NSURLConnectionDataDelegate>
 #endif
 
-@property(copy) void (^completionHandler)(NSURLResponse *response, NSData *data, NSError *error);
+@property(copy) void (^completionHandler)(ARHTTPResponse *response, NSError *error);
 @property(strong) NSURLResponse *response;
 @property(strong) NSMutableData *data;
 

@@ -26,6 +26,7 @@
 #import "ARService+Private.h"
 
 #import "ARURLConnection.h"
+#import "ARHTTPResponse.h"
 #import "ARResource.h"
 #import "ARErrors.h"
 
@@ -301,12 +302,12 @@ Class ARServiceDefaultConnectionClass;
 	// make it relative to the site URL. The NSURL class combines the new
 	// element path with the site, using the site's scheme, host and port.
 	NSString *path = [self newElementPathWithPrefixOptions:nil];
-	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+	[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
 			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
 			[attrs addEntriesFromDictionary:attributes];
-			completionHandler(HTTPResponse, [[ARResource alloc] initWithService:self attributes:attrs], nil);
+			completionHandler(response, [[ARResource alloc] initWithService:self attributes:attrs], nil);
 		}
 		else
 		{
@@ -315,15 +316,16 @@ Class ARServiceDefaultConnectionClass;
 			// an array, a string or some other primitive type. In which
 			// case, building with attributes must fail even though
 			// ostensibly the operation has succeeded. Set up an error.
-			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
 
 - (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	[[[ARResource alloc] initWithService:self attributes:attributes] saveWithCompletionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-		completionHandler(HTTPResponse, object, error);
+	ARResource *resource = [[ARResource alloc] initWithService:self attributes:attributes];
+	[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
+		completionHandler(response, resource, error);
 	}];
 }
 
@@ -334,15 +336,15 @@ Class ARServiceDefaultConnectionClass;
 
 - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
-		completionHandler(HTTPResponse, resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
+	return [self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
+		completionHandler(response, resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
 	}];
 }
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
-		completionHandler(HTTPResponse, resources && [resources count] ? [resources lastObject] : nil, error);
+	return [self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
+		completionHandler(response, resources && [resources count] ? [resources lastObject] : nil, error);
 	}];
 }
 
@@ -352,14 +354,14 @@ Class ARServiceDefaultConnectionClass;
 	NSDictionary *queryOptions = nil;
 	[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
-	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+	[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
 		if ([object isKindOfClass:[NSDictionary class]])
 		{
-			completionHandler(HTTPResponse, [self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
+			completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
 		}
 		else
 		{
-			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
@@ -370,14 +372,14 @@ Class ARServiceDefaultConnectionClass;
 	if (from && [from isKindOfClass:[NSString class]])
 	{
 		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
-		[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+		[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
 			if ([object isKindOfClass:[NSDictionary class]])
 			{
-				completionHandler(HTTPResponse, [self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+				completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
 			}
 			else
 			{
-				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}];
 	}
@@ -386,7 +388,7 @@ Class ARServiceDefaultConnectionClass;
 - (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler
 {
 	NSString *path = [self elementPathForID:ID prefixOptions:options queryOptions:nil];
-	[self delete:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+	[self delete:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
 		completionHandler(error);
 	}];
 }
@@ -399,8 +401,8 @@ Class ARServiceDefaultConnectionClass;
 		NSDictionary *queryOptions = nil;
 		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 		NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
-		[self head:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-			completionHandler([HTTPResponse statusCode] == 200);
+		[self head:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
+			completionHandler([response code] == 200);
 		}];
 	}
 }

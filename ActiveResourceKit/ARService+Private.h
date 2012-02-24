@@ -26,6 +26,7 @@
 #import <ActiveResourceKit/ARConnection.h>
 
 @class ARResource;
+@class ARHTTPResponse;
 
 /*!
  * @brief Builds a query string given a dictionary of query options.
@@ -51,7 +52,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options);
  * success or failure. Operation or dispatch queue assignment depends on which
  * object invokes the block.
  */
-typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error);
+typedef void (^ARServiceRequestCompletionHandler)(ARHTTPResponse *response, id object, NSError *error);
 
 @interface ARService(Private)
 
@@ -61,7 +62,7 @@ typedef void (^ARServiceRequestCompletionHandler)(NSHTTPURLResponse *HTTPRespons
 - (NSString *)defaultPrimaryKey;
 - (NSString *)defaultPrefixSource;
 
-- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error))completionHandler;
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSArray *resources, NSError *error))completionHandler;
 
 /*!
  * Instantiates a collection of active resources given a collection of

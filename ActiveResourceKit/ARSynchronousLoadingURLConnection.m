@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARSynchronousLoadingURLConnection.h"
+#import "ARHTTPResponse.h"
 
 @implementation ARSynchronousLoadingURLConnection
 
@@ -31,7 +32,7 @@
 	NSURLResponse *response = nil;
 	NSError *error = nil;
 	NSData *data = [self sendRequest:request returningResponse:&response error:&error];
-	completionHandler(response, data, error);
+	completionHandler([[ARHTTPResponse alloc] initWithURLResponse:response body:data], error);
 }
 
 - (NSData *)sendRequest:(NSURLRequest *)request

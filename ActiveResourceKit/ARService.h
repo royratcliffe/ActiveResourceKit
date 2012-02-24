@@ -30,13 +30,14 @@ extern NSString *const ARParamsKey;
 
 @class ARConnection;
 @class ARResource;
+@class ARHTTPResponse;
 
 /*!
  * @brief Defines a completion handler block type where the results of
  * completion yield a single resource.
  * @details Successful completion gives a single instance.
  */
-typedef void (^ARResourceCompletionHandler)(NSHTTPURLResponse *response, ARResource *resource, NSError *error);
+typedef void (^ARResourceCompletionHandler)(ARHTTPResponse *response, ARResource *resource, NSError *error);
 
 /*!
  * @brief Defines a type of completion handler block where successful completion
@@ -45,7 +46,7 @@ typedef void (^ARResourceCompletionHandler)(NSHTTPURLResponse *response, ARResou
  * completion ends unsuccessfully. In this case, the second argument @a error
  * supplies the reason.
  */
-typedef void (^ARResourcesCompletionHandler)(NSHTTPURLResponse *response, NSArray *resources, NSError *error);
+typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *resources, NSError *error);
 
 /*!
  * @brief An active resource's service configuration.

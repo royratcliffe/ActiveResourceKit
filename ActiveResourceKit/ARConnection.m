@@ -27,6 +27,7 @@
 
 #import "ARJSONFormat.h"
 #import "ARHTTPMethods.h"
+#import "ARHTTPResponse.h"
 #import "ARErrors.h"
 
 @implementation ARConnection
@@ -71,10 +72,10 @@
 	;
 }
 
-+ (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse
++ (NSError *)errorForResponse:(ARHTTPResponse *)response
 {
-	NSInteger code;
-	switch ([HTTPResponse statusCode])
+	NSInteger errorCode;
+	switch ([response code])
 	{
 		case 301:
 		case 302:
@@ -84,56 +85,56 @@
 			// 302: found (but redirect)
 			// 303: see other (redirect)
 			// 307: temporarily redirected (redirect)
-			code = ARRedirectionErrorCode;
+			errorCode = ARRedirectionErrorCode;
 			break;
 		case 400:
-			code = ARBadRequestErrorCode;
+			errorCode = ARBadRequestErrorCode;
 			break;
 		case 401:
-			code = ARUnauthorizedAccessErrorCode;
+			errorCode = ARUnauthorizedAccessErrorCode;
 			break;
 		case 403:
-			code = ARForbiddenAccessErrorCode;
+			errorCode = ARForbiddenAccessErrorCode;
 			break;
 		case 404:
-			code = ARResourceNotFoundErrorCode;
+			errorCode = ARResourceNotFoundErrorCode;
 			break;
 		case 405:
-			code = ARMethodNotAllowedErrorCode;
+			errorCode = ARMethodNotAllowedErrorCode;
 			break;
 		case 409:
-			code = ARResourceConflictErrorCode;
+			errorCode = ARResourceConflictErrorCode;
 			break;
 		case 410:
-			code = ARResourceGoneErrorCode;
+			errorCode = ARResourceGoneErrorCode;
 			break;
 		case 422:
-			code = ARResourceInvalidErrorCode;
+			errorCode = ARResourceInvalidErrorCode;
 			break;
 		default:
-			if (200 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 400)
+			if (200 <= [response code] && [response code] < 400)
 			{
-				code = '    ';
+				errorCode = '    ';
 			}
-			else if (401 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 500)
+			else if (401 <= [response code] && [response code] < 500)
 			{
-				code = ARClientErrorCode;
+				errorCode = ARClientErrorCode;
 			}
-			else if (500 <= [HTTPResponse statusCode] && [HTTPResponse statusCode] < 600)
+			else if (500 <= [response code] && [response code] < 600)
 			{
-				code = ARServerErrorCode;
+				errorCode = ARServerErrorCode;
 			}
 			else
 			{
-				code = ARConnectionErrorCode;
+				errorCode = ARConnectionErrorCode;
 			}
 	}
 	NSError *error;
-	if (code != '    ')
+	if (errorCode != '    ')
 	{
-		NSString *localizedDescription = [NSHTTPURLResponse localizedStringForStatusCode:[HTTPResponse statusCode]];
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:HTTPResponse, ARConnectionHTTPResponseKey, localizedDescription, NSLocalizedDescriptionKey, nil];
-		error = [NSError errorWithDomain:ARConnectionErrorDomain code:code userInfo:userInfo];
+		NSString *localizedDescription = [NSHTTPURLResponse localizedStringForStatusCode:[response code]];
+		NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:response, ARConnectionHTTPResponseKey, localizedDescription, NSLocalizedDescriptionKey, nil];
+		error = [NSError errorWithDomain:ARConnectionErrorDomain code:errorCode userInfo:userInfo];
 	}
 	else
 	{

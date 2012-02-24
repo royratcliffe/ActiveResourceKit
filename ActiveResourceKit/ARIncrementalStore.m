@@ -199,7 +199,7 @@
 	{
 		[options setValue:[NSNumber numberWithUnsignedInteger:fetchOffset] forKey:@"offset"];
 	}
-	[[self serviceForEntityName:[request entityName]] findAllWithOptions:options completionHandler:^(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error) {
+	[[self serviceForEntityName:[request entityName]] findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
 		if (resources)
 		{
 			// Load up the resource cache first. Let new resources replace old
@@ -316,7 +316,7 @@
 	{
 		NSEntityDescription *entity = [object entity];
 		ARService *service = [self serviceForEntityName:[entity name]];
-		[service createWithAttributes:[entity attributesFromObject:object] completionHandler:^(NSHTTPURLResponse *response, ARResource *resource, NSError *error) {
+		[service createWithAttributes:[entity attributesFromObject:object] completionHandler:^(ARHTTPResponse *response, ARResource *resource, NSError *error) {
 			if (resource)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:entity referenceObject:[resource ID]];

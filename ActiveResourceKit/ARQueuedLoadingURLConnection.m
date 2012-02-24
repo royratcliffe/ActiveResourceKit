@@ -23,12 +23,15 @@
 //------------------------------------------------------------------------------
 
 #import "ARQueuedLoadingURLConnection.h"
+#import "ARHTTPResponse.h"
 
 @implementation ARQueuedLoadingURLConnection
 
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
 {
-	[NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:completionHandler];
+	[NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		completionHandler([[ARHTTPResponse alloc] initWithURLResponse:response body:data], error);
+	}];
 }
 
 //------------------------------------------------------------------------------

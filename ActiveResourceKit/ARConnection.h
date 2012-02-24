@@ -24,6 +24,8 @@
 
 #import <ActiveResourceKit/ARFormat.h>
 
+@class ARHTTPResponse;
+
 /*!
  * @brief Defines a lower-level connection-oriented completion handler.
  * @details The handler accepts a basic URL response, not a HTTP response
@@ -32,7 +34,7 @@
  * accepts the body data verbatim. When connection completes, the body remains
  * un-decoded.
  */
-typedef void (^ARConnectionCompletionHandler)(NSURLResponse *response, NSData *data, NSError *error);
+typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError *error);
 
 /*!
  * @brief Connects to a site using a format.
@@ -83,7 +85,7 @@ typedef void (^ARConnectionCompletionHandler)(NSURLResponse *response, NSData *d
  * accessing the error's user information dictionary with the @ref
  * ARConnectionHTTPResponseKey key.
  */
-+ (NSError *)errorForHTTPResponse:(NSHTTPURLResponse *)HTTPResponse;
++ (NSError *)errorForResponse:(ARHTTPResponse *)response;
 
 //------------------------------------------------------------ Building Requests
 

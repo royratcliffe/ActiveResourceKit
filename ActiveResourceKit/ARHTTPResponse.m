@@ -29,20 +29,26 @@
 @synthesize URLResponse = _URLResponse;
 @synthesize body = _body;
 
-- (id)initWithURLResponse:(NSURLResponse *)response data:(NSData *)data
+- (id)initWithHTTPURLResponse:(NSHTTPURLResponse *)URLResponse body:(id)body
 {
 	self = [self init];
 	if (self)
 	{
-		if ([response isKindOfClass:[NSHTTPURLResponse class]])
-		{
-			[self setURLResponse:(NSHTTPURLResponse *)response];
-			[self setBody:data];
-		}
-		else
-		{
-			self = nil;
-		}
+		[self setURLResponse:URLResponse];
+		[self setBody:body];
+	}
+	return self;
+}
+
+- (id)initWithURLResponse:(NSURLResponse *)URLResponse body:(id)body
+{
+	if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
+	{
+		self = [self initWithHTTPURLResponse:(NSHTTPURLResponse *)URLResponse body:body];
+	}
+	else
+	{
+		self = nil;
 	}
 	return self;
 }

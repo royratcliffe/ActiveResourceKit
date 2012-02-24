@@ -64,7 +64,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	return [[self site] path];
 }
 
-- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, NSArray *resources, NSError *error))completionHandler
+- (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSArray *resources, NSError *error))completionHandler
 {
 	NSString *path;
 	NSDictionary *prefixOptions;
@@ -80,14 +80,14 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 		path = [self collectionPathWithPrefixOptions:prefixOptions queryOptions:queryOptions];
 	}
-	[self get:path completionHandler:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+	[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
 		if ([object isKindOfClass:[NSArray class]])
 		{
-			completionHandler(HTTPResponse, [self instantiateCollection:object prefixOptions:prefixOptions], nil);
+			completionHandler(response, [self instantiateCollection:object prefixOptions:prefixOptions], nil);
 		}
 		else
 		{
-			completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 		}
 	}];
 }
@@ -203,35 +203,35 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 	// stack to the heap. Copy for use after the destruction of this
 	// scope. Compiling for iOS raises a warning unless you copy the block, but
 	// not so for OS X.
-	return [^(NSURLResponse *response, NSData *data, NSError *error) {
-		if ([response isKindOfClass:[NSHTTPURLResponse class]])
+	return [^(ARHTTPResponse *response, NSError *error) {
+		if (response)
 		{
-			if (data)
+			if ([response body])
 			{
-				error = [ARConnection errorForHTTPResponse:(NSHTTPURLResponse *)response];
+				error = [ARConnection errorForResponse:response];
 				if (error == nil)
 				{
 					id object = [[self formatLazily] decode:data error:&error];
 					if (object)
 					{
-						completionHandler((NSHTTPURLResponse *)response, object, nil);
+						completionHandler(response, object, nil);
 					}
 					else
 					{
 						// decoding error
-						completionHandler((NSHTTPURLResponse *)response, nil, error);
+						completionHandler(response, nil, error);
 					}
 				}
 				else
 				{
 					// response error
-					completionHandler((NSHTTPURLResponse *)response, nil, error);
+					completionHandler(response, nil, error);
 				}
 			}
 			else
 			{
 				// connection error
-				completionHandler((NSHTTPURLResponse *)response, nil, error);
+				completionHandler(response, nil, error);
 			}
 		}
 		else

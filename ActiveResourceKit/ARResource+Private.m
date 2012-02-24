@@ -24,11 +24,12 @@
 
 #import "ARResource+Private.h"
 #import "ARService+Private.h"
+#import "ARHTTPResponse.h"
 #import "ARErrors.h"
 
-NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse)
+NSNumber *ARIDFromResponse(ARHTTPResponse *response)
 {
-	NSString *location = [[HTTPResponse allHeaderFields] objectForKey:@"Location"];
+	NSString *location = [[response headerFields] objectForKey:@"Location"];
 	if (location == nil)
 	{
 		return nil;
@@ -44,67 +45,67 @@ NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse)
 	return [numberFormatter numberFromString:string];
 }
 
-BOOL ARResponseCodeAllowsBody(NSInteger statusCode)
+BOOL ARResponseCodeAllowsBody(NSInteger code)
 {
-	return !((100 <= statusCode && statusCode <= 199) || statusCode == 204 || statusCode == 304);
+	return !((100 <= code && code <= 199) || code == 204 || code == 304);
 }
 
 @implementation ARResource(Private)
 
-- (void)updateWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)updateWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] elementPathForID:[self ID] prefixOptions:[self prefixOptions] queryOptions:nil];
-	[[self serviceLazily] put:path body:[self encode] completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	[[self serviceLazily] put:path body:[self encode] completionHandler:^(ARHTTPResponse *response, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
 			{
-				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
-				completionHandler(HTTPResponse, self, nil);
+				[self loadAttributesFromResponse:response attributes:attributes];
+				completionHandler(response, nil);
 			}
 			else
 			{
-				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(response, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}
 		else
 		{
-			completionHandler(HTTPResponse, nil, error);
+			completionHandler(response, error);
 		}
 	}];
 }
 
-- (void)createWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler
+- (void)createWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
 {
 	NSString *path = [[self serviceLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
-	[[self serviceLazily] post:path body:[self encode] completionHandler:^(NSHTTPURLResponse *HTTPResponse, id attributes, NSError *error) {
+	[[self serviceLazily] post:path body:[self encode] completionHandler:^(ARHTTPResponse *response, id attributes, NSError *error) {
 		if (attributes)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
 			{
-				[self setID:ARIDFromResponse(HTTPResponse)];
-				[self loadAttributesFromResponse:HTTPResponse attributes:attributes];
-				completionHandler(HTTPResponse, self, nil);
+				[self setID:ARIDFromResponse(response)];
+				[self loadAttributesFromResponse:response attributes:attributes];
+				completionHandler(response, nil);
 			}
 			else
 			{
-				completionHandler(HTTPResponse, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(response, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 			}
 		}
 		else
 		{
-			completionHandler(HTTPResponse, nil, error);
+			completionHandler(response, error);
 		}
 	}];
 }
 
-- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes
+- (void)loadAttributesFromResponse:(ARHTTPResponse *)response attributes:(NSDictionary *)attributes
 {
 	NSDictionary *headerFields;
 	NSString *contentLength;
 	
-	if (ARResponseCodeAllowsBody([HTTPResponse statusCode]) &&
-		((contentLength = [headerFields = [HTTPResponse allHeaderFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]))
+	if (ARResponseCodeAllowsBody([response code]) &&
+		((contentLength = [headerFields = [response headerFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]))
 	{
 		[self loadAttributes:attributes removeRoot:YES];
 		[self setPersisted:YES];

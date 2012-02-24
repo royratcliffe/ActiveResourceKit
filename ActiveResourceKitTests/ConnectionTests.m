@@ -31,13 +31,13 @@
 
 - (void)testErrorForResponse
 {
-	NSError *(^errorForHTTPResponse)(NSInteger statusCode) = ^(NSInteger statusCode) {
-		return [ARConnection errorForHTTPResponse:[[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil]];
+	NSError *(^errorForResponse)(NSInteger code) = ^(NSInteger code) {
+		return [ARConnection errorForResponse:[[ARHTTPResponse alloc] initWithHTTPURLResponse:[[NSHTTPURLResponse alloc] initWithURL:ActiveResourceKitTestsBaseURL() statusCode:code HTTPVersion:@"HTTP/1.1" headerFields:nil] body:nil]];
 	};
 	// valid responses: 2xx and 3xx
 	for (NSNumber *code in [NSArray arrayWithObjects:[NSNumber numberWithInt:200], [NSNumber numberWithInt:299], [NSNumber numberWithInt:300], [NSNumber numberWithInt:399], nil])
 	{
-		STAssertNil(errorForHTTPResponse([code integerValue]), nil);
+		STAssertNil(errorForResponse([code integerValue]), nil);
 	}
 	// redirection
 	NSArray *redirectCodes = [NSArray arrayWithObjects:[NSNumber numberWithInt:301], [NSNumber numberWithInt:302], [NSNumber numberWithInt:303], [NSNumber numberWithInt:307], nil];
@@ -45,7 +45,7 @@
 	NSDictionary *redirectDescriptionForCode = [NSDictionary dictionaryWithObjects:redirectDescriptions forKeys:redirectCodes];
 	for (NSNumber *code in redirectCodes)
 	{
-		NSError *error = errorForHTTPResponse([code integerValue]);
+		NSError *error = errorForResponse([code integerValue]);
 		STAssertNotNil(error, nil);
 		STAssertEquals([error code], (NSInteger)ARRedirectionErrorCode, nil);
 		STAssertEqualObjects([[error userInfo] objectForKey:NSLocalizedDescriptionKey], [redirectDescriptionForCode objectForKey:code], nil);
@@ -69,7 +69,7 @@
 	};
 	for (NSUInteger i = 0; i < ASDimOf(clientCodesAndErrors); i++)
 	{
-		STAssertEquals([errorForHTTPResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
+		STAssertEquals([errorForResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
 	}
 	for (NSInteger statusCode = 402; statusCode <= 499; statusCode++)
 	{
@@ -77,23 +77,23 @@
 		for (i = 0; i < ASDimOf(clientCodesAndErrors) && statusCode != clientCodesAndErrors[i].statusCode; i++);
 		if (i == ASDimOf(clientCodesAndErrors))
 		{
-			STAssertEquals([errorForHTTPResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
+			STAssertEquals([errorForResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
 		}
 	}
 	// server errors: 5xx
 	for (NSInteger statusCode = 500; statusCode <= 599; statusCode++)
 	{
-		STAssertEquals([errorForHTTPResponse(statusCode) code], (NSInteger)ARServerErrorCode, nil);
+		STAssertEquals([errorForResponse(statusCode) code], (NSInteger)ARServerErrorCode, nil);
 	}
 }
 
 - (void)testGet
 {
 	ARSynchronousLoadingURLConnection *connection = [[ARSynchronousLoadingURLConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
-	NSHTTPURLResponse *HTTPResponse = nil;
+	NSHTTPURLResponse *response = nil;
 	NSError *error = nil;
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPGetMethod path:@"/people/1.json" headers:nil];
-	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:&error];
+	NSData *data = [connection sendRequest:request returningResponse:&response error:&error];
 	NSDictionary *matz = [[connection format] decode:data error:&error];
 	STAssertEqualObjects(@"Matz", [matz valueForKey:@"name"], nil);
 }
@@ -103,21 +103,21 @@
 	// Test against the same path as above in testGet, same headers, only the
 	// HTTP request method differs: HEAD rather than GET. In response, the
 	// server should answer with an empty body and response code 200.
-	NSHTTPURLResponse *HTTPResponse = nil;
+	NSHTTPURLResponse *response = nil;
 	ARSynchronousLoadingURLConnection *connection = [[ARSynchronousLoadingURLConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPHeadMethod path:@"/people/1.json" headers:nil];
-	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
+	NSData *data = [connection sendRequest:request returningResponse:&response error:NULL];
 	STAssertEquals([data length], (NSUInteger)0, nil);
-	STAssertEquals([HTTPResponse statusCode], (NSInteger)200, nil);
+	STAssertEquals([response statusCode], (NSInteger)200, nil);
 }
 
 - (void)testGetWithHeader
 {
 	ARSynchronousLoadingURLConnection *connection = [[ARSynchronousLoadingURLConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
-	NSHTTPURLResponse *HTTPResponse = nil;
+	NSHTTPURLResponse *response = nil;
 	NSDictionary *headers = [NSDictionary dictionaryWithObject:@"value" forKey:@"key"];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPGetMethod path:@"/people/2.json" headers:headers];
-	NSData *data = [connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
+	NSData *data = [connection sendRequest:request returningResponse:&response error:NULL];
 	// This is not a real test of GET with headers. The test cannot assert
 	// anything about headers being successfully sent along with the GET
 	// request; the server does not echo the headers. However, if you check the
@@ -138,11 +138,11 @@
 
 - (void)testPost
 {
-	NSHTTPURLResponse *HTTPResponse = nil;
+	NSHTTPURLResponse *response = nil;
 	ARSynchronousLoadingURLConnection *connection = [[ARSynchronousLoadingURLConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPPostMethod path:@"/people.json" headers:nil];
-	[connection sendRequest:request returningResponse:&HTTPResponse error:NULL];
-	STAssertNotNil([[HTTPResponse allHeaderFields] objectForKey:@"Location"], nil);
+	[connection sendRequest:request returningResponse:&response error:NULL];
+	STAssertNotNil([[response allHeaderFields] objectForKey:@"Location"], nil);
 }
 
 @end

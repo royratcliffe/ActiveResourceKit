@@ -24,6 +24,8 @@
 
 #import <ActiveResourceKit/ARResource.h>
 
+@class ARHTTPResponse;
+
 /*!
  * @brief Extracts the resource identifier from the given HTTP response.
  * @details The HTTP response includes a Location header field specifying the
@@ -34,24 +36,24 @@
  * location field. Answers @c nil if the response does not contain a Location
  * header, or if the Location field does not match the format @c "/foo/bar/1".
  */
-NSNumber *ARIDFromResponse(NSHTTPURLResponse *HTTPResponse);
+NSNumber *ARIDFromResponse(ARHTTPResponse *response);
 
 /*!
  * @brief Determines whether the HTTP 1.1 specification allows a response to
  * have a body (see section 4.4.1 of the specification).
  */
-BOOL ARResponseCodeAllowsBody(NSInteger statusCode);
+BOOL ARResponseCodeAllowsBody(NSInteger code);
 
 @interface ARResource(Private)
 
-- (void)updateWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)updateWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
-- (void)createWithCompletionHandler:(void (^)(NSHTTPURLResponse *HTTPResponse, id object, NSError *error))completionHandler;
+- (void)createWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
 /*!
  * @param HTTPResponse A HTTP response wrapper.
  * @param attributes Set of attributes decoded from the response body.
  */
-- (void)loadAttributesFromResponse:(NSHTTPURLResponse *)HTTPResponse attributes:(NSDictionary *)attributes;
+- (void)loadAttributesFromResponse:(ARHTTPResponse *)response attributes:(NSDictionary *)attributes;
 
 @end

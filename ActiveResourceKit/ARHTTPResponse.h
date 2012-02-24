@@ -54,6 +54,13 @@
 @property(strong, NS_NONATOMIC_IOSONLY) id body;
 
 /*!
+ * @brief Shortcut for allocating, initialising then setting the URL response
+ * and body.
+ * @details Not the designated initialiser.
+ */
+- (id)initWithHTTPURLResponse:(NSHTTPURLResponse *)URLResponse body:(id)body;
+
+/*!
  * @brief Creates an Active Resource HTTP response based on a response-data
  * pair, the kind typically delivered by Apple's URL connection programming
  * interface.
@@ -62,7 +69,7 @@
  * from this method if the requests from which the responses derive do not use
  * the HTTP protocol.
  */
-- (id)initWithURLResponse:(NSURLResponse *)response data:(NSData *)data;
+- (id)initWithURLResponse:(NSURLResponse *)URLResponse body:(id)body;
 
 - (NSInteger)code;
 - (NSDictionary *)headerFields;

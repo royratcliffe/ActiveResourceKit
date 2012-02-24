@@ -25,11 +25,13 @@
 #import "BaseTests.h"
 #import "Person.h"
 
+#import <ActiveResourceKit/ActiveResourceKit.h>
+
 @implementation BaseTests
 
 - (void)testCreate
 {
-	[[Person service] createWithAttributes:[NSDictionary dictionaryWithObject:@"Rick" forKey:@"name"] completionHandler:^(NSHTTPURLResponse *HTTPResponse, ARResource *resource, NSError *error) {
+	[[Person service] createWithAttributes:[NSDictionary dictionaryWithObject:@"Rick" forKey:@"name"] completionHandler:^(ARHTTPResponse *response, ARResource *resource, NSError *error) {
 		NSLog(@"%@", resource);
 		[self setStop:YES];
 	}];
@@ -38,7 +40,7 @@
 
 - (void)testToJSON
 {
-	[[Person service] findSingleWithID:[NSNumber numberWithInt:6] options:nil completionHandler:^(NSHTTPURLResponse *HTTPResponse, ARResource *joe, NSError *error) {
+	[[Person service] findSingleWithID:[NSNumber numberWithInt:6] options:nil completionHandler:^(ARHTTPResponse *response, ARResource *joe, NSError *error) {
 		NSString *string = [[NSString alloc] initWithData:[joe encode] encoding:NSUTF8StringEncoding];
 		for (NSString *re in [NSArray arrayWithObjects:@"^\\{\"person\":\\{", @"\"id\":6", @"\"name\":\"Joe\"", @"\\}\\}$", nil])
 		{
