@@ -627,7 +627,7 @@
 		7846AA0A140BAAE100FE58E5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Pioneering Software, United Kingdom";
 			};
 			buildConfigurationList = 7846AA0D140BAAE100FE58E5 /* Build configuration list for PBXProject "ActiveResourceKit" */;
