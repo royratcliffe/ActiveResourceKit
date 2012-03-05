@@ -1,5 +1,11 @@
 # Active Resource Kit
 
+## Connections
+
+Cocoa's Foundation framework supports three distinct URL connections. Active Resource Kit models them using four object classes: one abstract with three corresponding concrete implementation classes.
+
+![Class Diagram: Connections](Documents/Class_Diagram__Connections.png)
+
 ## Testing
 
 Run tests by selecting either the ActiveResourceKitFramework or
