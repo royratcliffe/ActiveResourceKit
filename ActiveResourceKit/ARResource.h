@@ -35,7 +35,7 @@
  * to a database whereas Active Resources connect to a RESTful API accessed via
  * HTTP transport.
  *
- * @image html Class_Diagram__Base_and_Resource.png
+ * @image html Class_Diagram__Service_and_Resource.png
  */
 @interface ARResource : NSObject<AMAttributeMethods, NSCopying>
 
