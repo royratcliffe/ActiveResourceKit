@@ -211,6 +211,13 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 //---------------------------------------------------------------------- Headers
 
+/*!
+ * @note The @ref headers property exposes its implementation. This echoes the
+ * Rails interface where @c ActiveResource::Base subclasses derives a singleton
+ * class with a directly-accessible mutable hash called @c headers. If Person
+ * inherits from @c ActiveResource::Base, then an instance of Person exposes its
+ * mutable headers at @c person.class.headers.
+ */
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableDictionary *headers;
 
 - (NSMutableDictionary *)headersLazily;
