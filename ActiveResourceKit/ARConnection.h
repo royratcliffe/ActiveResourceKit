@@ -83,7 +83,9 @@ typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError 
  * nil otherwise. The error object's error code and localised description
  * outline the issue. You can also retrieve the HTTP response object itself by
  * accessing the error's user information dictionary with the @ref
- * ARConnectionHTTPResponseKey key.
+ * ARConnectionHTTPResponseKey key; this key-value pair captures the given @ref
+ * ARHTTPResponse wrapper which includes the body as well as the original URL
+ * response.
  */
 + (NSError *)errorForResponse:(ARHTTPResponse *)response;
 
