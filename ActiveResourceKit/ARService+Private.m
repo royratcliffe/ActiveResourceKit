@@ -104,12 +104,12 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (ARResource *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions
 {
-	Class klass = NSClassFromString(ASInflectorCamelize([self elementNameLazily], YES));
-	if (klass == nil || ![klass isSubclassOfClass:[ARResource class]])
+	Class aClass = NSClassFromString(ASInflectorCamelize([self elementNameLazily], YES));
+	if (aClass == nil || ![aClass isSubclassOfClass:[ARResource class]])
 	{
-		klass = [ARResource class];
+		aClass = [ARResource class];
 	}
-	ARResource *resource = [[klass alloc] initWithService:self attributes:attributes persisted:YES];
+	ARResource *resource = [[aClass alloc] initWithService:self attributes:attributes persisted:YES];
 	[resource setPrefixOptions:prefixOptions];
 	return resource;
 }
