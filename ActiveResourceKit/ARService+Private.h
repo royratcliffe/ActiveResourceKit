@@ -146,7 +146,7 @@ typedef void (^ARServiceRequestCompletionHandler)(ARHTTPResponse *response, id o
  * body, decoded according to the service format. Decoding itself can encounter
  * errors. If successful, the completion handler receives a non-nil object and a
  * @c nil error. If the response is not an HTTP-based response, the completion
- * handler receives a @c nil response @a HTTPResponse argument and an @ref
+ * handler receives a @c nil @a response argument and an @ref
  * ARResponseIsNotHTTPError.
  */
 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path body:(NSData *)data completionHandler:(ARServiceRequestCompletionHandler)completionHandler;
