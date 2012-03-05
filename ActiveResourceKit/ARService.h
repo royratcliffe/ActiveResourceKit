@@ -345,6 +345,12 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  */
 - (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler;
 
+/*!
+ * @brief Asserts the existence of a resource.
+ * @param ID Identifies the resource to assert existence for.
+ * @param options Specifies prefix and query parameters if any.
+ * @param completionHandler Block to execute on success or failure.
+ */
 - (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler;
 
 @end
