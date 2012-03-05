@@ -337,7 +337,13 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  */
 - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler;
+/*!
+ * @brief Deletes the resource with the given ID.
+ * @param ID Identifies the resource to delete.
+ * @param options All options specify prefix and query parameters.
+ * @param completionHandler Block to execute on success or failure.
+ */
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler;
 
 - (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler;
 
