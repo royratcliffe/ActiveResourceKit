@@ -250,6 +250,15 @@
 					}
 					result = [result copy];
 					break;
+				case NSManagedObjectIDResultType:
+					result = [NSMutableArray array];
+					for (ARResource *resource in resources)
+					{
+						NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
+						[(NSMutableArray *)result addObject:objectID];
+					}
+					result = [result copy];
+					break;
 				case NSCountResultType:
 					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[resources count]]];
 			}
