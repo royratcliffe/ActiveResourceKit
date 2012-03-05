@@ -45,21 +45,24 @@
 	// demand.
 	NSCache *__strong _childContextsByParent;
 	
-	// Cache the resources by object ID. This cache associates Active Resource
-	// with Core Data. It bridges the difference between the Active Resource
-	// interface and the Core Data interface. When you "find" active resources,
-	// all resource attributes become available. However, when Core Data fetches
-	// managed objects incrementally, the incremental-store interface expects
-	// only object IDs at first. Subsequently, Core Data asks for attribute and
-	// relationship values. This cache exists to buffer those values until Core
-	// Data requests them.
-	//
-	// Same goes when instantiating new object-resource pairs. The Active
-	// Resource interface creates a new resource along with its attributes. Core
-	// Data, however, only obtains permanent IDs initially. They become faulted
-	// objects. Core Data asks for properties later when needed. Again, the
-	// resources-by-object-ID cache acts as a bridging buffer.
-	NSCache *__strong _resourcesByObjectID;
+	/*!
+	 * @brief Caches incremental nodes by object ID.
+	 * @details This cache effectively associates Active Resource with Core
+	 * Data. It bridges the difference between the Active Resource interface and
+	 * the Core Data interface. When you "find" active resources, all resource
+	 * attributes become available. However, when Core Data fetches managed
+	 * objects incrementally, the incremental-store interface expects only
+	 * object IDs at first. Subsequently, Core Data asks for attribute and
+	 * relationship values, i.e. entity properties. This cache exists to buffer
+	 * those values until Core Data requests them.
+	 *
+	 * Same goes when instantiating new object-resource pairs. The Active
+	 * Resource interface creates a new resource along with its attributes. Core
+	 * Data, however, only obtains permanent IDs initially. They become faulted
+	 * objects. Core Data asks for properties later when needed. Again, the
+	 * nodes-by-object-ID cache acts as a bridging buffer.
+	 */
+	NSCache *__strong _nodesByObjectID;
 }
 
 + (NSString *)storeType;
@@ -132,9 +135,5 @@
  * authentication if needed.
  */
 - (ARService *)serviceForEntityName:(NSString *)entityName;
-
-- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
-
-- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
 
 @end

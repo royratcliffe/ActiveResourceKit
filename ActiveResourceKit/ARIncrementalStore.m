@@ -31,6 +31,14 @@
 
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+@interface ARIncrementalStore()
+
+- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+
+- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+
+@end
+
 @implementation ARIncrementalStore
 
 + (void)initialize
@@ -68,7 +76,7 @@
 	if (self)
 	{
 		_childContextsByParent = [[NSCache alloc] init];
-		_resourcesByObjectID = [[NSCache alloc] init];
+		_nodesByObjectID = [[NSCache alloc] init];
 	}
 	return self;
 }
@@ -209,7 +217,18 @@
 			// available resource attributes.
 			for (ARResource *resource in resources)
 			{
-				[_resourcesByObjectID setObject:resource forKey:[self newObjectIDForEntity:[request entity] referenceObject:[resource ID]]];
+				NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
+				NSDictionary *values = [[objectID entity] attributesFromResource:resource];
+				NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
+				if (node == nil)
+				{
+					node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:values version:0];
+					[_nodesByObjectID setObject:node forKey:objectID];
+				}
+				else
+				{
+					[node updateWithValues:values version:[node version] + 1];
+				}
 			}
 			
 			switch ([request resultType])
@@ -218,7 +237,8 @@
 					result = [NSMutableArray array];
 					for (ARResource *resource in resources)
 					{
-						NSManagedObject *object = [context objectWithID:[self newObjectIDForEntity:[request entity] referenceObject:[resource ID]]];
+						NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
+						NSManagedObject *object = [context objectWithID:objectID];
 						// Tempting to load up the object attributes at this
 						// point, right away. Do not however. Doing so triggers
 						// the realisation of attributes before Core Data
@@ -236,7 +256,10 @@
 		}
 		else
 		{
-			
+			if (outError && *outError == nil)
+			{
+				*outError = error;
+			}
 		}
 	}];
 	
@@ -279,17 +302,26 @@
 	return success ? [NSArray array] : nil;
 }
 
+/*!
+ * @note The name of the method implies creation of a new set of values. The
+ * implementation @em reuses the existing cached nodes however. This assumes
+ * that Core Data does not care about node instances, by comparing old instances
+ * with new ones for example. Instead, assume that Core Data only cares about
+ * node @em version; for this reason, the implementation here always bumps the
+ * version.
+ */
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
 {
-	NSIncrementalStoreNode *node;
-	ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
-	if (resource)
+	NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
+	if (node)
 	{
-		node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:[[objectID entity] attributesFromResource:resource] version:0];
-	}
-	else
-	{
-		node = nil;
+		NSMutableDictionary *values = [NSMutableDictionary dictionary];
+		for (NSPropertyDescription *property in [[objectID entity] properties])
+		{
+			id value = [node valueForPropertyDescription:property];
+			[values setObject:value forKey:[property name]];
+		}
+		[node updateWithValues:values version:[node version] + 1];
 	}
 	return node;
 }
@@ -320,7 +352,8 @@
 			if (resource)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:entity referenceObject:[resource ID]];
-				[_resourcesByObjectID setObject:resource forKey:objectID];
+				NSDictionary *values = [[objectID entity] attributesFromResource:resource];
+				[_nodesByObjectID setObject:[[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:values version:0] forKey:objectID];
 				[objectIDs addObject:objectID];
 			}
 			else
