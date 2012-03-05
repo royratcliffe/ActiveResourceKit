@@ -23,7 +23,9 @@
 //------------------------------------------------------------------------------
 
 #import "NSEntityDescription+ActiveResource.h"
+#import "ARResource.h"
 
+// for -[ASInflector underscore:camelCasedWord]
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
 @implementation NSEntityDescription(ActiveResource)
