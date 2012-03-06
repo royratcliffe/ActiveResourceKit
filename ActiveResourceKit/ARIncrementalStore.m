@@ -233,6 +233,11 @@
 				[nodes addObject:node];
 			}
 			
+			// Compile the results for Core Data. Base the results on nodes,
+			// rather than resources. Having previously iterated the resources
+			// in order to create or update the incremental nodes, now deal with
+			// the results in terms of managed objects and object IDs using
+			// nodes.
 			switch ([request resultType])
 			{
 				case NSManagedObjectResultType:
@@ -264,6 +269,13 @@
 		}
 		else
 		{
+			// Relay the error. Note, this occurs here within a completion
+			// block. Ensure that your original declaration for the error
+			// pointer includes the __autoreleasing keyword, i.e.
+			//
+			//	NSError *__autoreleasing error = nil;
+			//
+			// Otherwise, you could encounter EXC_BAD_ACCESS aborts.
 			if (outError && *outError == nil)
 			{
 				*outError = error;
