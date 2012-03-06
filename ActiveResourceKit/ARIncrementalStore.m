@@ -215,6 +215,7 @@
 			// requests and other incremental-store interface methods. Do this
 			// regardless of result type. It refreshes the cache with the latest
 			// available resource attributes.
+			NSMutableArray *nodes = [NSMutableArray array];
 			for (ARResource *resource in resources)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
@@ -229,38 +230,36 @@
 				{
 					[node updateWithValues:values version:[node version] + 1];
 				}
+				[nodes addObject:node];
 			}
 			
 			switch ([request resultType])
 			{
 				case NSManagedObjectResultType:
 					result = [NSMutableArray array];
-					for (ARResource *resource in resources)
+					for (NSIncrementalStoreNode *node in nodes)
 					{
-						NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
-						NSManagedObject *object = [context objectWithID:objectID];
 						// Tempting to load up the object attributes at this
 						// point, right away. Do not however. Doing so triggers
 						// the realisation of attributes before Core Data
 						// expects.
 						//
-						//	[object loadAttributesFromResource:resource];
+						//	[[context objectWithID:[node objectID]] loadAttributesFromResource:resource];
 						//
-						[(NSMutableArray *)result addObject:object];
+						[(NSMutableArray *)result addObject:[context objectWithID:[node objectID]]];
 					}
 					result = [result copy];
 					break;
 				case NSManagedObjectIDResultType:
 					result = [NSMutableArray array];
-					for (ARResource *resource in resources)
+					for (NSIncrementalStoreNode *node in nodes)
 					{
-						NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
-						[(NSMutableArray *)result addObject:objectID];
+						[(NSMutableArray *)result addObject:[node objectID]];
 					}
 					result = [result copy];
 					break;
 				case NSCountResultType:
-					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[resources count]]];
+					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[nodes count]]];
 			}
 		}
 		else
