@@ -37,7 +37,7 @@
  * nil on error.
  */
 - (NSData *)sendRequest:(NSURLRequest *)request
-	  returningResponse:(NSURLResponse *__autoreleasing *)outResponse
-				  error:(NSError *__autoreleasing *)outError;
+	  returningResponse:(NSURLResponse **)outResponse
+				  error:(NSError **)outError;
 
 @end

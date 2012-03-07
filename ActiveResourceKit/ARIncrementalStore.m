@@ -33,9 +33,9 @@
 
 @interface ARIncrementalStore()
 
-- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError;
 
-- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError;
+- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError;
 
 @end
 
@@ -115,7 +115,7 @@
  * @details Is the store URL usable? Does it exist? Can the store receive save
  * requests? Are the schemas compatible?
  */
-- (BOOL)loadMetadata:(NSError *__autoreleasing *)outError
+- (BOOL)loadMetadata:(NSError **)outError
 {
 	NSMutableDictionary *metadata = [NSMutableDictionary dictionary];
 	[metadata setObject:[ARIncrementalStore storeTypeForClass:[self class]] forKey:NSStoreTypeKey];
@@ -130,7 +130,7 @@
 	return YES;
 }
 
-- (id)executeRequest:(NSPersistentStoreRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+- (id)executeRequest:(NSPersistentStoreRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	switch ([request requestType])
 	{
@@ -192,7 +192,7 @@
  *	NSPredicate *havingPredicate = [request havingPredicate];
  * @endcode
  */
-- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+- (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	id __block result = nil;
 	
@@ -291,7 +291,7 @@
  * @details The save-changes request encapsulates inserted, updated and deleted
  * objects.
  */
-- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+- (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	NSMutableArray *errors = [NSMutableArray array];
 	for (NSManagedObject *object in [request insertedObjects])
@@ -330,7 +330,7 @@
  * node @em version; for this reason, the implementation here always bumps the
  * version.
  */
-- (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+- (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
 	if (node)
@@ -346,7 +346,7 @@
 	return node;
 }
 
-- (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)outError
+- (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	return [super newValueForRelationship:relationship forObjectWithID:objectID withContext:context error:outError];
 }
@@ -360,7 +360,7 @@
  * order to obtain each object's permanent ID, as assigned by the resource
  * server.
  */
-- (NSArray *)obtainPermanentIDsForObjects:(NSArray *)objects error:(NSError *__autoreleasing *)outError
+- (NSArray *)obtainPermanentIDsForObjects:(NSArray *)objects error:(NSError **)outError
 {
 	NSMutableArray *objectIDs = [NSMutableArray array];
 	NSMutableArray *errors = [NSMutableArray array];

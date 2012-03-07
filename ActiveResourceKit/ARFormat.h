@@ -29,7 +29,7 @@
 @property(readonly, NS_NONATOMIC_IOSONLY) NSString *extension;
 @property(readonly, NS_NONATOMIC_IOSONLY) NSString *MIMEType;
 
-- (NSData *)encode:(id)object error:(NSError *__autoreleasing *)outError;
-- (id)decode:(NSData *)data error:(NSError *__autoreleasing *)outError;
+- (NSData *)encode:(id)object error:(NSError **)outError;
+- (id)decode:(NSData *)data error:(NSError **)outError;
 
 @end
