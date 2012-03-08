@@ -300,7 +300,16 @@
 	}
 	for (NSManagedObject *object in [request updatedObjects])
 	{
-		
+		NSEntityDescription *entity = [object entity];
+		ARResource *resource = [[ARResource alloc] initWithService:[self serviceForEntityName:[entity name]]];
+		[resource setValuesForKeysWithDictionary:[entity attributesFromObject:object]];
+		[resource setPersisted:YES];
+		[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
+			if (error)
+			{
+				[errors addObject:error];
+			}
+		}];
 	}
 	for (NSManagedObject *object in [request deletedObjects])
 	{
