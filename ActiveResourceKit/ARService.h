@@ -347,10 +347,24 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 /*!
  * @brief Asserts the existence of a resource.
- * @param ID Identifies the resource to assert existence for.
+ * @param ID Identifies the resource to assert the existence of.
  * @param options Specifies prefix and query parameters if any.
- * @param completionHandler Block to execute on success or failure.
+ * @param completionHandler Block to execute on success or failure. The block's
+ * parameters include a response, a boolean equal to YES if a resource with the
+ * given ID really exists along with an error object describing the error if one
+ * occurs.
+ * @details The resource exists when the block receives @a exists argument equal
+ * to YES. This indicates a valid code-200 response from the remote
+ * service. Otherwise, when @a exists equals NO, either the resource does not
+ * exist or there was a communication error. When the remote service fails to
+ * locate the given resource, the completion handler receives an error object
+ * with an error code matching @ref ARResourceNotFoundErrorCode or @ref
+ * ARResourceGoneErrorCode (response codes 404 or 410, respectively).
+ *
+ * @note Asserting existence sends a HEAD request to the remote RESTful
+ * service. The standard Rails Rack converts the HEAD request to a GET but then
+ * strips the body from the response.
  */
-- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler;
+- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler;
 
 @end

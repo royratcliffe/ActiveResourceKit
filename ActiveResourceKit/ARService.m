@@ -393,8 +393,11 @@ Class ARServiceDefaultConnectionClass;
 	}];
 }
 
-- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(BOOL exists))completionHandler
+- (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler
 {
+	// This implementation looks a little strange. Why would you pass an ID of
+	// nil? However, it fairly accurately mirrors the Rails implementation, to
+	// the extent possible at least.
 	if (ID)
 	{
 		NSDictionary *prefixOptions = nil;
@@ -402,8 +405,12 @@ Class ARServiceDefaultConnectionClass;
 		[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 		NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
 		[self head:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
-			completionHandler([response code] == 200);
+			completionHandler(response, [response code] == 200, error);
 		}];
+	}
+	else
+	{
+		completionHandler(nil, NO, nil);
 	}
 }
 

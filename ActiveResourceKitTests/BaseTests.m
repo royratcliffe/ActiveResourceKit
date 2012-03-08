@@ -38,6 +38,21 @@
 	[self runUntilStop];
 }
 
+- (void)testExists
+{
+	[[Person service] existsWithID:nil options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+		STAssertFalse(exists, nil);
+	}];
+	[[Person service] existsWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+		STAssertTrue(exists, nil);
+	}];
+	[[Person service] existsWithID:[NSNumber numberWithInt:99] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+		STAssertFalse(exists, nil);
+		STAssertEquals([response code], 404, nil);
+		STAssertEquals([error code], ARResourceNotFoundErrorCode, nil);
+	}];
+}
+
 - (void)testToJSON
 {
 	[[Person service] findSingleWithID:[NSNumber numberWithInt:6] options:nil completionHandler:^(ARHTTPResponse *response, ARResource *joe, NSError *error) {
