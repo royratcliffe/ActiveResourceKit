@@ -397,7 +397,7 @@ Class ARServiceDefaultConnectionClass;
 {
 	// This implementation looks a little strange. Why would you pass an ID of
 	// nil? However, it fairly accurately mirrors the Rails implementation, to
-	// the extent possible at least.
+	// the extent possible at least. The ID is nil when the resource is new.
 	if (ID)
 	{
 		NSDictionary *prefixOptions = nil;
