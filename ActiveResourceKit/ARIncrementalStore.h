@@ -62,7 +62,7 @@
 	 * objects. Core Data asks for properties later when needed. Again, the
 	 * nodes-by-object-ID cache acts as a bridging buffer.
 	 */
-	NSCache *__strong _nodesByObjectID;
+	NSMutableDictionary *__strong _nodesByObjectID;
 }
 
 + (NSString *)storeType;

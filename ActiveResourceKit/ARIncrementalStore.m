@@ -76,7 +76,7 @@
 	if (self)
 	{
 		_childContextsByParent = [[NSCache alloc] init];
-		_nodesByObjectID = [[NSCache alloc] init];
+		_nodesByObjectID = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
