@@ -300,6 +300,17 @@
 	}
 	for (NSManagedObject *object in [request updatedObjects])
 	{
+		// Updates occur by rebuilding the Active Resource from its associated
+		// incremental node. You cannot assume that all the objects belong to
+		// the same entity description. Likely, the set will include different
+		// entities. Updating only occurs when saving the context. So updates
+		// include all modified entities in-between save events.
+		//
+		// Save the resources one-by-one. This implies one connection for each
+		// save operation. If there are many updates, could a bulk update
+		// optimise the number of connections? Ideally, there should be one
+		// create, one update and one delete request respectively containing all
+		// the objects to insert, update and delete.
 		NSEntityDescription *entity = [object entity];
 		ARResource *resource = [[ARResource alloc] initWithService:[self serviceForEntityName:[entity name]]];
 		[resource setValuesForKeysWithDictionary:[entity attributesFromObject:object]];
