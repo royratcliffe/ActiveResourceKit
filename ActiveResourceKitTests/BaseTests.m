@@ -63,7 +63,7 @@
 		NSString *string = [[NSString alloc] initWithData:[joe encode] encoding:NSUTF8StringEncoding];
 		for (NSString *re in [NSArray arrayWithObjects:@"^\\{\"person\":\\{", @"\"id\":6", @"\"name\":\"Joe\"", @"\\}\\}$", nil])
 		{
-			STAssertNotNil([[NSRegularExpression regularExpressionWithPattern:re options:0 error:NULL] firstMatchInString:string options:0 range:NSMakeRange(0, [string length])], nil);
+			STAssertNotNil([[NSRegularExpression regularExpressionWithPattern:re options:0 error:NULL] firstMatchInString:string options:0 range:NSMakeRange(0, [string length])], @"%@ should find match in %@", re, string);
 		}
 		[self setStop:YES];
 	}];
