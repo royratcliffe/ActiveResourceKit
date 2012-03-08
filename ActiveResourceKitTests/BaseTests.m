@@ -51,6 +51,10 @@
 		STAssertEquals([response code], 404, nil);
 		STAssertEquals([error code], ARResourceNotFoundErrorCode, nil);
 	}];
+	Person *person = [[Person alloc] init];
+	[person existsWithCompletionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+		STAssertFalse(exists, nil);
+	}];
 }
 
 - (void)testToJSON

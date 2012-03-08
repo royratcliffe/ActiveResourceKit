@@ -302,6 +302,13 @@
 	}
 }
 
+- (void)existsWithCompletionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler
+{
+	[[self serviceLazily] existsWithID:[self ID] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+		completionHandler(response, exists, error);
+	}];
+}
+
 - (NSData *)encode
 {
 	return [[[self service] format] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[[self service] elementName]] error:NULL];

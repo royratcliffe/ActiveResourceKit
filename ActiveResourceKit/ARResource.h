@@ -152,6 +152,8 @@
 
 - (void)saveWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
+- (void)existsWithCompletionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler;
+
 /*!
  * @brief Answers a serialised data representation of the resource according to
  * the configured serialisation format.
