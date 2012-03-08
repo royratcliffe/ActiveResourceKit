@@ -211,8 +211,16 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 				error = [ARConnection errorForResponse:response];
 				if (error == nil)
 				{
-					id object = [[self formatLazily] decode:data error:&error];
-					if (object)
+					// What if the response body proves empty? This happens for
+					// responses to DELETE requests. Never attempt to decode a
+					// zero-length data body. Zero-length data is valid for some
+					// operations. It does not necessarily signal an
+					// error. Instead, pass the result up through to the
+					// higher-level software layers as success. Let higher-level
+					// software make a decision about validity.
+					NSData *data = [response body];
+					id object = data && [data length] ? [[self formatLazily] decode:data error:&error] : nil;
+					if (error == nil)
 					{
 						completionHandler(response, object, nil);
 					}
