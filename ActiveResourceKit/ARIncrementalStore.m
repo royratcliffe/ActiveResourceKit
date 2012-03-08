@@ -331,28 +331,9 @@
 	return success ? [NSArray array] : nil;
 }
 
-/*!
- * @note The name of the method implies creation of a new set of values. The
- * implementation @em reuses the existing cached nodes however. This assumes
- * that Core Data does not care about node instances, by comparing old instances
- * with new ones for example. Instead, assume that Core Data only cares about
- * node @em version; for this reason, the implementation here always bumps the
- * version.
- */
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
-	NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
-	if (node)
-	{
-		NSMutableDictionary *values = [NSMutableDictionary dictionary];
-		for (NSPropertyDescription *property in [[objectID entity] properties])
-		{
-			id value = [node valueForPropertyDescription:property];
-			[values setObject:value forKey:[property name]];
-		}
-		[node updateWithValues:values version:[node version] + 1];
-	}
-	return node;
+	return [_nodesByObjectID objectForKey:objectID];
 }
 
 - (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
