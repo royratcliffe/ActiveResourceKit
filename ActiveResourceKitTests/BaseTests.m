@@ -53,17 +53,29 @@
 
 - (void)testExists
 {
-	[[Person service] existsWithID:nil options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+	ARService *peopleService = [Person service];
+	
+	// Do not execute a run loop with nil IDs. The answer (exists equal to NO)
+	// comes back immediately. The completion block runs before the
+	// exists-with-ID method returns.
+	[peopleService existsWithID:nil options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
 	}];
-	[[Person service] existsWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+	
+	[peopleService existsWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertTrue(exists, nil);
+		[self setStop:YES];
 	}];
-	[[Person service] existsWithID:[NSNumber numberWithInt:99] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+	[self runUntilStop];
+	
+	[peopleService existsWithID:[NSNumber numberWithInt:99] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
-		STAssertEquals([response code], 404, nil);
-		STAssertEquals([error code], ARResourceNotFoundErrorCode, nil);
+		STAssertEquals([response code], (NSInteger)404, nil);
+		STAssertEquals([error code], (NSInteger)ARResourceNotFoundErrorCode, nil);
+		[self setStop:YES];
 	}];
+	[self runUntilStop];
+	
 	Person *person = [[Person alloc] init];
 	[person existsWithCompletionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
