@@ -58,7 +58,8 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
 
 /*!
  * @brief Answers this resource's element path.
- * @param options Prefix and query options for overriding the existing resource prefix options if any.
+ * @param options Prefix and query options for overriding the existing resource
+ * prefix options if any.
  */
 - (NSString *)elementPathWithOptions:(NSDictionary *)options;
 
