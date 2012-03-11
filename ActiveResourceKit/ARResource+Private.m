@@ -112,4 +112,9 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 	}
 }
 
+- (NSString *)elementPathWithOptions:(NSDictionary *)options
+{
+	return [[self serviceLazily] elementPathForID:[self ID] prefixOptions:options ? options : [self prefixOptions] queryOptions:nil];
+}
+
 @end

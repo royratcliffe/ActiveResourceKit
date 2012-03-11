@@ -56,4 +56,10 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
  */
 - (void)loadAttributesFromResponse:(ARHTTPResponse *)response attributes:(NSDictionary *)attributes;
 
+/*!
+ * @brief Answers this resource's element path.
+ * @param options Prefix and query options for overriding the existing resource prefix options if any.
+ */
+- (NSString *)elementPathWithOptions:(NSDictionary *)options;
+
 @end
