@@ -32,7 +32,7 @@
 - (void)testCreate
 {
 	[[Person service] createWithAttributes:[NSDictionary dictionaryWithObject:@"Rick" forKey:@"name"] completionHandler:^(ARHTTPResponse *response, ARResource *resource, NSError *error) {
-		NSLog(@"%@", resource);
+		STAssertNotNil(resource, nil);
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
