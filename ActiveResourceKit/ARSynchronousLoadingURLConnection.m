@@ -39,6 +39,9 @@
 	  returningResponse:(NSURLResponse **)outResponse
 				  error:(NSError **)outError
 {
+	// You should never invoke the following method from the main thread of a
+	// GUI application. It could take minutes to fail, especially on iOS over
+	// cellular networks.
 	return [NSURLConnection sendSynchronousRequest:request returningResponse:outResponse error:outError];
 }
 
