@@ -343,7 +343,7 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  * @param options All options specify prefix and query parameters.
  * @param completionHandler Block to execute on success or failure.
  */
-- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler;
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
 /*!
  * @brief Asserts the existence of a resource.

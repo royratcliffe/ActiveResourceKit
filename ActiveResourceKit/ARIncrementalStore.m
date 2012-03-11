@@ -327,7 +327,7 @@
 		NSNumber *ID = [self referenceObjectForObjectID:[object objectID]];
 		NSEntityDescription *entity = [object entity];
 		ARService *service = [self serviceForEntityName:[entity name]];
-		[service deleteWithID:ID options:nil completionHandler:^(NSError *error) {
+		[service deleteWithID:ID options:nil completionHandler:^(ARHTTPResponse *response, NSError *error) {
 			if (error)
 			{
 				[errors addObject:error];

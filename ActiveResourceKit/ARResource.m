@@ -302,6 +302,13 @@
 	}
 }
 
+- (void)destroyWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
+{
+	[[self serviceLazily] delete:[self elementPathWithOptions:nil] completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
+		completionHandler(response, error);
+	}];
+}
+
 - (void)existsWithCompletionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler
 {
 	[[self serviceLazily] existsWithID:[self ID] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {

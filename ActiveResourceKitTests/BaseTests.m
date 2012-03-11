@@ -38,6 +38,19 @@
 	[self runUntilStop];
 }
 
+- (void)testDestroy
+{
+	ARService *peopleService = [Person service];
+	[peopleService createWithAttributes:[NSDictionary dictionaryWithObject:@"Roy" forKey:@"name"] completionHandler:^(ARHTTPResponse *response, ARResource *resource, NSError *error) {
+		STAssertNotNil(resource, nil);
+		[resource destroyWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
+			STAssertEquals([response code], (NSInteger)200, nil);
+			[self setStop:YES];
+		}];
+	}];
+	[self runUntilStop];
+}
+
 - (void)testExists
 {
 	[[Person service] existsWithID:nil options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {

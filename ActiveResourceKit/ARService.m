@@ -385,11 +385,11 @@ Class ARServiceDefaultConnectionClass;
 	}
 }
 
-- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler
+- (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
 {
 	NSString *path = [self elementPathForID:ID prefixOptions:options queryOptions:nil];
 	[self delete:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
-		completionHandler(error);
+		completionHandler(response, error);
 	}];
 }
 
@@ -397,7 +397,7 @@ Class ARServiceDefaultConnectionClass;
 {
 	// This implementation looks a little strange. Why would you pass an ID of
 	// nil? However, it fairly accurately mirrors the Rails implementation, to
-	// the extent possible at least. The ID is nil when the resource is new.
+	// the extent possible at least. ID is nil when the resource is new.
 	if (ID)
 	{
 		NSDictionary *prefixOptions = nil;
