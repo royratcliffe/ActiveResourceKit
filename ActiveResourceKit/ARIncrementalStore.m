@@ -207,11 +207,25 @@
 	{
 		[options setValue:[NSNumber numberWithUnsignedInteger:fetchOffset] forKey:@"offset"];
 	}
-	// Limit and offset only make sense for ordered resources. The fetch request
-	// typically includes sort descriptors for this reason. Core Data may
-	// present multiple sort descriptors. Use plus symbols to separate sort keys
-	// followed by sort ascending or descending. Rails converts the plus to
-	// space on the server.
+	// Limit and offset only make sense for ordered resources. In fact, sort
+	// descriptors are mandatory when using fetched results controllers. With no
+	// sort descriptors, the controller throws an exception with reason, “An
+	// instance of NSFetchedResultsController requires a fetch request with sort
+	// descriptors.” The fetch request includes sort descriptors for this
+	// reason. Core Data may present multiple sort descriptors. Use plus symbols
+	// to separate sort keys followed by sort ascending or descending. Rails
+	// converts the plus to space on the server. This makes an important
+	// assumption about the server: that it responds correctly to the order
+	// parameter. Typically, the Rails index action does not handle client-side
+	// ordering requests. You can easily add the necessary ordering by adding
+	// order(params[:order]) to the Active Record find all directive, e.g. if
+	// your controller handles people then use the following statement to find
+	// and order all the people.
+	//
+	//	@people = Person.order(params[:order]).all
+	//
+	// The order query reverts to default ordering when params[:order] is not
+	// present, equals nil.
 	NSMutableArray *orderStrings = [NSMutableArray array];
 	for (NSSortDescriptor *sortDescriptor in [request sortDescriptors])
 	{
