@@ -207,6 +207,20 @@
 	{
 		[options setValue:[NSNumber numberWithUnsignedInteger:fetchOffset] forKey:@"offset"];
 	}
+	// Limit and offset only make sense for ordered resources. The fetch request
+	// typically includes sort descriptors for this reason. Core Data may
+	// present multiple sort descriptors. Use plus symbols to separate sort keys
+	// followed by sort ascending or descending. Rails converts the plus to
+	// space on the server.
+	NSMutableArray *orderStrings = [NSMutableArray array];
+	for (NSSortDescriptor *sortDescriptor in [request sortDescriptors])
+	{
+		[orderStrings addObject:[NSString stringWithFormat:@"%@+%@", [[ASInflector defaultInflector] underscore:[sortDescriptor key]], [sortDescriptor ascending] ? @"asc" : @"desc"]];
+	}
+	if ([orderStrings count])
+	{
+		[options setObject:[orderStrings componentsJoinedByString:@","] forKey:@"order"];
+	}
 	[[self serviceForEntityName:[request entityName]] findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
 		if (resources)
 		{
