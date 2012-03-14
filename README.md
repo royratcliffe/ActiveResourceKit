@@ -1,10 +1,20 @@
 # Active Resource Kit
 
+## Goals
+
+Memory is a major issue on devices running iOS. Such phones and tablets only have either 128, 256 or 512MB of RAM.
+
 ## Connections
 
 Cocoa's Foundation framework supports three distinct URL connections. Active Resource Kit models them using four object classes: one abstract with three corresponding concrete implementation classes.
 
 ![Class Diagram: Connections](Documents/Class_Diagram__Connections.png)
+
+## Lazy Getting
+
+Rails makes extensive use of the lazy getter paradigm: attributes remain undefined until you access them for the first time. This is a useful model. It postpones instantiation of dependencies, such as format and connection, until actually needed. Hence clients can easily override before use to customise behaviour.
+
+The cross-platform requirement clashes with lazily-getting for this project however.
 
 ## Testing
 
