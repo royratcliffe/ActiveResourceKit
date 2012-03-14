@@ -56,7 +56,7 @@
 	self = [super init];
 	if (self)
 	{
-		_attributes = [NSMutableDictionary dictionary];
+		_attributes = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
