@@ -63,4 +63,16 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
  */
 - (NSString *)elementPathWithOptions:(NSDictionary *)options;
 
+//----------------------------------------------------- Active Model Conversions
+
+/*!
+ * @brief Enumerates all key attributes.
+ * @result Only answers key attributes if the resource persists. Answers @c nil
+ * otherwise since key attributes only logically exist when the resource begins
+ * to persist.
+ */
+- (NSArray *)toKey;
+
+- (NSString *)toParam;
+
 @end

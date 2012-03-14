@@ -117,4 +117,19 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 	return [[self serviceLazily] elementPathForID:[self ID] prefixOptions:options ? options : [self prefixOptions] queryOptions:nil];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                            Active Model Conversions
+//------------------------------------------------------------------------------
+
+- (NSArray *)toKey
+{
+	return [self persisted] ? [NSArray arrayWithObject:[self ID]] : nil;
+}
+
+- (NSString *)toParam
+{
+	// How does -componentsJoinedByString:aString handle non-string elements?
+	return [self persisted] ? [[self toKey] componentsJoinedByString:@"-"] : nil;
+}
+
 @end
