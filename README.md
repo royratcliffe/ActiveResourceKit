@@ -2,19 +2,27 @@
 
 ## Goals
 
-Memory is a major issue on devices running iOS. Such phones and tablets only have either 128, 256 or 512MB of RAM.
+Memory is a major issue on devices running iOS. Such phones and tablets only 
+have either 128, 256 or 512MB of RAM.
 
 ## Connections
 
-Cocoa's Foundation framework supports three distinct URL connections. Active Resource Kit models them using four object classes: one abstract with three corresponding concrete implementation classes.
+Cocoa's Foundation framework supports three distinct URL connections. Active 
+Resource Kit models them using four object classes: one abstract with three 
+corresponding concrete implementation classes.
 
 ![Class Diagram: Connections](Documents/Class_Diagram__Connections.png)
 
 ## Lazy Getting
 
-Rails makes extensive use of the lazy getter paradigm: attributes remain undefined until you access them for the first time. This is a useful model. It postpones instantiation of dependencies, such as format and connection, until actually needed. Hence clients can easily override before use to customise behaviour.
+Rails makes extensive use of the lazy getter paradigm: attributes remain 
+undefined until you access them for the first time. This is a useful model. It 
+postpones instantiation of dependencies, such as format and connection, until 
+actually needed. Hence clients can easily override before use to customise 
+behaviour.
 
-The cross-platform requirement clashes with lazily-getting for this project however.
+The cross-platform requirement clashes with lazily-getting for this project 
+however.
 
 ## Testing
 
@@ -34,6 +42,25 @@ fast-loading web server.
 You can view the test servers log using the command:
 
 	➜  active-resource-kit-tests git:(master) tail -f log/thin.log
+
+### `RAILS_BASE_URL`
+
+The kit's test target launches a Rails application in the background. The Xcode 
+schemes run a Thin server using the URL scheme, address and port passed by the 
+`RAILS_BASE_URL` environment variable. You can find this variable, along with 
+the default `RAILS_ENV` setting, in the project build settings under 
+User-Defined as follows.
+
+	RAILS_BASE_URL = https://localhost:3000
+	RAILS_ENV = development
+
+Since the default URL scheme specifies `https`, the test launches Thin with the 
+`--ssl` option. This enables SSL over HTTP encrypted communication. Changing 
+the build setting to use `http` rather than `https` disables the `--ssl` 
+option. This proves useful when debugging the server-side in tandom, e.g. when 
+you cannot conveniently debug with SSL enabled. Just switch the build setting 
+to `RAILS_BASE_URL = http://localhost:3000` (insecure) and launch the Rails app 
+as normal.
 
 ## Design Notes
 
