@@ -32,7 +32,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;export RAILS_ENV=development&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop db:setup db:fixtures:load thin:start&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop db:setup db:fixtures:load thin:start&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

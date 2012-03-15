@@ -987,7 +987,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				RAILS_BASE_URL = "https://localhost:3000";
-				RAILS_ENV = test;
+				RAILS_ENV = development;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = k;
@@ -1011,7 +1011,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				RAILS_BASE_URL = "https://localhost:3000";
-				RAILS_ENV = test;
+				RAILS_ENV = development;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = k;
