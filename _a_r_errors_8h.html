@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(384.0)</span>
    </div>
    
   </td>
@@ -86,15 +86,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for ARErrors.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_a_r_errors_8h__incl.png" border="0" usemap="#_active_resource_kit_2_a_r_errors_8h" alt=""/></div>
-<map name="_active_resource_kit_2_a_r_errors_8h" id="_active_resource_kit_2_a_r_errors_8h">
-</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_a_r_errors_8h__dep__incl.png" border="0" usemap="#_active_resource_kit_2_a_r_errors_8hdep" alt=""/></div>
 <map name="_active_resource_kit_2_a_r_errors_8hdep" id="_active_resource_kit_2_a_r_errors_8hdep">
-<area shape="rect" id="node3" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="232,80,472,107"/><area shape="rect" id="node18" href="_a_r_base_8m.html" title="ActiveResourceKit/ARBase.m" alt="" coords="497,80,687,107"/><area shape="rect" id="node20" href="_a_r_errors_8m.html" title="ActiveResourceKit/ARErrors.m" alt="" coords="712,80,904,107"/><area shape="rect" id="node22" href="_a_resource_09_private_8m.html" title="ActiveResourceKit/AResource+Private.m" alt="" coords="928,80,1179,107"/><area shape="rect" id="node5" href="_a_r_base_09_private_8m.html" title="ActiveResourceKit/ARBase+Private.m" alt="" coords="5,155,243,181"/><area shape="rect" id="node7" href="_active_resource_kit_tests_8m.html" title="ActiveResourceKitTests/ActiveResourceKitTests.m" alt="" coords="53,229,357,256"/><area shape="rect" id="node9" href="_person_8h.html" title="ActiveResourceKitTests/Person.h" alt="" coords="319,155,528,181"/><area shape="rect" id="node16" href="_versioning_tests_8m.html" title="ActiveResourceKitTests/VersioningTests.m" alt="" coords="553,155,815,181"/><area shape="rect" id="node12" href="_finder_tests_8m.html" title="ActiveResourceKitTests/FinderTests.m" alt="" coords="382,229,617,256"/><area shape="rect" id="node14" href="_person_8m.html" title="ActiveResourceKitTests/Person.m" alt="" coords="642,229,853,256"/></map>
+<area shape="rect" id="node3" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="403,80,643,107"/><area shape="rect" id="node25" href="_a_r_connection_8m.html" title="ActiveResourceKit/ARConnection.m" alt="" coords="667,80,889,107"/><area shape="rect" id="node27" href="_a_r_errors_8m.html" title="ActiveResourceKit/ARErrors.m" alt="" coords="915,80,1107,107"/><area shape="rect" id="node29" href="_a_r_resource_09_private_8m.html" title="ActiveResourceKit/ARResource+Private.m" alt="" coords="1131,80,1392,107"/><area shape="rect" id="node31" href="_a_r_service_8m.html" title="ActiveResourceKit/ARService.m" alt="" coords="1417,80,1617,107"/><area shape="rect" id="node5" href="_a_r_service_09_private_8m.html" title="ActiveResourceKit/ARService+Private.m" alt="" coords="44,155,292,181"/><area shape="rect" id="node7" href="_active_resource_kit_tests_8m.html" title="ActiveResourceKitTests/ActiveResourceKitTests.m" alt="" coords="5,229,309,256"/><area shape="rect" id="node9" href="_person_8h.html" title="ActiveResourceKitTests/Person.h" alt="" coords="418,155,627,181"/><area shape="rect" id="node12" href="_base_tests_8m.html" title="ActiveResourceKitTests/BaseTests.m" alt="" coords="335,229,569,256"/><area shape="rect" id="node19" href="_connection_tests_8m.html" title="ActiveResourceKitTests/ConnectionTests.m" alt="" coords="652,155,919,181"/><area shape="rect" id="node21" href="_key_value_coding_tests_8m.html" title="ActiveResourceKitTests/KeyValueCodingTests.m" alt="" coords="943,155,1241,181"/><area shape="rect" id="node23" href="_versioning_tests_8m.html" title="ActiveResourceKitTests/VersioningTests.m" alt="" coords="1265,155,1527,181"/><area shape="rect" id="node14" href="_finder_tests_8m.html" title="ActiveResourceKitTests/FinderTests.m" alt="" coords="594,229,829,256"/><area shape="rect" id="node16" href="_person_8m.html" title="ActiveResourceKitTests/Person.m" alt="" coords="854,229,1065,256"/></map>
 </div>
 </div>
 <p><a href="_a_r_errors_8h_source.html">Go to the source code of this file.</a></p>
@@ -104,9 +102,28 @@ Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba0aa3a49df834b2a347e520bdf2dead84">ARUnsupportedRootObjectTypeError</a> =  'urot', 
 <a class="el" href="_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55bab42f27c02882e18084bed5abd922b659">ARResponseIsNotHTTPError</a> =  'rinh'
  }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br/>
+&#160;&#160;<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a67579ab3427c17c6486036658b8db095">ARRedirectionErrorCode</a> =  'redi', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a2caf1413fd5c16fb92a7df92f08f253b">ARBadRequestErrorCode</a> =  'badr', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7af798377c95284e77be3f3e84e333b435">ARUnauthorizedAccessErrorCode</a> =  'auth', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a7d3bb45cc02e03bb6df44e579168649c">ARForbiddenAccessErrorCode</a> =  'forb', 
+<br/>
+&#160;&#160;<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a55a66fa2267e16d6370e824c378f017f">ARResourceNotFoundErrorCode</a> =  'reso', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a33879e63f3aea6c33c8d45e32a2e87f1">ARMethodNotAllowedErrorCode</a> =  'meth', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ac9ff5f3b807a4e3997b4760e6a38868a">ARResourceConflictErrorCode</a> =  'conf', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7abc2c42088bcd13113712e0473bca1424">ARResourceGoneErrorCode</a> =  'gone', 
+<br/>
+&#160;&#160;<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ad9b438df9c425586db167f92a0f12d90">ARResourceInvalidErrorCode</a> =  'inva', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a2e2443e3b1b75d0fa5c355d37d1a7754">ARClientErrorCode</a> =  'clie', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a9b670e095ae6457f8e943feb3dffec52">ARServerErrorCode</a> =  'serv', 
+<a class="el" href="_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a554dc31891fa8d74a8b959094d64af31">ARConnectionErrorCode</a> =  'conn'
+<br/>
+ }</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_errors_8h.html#ab8d4c8ec2ce1b8eb135389e30509bb8e">ARErrorDomain</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_errors_8h.html#a1fc8af093f1f349451805c21337ef0b2">ARConnectionErrorDomain</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_errors_8h.html#abea646090eee3f961072b5c3ec4c3e93">ARConnectionHTTPResponseKey</a></td></tr>
 </table>
 <hr/><h2>Enumeration Type Documentation</h2>
 <a class="anchor" id="a06fc87d81c62e9abb8790b6e5713c55b"></a><!-- doxytag: member="ARErrors.h::@0" ref="a06fc87d81c62e9abb8790b6e5713c55b" args="" -->
@@ -132,7 +149,80 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7"></a><!-- doxytag: member="ARErrors.h::@1" ref="adf764cbdea00d65edcd07bb9953ad2b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a67579ab3427c17c6486036658b8db095"></a><!-- doxytag: member="ARRedirectionErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a67579ab3427c17c6486036658b8db095" args="" -->ARRedirectionErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a2caf1413fd5c16fb92a7df92f08f253b"></a><!-- doxytag: member="ARBadRequestErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a2caf1413fd5c16fb92a7df92f08f253b" args="" -->ARBadRequestErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7af798377c95284e77be3f3e84e333b435"></a><!-- doxytag: member="ARUnauthorizedAccessErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7af798377c95284e77be3f3e84e333b435" args="" -->ARUnauthorizedAccessErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a7d3bb45cc02e03bb6df44e579168649c"></a><!-- doxytag: member="ARForbiddenAccessErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a7d3bb45cc02e03bb6df44e579168649c" args="" -->ARForbiddenAccessErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a55a66fa2267e16d6370e824c378f017f"></a><!-- doxytag: member="ARResourceNotFoundErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a55a66fa2267e16d6370e824c378f017f" args="" -->ARResourceNotFoundErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a33879e63f3aea6c33c8d45e32a2e87f1"></a><!-- doxytag: member="ARMethodNotAllowedErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a33879e63f3aea6c33c8d45e32a2e87f1" args="" -->ARMethodNotAllowedErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7ac9ff5f3b807a4e3997b4760e6a38868a"></a><!-- doxytag: member="ARResourceConflictErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7ac9ff5f3b807a4e3997b4760e6a38868a" args="" -->ARResourceConflictErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7abc2c42088bcd13113712e0473bca1424"></a><!-- doxytag: member="ARResourceGoneErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7abc2c42088bcd13113712e0473bca1424" args="" -->ARResourceGoneErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7ad9b438df9c425586db167f92a0f12d90"></a><!-- doxytag: member="ARResourceInvalidErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7ad9b438df9c425586db167f92a0f12d90" args="" -->ARResourceInvalidErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a2e2443e3b1b75d0fa5c355d37d1a7754"></a><!-- doxytag: member="ARClientErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a2e2443e3b1b75d0fa5c355d37d1a7754" args="" -->ARClientErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a9b670e095ae6457f8e943feb3dffec52"></a><!-- doxytag: member="ARServerErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a9b670e095ae6457f8e943feb3dffec52" args="" -->ARServerErrorCode</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="adf764cbdea00d65edcd07bb9953ad2b7a554dc31891fa8d74a8b959094d64af31"></a><!-- doxytag: member="ARConnectionErrorCode" ref="adf764cbdea00d65edcd07bb9953ad2b7a554dc31891fa8d74a8b959094d64af31" args="" -->ARConnectionErrorCode</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_a_r_errors_8h_source.html#l00040">40</a> of file <a class="el" href="_a_r_errors_8h_source.html">ARErrors.h</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a1fc8af093f1f349451805c21337ef0b2"></a><!-- doxytag: member="ARErrors.h::ARConnectionErrorDomain" ref="a1fc8af093f1f349451805c21337ef0b2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const <a class="el" href="_a_r_errors_8m.html#a1fc8af093f1f349451805c21337ef0b2">ARConnectionErrorDomain</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_errors_8m_source.html#l00029">29</a> of file <a class="el" href="_a_r_errors_8m_source.html">ARErrors.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abea646090eee3f961072b5c3ec4c3e93"></a><!-- doxytag: member="ARErrors.h::ARConnectionHTTPResponseKey" ref="abea646090eee3f961072b5c3ec4c3e93" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const <a class="el" href="_a_r_errors_8m.html#abea646090eee3f961072b5c3ec4c3e93">ARConnectionHTTPResponseKey</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_errors_8m_source.html#l00030">30</a> of file <a class="el" href="_a_r_errors_8m_source.html">ARErrors.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab8d4c8ec2ce1b8eb135389e30509bb8e"></a><!-- doxytag: member="ARErrors.h::ARErrorDomain" ref="ab8d4c8ec2ce1b8eb135389e30509bb8e" args="" -->
 <div class="memitem">
 <div class="memproto">

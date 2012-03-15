@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -78,6 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#properties">Properties</a>  </div>
   <div class="headertitle">
 <div class="title">ARBase Class Reference</div>  </div>
@@ -106,22 +107,28 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#aa16208e5ed3ccdd5283e12d180e2e2e0">knownAttributes</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers the known attributes, known because the resource server publishes them; although the server does not necessarily publish everything.  <a href="#aa16208e5ed3ccdd5283e12d180e2e2e0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id&lt; <a class="el" href="protocol_a_r_format-p.html">ARFormat</a> &gt;)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_a_r_connection.html">ARConnection</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a4e51c9f272a957c5e3f63eb20626a639">connectionLazily</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#aaf0df5d08ad9cd529086bbfe88dde428">elementNameLazily</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a2a046855a10d0ca41c8312d30d79feec">primaryKeyLazily</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID:prefixOptions:queryOptions:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#adf4e32c37f190a71744504a560e77f36">elementPathForID:options:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a9bf809bd99b8b142b87c66f8d56224a3">newElementPathWithPrefixOptions:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a1ee9032aa114bb273e86220be27a9c40">collectionPathWithPrefixOptions:queryOptions:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a8bc6aca5de5b209bf470d6daf0850443">buildWithAttributes:completionHandler:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a0e575ff1338cfd465deb9173a303a3b2">findAllWithOptions:completionHandler:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a72d8a5a94f38f8662ff03bb916b6f755">findFirstWithOptions:completionHandler:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#ad44837f4604170cab4ac22abd8aa1596">findLastWithOptions:completionHandler:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#ad138c6f2f46b743aec9f0a61cfd3200c">findOneWithOptions:completionHandler:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a single resource from a one-off URL.  <a href="#ad138c6f2f46b743aec9f0a61cfd3200c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b">findSingleForID:options:completionHandler:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a single resource for a given identifier using the default URL.  <a href="#ab709e169116c63a600a6df367cba4c6b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a26c190733e9c8eef57b3faa9e699334d">buildWithAttributes:completionHandler:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a61cad32e71f88c255cb72f5b04e024bb">createWithAttributes:completionHandler:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new resource instance, requesting that the remote service saves the new resource.  <a href="#a61cad32e71f88c255cb72f5b04e024bb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a057d7ee10a9dca9b446f46d235a053bf">findAllWithOptions:completionHandler:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a9e57fd0f1332a1928efebc75d813d4df">findFirstWithOptions:completionHandler:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a5fa71307cbadd7ee49c34425ed110ff3">findLastWithOptions:completionHandler:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a4b01a1ebf32ec86bbcbea5308b27529d">findSingleWithID:options:completionHandler:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a single resource for a given identifier using the default URL.  <a href="#a4b01a1ebf32ec86bbcbea5308b27529d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a2f20027f696d856d5a5cc409cbd63ed1">findOneWithOptions:completionHandler:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a single resource from a one-off URL.  <a href="#a2f20027f696d856d5a5cc409cbd63ed1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a6d04532af100e457e25c49ced057fe4d">deleteWithID:options:completionHandler:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a1d9a9ea99d7c8cbd478f5681b3d2ac20">existsWithID:options:completionHandler:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">init</a><code> [implementation]</code></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id&lt; <a class="el" href="protocol_a_r_format-p.html">ARFormat</a> &gt;)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a92af873b04ae2aadc503f5e2c7593e71">defaultFormat</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a0b522cfe9bdb4817ec394c7904308945">defaultElementName</a></td></tr>
@@ -130,8 +137,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a3cbfeb0c843338934dc6cc4023e6f8f4">defaultPrefixSource</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions:completionHandler:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#aaab693bcfa509ef3ddf898592c3edf01">instantiateCollection:prefixOptions:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_a_resource.html">AResource</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a106cd84052fee3936be9b0fbcd44820b">instantiateRecordWithAttributes:prefixOptions:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a resource element (a record) using the given attributes and prefix options.  <a href="#a106cd84052fee3936be9b0fbcd44820b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_a_r_resource.html">ARResource</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a0d8cba786e712d954e375228085047e1">instantiateRecordWithAttributes:prefixOptions:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a resource element (a record) using the given attributes and prefix options.  <a href="#a0d8cba786e712d954e375228085047e1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSSet *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a73105d9ed9fb6086531b2c7693ff7d27">prefixParameters</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions:prefixOptions:queryOptions:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789">get:completionHandler:</a></td></tr>
@@ -146,20 +153,23 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to obtain meta-information about resources, whether they exist or their size. Sends an asynchronous HEAD request.  <a href="#aaf1c31fe3e73d6d563734eba9d2a0981"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a9ee7139f3cfa0699d689d3eb0f37ba91">requestHTTPMethod:path:completionHandler:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits an asynchronous request, returning immediately.  <a href="#a9ee7139f3cfa0699d689d3eb0f37ba91"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#ad5f014235ef02164d11a0658d1413b05">HTTPFormatHeaderForHTTPMethod:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers a format header for the given HTTP request method.  <a href="#ad5f014235ef02164d11a0658d1413b05"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="_a_r_connection_8h.html#af649ea59c1194dbb94a3bf0458022868">ARConnectionCompletionHandler</a>)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_base.html#a514bced2da60fb9fad25f1f5eada8973">decodeHandlerWithCompletionHandler:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers a decoding handler which, in turn, after decoding, invokes another given completion block.  <a href="#a514bced2da60fb9fad25f1f5eada8973"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Class)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_a_r_base.html#a3f0778f68db384e6dbaf3a32a6d81098">defaultConnectionClass</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_a_r_base.html#a680db7e8c64457d8704b2a58f0a35939">setDefaultConnectionClass:</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a90a5f2ff51f15ba2bc36fc6758e7174c">schema</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSURL *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a41acdb2fabc743190d933890aa6e0f33">site</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_a_r_format-p.html">ARFormat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a8805a1ed23887536d301f4b7c60c2ee4">timeout</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_a_r_connection.html">ARConnection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a5f9f00c49d7c7c42939854e62435322c">connection</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSOperationQueue *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html#a887802a99feed10218df057014a34d14">operationQueue</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the operation queue on which to handle response completions for resources associated with this base.  <a href="#a887802a99feed10218df057014a34d14"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>An active resource's base configuration. </p>
@@ -184,7 +194,7 @@ Properties</h2></td></tr>
 <li>timeout</li>
 <li>user</li>
 </ul>
-<p>This might help to define what <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> actually does, its purpose. <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> implements the anonymous singleton class behaviours belonging to <code>ActiveResource::Base</code>. <a class="el" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> defines the class for Active Resource instances, but <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> defines the class for Active Resource <em>classes</em>, singleton classes that is. Objective-C 2.0 does not provide anything comparable singleton classes. The Rails singleton class becomes the Objective-C “base” class.</p>
+<p>This might help to define what <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> actually does, its purpose. <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> implements the anonymous singleton class behaviours belonging to <code>ActiveResource::Base</code>. <a class="el" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a> defines the class for Active Resource instances, but <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> defines the class for Active Resource <em>classes</em>, singleton classes that is. Objective-C 2.0 does not provide anything comparable singleton classes. The Rails singleton class becomes the Objective-C “base” class.</p>
 <p>Singleton methods for <code>ActiveResource::Base</code> include the following.</p>
 <ul>
 <li>all</li>
@@ -229,9 +239,9 @@ Properties</h2></td></tr>
 </ul>
 <dl class="user"><dt><b>Lazy Getters</b></dt><dd>Use a getter-lazily paradigm in place of actual lazy getting. This has advantages. First, it obviates the need for defining custom getters and setters. This is a useful thing, since the exact setter and getter implementations depend on the memory model being deployed. Automatic Reference Counting (ARC) has one requirement, garbage-collection another, and manual retain-release (MRR) another. Strategy employed here: Let the compiler synthesise the correct setters and getters accordingly. If you want to access the getter but with lazy initialisation, ask for propertyLazily. </dd></dl>
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00122">122</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00139">139</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8bc6aca5de5b209bf470d6daf0850443"></a><!-- doxytag: member="ARBase::buildWithAttributes:completionHandler:" ref="a8bc6aca5de5b209bf470d6daf0850443" args="(NSDictionary *attributes,[completionHandler] AResource *resource, NSError *error completionHandler)" -->
+<a class="anchor" id="a26c190733e9c8eef57b3faa9e699334d"></a><!-- doxytag: member="ARBase::buildWithAttributes:completionHandler:" ref="a26c190733e9c8eef57b3faa9e699334d" args="(NSDictionary *attributes,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -244,7 +254,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(<a class="el" href="interface_a_resource.html">AResource</a> *resource, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -258,7 +268,7 @@ Properties</h2></td></tr>
 <p>Asynchronously builds an Active Resource.</p>
 <p>Executes the completion handler on success or upon error. Completion handler arguments signal the outcome: non-nil attributes indicate successful completion. In such case, error always equals nil. There is no error. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00234">234</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00286">286</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -276,7 +286,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00127">127</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00167">167</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -305,7 +315,78 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00220">220</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00268">268</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e51c9f272a957c5e3f63eb20626a639"></a><!-- doxytag: member="ARBase::connectionLazily" ref="a4e51c9f272a957c5e3f63eb20626a639" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_a_r_connection.html">ARConnection</a> *) connectionLazily </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00136">136</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61cad32e71f88c255cb72f5b04e024bb"></a><!-- doxytag: member="ARBase::createWithAttributes:completionHandler:" ref="a61cad32e71f88c255cb72f5b04e024bb" args="(NSDictionary *attributes,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) createWithAttributes: </td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>attributes</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">completionHandler:</td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
+          <td class="paramname"><em>completionHandler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a new resource instance, requesting that the remote service saves the new resource. </p>
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00311">311</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a514bced2da60fb9fad25f1f5eada8973"></a><!-- doxytag: member="ARBase::decodeHandlerWithCompletionHandler:" ref="a514bced2da60fb9fad25f1f5eada8973" args="(ARBaseRequestCompletionHandler completionHandler)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="_a_r_connection_8h.html#af649ea59c1194dbb94a3bf0458022868">ARConnectionCompletionHandler</a>) decodeHandlerWithCompletionHandler: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865">ARBaseRequestCompletionHandler</a>)&#160;</td>
+          <td class="paramname"><em>completionHandler</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Answers a decoding handler which, in turn, after decoding, invokes another given completion block. </p>
+<p>Active Resource Kit methods utilise this common response block for decoding according to the required format. In fact, the decoding does a little more than just decode the format. It also handles URL response to HTTP response type casting. The latter carries more information including header fields and HTTP status code. </p>
+
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00190">190</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -323,7 +404,25 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00059">59</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00052">52</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f0778f68db384e6dbaf3a32a6d81098"></a><!-- doxytag: member="ARBase::defaultConnectionClass" ref="a3f0778f68db384e6dbaf3a32a6d81098" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Class) defaultConnectionClass </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00039">39</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -341,7 +440,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00054">54</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00047">47</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -359,7 +458,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00049">49</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00042">42</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -377,7 +476,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00069">69</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00062">62</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -395,7 +494,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00064">64</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00057">57</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -426,7 +525,42 @@ Properties</h2></td></tr>
 
 <p>Used to delete resources. Sends an asynchronous DELETE request. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00170">170</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00163">163</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d04532af100e457e25c49ced057fe4d"></a><!-- doxytag: member="ARBase::deleteWithID:options:completionHandler:" ref="a6d04532af100e457e25c49ced057fe4d" args="(NSNumber *ID,[options] NSDictionary *options,[completionHandler] NSError *completionHandler)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) deleteWithID: </td>
+          <td></td>
+          <td class="paramtype">(NSNumber *)&#160;</td>
+          <td class="paramname"><em>ID</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">options:</td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>options</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">completionHandler:</td>
+          <td></td>
+          <td class="paramtype">(NSError *)&#160;</td>
+          <td class="paramname"><em>completionHandler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00374">374</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -444,7 +578,36 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00116">116</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00156">156</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adf4e32c37f190a71744504a560e77f36"></a><!-- doxytag: member="ARBase::elementPathForID:options:" ref="adf4e32c37f190a71744504a560e77f36" args="(NSNumber *ID,[options] NSDictionary *options)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) elementPathForID: </td>
+          <td></td>
+          <td class="paramtype">(NSNumber *)&#160;</td>
+          <td class="paramname"><em>ID</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">options:</td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00252">252</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -479,11 +642,46 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00202">202</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00242">242</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0e575ff1338cfd465deb9173a303a3b2"></a><!-- doxytag: member="ARBase::findAllWithOptions:completionHandler:" ref="a0e575ff1338cfd465deb9173a303a3b2" args="(NSDictionary *options,[completionHandler] NSArray *resources, NSError *error completionHandler)" -->
+<a class="anchor" id="a1d9a9ea99d7c8cbd478f5681b3d2ac20"></a><!-- doxytag: member="ARBase::existsWithID:options:completionHandler:" ref="a1d9a9ea99d7c8cbd478f5681b3d2ac20" args="(NSNumber *ID,[options] NSDictionary *options,[completionHandler] BOOL exists completionHandler)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) existsWithID: </td>
+          <td></td>
+          <td class="paramtype">(NSNumber *)&#160;</td>
+          <td class="paramname"><em>ID</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">options:</td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>options</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">completionHandler:</td>
+          <td></td>
+          <td class="paramtype">(BOOL exists)&#160;</td>
+          <td class="paramname"><em>completionHandler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00382">382</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a057d7ee10a9dca9b446f46d235a053bf"></a><!-- doxytag: member="ARBase::findAllWithOptions:completionHandler:" ref="a057d7ee10a9dca9b446f46d235a053bf" args="(NSDictionary *options,[completionHandler] ARResourcesCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -496,7 +694,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(NSArray *resources, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a92f51ae4b1d9c5cf804d1279af2aa05d">ARResourcesCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -508,7 +706,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00259">259</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00318">318</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -537,11 +735,11 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00074">74</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00067">67</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a72d8a5a94f38f8662ff03bb916b6f755"></a><!-- doxytag: member="ARBase::findFirstWithOptions:completionHandler:" ref="a72d8a5a94f38f8662ff03bb916b6f755" args="(NSDictionary *options,[completionHandler] AResource *resource, NSError *error completionHandler)" -->
+<a class="anchor" id="a9e57fd0f1332a1928efebc75d813d4df"></a><!-- doxytag: member="ARBase::findFirstWithOptions:completionHandler:" ref="a9e57fd0f1332a1928efebc75d813d4df" args="(NSDictionary *options,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -554,7 +752,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(<a class="el" href="interface_a_resource.html">AResource</a> *resource, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -567,11 +765,11 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Answers just the first resource in a collection of resources. Finds all the resources first, then extracts the first element. Acts as a convenience wrapper. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00264">264</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00323">323</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad44837f4604170cab4ac22abd8aa1596"></a><!-- doxytag: member="ARBase::findLastWithOptions:completionHandler:" ref="ad44837f4604170cab4ac22abd8aa1596" args="(NSDictionary *options,[completionHandler] AResource *resource, NSError *error completionHandler)" -->
+<a class="anchor" id="a5fa71307cbadd7ee49c34425ed110ff3"></a><!-- doxytag: member="ARBase::findLastWithOptions:completionHandler:" ref="a5fa71307cbadd7ee49c34425ed110ff3" args="(NSDictionary *options,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -584,7 +782,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(<a class="el" href="interface_a_resource.html">AResource</a> *resource, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -596,11 +794,11 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00271">271</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00330">330</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad138c6f2f46b743aec9f0a61cfd3200c"></a><!-- doxytag: member="ARBase::findOneWithOptions:completionHandler:" ref="ad138c6f2f46b743aec9f0a61cfd3200c" args="(NSDictionary *options,[completionHandler] AResource *resource, NSError *error completionHandler)" -->
+<a class="anchor" id="a2f20027f696d856d5a5cc409cbd63ed1"></a><!-- doxytag: member="ARBase::findOneWithOptions:completionHandler:" ref="a2f20027f696d856d5a5cc409cbd63ed1" args="(NSDictionary *options,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -613,7 +811,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(<a class="el" href="interface_a_resource.html">AResource</a> *resource, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -626,17 +824,18 @@ Properties</h2></td></tr>
 <div class="memdoc">
 
 <p>Finds a single resource from a one-off URL. </p>
+<p>This method expects you to provide the one-off URL using the <a class="el" href="_a_r_base_8h.html#a0c62792c51827f986bd8d099bb28d9c8">ARFromKey</a> within the options dictionary. You must also specify query string parameters using the <a class="el" href="_a_r_base_8h.html#ac608773c3d272f592d486b4a9faf7f7b">ARParamsKey</a> within the options. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00278">278</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00355">355</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab709e169116c63a600a6df367cba4c6b"></a><!-- doxytag: member="ARBase::findSingleForID:options:completionHandler:" ref="ab709e169116c63a600a6df367cba4c6b" args="(NSNumber *ID,[options] NSDictionary *options,[completionHandler] AResource *resource, NSError *error completionHandler)" -->
+<a class="anchor" id="a4b01a1ebf32ec86bbcbea5308b27529d"></a><!-- doxytag: member="ARBase::findSingleWithID:options:completionHandler:" ref="a4b01a1ebf32ec86bbcbea5308b27529d" args="(NSNumber *ID,[options] NSDictionary *options,[completionHandler] ARResourceCompletionHandler completionHandler)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (void) findSingleForID: </td>
+          <td class="memname">- (void) findSingleWithID: </td>
           <td></td>
           <td class="paramtype">(NSNumber *)&#160;</td>
           <td class="paramname"><em>ID</em></td>
@@ -650,7 +849,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey">completionHandler:</td>
           <td></td>
-          <td class="paramtype">(<a class="el" href="interface_a_resource.html">AResource</a> *resource, NSError *error)&#160;</td>
+          <td class="paramtype">(<a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)&#160;</td>
           <td class="paramname"><em>completionHandler</em>&#160;</td>
         </tr>
         <tr>
@@ -665,7 +864,7 @@ Properties</h2></td></tr>
 <p>Finds a single resource for a given identifier using the default URL. </p>
 <dl class="user"><dt><b>Ruby on Rails Comparison</b></dt><dd>Under the Rails' ActiveResource gem, this method appears as a private method. Why not here? In Rails, you access the <code>find_single(scope, options)</code> method indirectly as the default <code>find(arguments)</code> case when the first scope argument does not match all, first, last or one (by symbol). Objective-C does not offer so flexible a syntax. Consequently, this implementation folds the find-scope interface into distinct methods: find all, find first, find last, find one and find single. The scope argument resolves to the method <em>name</em>. This approach carries advantages and disadvantages. It eliminates the <code>switch</code> statement necessary to resolve the scope. But at the same stroke eliminates the flexibility of parameterising the scope in cases where scope is a dynamic argument. </dd></dl>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00297">297</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00337">337</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -683,7 +882,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00095">95</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00113">113</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -715,7 +914,7 @@ Properties</h2></td></tr>
 <p>Sends an asynchronous GET request. Used to find a resource. </p>
 <p>When the response successfully arrives, the format decodes the data. If the response body decodes successfully, finally sends the decoded object (or objects) to your given completion handler. Objects may be hashes (dictionaries) or arrays, or even primitives. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00165">165</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00158">158</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -746,35 +945,7 @@ Properties</h2></td></tr>
 
 <p>Used to obtain meta-information about resources, whether they exist or their size. Sends an asynchronous HEAD request. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00185">185</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad5f014235ef02164d11a0658d1413b05"></a><!-- doxytag: member="ARBase::HTTPFormatHeaderForHTTPMethod:" ref="ad5f014235ef02164d11a0658d1413b05" args="(NSString *HTTPMethod)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSDictionary *) HTTPFormatHeaderForHTTPMethod: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>HTTPMethod</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Answers a format header for the given HTTP request method. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">HTTPMethod</td><td>String containing either GET, PUT, POST, DELETE or HEAD that specifies the HTTP request method. Case must match. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A dictionary containing either an Accept or Content-Type format header along with the appropriate MIME type. Merge this dictionary with any other request header fields. </dd></dl>
-
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00257">257</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00178">178</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -792,7 +963,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00036">36</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00054">54</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -820,7 +991,7 @@ Properties</h2></td></tr>
 </dl>
 <p>This is <em>not</em> the designated initialiser but rather a shorthand for sending <code>-init</code> followed by <code>-setSite</code>:. The element name, if you do not subsequently assign one, derives from the <a class="el" href="interface_a_r_base.html">ARBase</a> sub-class name. This assumes that you derive <a class="el" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a>. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00051">51</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00069">69</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -849,7 +1020,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00061">61</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00079">79</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -879,16 +1050,16 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Instantiates a collection of active resources given a collection of attributes; collection here meaning an array. The collection argument specifies an array of dictionaries. Each dictionary specifies attributes for a new active resource. Answers an array of newly instantiated active resources. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00102">102</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00095">95</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a106cd84052fee3936be9b0fbcd44820b"></a><!-- doxytag: member="ARBase::instantiateRecordWithAttributes:prefixOptions:" ref="a106cd84052fee3936be9b0fbcd44820b" args="(NSDictionary *attributes,[prefixOptions] NSDictionary *prefixOptions)" -->
+<a class="anchor" id="a0d8cba786e712d954e375228085047e1"></a><!-- doxytag: member="ARBase::instantiateRecordWithAttributes:prefixOptions:" ref="a0d8cba786e712d954e375228085047e1" args="(NSDictionary *attributes,[prefixOptions] NSDictionary *prefixOptions)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (<a class="el" href="interface_a_resource.html">AResource</a> *) instantiateRecordWithAttributes: </td>
+          <td class="memname">- (<a class="el" href="interface_a_r_resource.html">ARResource</a> *) instantiateRecordWithAttributes: </td>
           <td></td>
           <td class="paramtype">(NSDictionary *)&#160;</td>
           <td class="paramname"><em>attributes</em></td>
@@ -909,9 +1080,9 @@ Properties</h2></td></tr>
 <div class="memdoc">
 
 <p>Instantiates a resource element (a record) using the given attributes and prefix options. </p>
-<p>The implementation looks for a class matching the element name. It converts the element name to class name by camel-casing the name. The answer becomes an instance of that class if the class exists and derives from <a class="el" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a>. Otherwise the answer is a plain instance of <a class="el" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a>. </p>
+<p>The implementation looks for a class matching the element name. It converts the element name to class name by camel-casing the name. The answer becomes an instance of that class if the class exists and derives from <a class="el" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a>. Otherwise the answer is a plain instance of <a class="el" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a>. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00112">112</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00105">105</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -932,7 +1103,7 @@ Properties</h2></td></tr>
 <p>Answers the known attributes, known because the resource server publishes them; although the server does not necessarily publish everything. </p>
 <p>Known attributes depend on schema. The result amounts to the schema's keys. The schema is a dictionary of attribute name-type pairs. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00077">77</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00095">95</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -951,7 +1122,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00215">215</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00263">263</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -983,7 +1154,7 @@ Properties</h2></td></tr>
 <p>Sends an asynchronous POST request. </p>
 <p>POST is not idempotent. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00180">180</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00173">173</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -1002,7 +1173,7 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Answers a set of prefix parameters based on the current prefix source. These constitute the current set of prefix parameters: an array of strings without the leading colon. Colon immediately followed by a word marks each parameter in the prefix source. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00124">124</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00117">117</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -1020,7 +1191,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00160">160</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00200">200</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -1040,7 +1211,7 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Answers the prefix after translating the prefix parameters according to the given prefix-options dictionary. The options dictionary may be nil. In that case -prefixWithOptions: answers the prefix unmodified. This assumes that the prefix contains no untranslated prefix parameters. The method quietly fails if you do not provide mappings for all parameters. The prefix result will contain parameter placeholders. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00179">179</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00219">219</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -1058,7 +1229,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00143">143</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00183">183</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +1261,7 @@ Properties</h2></td></tr>
 <p>Sends an asynchronous PUT request. </p>
 <p>PUT is idempotent, meaning that multiple PUT requests result in an identical resource state. There should be no side effects. PUT really amounts to an “upsert” database operation where it updates the resource if it already exists but alternatively creates the resource if it does not already exist. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00175">175</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00168">168</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -1129,7 +1300,26 @@ Properties</h2></td></tr>
 <p>Constructs a request object and asynchronously transmits it to the remote RESTful service. The completion handler executes in the resource base's operation queue, or the current queue (the operation queue running at the time of the request) if the resource base has no queue.</p>
 <p>The completion handler receives three arguments: the HTTP response, the decoded object and any error. The decoded object derives from the response body, decoded according to the base format. Decoding itself can encounter errors. If successful, the completion handler receives a non-nil object and a <code>nil</code> error. If the response is not an HTTP-based response, the completion handler receives a <code>nil</code> response <em>HTTPResponse</em> argument and an <a class="el" href="_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55bab42f27c02882e18084bed5abd922b659">ARResponseIsNotHTTPError</a>. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00190">190</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00183">183</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a680db7e8c64457d8704b2a58f0a35939"></a><!-- doxytag: member="ARBase::setDefaultConnectionClass:" ref="a680db7e8c64457d8704b2a58f0a35939" args="(Class aClass)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (void) setDefaultConnectionClass: </td>
+          <td></td>
+          <td class="paramtype">(Class)&#160;</td>
+          <td class="paramname"><em>aClass</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8m_source.html#l00048">48</a> of file <a class="el" href="_a_r_base_8m_source.html">ARBase.m</a>.</p>
 
 </div>
 </div>
@@ -1165,7 +1355,7 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Splits an options dictionary into two dictionaries, one containing the prefix options, the other containing the leftovers, i.e. any query options. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00135">135</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00128">128</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1371,22 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00187">187</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00214">214</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f9f00c49d7c7c42939854e62435322c"></a><!-- doxytag: member="ARBase::connection" ref="a5f9f00c49d7c7c42939854e62435322c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_a_r_connection.html">ARConnection</a>*) connection<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00197">197</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1196,7 +1401,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00186">186</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00213">213</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1205,31 +1410,13 @@ Properties</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (id&lt;<a class="el" href="protocol_a_r_format-p.html">ARFormat</a>&gt;) format<code> [read, write, retain]</code></td>
+          <td class="memname">- (id&lt;<a class="el" href="protocol_a_r_format-p.html">ARFormat</a>&gt;) format<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00166">166</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a887802a99feed10218df057014a34d14"></a><!-- doxytag: member="ARBase::operationQueue" ref="a887802a99feed10218df057014a34d14" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSOperationQueue*) operationQueue<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Specifies the operation queue on which to handle response completions for resources associated with this base. </p>
-<p>All completion handlers run in the given operation queue. If <code>nil</code>, the completion handler runs in the operation queue used to issue the request. </p>
-
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00273">273</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00186">186</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1243,8 +1430,9 @@ Properties</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>By default, the prefix source equals the site URL's path. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00201">201</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00231">231</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1259,7 +1447,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00195">195</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00222">222</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1274,7 +1462,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00145">145</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00165">165</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1478,7 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Always set up the site first. Other things depend on this essential property. You cannot fully operate the resource without the site URL. The site's path becomes the default prefix. </p>
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00162">162</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00182">182</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
@@ -1305,7 +1493,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00173">173</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00193">193</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>

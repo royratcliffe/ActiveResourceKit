@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -75,8 +75,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Defines</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -84,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><code>#import &quot;<a class="el" href="_a_r_base_09_private_8h_source.html">ARBase+Private.h</a>&quot;</code><br/>
+<code>#import &quot;<a class="el" href="_a_r_connection_8h_source.html">ARConnection.h</a>&quot;</code><br/>
 <code>#import &lt;<a class="el" href="_active_resource_kit_8h_source.html">ActiveResourceKit/ActiveResourceKit.h</a>&gt;</code><br/>
 <code>#import &lt;ActiveModelKit/ActiveModelKit.h&gt;</code><br/>
 <code>#import &lt;ActiveSupportKit/ActiveSupportKit.h&gt;</code><br/>
@@ -92,57 +91,20 @@ Include dependency graph for ARBase+Private.m:</div>
 <div class="dyncontent">
 <div class="center"><img src="_a_r_base_09_private_8m__incl.png" border="0" usemap="#_active_resource_kit_2_a_r_base_09_private_8m" alt=""/></div>
 <map name="_active_resource_kit_2_a_r_base_09_private_8m" id="_active_resource_kit_2_a_r_base_09_private_8m">
-<area shape="rect" id="node3" href="_a_r_base_09_private_8h.html" title="ARBase+Private.h" alt="" coords="773,80,901,107"/><area shape="rect" id="node12" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="508,80,748,107"/><area shape="rect" id="node5" href="_a_r_base_8h.html" title="ActiveResourceKit/ARBase.h" alt="" coords="946,155,1133,181"/><area shape="rect" id="node9" href="_a_r_format_8h.html" title="ActiveResourceKit/ARFormat.h" alt="" coords="815,229,1009,256"/><area shape="rect" id="node14" href="_a_resource_8h.html" title="ActiveResourceKit/AResource.h" alt="" coords="143,155,344,181"/><area shape="rect" id="node20" href="_a_r_format_methods_8h.html" title="ActiveResourceKit/ARFormatMethods.h" alt="" coords="333,229,576,256"/><area shape="rect" id="node23" href="_a_r_j_s_o_n_format_8h.html" title="ActiveResourceKit/ARJSONFormat.h" alt="" coords="691,155,921,181"/><area shape="rect" id="node26" href="_a_r_errors_8h.html" title="ActiveResourceKit/ARErrors.h" alt="" coords="601,229,791,256"/><area shape="rect" id="node29" href="_versioning_8h.html" title="ActiveResourceKit/Versioning.h" alt="" coords="369,155,564,181"/></map>
+<area shape="rect" id="node3" href="_a_r_base_09_private_8h.html" title="ARBase+Private.h" alt="" coords="278,155,407,181"/><area shape="rect" id="node12" href="_a_r_connection_8h.html" title="ActiveResourceKit/ARConnection.h" alt="" coords="831,229,1051,256"/><area shape="rect" id="node16" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="1501,80,1741,107"/><area shape="rect" id="node5" href="_a_r_base_8h.html" title="ActiveResourceKit/ARBase.h" alt="" coords="479,229,667,256"/><area shape="rect" id="node9" href="_a_r_format_8h.html" title="ActiveResourceKit/ARFormat.h" alt="" coords="844,304,1039,331"/><area shape="rect" id="node18" href="_a_r_incremental_store_8h.html" title="ActiveResourceKit/ARIncrementalStore.h" alt="" coords="5,155,253,181"/><area shape="rect" id="node22" href="_a_r_resource_8h.html" title="ActiveResourceKit/ARResource.h" alt="" coords="1967,155,2177,181"/><area shape="rect" id="node29" href="_a_r_u_r_l_connection_8h.html" title="ActiveResourceKit/ARURLConnection.h" alt="" coords="1337,155,1583,181"/><area shape="rect" id="node32" href="_a_r_synchronous_loading_u_r_l_connection_8h.html" title="ActiveResourceKit/ARSynchronousLoadingURLConnection.h" alt="" coords="533,155,899,181"/><area shape="rect" id="node35" href="_a_r_queued_loading_u_r_l_connection_8h.html" title="ActiveResourceKit/ARQueuedLoadingURLConnection.h" alt="" coords="923,155,1260,181"/><area shape="rect" id="node38" href="_a_r_format_methods_8h.html" title="ActiveResourceKit/ARFormatMethods.h" alt="" coords="1063,304,1307,331"/><area shape="rect" id="node41" href="_a_r_j_s_o_n_format_8h.html" title="ActiveResourceKit/ARJSONFormat.h" alt="" coords="1239,229,1469,256"/><area shape="rect" id="node44" href="_a_r_h_t_t_p_methods_8h.html" title="ActiveResourceKit/ARHTTPMethods.h" alt="" coords="1331,304,1569,331"/><area shape="rect" id="node47" href="_a_r_errors_8h.html" title="ActiveResourceKit/ARErrors.h" alt="" coords="1595,304,1784,331"/><area shape="rect" id="node50" href="_a_r_macros_8h.html" title="ActiveResourceKit/ARMacros.h" alt="" coords="1809,304,2007,331"/><area shape="rect" id="node53" href="_versioning_8h.html" title="ActiveResourceKit/Versioning.h" alt="" coords="1862,229,2057,256"/></map>
 </div>
 </div>
 <p><a href="_a_r_base_09_private_8m_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_u_r_l_connection_delegate.html">ARURLConnectionDelegate</a></td></tr>
-<tr><td colspan="2"><h2><a name="define-members"></a>
-Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#a059d541d5596b1f36328adb27aadb053">DIMOF</a>(array)&#160;&#160;&#160;(sizeof(array)/sizeof((array)[0]))</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers the number of elements in the given array, the array's dimension.  <a href="#a059d541d5596b1f36328adb27aadb053"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#a7d61ac270866a7b089e6f50b7acc48bf">ARQueryStringForOptions</a> (NSDictionary *options)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a query string given a dictionary of query options.  <a href="#a7d61ac270866a7b089e6f50b7acc48bf"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#ac3d13c32e9efbef9c13b173d9c671a90">kARFromKey</a> = @&quot;from&quot;</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#a005c34e8a00ad78b6bc25139be7f7870">kARParamsKey</a> = @&quot;params&quot;</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#a0c62792c51827f986bd8d099bb28d9c8">ARFromKey</a> = @&quot;from&quot;</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_09_private_8m.html#ac608773c3d272f592d486b4a9faf7f7b">ARParamsKey</a> = @&quot;params&quot;</td></tr>
 </table>
-<hr/><h2>Define Documentation</h2>
-<a class="anchor" id="a059d541d5596b1f36328adb27aadb053"></a><!-- doxytag: member="ARBase+Private.m::DIMOF" ref="a059d541d5596b1f36328adb27aadb053" args="(array)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DIMOF</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">array</td><td>)</td>
-          <td>&#160;&#160;&#160;(sizeof(array)/sizeof((array)[0]))</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Answers the number of elements in the given array, the array's dimension. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>A standard C array of fixed-sized elements.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Assumes that the array argument is a standard C-style array where the compiler can assess the number of elements by dividing the size of the entire array by the size of its elements; the answer always equals an integer since array size is a multiple of element size. Both measurements must be static, otherwise the compiler cannot supply a fixed integer dimension. The implementation wraps the argument in parenthesis in order to enforce the necessary operator precedence. </p>
-<dl class="note"><dt><b>Note:</b></dt><dd>Beware of side effects if you pass operators in the <em>array</em> expression. </dd></dl>
-
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00255">255</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
-
-</div>
-</div>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a7d61ac270866a7b089e6f50b7acc48bf"></a><!-- doxytag: member="ARBase+Private.m::ARQueryStringForOptions" ref="a7d61ac270866a7b089e6f50b7acc48bf" args="(NSDictionary *options)" -->
 <div class="memitem">
@@ -168,38 +130,38 @@ Variables</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The answer is an empty string when you pass <code>nil</code> options or the options indicate an empty dictionary. This function assumes that the given options are <em>query</em> options only; they should not contain prefix options; otherwise prefix options will appear in the query string. Invoking this helper function assumes you have already filtered any options by splitting apart prefix from query options. </dd></dl>
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00034">34</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00035">35</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Variable Documentation</h2>
-<a class="anchor" id="ac3d13c32e9efbef9c13b173d9c671a90"></a><!-- doxytag: member="ARBase+Private.m::kARFromKey" ref="ac3d13c32e9efbef9c13b173d9c671a90" args="" -->
+<a class="anchor" id="a0c62792c51827f986bd8d099bb28d9c8"></a><!-- doxytag: member="ARBase+Private.m::ARFromKey" ref="a0c62792c51827f986bd8d099bb28d9c8" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#ac3d13c32e9efbef9c13b173d9c671a90">kARFromKey</a> = @&quot;from&quot;</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00031">31</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a005c34e8a00ad78b6bc25139be7f7870"></a><!-- doxytag: member="ARBase+Private.m::kARParamsKey" ref="a005c34e8a00ad78b6bc25139be7f7870" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#a005c34e8a00ad78b6bc25139be7f7870">kARParamsKey</a> = @&quot;params&quot;</td>
+          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#a0c62792c51827f986bd8d099bb28d9c8">ARFromKey</a> = @&quot;from&quot;</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00032">32</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac608773c3d272f592d486b4a9faf7f7b"></a><!-- doxytag: member="ARBase+Private.m::ARParamsKey" ref="ac608773c3d272f592d486b4a9faf7f7b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#ac608773c3d272f592d486b4a9faf7f7b">ARParamsKey</a> = @&quot;params&quot;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00033">33</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>

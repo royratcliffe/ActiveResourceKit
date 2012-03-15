@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -148,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00069"></a>00069 <span class="comment"> * implications. If you alter base properties, the changes affect all the</span>
 <a name="l00070"></a>00070 <span class="comment"> * resources which depend upon it.</span>
 <a name="l00071"></a>00071 <span class="comment"> */</span>
-<a name="l00072"></a><a class="code" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">00072</a> <span class="keyword">@property</span>(retain, NS_NONATOMIC_IOSONLY) <a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> *base;
+<a name="l00072"></a><a class="code" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">00072</a> <span class="keyword">@property</span>(strong, NS_NONATOMIC_IOSONLY) <a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a> *base;
 <a name="l00073"></a>00073 <span class="comment"></span>
 <a name="l00074"></a>00074 <span class="comment">/*!</span>
 <a name="l00075"></a>00075 <span class="comment"> * @brief Asks for the resource base, lazily constructing a base instance if the</span>
@@ -163,7 +163,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085 <span class="comment">//------------------------------------------------------------------- Attributes</span>
 <a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="interface_a_resource.html#a41b90fcbde29cf78475969192bd6aa77">00087</a> <span class="keyword">@property</span>(copy, NS_NONATOMIC_IOSONLY) NSDictionary *<a class="code" href="interface_a_resource.html#a41b90fcbde29cf78475969192bd6aa77">attributes</a>;
+<a name="l00087"></a><a class="code" href="interface_a_resource.html#a3f1c5b1df49a95509e99cbf9e4a5689c">00087</a> <span class="keyword">@property</span>(readonly, copy, NS_NONATOMIC_IOSONLY) NSDictionary *<a class="code" href="interface_a_resource.html#a3f1c5b1df49a95509e99cbf9e4a5689c">attributes</a>;
 <a name="l00088"></a>00088 <span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">/*!</span>
 <a name="l00090"></a>00090 <span class="comment"> * Argument @a removeRoot becomes a do-not-care if @a attributes contains just a</span>
