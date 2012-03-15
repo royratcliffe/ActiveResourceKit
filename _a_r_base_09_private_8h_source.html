@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -79,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_a_r_base_09_private_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// ActiveResourceKit ARBase+Private.h</span>
 <a name="l00002"></a>00002 <span class="comment">//</span>
-<a name="l00003"></a>00003 <span class="comment">// Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom</span>
+<a name="l00003"></a>00003 <span class="comment">// Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom</span>
 <a name="l00004"></a>00004 <span class="comment">//</span>
 <a name="l00005"></a>00005 <span class="comment">// Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <a name="l00006"></a>00006 <span class="comment">// of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -102,142 +102,145 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00023"></a>00023 <span class="comment">//------------------------------------------------------------------------------</span>
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 <span class="preprocessor">#import &lt;<a class="code" href="_a_r_base_8h.html">ActiveResourceKit/ARBase.h</a>&gt;</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="keyword">@class</span> <a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a>;
-<a name="l00028"></a>00028 <span class="comment"></span>
-<a name="l00029"></a>00029 <span class="comment">/*!</span>
-<a name="l00030"></a>00030 <span class="comment"> * @brief Builds a query string given a dictionary of query options.</span>
-<a name="l00031"></a>00031 <span class="comment"> * @param options Dictionary (a Ruby hash) of query options.</span>
-<a name="l00032"></a>00032 <span class="comment"> * @result The answer is an empty string when you pass @c nil options or the</span>
-<a name="l00033"></a>00033 <span class="comment"> * options indicate an empty dictionary. This function assumes that the given</span>
-<a name="l00034"></a>00034 <span class="comment"> * options are @e query options only; they should not contain prefix options;</span>
-<a name="l00035"></a>00035 <span class="comment"> * otherwise prefix options will appear in the query string. Invoking this</span>
-<a name="l00036"></a>00036 <span class="comment"> * helper function assumes you have already filtered any options by splitting</span>
-<a name="l00037"></a>00037 <span class="comment"> * apart prefix from query options.</span>
-<a name="l00038"></a>00038 <span class="comment"> */</span>
-<a name="l00039"></a>00039 NSString *<a class="code" href="_a_r_base_09_private_8h.html#a7d61ac270866a7b089e6f50b7acc48bf" title="Builds a query string given a dictionary of query options.">ARQueryStringForOptions</a>(NSDictionary *options);
-<a name="l00040"></a>00040 <span class="comment"></span>
-<a name="l00041"></a>00041 <span class="comment">/*!</span>
-<a name="l00042"></a>00042 <span class="comment"> * @brief Defines the request completion handler type.</span>
-<a name="l00043"></a>00043 <span class="comment"> * @details Request completion handlers are C blocks receiving: (1) the HTTP</span>
-<a name="l00044"></a>00044 <span class="comment"> * response, (2) the @a object decoded and (3) the @a error object in case of</span>
-<a name="l00045"></a>00045 <span class="comment"> * error. The response always appears. The object decoded is non-nil if the</span>
-<a name="l00046"></a>00046 <span class="comment"> * response body successfully decodes according to the expected format (JSON or</span>
-<a name="l00047"></a>00047 <span class="comment"> * XML) and error is @c nil. On error, object is @c nil and @a error describes</span>
-<a name="l00048"></a>00048 <span class="comment"> * the error condition.</span>
-<a name="l00049"></a>00049 <span class="comment"> */</span>
-<a name="l00050"></a><a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865">00050</a> <span class="keyword">typedef</span> void (^<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)(NSHTTPURLResponse *HTTPResponse, <span class="keywordtype">id</span> object, NSError *error);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">@interface </span><a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a>(Private)
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 - (id&lt;<a class="code" href="protocol_a_r_format-p.html">ARFormat</a>&gt;)<a class="code" href="interface_a_r_base.html#a92af873b04ae2aadc503f5e2c7593e71">defaultFormat</a>;
-<a name="l00055"></a>00055 - (NSString *)<a class="code" href="interface_a_r_base.html#a0b522cfe9bdb4817ec394c7904308945">defaultElementName</a>;
-<a name="l00056"></a>00056 - (NSString *)<a class="code" href="interface_a_r_base.html#aa8de933ea23c92706286550e7d90b1f9">defaultCollectionName</a>;
-<a name="l00057"></a>00057 - (NSString *)<a class="code" href="interface_a_r_base.html#a40c8564764240e2b812ef388e1aefd96">defaultPrimaryKey</a>;
-<a name="l00058"></a>00058 - (NSString *)<a class="code" href="interface_a_r_base.html#a3cbfeb0c843338934dc6cc4023e6f8f4">defaultPrefixSource</a>;
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 - (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(NSArray *resources, NSError *error))completionHandler;
-<a name="l00061"></a>00061 <span class="comment"></span>
-<a name="l00062"></a>00062 <span class="comment">/*!</span>
-<a name="l00063"></a>00063 <span class="comment"> * Instantiates a collection of active resources given a collection of</span>
-<a name="l00064"></a>00064 <span class="comment"> * attributes; collection here meaning an array. The collection argument</span>
-<a name="l00065"></a>00065 <span class="comment"> * specifies an array of dictionaries. Each dictionary specifies attributes for</span>
-<a name="l00066"></a>00066 <span class="comment"> * a new active resource. Answers an array of newly instantiated active</span>
-<a name="l00067"></a>00067 <span class="comment"> * resources.</span>
-<a name="l00068"></a>00068 <span class="comment"> */</span>
-<a name="l00069"></a>00069 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions;
-<a name="l00070"></a>00070 <span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">/*!</span>
-<a name="l00072"></a>00072 <span class="comment"> * @brief Instantiates a resource element (a record) using the given attributes</span>
-<a name="l00073"></a>00073 <span class="comment"> * and prefix options.</span>
-<a name="l00074"></a>00074 <span class="comment"> * @details The implementation looks for a class matching the element name. It</span>
-<a name="l00075"></a>00075 <span class="comment"> * converts the element name to class name by camel-casing the name. The answer</span>
-<a name="l00076"></a>00076 <span class="comment"> * becomes an instance of that class if the class exists and derives from</span>
-<a name="l00077"></a>00077 <span class="comment"> * AResource. Otherwise the answer is a plain instance of AResource.</span>
-<a name="l00078"></a>00078 <span class="comment"> */</span>
-<a name="l00079"></a>00079 - (<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
-<a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">/*!</span>
-<a name="l00082"></a>00082 <span class="comment"> * Answers a set of prefix parameters based on the current prefix source. These</span>
-<a name="l00083"></a>00083 <span class="comment"> * constitute the current set of prefix parameters: an array of strings without</span>
-<a name="l00084"></a>00084 <span class="comment"> * the leading colon. Colon immediately followed by a word marks each parameter</span>
-<a name="l00085"></a>00085 <span class="comment"> * in the prefix source.</span>
-<a name="l00086"></a>00086 <span class="comment"> */</span>
-<a name="l00087"></a>00087 - (NSSet *)<a class="code" href="interface_a_r_base.html#a73105d9ed9fb6086531b2c7693ff7d27">prefixParameters</a>;
-<a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">/*!</span>
-<a name="l00090"></a>00090 <span class="comment"> * Splits an options dictionary into two dictionaries, one containing the prefix</span>
-<a name="l00091"></a>00091 <span class="comment"> * options, the other containing the leftovers, i.e. any query options.</span>
-<a name="l00092"></a>00092 <span class="comment"> */</span>
-<a name="l00093"></a>00093 - (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="comment">//---------------------------------------------------------------- HTTP Requests</span>
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">/*!</span>
-<a name="l00098"></a>00098 <span class="comment"> * @brief Sends an asynchronous GET request. Used to find a resource.</span>
-<a name="l00099"></a>00099 <span class="comment"> * @details When the response successfully arrives, the format decodes the</span>
-<a name="l00100"></a>00100 <span class="comment"> * data. If the response body decodes successfully, finally sends the decoded</span>
-<a name="l00101"></a>00101 <span class="comment"> * object (or objects) to your given completion handler. Objects may be hashes</span>
-<a name="l00102"></a>00102 <span class="comment"> * (dictionaries) or arrays, or even primitives.</span>
-<a name="l00103"></a>00103 <span class="comment"> */</span>
-<a name="l00104"></a>00104 - (void)get:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00105"></a>00105 <span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">/*!</span>
-<a name="l00107"></a>00107 <span class="comment"> * @brief Used to delete resources. Sends an asynchronous DELETE request.</span>
-<a name="l00108"></a>00108 <span class="comment"> */</span>
-<a name="l00109"></a>00109 - (void)delete:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00110"></a>00110 <span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">/*!</span>
-<a name="l00112"></a>00112 <span class="comment"> * @brief Sends an asynchronous PUT request.</span>
-<a name="l00113"></a>00113 <span class="comment"> * @details PUT is idempotent, meaning that multiple PUT requests result in an</span>
-<a name="l00114"></a>00114 <span class="comment"> * identical resource state. There should be no side effects. PUT really amounts</span>
-<a name="l00115"></a>00115 <span class="comment"> * to an “upsert” database operation where it updates the resource if it already</span>
-<a name="l00116"></a>00116 <span class="comment"> * exists but alternatively creates the resource if it does not already exist.</span>
-<a name="l00117"></a>00117 <span class="comment"> */</span>
-<a name="l00118"></a>00118 - (void)put:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">/*!</span>
-<a name="l00121"></a>00121 <span class="comment"> * @brief Sends an asynchronous POST request.</span>
-<a name="l00122"></a>00122 <span class="comment"> * @details POST is not idempotent.</span>
-<a name="l00123"></a>00123 <span class="comment"> */</span>
-<a name="l00124"></a>00124 - (void)post:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00125"></a>00125 <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">/*!</span>
-<a name="l00127"></a>00127 <span class="comment"> * @brief Used to obtain meta-information about resources, whether they exist or</span>
-<a name="l00128"></a>00128 <span class="comment"> * their size. Sends an asynchronous HEAD request.</span>
-<a name="l00129"></a>00129 <span class="comment"> */</span>
-<a name="l00130"></a>00130 - (void)head:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">/*!</span>
-<a name="l00133"></a>00133 <span class="comment"> * @brief Submits an asynchronous request, returning immediately.</span>
-<a name="l00134"></a>00134 <span class="comment"> * @details Constructs a request object and asynchronously transmits it to the</span>
-<a name="l00135"></a>00135 <span class="comment"> * remote RESTful service. The completion handler executes in the resource</span>
-<a name="l00136"></a>00136 <span class="comment"> * base&#39;s operation queue, or the current queue (the operation queue running at</span>
-<a name="l00137"></a>00137 <span class="comment"> * the time of the request) if the resource base has no queue.</span>
-<a name="l00138"></a>00138 <span class="comment"> *</span>
-<a name="l00139"></a>00139 <span class="comment"> * The completion handler receives three arguments: the HTTP response, the</span>
-<a name="l00140"></a>00140 <span class="comment"> * decoded object and any error. The decoded object derives from the response</span>
-<a name="l00141"></a>00141 <span class="comment"> * body, decoded according to the base format. Decoding itself can encounter</span>
-<a name="l00142"></a>00142 <span class="comment"> * errors. If successful, the completion handler receives a non-nil object and a</span>
-<a name="l00143"></a>00143 <span class="comment"> * @c nil error. If the response is not an HTTP-based response, the completion</span>
-<a name="l00144"></a>00144 <span class="comment"> * handler receives a @c nil response @a HTTPResponse argument and an @ref</span>
-<a name="l00145"></a>00145 <span class="comment"> * ARResponseIsNotHTTPError.</span>
-<a name="l00146"></a>00146 <span class="comment"> */</span>
-<a name="l00147"></a>00147 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="comment">//----------------------------------------------------- Format Header for Method</span>
-<a name="l00150"></a>00150 <span class="comment"></span>
-<a name="l00151"></a>00151 <span class="comment">/*!</span>
-<a name="l00152"></a>00152 <span class="comment"> * @brief Answers a format header for the given HTTP request method.</span>
-<a name="l00153"></a>00153 <span class="comment"> * @param HTTPMethod String containing either GET, PUT, POST, DELETE or HEAD</span>
-<a name="l00154"></a>00154 <span class="comment"> * that specifies the HTTP request method. Case must match.</span>
-<a name="l00155"></a>00155 <span class="comment"> * @result A dictionary containing either an Accept or Content-Type format</span>
-<a name="l00156"></a>00156 <span class="comment"> * header along with the appropriate MIME type. Merge this dictionary with any</span>
-<a name="l00157"></a>00157 <span class="comment"> * other request header fields.</span>
-<a name="l00158"></a>00158 <span class="comment"> */</span>
-<a name="l00159"></a>00159 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod;
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161 <span class="keyword">@end</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#import &lt;<a class="code" href="_a_r_connection_8h.html">ActiveResourceKit/ARConnection.h</a>&gt;</span>
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="keyword">@class</span> <a class="code" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a>;
+<a name="l00029"></a>00029 <span class="comment"></span>
+<a name="l00030"></a>00030 <span class="comment">/*!</span>
+<a name="l00031"></a>00031 <span class="comment"> * @brief Builds a query string given a dictionary of query options.</span>
+<a name="l00032"></a>00032 <span class="comment"> * @param options Dictionary (a Ruby hash) of query options.</span>
+<a name="l00033"></a>00033 <span class="comment"> * @result The answer is an empty string when you pass @c nil options or the</span>
+<a name="l00034"></a>00034 <span class="comment"> * options indicate an empty dictionary. This function assumes that the given</span>
+<a name="l00035"></a>00035 <span class="comment"> * options are @e query options only; they should not contain prefix options;</span>
+<a name="l00036"></a>00036 <span class="comment"> * otherwise prefix options will appear in the query string. Invoking this</span>
+<a name="l00037"></a>00037 <span class="comment"> * helper function assumes you have already filtered any options by splitting</span>
+<a name="l00038"></a>00038 <span class="comment"> * apart prefix from query options.</span>
+<a name="l00039"></a>00039 <span class="comment"> */</span>
+<a name="l00040"></a>00040 NSString *<a class="code" href="_a_r_base_09_private_8h.html#a7d61ac270866a7b089e6f50b7acc48bf" title="Builds a query string given a dictionary of query options.">ARQueryStringForOptions</a>(NSDictionary *options);
+<a name="l00041"></a>00041 <span class="comment"></span>
+<a name="l00042"></a>00042 <span class="comment">/*!</span>
+<a name="l00043"></a>00043 <span class="comment"> * @brief Defines the request completion handler type.</span>
+<a name="l00044"></a>00044 <span class="comment"> * @details Request completion handlers are C blocks receiving: (1) the HTTP</span>
+<a name="l00045"></a>00045 <span class="comment"> * response, (2) the @a object decoded and (3) the @a error object in case of</span>
+<a name="l00046"></a>00046 <span class="comment"> * error. The response always appears. The object decoded is non-nil if the</span>
+<a name="l00047"></a>00047 <span class="comment"> * response body successfully decodes according to the expected format (JSON or</span>
+<a name="l00048"></a>00048 <span class="comment"> * XML) and error is @c nil. On error, object is @c nil and @a error describes</span>
+<a name="l00049"></a>00049 <span class="comment"> * the error condition. Asynchronous connection methods utilise this completion</span>
+<a name="l00050"></a>00050 <span class="comment"> * handler type. C blocks of this type receive completion results, whether</span>
+<a name="l00051"></a>00051 <span class="comment"> * success or failure. Operation or dispatch queue assignment depends on which</span>
+<a name="l00052"></a>00052 <span class="comment"> * object invokes the block.</span>
+<a name="l00053"></a>00053 <span class="comment"> */</span>
+<a name="l00054"></a><a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865">00054</a> <span class="keyword">typedef</span> void (^<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)(NSHTTPURLResponse *HTTPResponse, <span class="keywordtype">id</span> object, NSError *error);
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="keyword">@interface </span><a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a>(Private)
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 - (id&lt;<a class="code" href="protocol_a_r_format-p.html">ARFormat</a>&gt;)<a class="code" href="interface_a_r_base.html#a92af873b04ae2aadc503f5e2c7593e71">defaultFormat</a>;
+<a name="l00059"></a>00059 - (NSString *)<a class="code" href="interface_a_r_base.html#a0b522cfe9bdb4817ec394c7904308945">defaultElementName</a>;
+<a name="l00060"></a>00060 - (NSString *)<a class="code" href="interface_a_r_base.html#aa8de933ea23c92706286550e7d90b1f9">defaultCollectionName</a>;
+<a name="l00061"></a>00061 - (NSString *)<a class="code" href="interface_a_r_base.html#a40c8564764240e2b812ef388e1aefd96">defaultPrimaryKey</a>;
+<a name="l00062"></a>00062 - (NSString *)<a class="code" href="interface_a_r_base.html#a3cbfeb0c843338934dc6cc4023e6f8f4">defaultPrefixSource</a>;
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 - (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(NSArray *resources, NSError *error))completionHandler;
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">/*!</span>
+<a name="l00067"></a>00067 <span class="comment"> * Instantiates a collection of active resources given a collection of</span>
+<a name="l00068"></a>00068 <span class="comment"> * attributes; collection here meaning an array. The collection argument</span>
+<a name="l00069"></a>00069 <span class="comment"> * specifies an array of dictionaries. Each dictionary specifies attributes for</span>
+<a name="l00070"></a>00070 <span class="comment"> * a new active resource. Answers an array of newly instantiated active</span>
+<a name="l00071"></a>00071 <span class="comment"> * resources.</span>
+<a name="l00072"></a>00072 <span class="comment"> */</span>
+<a name="l00073"></a>00073 - (NSArray *)instantiateCollection:(NSArray *)collection prefixOptions:(NSDictionary *)prefixOptions;
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">/*!</span>
+<a name="l00076"></a>00076 <span class="comment"> * @brief Instantiates a resource element (a record) using the given attributes</span>
+<a name="l00077"></a>00077 <span class="comment"> * and prefix options.</span>
+<a name="l00078"></a>00078 <span class="comment"> * @details The implementation looks for a class matching the element name. It</span>
+<a name="l00079"></a>00079 <span class="comment"> * converts the element name to class name by camel-casing the name. The answer</span>
+<a name="l00080"></a>00080 <span class="comment"> * becomes an instance of that class if the class exists and derives from</span>
+<a name="l00081"></a>00081 <span class="comment"> * ARResource. Otherwise the answer is a plain instance of ARResource.</span>
+<a name="l00082"></a>00082 <span class="comment"> */</span>
+<a name="l00083"></a>00083 - (<a class="code" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a> *)instantiateRecordWithAttributes:(NSDictionary *)attributes prefixOptions:(NSDictionary *)prefixOptions;
+<a name="l00084"></a>00084 <span class="comment"></span>
+<a name="l00085"></a>00085 <span class="comment">/*!</span>
+<a name="l00086"></a>00086 <span class="comment"> * Answers a set of prefix parameters based on the current prefix source. These</span>
+<a name="l00087"></a>00087 <span class="comment"> * constitute the current set of prefix parameters: an array of strings without</span>
+<a name="l00088"></a>00088 <span class="comment"> * the leading colon. Colon immediately followed by a word marks each parameter</span>
+<a name="l00089"></a>00089 <span class="comment"> * in the prefix source.</span>
+<a name="l00090"></a>00090 <span class="comment"> */</span>
+<a name="l00091"></a>00091 - (NSSet *)<a class="code" href="interface_a_r_base.html#a73105d9ed9fb6086531b2c7693ff7d27">prefixParameters</a>;
+<a name="l00092"></a>00092 <span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">/*!</span>
+<a name="l00094"></a>00094 <span class="comment"> * Splits an options dictionary into two dictionaries, one containing the prefix</span>
+<a name="l00095"></a>00095 <span class="comment"> * options, the other containing the leftovers, i.e. any query options.</span>
+<a name="l00096"></a>00096 <span class="comment"> */</span>
+<a name="l00097"></a>00097 - (void)splitOptions:(NSDictionary *)options prefixOptions:(NSDictionary **)outPrefixOptions queryOptions:(NSDictionary **)outQueryOptions;
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 <span class="comment">//---------------------------------------------------------------- HTTP Requests</span>
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">/*!</span>
+<a name="l00102"></a>00102 <span class="comment"> * @brief Sends an asynchronous GET request. Used to find a resource.</span>
+<a name="l00103"></a>00103 <span class="comment"> * @details When the response successfully arrives, the format decodes the</span>
+<a name="l00104"></a>00104 <span class="comment"> * data. If the response body decodes successfully, finally sends the decoded</span>
+<a name="l00105"></a>00105 <span class="comment"> * object (or objects) to your given completion handler. Objects may be hashes</span>
+<a name="l00106"></a>00106 <span class="comment"> * (dictionaries) or arrays, or even primitives.</span>
+<a name="l00107"></a>00107 <span class="comment"> */</span>
+<a name="l00108"></a>00108 - (void)get:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00109"></a>00109 <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">/*!</span>
+<a name="l00111"></a>00111 <span class="comment"> * @brief Used to delete resources. Sends an asynchronous DELETE request.</span>
+<a name="l00112"></a>00112 <span class="comment"> */</span>
+<a name="l00113"></a>00113 - (void)delete:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00114"></a>00114 <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">/*!</span>
+<a name="l00116"></a>00116 <span class="comment"> * @brief Sends an asynchronous PUT request.</span>
+<a name="l00117"></a>00117 <span class="comment"> * @details PUT is idempotent, meaning that multiple PUT requests result in an</span>
+<a name="l00118"></a>00118 <span class="comment"> * identical resource state. There should be no side effects. PUT really amounts</span>
+<a name="l00119"></a>00119 <span class="comment"> * to an “upsert” database operation where it updates the resource if it already</span>
+<a name="l00120"></a>00120 <span class="comment"> * exists but alternatively creates the resource if it does not already exist.</span>
+<a name="l00121"></a>00121 <span class="comment"> */</span>
+<a name="l00122"></a>00122 - (void)put:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00123"></a>00123 <span class="comment"></span>
+<a name="l00124"></a>00124 <span class="comment">/*!</span>
+<a name="l00125"></a>00125 <span class="comment"> * @brief Sends an asynchronous POST request.</span>
+<a name="l00126"></a>00126 <span class="comment"> * @details POST is not idempotent.</span>
+<a name="l00127"></a>00127 <span class="comment"> */</span>
+<a name="l00128"></a>00128 - (void)post:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">/*!</span>
+<a name="l00131"></a>00131 <span class="comment"> * @brief Used to obtain meta-information about resources, whether they exist or</span>
+<a name="l00132"></a>00132 <span class="comment"> * their size. Sends an asynchronous HEAD request.</span>
+<a name="l00133"></a>00133 <span class="comment"> */</span>
+<a name="l00134"></a>00134 - (void)head:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00135"></a>00135 <span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">/*!</span>
+<a name="l00137"></a>00137 <span class="comment"> * @brief Submits an asynchronous request, returning immediately.</span>
+<a name="l00138"></a>00138 <span class="comment"> * @details Constructs a request object and asynchronously transmits it to the</span>
+<a name="l00139"></a>00139 <span class="comment"> * remote RESTful service. The completion handler executes in the resource</span>
+<a name="l00140"></a>00140 <span class="comment"> * base&#39;s operation queue, or the current queue (the operation queue running at</span>
+<a name="l00141"></a>00141 <span class="comment"> * the time of the request) if the resource base has no queue.</span>
+<a name="l00142"></a>00142 <span class="comment"> *</span>
+<a name="l00143"></a>00143 <span class="comment"> * The completion handler receives three arguments: the HTTP response, the</span>
+<a name="l00144"></a>00144 <span class="comment"> * decoded object and any error. The decoded object derives from the response</span>
+<a name="l00145"></a>00145 <span class="comment"> * body, decoded according to the base format. Decoding itself can encounter</span>
+<a name="l00146"></a>00146 <span class="comment"> * errors. If successful, the completion handler receives a non-nil object and a</span>
+<a name="l00147"></a>00147 <span class="comment"> * @c nil error. If the response is not an HTTP-based response, the completion</span>
+<a name="l00148"></a>00148 <span class="comment"> * handler receives a @c nil response @a HTTPResponse argument and an @ref</span>
+<a name="l00149"></a>00149 <span class="comment"> * ARResponseIsNotHTTPError.</span>
+<a name="l00150"></a>00150 <span class="comment"> */</span>
+<a name="l00151"></a>00151 - (void)requestHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path completionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00152"></a>00152 <span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">/*!</span>
+<a name="l00154"></a>00154 <span class="comment"> * @brief Answers a decoding handler which, in turn, after decoding, invokes</span>
+<a name="l00155"></a>00155 <span class="comment"> * another given completion block.</span>
+<a name="l00156"></a>00156 <span class="comment"> * @details Active Resource Kit methods utilise this common response block for</span>
+<a name="l00157"></a>00157 <span class="comment"> * decoding according to the required format. In fact, the decoding does a</span>
+<a name="l00158"></a>00158 <span class="comment"> * little more than just decode the format. It also handles URL response to HTTP</span>
+<a name="l00159"></a>00159 <span class="comment"> * response type casting. The latter carries more information including header fields</span>
+<a name="l00160"></a>00160 <span class="comment"> * and HTTP status code.</span>
+<a name="l00161"></a>00161 <span class="comment"> */</span>
+<a name="l00162"></a>00162 - (<a class="code" href="_a_r_connection_8h.html#af649ea59c1194dbb94a3bf0458022868" title="Defines a lower-level connection-oriented completion handler.">ARConnectionCompletionHandler</a>)decodeHandlerWithCompletionHandler:(<a class="code" href="_a_r_base_09_private_8h.html#a2c48e20dc76a91510e8e0dd865bf5865" title="Defines the request completion handler type.">ARBaseRequestCompletionHandler</a>)completionHandler;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->

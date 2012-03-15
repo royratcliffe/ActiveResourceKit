@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -76,6 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">ActiveResourceKit/ARBase.h File Reference</div>  </div>
@@ -95,7 +96,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_a_r_base_8h__dep__incl.png" border="0" usemap="#_active_resource_kit_2_a_r_base_8hdep" alt=""/></div>
 <map name="_active_resource_kit_2_a_r_base_8hdep" id="_active_resource_kit_2_a_r_base_8hdep">
-<area shape="rect" id="node3" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="419,80,659,107"/><area shape="rect" id="node18" href="_a_r_base_09_private_8h.html" title="ActiveResourceKit/ARBase+Private.h" alt="" coords="1080,80,1315,107"/><area shape="rect" id="node21" href="_a_r_base_8m.html" title="ActiveResourceKit/ARBase.m" alt="" coords="1575,155,1765,181"/><area shape="rect" id="node5" href="_a_r_base_09_private_8m.html" title="ActiveResourceKit/ARBase+Private.m" alt="" coords="577,155,815,181"/><area shape="rect" id="node7" href="_active_resource_kit_tests_8m.html" title="ActiveResourceKitTests/ActiveResourceKitTests.m" alt="" coords="526,229,831,256"/><area shape="rect" id="node9" href="_person_8h.html" title="ActiveResourceKitTests/Person.h" alt="" coords="291,155,500,181"/><area shape="rect" id="node16" href="_versioning_tests_8m.html" title="ActiveResourceKitTests/VersioningTests.m" alt="" coords="5,155,267,181"/><area shape="rect" id="node12" href="_finder_tests_8m.html" title="ActiveResourceKitTests/FinderTests.m" alt="" coords="30,229,265,256"/><area shape="rect" id="node14" href="_person_8m.html" title="ActiveResourceKitTests/Person.m" alt="" coords="290,229,501,256"/><area shape="rect" id="node23" href="_a_resource_09_private_8m.html" title="ActiveResourceKit/AResource+Private.m" alt="" coords="1072,155,1323,181"/><area shape="rect" id="node25" href="_a_resource_8m.html" title="ActiveResourceKit/AResource.m" alt="" coords="1347,155,1551,181"/><area shape="rect" id="node27" href="_private_8h.html" title="ActiveResourceKitTests/Private.h" alt="" coords="840,155,1048,181"/></map>
+<area shape="rect" id="node3" href="_active_resource_kit_8h.html" title="ActiveResourceKit/ActiveResourceKit.h" alt="" coords="1205,80,1445,107"/><area shape="rect" id="node24" href="_a_r_base_09_private_8h.html" title="ActiveResourceKit/ARBase+Private.h" alt="" coords="613,80,848,107"/><area shape="rect" id="node27" href="_a_r_base_8m.html" title="ActiveResourceKit/ARBase.m" alt="" coords="5,155,195,181"/><area shape="rect" id="node37" href="_a_r_incremental_store_8m.html" title="ActiveResourceKit/ARIncrementalStore.m" alt="" coords="1470,80,1721,107"/><area shape="rect" id="node5" href="_a_r_base_09_private_8m.html" title="ActiveResourceKit/ARBase+Private.m" alt="" coords="978,155,1216,181"/><area shape="rect" id="node7" href="_active_resource_kit_tests_8m.html" title="ActiveResourceKitTests/ActiveResourceKitTests.m" alt="" coords="823,229,1128,256"/><area shape="rect" id="node9" href="_person_8h.html" title="ActiveResourceKitTests/Person.h" alt="" coords="1293,155,1501,181"/><area shape="rect" id="node18" href="_connection_tests_8m.html" title="ActiveResourceKitTests/ConnectionTests.m" alt="" coords="1527,155,1793,181"/><area shape="rect" id="node20" href="_key_value_coding_tests_8m.html" title="ActiveResourceKitTests/KeyValueCodingTests.m" alt="" coords="1817,155,2116,181"/><area shape="rect" id="node22" href="_versioning_tests_8m.html" title="ActiveResourceKitTests/VersioningTests.m" alt="" coords="2140,155,2401,181"/><area shape="rect" id="node12" href="_base_tests_8m.html" title="ActiveResourceKitTests/BaseTests.m" alt="" coords="1153,229,1388,256"/><area shape="rect" id="node14" href="_finder_tests_8m.html" title="ActiveResourceKitTests/FinderTests.m" alt="" coords="1413,229,1648,256"/><area shape="rect" id="node16" href="_person_8m.html" title="ActiveResourceKitTests/Person.m" alt="" coords="1673,229,1884,256"/><area shape="rect" id="node29" href="_a_r_resource_09_private_8m.html" title="ActiveResourceKit/ARResource+Private.m" alt="" coords="220,155,481,181"/><area shape="rect" id="node31" href="_a_r_resource_8m.html" title="ActiveResourceKit/ARResource.m" alt="" coords="506,155,720,181"/><area shape="rect" id="node33" href="_private_8h.html" title="ActiveResourceKitTests/Private.h" alt="" coords="745,155,953,181"/></map>
 </div>
 </div>
 <p><a href="_a_r_base_8h_source.html">Go to the source code of this file.</a></p>
@@ -104,39 +105,82 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_base.html">ARBase</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An active resource's base configuration.  <a href="interface_a_r_base.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void(^&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a> )(<a class="el" href="interface_a_r_resource.html">ARResource</a> *resource, NSError *error)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a completion handler block type where the results of completion yield a single resource.  <a href="#a020f16b0863a0a89ad0826fd9267dad1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void(^&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#a92f51ae4b1d9c5cf804d1279af2aa05d">ARResourcesCompletionHandler</a> )(NSArray *resources, NSError *error)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a type of completion handler block where successful completion yields an array of resources.  <a href="#a92f51ae4b1d9c5cf804d1279af2aa05d"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#ac3d13c32e9efbef9c13b173d9c671a90">kARFromKey</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#a005c34e8a00ad78b6bc25139be7f7870">kARParamsKey</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#a0c62792c51827f986bd8d099bb28d9c8">ARFromKey</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_r_base_8h.html#ac608773c3d272f592d486b4a9faf7f7b">ARParamsKey</a></td></tr>
 </table>
-<hr/><h2>Variable Documentation</h2>
-<a class="anchor" id="ac3d13c32e9efbef9c13b173d9c671a90"></a><!-- doxytag: member="ARBase.h::kARFromKey" ref="ac3d13c32e9efbef9c13b173d9c671a90" args="" -->
+<hr/><h2>Typedef Documentation</h2>
+<a class="anchor" id="a020f16b0863a0a89ad0826fd9267dad1"></a><!-- doxytag: member="ARBase.h::ARResourceCompletionHandler" ref="a020f16b0863a0a89ad0826fd9267dad1" args=")(ARResource *resource, NSError *error)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#ac3d13c32e9efbef9c13b173d9c671a90">kARFromKey</a></td>
+          <td class="memname">typedef void(^ <a class="el" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1">ARResourceCompletionHandler</a>)(<a class="el" href="interface_a_r_resource.html">ARResource</a> *resource, NSError *error)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00031">31</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+<p>Defines a completion handler block type where the results of completion yield a single resource. </p>
+<p>Successful completion gives a single instance. </p>
+
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00039">39</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a005c34e8a00ad78b6bc25139be7f7870"></a><!-- doxytag: member="ARBase.h::kARParamsKey" ref="a005c34e8a00ad78b6bc25139be7f7870" args="" -->
+<a class="anchor" id="a92f51ae4b1d9c5cf804d1279af2aa05d"></a><!-- doxytag: member="ARBase.h::ARResourcesCompletionHandler" ref="a92f51ae4b1d9c5cf804d1279af2aa05d" args=")(NSArray *resources, NSError *error)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#a005c34e8a00ad78b6bc25139be7f7870">kARParamsKey</a></td>
+          <td class="memname">typedef void(^ <a class="el" href="_a_r_base_8h.html#a92f51ae4b1d9c5cf804d1279af2aa05d">ARResourcesCompletionHandler</a>)(NSArray *resources, NSError *error)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Defines a type of completion handler block where successful completion yields an array of resources. </p>
+<p>The completion handler's <em>resources</em> argument equals <code>nil</code> when completion ends unsuccessfully. In this case, the second argument <em>error</em> supplies the reason. </p>
+
+<p>Definition at line <a class="el" href="_a_r_base_8h_source.html#l00048">48</a> of file <a class="el" href="_a_r_base_8h_source.html">ARBase.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a0c62792c51827f986bd8d099bb28d9c8"></a><!-- doxytag: member="ARBase.h::ARFromKey" ref="a0c62792c51827f986bd8d099bb28d9c8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#a0c62792c51827f986bd8d099bb28d9c8">ARFromKey</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00032">32</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac608773c3d272f592d486b4a9faf7f7b"></a><!-- doxytag: member="ARBase.h::ARParamsKey" ref="ac608773c3d272f592d486b4a9faf7f7b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const <a class="el" href="_a_r_base_8h.html#ac608773c3d272f592d486b4a9faf7f7b">ARParamsKey</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_r_base_09_private_8m_source.html#l00033">33</a> of file <a class="el" href="_a_r_base_09_private_8m_source.html">ARBase+Private.m</a>.</p>
 
 </div>
 </div>

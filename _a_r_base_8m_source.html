@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -79,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_a_r_base_8m.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// ActiveResourceKit ARBase.m</span>
 <a name="l00002"></a>00002 <span class="comment">//</span>
-<a name="l00003"></a>00003 <span class="comment">// Copyright © 2011, Roy Ratcliffe, Pioneering Software, United Kingdom</span>
+<a name="l00003"></a>00003 <span class="comment">// Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom</span>
 <a name="l00004"></a>00004 <span class="comment">//</span>
 <a name="l00005"></a>00005 <span class="comment">// Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <a name="l00006"></a>00006 <span class="comment">// of this software and associated documentation files (the “Software”), to deal</span>
@@ -104,300 +104,375 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00025"></a>00025 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_base_8h.html">ARBase.h</a>&quot;</span>
 <a name="l00026"></a>00026 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_base_09_private_8h.html">ARBase+Private.h</a>&quot;</span>
 <a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="preprocessor">#import &quot;<a class="code" href="_a_resource_8h.html">AResource.h</a>&quot;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_errors_8h.html">ARErrors.h</a>&quot;</span>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="preprocessor">#import &lt;ActiveSupportKit/ActiveSupportKit.h&gt;</span>
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033 <span class="keyword">@implementation </span><a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a>
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="comment">// designated initialiser</span>
-<a name="l00036"></a><a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">00036</a> - (id)<a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">init</a>
-<a name="l00037"></a>00037 {
-<a name="l00038"></a>00038     <span class="keyword">self</span> = [<span class="keyword">super</span> init];
-<a name="l00039"></a>00039     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
-<a name="l00040"></a>00040     {
-<a name="l00041"></a>00041         [<span class="keyword">self</span> setTimeout:60.0];
-<a name="l00042"></a>00042     }
-<a name="l00043"></a>00043     <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment">// The following initialisers are not designated initialisers. Note the messages</span>
-<a name="l00047"></a>00047 <span class="comment">// to -[self init] rather than -[super init], a small but important</span>
-<a name="l00048"></a>00048 <span class="comment">// difference. These are just convenience initialisers: a way to initialise and</span>
-<a name="l00049"></a>00049 <span class="comment">// assign the site URL at one and the same time, or site plus element name.</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a><a class="code" href="interface_a_r_base.html#a73d373f564efe4638e3e32ce597e4f9a">00051</a> - (id)initWithSite:(NSURL *)site
-<a name="l00052"></a>00052 {
-<a name="l00053"></a>00053     <span class="keyword">self</span> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">init</a>];
-<a name="l00054"></a>00054     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
-<a name="l00055"></a>00055     {
-<a name="l00056"></a>00056         [<span class="keyword">self</span> setSite:site];
-<a name="l00057"></a>00057     }
-<a name="l00058"></a>00058     <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00059"></a>00059 }
-<a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="interface_a_r_base.html#a4b502f26de7219184c4c2c5c97a6643a">00061</a> - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName
-<a name="l00062"></a>00062 {
-<a name="l00063"></a>00063     <span class="keyword">self</span> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a73d373f564efe4638e3e32ce597e4f9a" title="Initialises a new Active Resource Base instance using a given site.">initWithSite</a>:site];
-<a name="l00064"></a>00064     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
-<a name="l00065"></a>00065     {
-<a name="l00066"></a>00066         [<span class="keyword">self</span> setElementName:elementName];
-<a name="l00067"></a>00067     }
-<a name="l00068"></a>00068     <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00069"></a>00069 }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00072"></a>00072 <span class="preprocessor">#pragma mark                                         Schema and Known Attributes</span>
-<a name="l00073"></a>00073 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a90a5f2ff51f15ba2bc36fc6758e7174c">schema</a> = _schema;
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="interface_a_r_base.html#aa16208e5ed3ccdd5283e12d180e2e2e0">00077</a> - (NSArray *)<a class="code" href="interface_a_r_base.html#aa16208e5ed3ccdd5283e12d180e2e2e0" title="Answers the known attributes, known because the resource server publishes them; although the server d...">knownAttributes</a>
-<a name="l00078"></a>00078 {
-<a name="l00079"></a>00079     <span class="keywordflow">return</span> [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a90a5f2ff51f15ba2bc36fc6758e7174c">schema</a>] allKeys];
-<a name="l00080"></a>00080 }
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00083"></a>00083 <span class="preprocessor">#pragma mark                                                                Site</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a41acdb2fabc743190d933890aa6e0f33">site</a> = _site;
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00089"></a>00089 <span class="preprocessor">#pragma mark                                                              Format</span>
-<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> = _format;
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="comment">// lazy getter</span>
-<a name="l00095"></a><a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">00095</a> - (id&lt;<a class="code" href="protocol_a_r_format-p.html">ARFormat</a>&gt;)<a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>
+<a name="l00028"></a>00028 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_u_r_l_connection_8h.html">ARURLConnection.h</a>&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_resource_8h.html">ARResource.h</a>&quot;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#import &quot;<a class="code" href="_a_r_errors_8h.html">ARErrors.h</a>&quot;</span>
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="preprocessor">#import &lt;ActiveSupportKit/ActiveSupportKit.h&gt;</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a><a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">00034</a> Class <a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">ARBaseDefaultConnectionClass</a>;
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="keyword">@implementation </span><a class="code" href="interface_a_r_base.html" title="An active resource&#39;s base configuration.">ARBase</a>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">// Should this method exist at class-scope or instance-scope?</span>
+<a name="l00039"></a><a class="code" href="interface_a_r_base.html#a3f0778f68db384e6dbaf3a32a6d81098">00039</a> + (Class)<a class="code" href="interface_a_r_base.html#a3f0778f68db384e6dbaf3a32a6d81098">defaultConnectionClass</a>
+<a name="l00040"></a>00040 {
+<a name="l00041"></a>00041     <span class="keywordflow">if</span> (<a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">ARBaseDefaultConnectionClass</a> == NULL)
+<a name="l00042"></a>00042     {
+<a name="l00043"></a>00043         <a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">ARBaseDefaultConnectionClass</a> = [<a class="code" href="interface_a_r_u_r_l_connection.html" title="Implements an Active Resource connection using an URL connection.">ARURLConnection</a> class];
+<a name="l00044"></a>00044     }
+<a name="l00045"></a>00045     <span class="keywordflow">return</span> <a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">ARBaseDefaultConnectionClass</a>;
+<a name="l00046"></a>00046 }
+<a name="l00047"></a>00047 
+<a name="l00048"></a><a class="code" href="interface_a_r_base.html#a680db7e8c64457d8704b2a58f0a35939">00048</a> + (void)setDefaultConnectionClass:(Class)aClass
+<a name="l00049"></a>00049 {
+<a name="l00050"></a>00050     <a class="code" href="_a_r_base_8m.html#a08118ea8ac679add696091fc3c4587c2">ARBaseDefaultConnectionClass</a> = aClass;
+<a name="l00051"></a>00051 }
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="comment">// designated initialiser</span>
+<a name="l00054"></a><a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">00054</a> - (id)<a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">init</a>
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056     <span class="keyword">self</span> = [<span class="keyword">super</span> init];
+<a name="l00057"></a>00057     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
+<a name="l00058"></a>00058     {
+<a name="l00059"></a>00059         [<span class="keyword">self</span> setTimeout:60.0];
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061     <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00062"></a>00062 }
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="comment">// The following initialisers are not designated initialisers. Note the messages</span>
+<a name="l00065"></a>00065 <span class="comment">// to -[self init] rather than -[super init], a small but important</span>
+<a name="l00066"></a>00066 <span class="comment">// difference. These are just convenience initialisers: a way to initialise and</span>
+<a name="l00067"></a>00067 <span class="comment">// assign the site URL at one and the same time, or site plus element name.</span>
+<a name="l00068"></a>00068 
+<a name="l00069"></a><a class="code" href="interface_a_r_base.html#a73d373f564efe4638e3e32ce597e4f9a">00069</a> - (id)initWithSite:(NSURL *)site
+<a name="l00070"></a>00070 {
+<a name="l00071"></a>00071     <span class="keyword">self</span> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4f50746ee98cefad31d1bf94c91c9a73">init</a>];
+<a name="l00072"></a>00072     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         [<span class="keyword">self</span> setSite:site];
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076     <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="interface_a_r_base.html#a4b502f26de7219184c4c2c5c97a6643a">00079</a> - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName
+<a name="l00080"></a>00080 {
+<a name="l00081"></a>00081     <span class="keyword">self</span> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a73d373f564efe4638e3e32ce597e4f9a" title="Initialises a new Active Resource Base instance using a given site.">initWithSite</a>:site];
+<a name="l00082"></a>00082     <span class="keywordflow">if</span> (<span class="keyword">self</span>)
+<a name="l00083"></a>00083     {
+<a name="l00084"></a>00084         [<span class="keyword">self</span> setElementName:elementName];
+<a name="l00085"></a>00085     }
+<a name="l00086"></a>00086     <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00090"></a>00090 <span class="preprocessor">#pragma mark                                         Schema and Known Attributes</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a90a5f2ff51f15ba2bc36fc6758e7174c">schema</a> = _schema;
+<a name="l00094"></a>00094 
+<a name="l00095"></a><a class="code" href="interface_a_r_base.html#aa16208e5ed3ccdd5283e12d180e2e2e0">00095</a> - (NSArray *)<a class="code" href="interface_a_r_base.html#aa16208e5ed3ccdd5283e12d180e2e2e0" title="Answers the known attributes, known because the resource server publishes them; although the server d...">knownAttributes</a>
 <a name="l00096"></a>00096 {
-<a name="l00097"></a>00097     id&lt;ARFormat&gt; <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a>];
-<a name="l00098"></a>00098     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> == nil)
-<a name="l00099"></a>00099     {
-<a name="l00100"></a>00100         [<span class="keyword">self</span> setFormat:format = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a92af873b04ae2aadc503f5e2c7593e71">defaultFormat</a>]];
-<a name="l00101"></a>00101     }
-<a name="l00102"></a>00102     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a>;
-<a name="l00103"></a>00103 }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a8805a1ed23887536d301f4b7c60c2ee4">timeout</a> = _timeout;
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00108"></a>00108 <span class="preprocessor">#pragma mark                                        Element and Collection Names</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> = _elementName;
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> = _collectionName;
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115 <span class="comment">// lazy getter</span>
-<a name="l00116"></a><a class="code" href="interface_a_r_base.html#aaf0df5d08ad9cd529086bbfe88dde428">00116</a> - (NSString *)<a class="code" href="interface_a_r_base.html#aaf0df5d08ad9cd529086bbfe88dde428">elementNameLazily</a>
-<a name="l00117"></a>00117 {
-<a name="l00118"></a>00118     NSString *<a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a>];
-<a name="l00119"></a>00119     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> == nil)
-<a name="l00120"></a>00120     {
-<a name="l00121"></a>00121         [<span class="keyword">self</span> setElementName:elementName = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a0b522cfe9bdb4817ec394c7904308945">defaultElementName</a>]];
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a>;
-<a name="l00124"></a>00124 }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 <span class="comment">// lazy getter</span>
-<a name="l00127"></a><a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">00127</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>
-<a name="l00128"></a>00128 {
-<a name="l00129"></a>00129     NSString *<a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a>];
-<a name="l00130"></a>00130     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> == nil)
-<a name="l00131"></a>00131     {
-<a name="l00132"></a>00132         [<span class="keyword">self</span> setCollectionName:collectionName = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#aa8de933ea23c92706286550e7d90b1f9">defaultCollectionName</a>]];
-<a name="l00133"></a>00133     }
-<a name="l00134"></a>00134     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a>;
-<a name="l00135"></a>00135 }
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00138"></a>00138 <span class="preprocessor">#pragma mark                                                         Primary Key</span>
-<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> = _primaryKey;
-<a name="l00142"></a>00142 
-<a name="l00143"></a><a class="code" href="interface_a_r_base.html#a2a046855a10d0ca41c8312d30d79feec">00143</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a2a046855a10d0ca41c8312d30d79feec">primaryKeyLazily</a>
-<a name="l00144"></a>00144 {
-<a name="l00145"></a>00145     NSString *<a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a>];
-<a name="l00146"></a>00146     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> == nil)
-<a name="l00147"></a>00147     {
-<a name="l00148"></a>00148         [<span class="keyword">self</span> setPrimaryKey:primaryKey = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a40c8564764240e2b812ef388e1aefd96">defaultPrimaryKey</a>]];
-<a name="l00149"></a>00149     }
-<a name="l00150"></a>00150     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a>;
-<a name="l00151"></a>00151 }
+<a name="l00097"></a>00097     <span class="keywordflow">return</span> [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a90a5f2ff51f15ba2bc36fc6758e7174c">schema</a>] allKeys];
+<a name="l00098"></a>00098 }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00101"></a>00101 <span class="preprocessor">#pragma mark                                                                Site</span>
+<a name="l00102"></a>00102 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a41acdb2fabc743190d933890aa6e0f33">site</a> = _site;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00107"></a>00107 <span class="preprocessor">#pragma mark                                                              Format</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> = _format;
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="comment">// lazy getter</span>
+<a name="l00113"></a><a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">00113</a> - (id&lt;<a class="code" href="protocol_a_r_format-p.html">ARFormat</a>&gt;)<a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>
+<a name="l00114"></a>00114 {
+<a name="l00115"></a>00115     id&lt;ARFormat&gt; <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a>];
+<a name="l00116"></a>00116     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a> == nil)
+<a name="l00117"></a>00117     {
+<a name="l00118"></a>00118         [<span class="keyword">self</span> setFormat:format = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a92af873b04ae2aadc503f5e2c7593e71">defaultFormat</a>]];
+<a name="l00119"></a>00119     }
+<a name="l00120"></a>00120     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#adfdfbdd5cb99ab6f113f7bb30914ee39">format</a>;
+<a name="l00121"></a>00121 }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00124"></a>00124 <span class="preprocessor">#pragma mark                                                             Timeout</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a8805a1ed23887536d301f4b7c60c2ee4">timeout</a> = _timeout;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00130"></a>00130 <span class="preprocessor">#pragma mark                                                          Connection</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a5f9f00c49d7c7c42939854e62435322c">connection</a> = _connection;
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="comment">// Lazily constructs a connection using the default connection class.</span>
+<a name="l00136"></a><a class="code" href="interface_a_r_base.html#a4e51c9f272a957c5e3f63eb20626a639">00136</a> - (<a class="code" href="interface_a_r_connection.html" title="Connects to a site using a format.">ARConnection</a> *)<a class="code" href="interface_a_r_base.html#a4e51c9f272a957c5e3f63eb20626a639">connectionLazily</a>
+<a name="l00137"></a>00137 {
+<a name="l00138"></a>00138     <a class="code" href="interface_a_r_connection.html" title="Connects to a site using a format.">ARConnection</a> *<a class="code" href="interface_a_r_base.html#a5f9f00c49d7c7c42939854e62435322c">connection</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a5f9f00c49d7c7c42939854e62435322c">connection</a>];
+<a name="l00139"></a>00139     <span class="keywordflow">if</span> (connection == nil)
+<a name="l00140"></a>00140     {
+<a name="l00141"></a>00141         [<span class="keyword">self</span> setConnection:connection = [[[[<span class="keyword">self</span> class] defaultConnectionClass] alloc] initWithSite:[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a41acdb2fabc743190d933890aa6e0f33">site</a>] format:[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>]]];
+<a name="l00142"></a>00142         [connection setTimeout:[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a8805a1ed23887536d301f4b7c60c2ee4">timeout</a>]];
+<a name="l00143"></a>00143     }
+<a name="l00144"></a>00144     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a5f9f00c49d7c7c42939854e62435322c">connection</a>;
+<a name="l00145"></a>00145 }
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00148"></a>00148 <span class="preprocessor">#pragma mark                                        Element and Collection Names</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> = _elementName;
 <a name="l00152"></a>00152 
-<a name="l00153"></a>00153 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00154"></a>00154 <span class="preprocessor">#pragma mark                                                              Prefix</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = _prefixSource;
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="comment">// lazy getter</span>
-<a name="l00160"></a><a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">00160</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>
-<a name="l00161"></a>00161 {
-<a name="l00162"></a>00162     NSString *<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a>];
-<a name="l00163"></a>00163     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> == nil)
-<a name="l00164"></a>00164     {
-<a name="l00165"></a>00165         <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a3cbfeb0c843338934dc6cc4023e6f8f4">defaultPrefixSource</a>];
-<a name="l00166"></a>00166         
-<a name="l00167"></a>00167         <span class="comment">// Automatically append a trailing slash, but if and only if the prefix</span>
-<a name="l00168"></a>00168         <span class="comment">// source does not already terminate with a slash.</span>
-<a name="l00169"></a>00169         <span class="keywordflow">if</span> ([<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> length] == 0 || ![[<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> substringFromIndex:[<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> length] - 1] isEqualToString:<span class="stringliteral">@&quot;/&quot;</span>])
-<a name="l00170"></a>00170         {
-<a name="l00171"></a>00171             <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> stringByAppendingString:@&quot;/&quot;];
-<a name="l00172"></a>00172         }
-<a name="l00173"></a>00173         
-<a name="l00174"></a>00174         [<span class="keyword">self</span> setPrefixSource:prefixSource];
-<a name="l00175"></a>00175     }
-<a name="l00176"></a>00176     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a>;
-<a name="l00177"></a>00177 }
-<a name="l00178"></a>00178 
-<a name="l00179"></a><a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">00179</a> - (NSString *)prefixWithOptions:(NSDictionary *)options
-<a name="l00180"></a>00180 {
-<a name="l00181"></a>00181     <span class="comment">// The following implementation duplicates some of the functionality</span>
-<a name="l00182"></a>00182     <span class="comment">// concerning extraction of prefix parameters from the prefix. See the</span>
-<a name="l00183"></a>00183     <span class="comment">// -prefixParameters method. Nevertheless, the replace-in-place approach</span>
-<a name="l00184"></a>00184     <span class="comment">// makes the string operations more convenient. The implementation does not</span>
-<a name="l00185"></a>00185     <span class="comment">// need to cut apart the colon from its parameter word. The regular</span>
-<a name="l00186"></a>00186     <span class="comment">// expression identifies the substitution on our behalf, making it easier to</span>
-<a name="l00187"></a>00187     <span class="comment">// remove the colon, access the prefix parameter minus its colon and replace</span>
-<a name="l00188"></a>00188     <span class="comment">// both; and all at the same time.</span>
-<a name="l00189"></a>00189     <span class="keywordflow">if</span> (options == nil)
-<a name="l00190"></a>00190     {
-<a name="l00191"></a>00191         <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>];
-<a name="l00192"></a>00192     }
-<a name="l00193"></a>00193     <span class="keywordflow">return</span> [[NSRegularExpression regularExpressionWithPattern:@&quot;:(\\w+)&quot; options:0 error:NULL] replaceMatchesInString:[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
-<a name="l00194"></a>00194         return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@&quot;$1&quot;]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-<a name="l00195"></a>00195     }];
-<a name="l00196"></a>00196 }
-<a name="l00197"></a>00197 
-<a name="l00198"></a>00198 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00199"></a>00199 <span class="preprocessor">#pragma mark                                                               Paths</span>
-<a name="l00200"></a>00200 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00201"></a>00201 
-<a name="l00202"></a><a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">00202</a> - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
-<a name="l00203"></a>00203 {
-<a name="l00204"></a>00204     <span class="keywordflow">if</span> (queryOptions == nil)
-<a name="l00205"></a>00205     {
-<a name="l00206"></a>00206         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
-<a name="l00207"></a>00207     }
-<a name="l00208"></a>00208     NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-<a name="l00209"></a>00209     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@/%@.%@%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], IDString, [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension], ARQueryStringForOptions(queryOptions)];
-<a name="l00210"></a>00210 }
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212 <span class="comment">// Answers the path for creating a new element. Note, the term “new” appearing</span>
-<a name="l00213"></a>00213 <span class="comment">// at the start of the method name does not, in this case, signify a retained</span>
-<a name="l00214"></a>00214 <span class="comment">// result.</span>
-<a name="l00215"></a><a class="code" href="interface_a_r_base.html#a9bf809bd99b8b142b87c66f8d56224a3">00215</a> - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
-<a name="l00216"></a>00216 {
-<a name="l00217"></a>00217     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@/new.%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension]];
-<a name="l00218"></a>00218 }
-<a name="l00219"></a>00219 
-<a name="l00220"></a><a class="code" href="interface_a_r_base.html#a1ee9032aa114bb273e86220be27a9c40">00220</a> - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
-<a name="l00221"></a>00221 {
-<a name="l00222"></a>00222     <span class="keywordflow">if</span> (queryOptions == nil)
-<a name="l00223"></a>00223     {
-<a name="l00224"></a>00224         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
-<a name="l00225"></a>00225     }
-<a name="l00226"></a>00226     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@.%@%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension], ARQueryStringForOptions(queryOptions)];
-<a name="l00227"></a>00227 }
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229 <span class="comment">// Building with attributes. Should this be a class or instance method? Rails</span>
-<a name="l00230"></a>00230 <span class="comment">// implements this as a class method, or to be more specific, a singleton</span>
-<a name="l00231"></a>00231 <span class="comment">// method. Objective-C does not provide the singleton class</span>
-<a name="l00232"></a>00232 <span class="comment">// paradigm. ActiveResourceKit folds the Rails singleton methods to instance</span>
-<a name="l00233"></a>00233 <span class="comment">// methods.</span>
-<a name="l00234"></a><a class="code" href="interface_a_r_base.html#a8bc6aca5de5b209bf470d6daf0850443">00234</a> - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(<span class="keywordtype">void</span> (^)(<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *resource, NSError *error))completionHandler
-<a name="l00235"></a>00235 {
-<a name="l00236"></a>00236     <span class="comment">// Use the new element path. Construct the request URL using this path but</span>
-<a name="l00237"></a>00237     <span class="comment">// make it relative to the site URL. The NSURL class combines the new</span>
-<a name="l00238"></a>00238     <span class="comment">// element path with the site, using the site&#39;s scheme, host and port.</span>
-<a name="l00239"></a>00239     NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9bf809bd99b8b142b87c66f8d56224a3">newElementPathWithPrefixOptions</a>:nil];
-<a name="l00240"></a>00240     <span class="comment">// The response body decodes successfully but it does not</span><span class="comment">// decode to a dictionary. It must be something else, either</span><span class="comment">// an array, a string or some other primitive type. In which</span><span class="comment">// case, building with attributes must fail even though</span><span class="comment">// ostensibly the operation has succeeded. Set up an error.</span>[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-<a name="l00241"></a>00241         if ([object isKindOfClass:[NSDictionary class]])
-<a name="l00242"></a>00242         {
-<a name="l00243"></a>00243             NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
-<a name="l00244"></a>00244             [attrs addEntriesFromDictionary:attributes];
-<a name="l00245"></a>00245             completionHandler([[[<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> alloc] initWithBase:self attributes:attrs] autorelease], nil);
-<a name="l00246"></a>00246         }
-<a name="l00247"></a>00247         else
-<a name="l00248"></a>00248         {
-<a name="l00249"></a>00249             
-<a name="l00250"></a>00250             
-<a name="l00251"></a>00251             
-<a name="l00252"></a>00252             
-<a name="l00253"></a>00253             
-<a name="l00254"></a>00254             completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-<a name="l00255"></a>00255         }
-<a name="l00256"></a>00256     }];
-<a name="l00257"></a>00257 }
-<a name="l00258"></a>00258 
-<a name="l00259"></a><a class="code" href="interface_a_r_base.html#a0e575ff1338cfd465deb9173a303a3b2">00259</a> - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(NSArray *resources, NSError *error))completionHandler
-<a name="l00260"></a>00260 {
-<a name="l00261"></a>00261     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:completionHandler];
-<a name="l00262"></a>00262 }
-<a name="l00263"></a>00263 
-<a name="l00264"></a><a class="code" href="interface_a_r_base.html#a72d8a5a94f38f8662ff03bb916b6f755">00264</a> - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *resource, NSError *error))completionHandler
-<a name="l00265"></a>00265 {
-<a name="l00266"></a>00266     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:^(NSArray *resources, NSError *error) {
-<a name="l00267"></a>00267         completionHandler(resources &amp;&amp; [resources count] ? [resources objectAtIndex:0] : nil, error);
-<a name="l00268"></a>00268     }];
-<a name="l00269"></a>00269 }
-<a name="l00270"></a>00270 
-<a name="l00271"></a><a class="code" href="interface_a_r_base.html#ad44837f4604170cab4ac22abd8aa1596">00271</a> - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *resource, NSError *error))completionHandler
-<a name="l00272"></a>00272 {
-<a name="l00273"></a>00273     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:^(NSArray *resources, NSError *error) {
-<a name="l00274"></a>00274         completionHandler(resources &amp;&amp; [resources count] ? [resources lastObject] : nil, error);
-<a name="l00275"></a>00275     }];
-<a name="l00276"></a>00276 }
-<a name="l00277"></a>00277 
-<a name="l00278"></a><a class="code" href="interface_a_r_base.html#ad138c6f2f46b743aec9f0a61cfd3200c">00278</a> - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *resource, NSError *error))completionHandler
-<a name="l00279"></a>00279 {
-<a name="l00280"></a>00280     NSString *from = [options objectForKey:kARFromKey];
-<a name="l00281"></a>00281     <span class="keywordflow">if</span> (from &amp;&amp; [from isKindOfClass:[NSString <span class="keyword">class</span>]])
-<a name="l00282"></a>00282     {
-<a name="l00283"></a>00283         NSString *path = [NSString stringWithFormat:@&quot;%@%@&quot;, from, ARQueryStringForOptions([options objectForKey:kARParamsKey])];
-<a name="l00284"></a>00284         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-<a name="l00285"></a>00285             if ([object isKindOfClass:[NSDictionary class]])
-<a name="l00286"></a>00286             {
-<a name="l00287"></a>00287                 completionHandler([<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a106cd84052fee3936be9b0fbcd44820b" title="Instantiates a resource element (a record) using the given attributes and prefix options.">instantiateRecordWithAttributes</a>:object <a class="code" href="interface_a_r_base.html#a106cd84052fee3936be9b0fbcd44820b" title="Instantiates a resource element (a record) using the given attributes and prefix options.">prefixOptions</a>:nil], nil);
-<a name="l00288"></a>00288             }
-<a name="l00289"></a>00289             else
-<a name="l00290"></a>00290             {
-<a name="l00291"></a>00291                 completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-<a name="l00292"></a>00292             }
-<a name="l00293"></a>00293         }];
-<a name="l00294"></a>00294     }
-<a name="l00295"></a>00295 }
-<a name="l00296"></a>00296 
-<a name="l00297"></a><a class="code" href="interface_a_r_base.html#ab709e169116c63a600a6df367cba4c6b">00297</a> - (void)findSingleForID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(<a class="code" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> *resource, NSError *error))completionHandler
-<a name="l00298"></a>00298 {
-<a name="l00299"></a>00299     NSDictionary *prefixOptions = nil;
-<a name="l00300"></a>00300     NSDictionary *queryOptions = nil;
-<a name="l00301"></a>00301     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:options <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
-<a name="l00302"></a>00302     NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID</a>:ID <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">prefixOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">queryOptions</a>:queryOptions];
-<a name="l00303"></a>00303     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
-<a name="l00304"></a>00304         if ([object isKindOfClass:[NSDictionary class]])
-<a name="l00305"></a>00305         {
-<a name="l00306"></a>00306             completionHandler([<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a106cd84052fee3936be9b0fbcd44820b" title="Instantiates a resource element (a record) using the given attributes and prefix options.">instantiateRecordWithAttributes</a>:object <a class="code" href="interface_a_r_base.html#a106cd84052fee3936be9b0fbcd44820b" title="Instantiates a resource element (a record) using the given attributes and prefix options.">prefixOptions</a>:prefixOptions], nil);
+<a name="l00153"></a>00153 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> = _collectionName;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="comment">// lazy getter</span>
+<a name="l00156"></a><a class="code" href="interface_a_r_base.html#aaf0df5d08ad9cd529086bbfe88dde428">00156</a> - (NSString *)<a class="code" href="interface_a_r_base.html#aaf0df5d08ad9cd529086bbfe88dde428">elementNameLazily</a>
+<a name="l00157"></a>00157 {
+<a name="l00158"></a>00158     NSString *<a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a>];
+<a name="l00159"></a>00159     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a> == nil)
+<a name="l00160"></a>00160     {
+<a name="l00161"></a>00161         [<span class="keyword">self</span> setElementName:elementName = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a0b522cfe9bdb4817ec394c7904308945">defaultElementName</a>]];
+<a name="l00162"></a>00162     }
+<a name="l00163"></a>00163     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a175991ccde841cb8d280e1ec6245ffa7">elementName</a>;
+<a name="l00164"></a>00164 }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 <span class="comment">// lazy getter</span>
+<a name="l00167"></a><a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">00167</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>
+<a name="l00168"></a>00168 {
+<a name="l00169"></a>00169     NSString *<a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a>];
+<a name="l00170"></a>00170     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a> == nil)
+<a name="l00171"></a>00171     {
+<a name="l00172"></a>00172         [<span class="keyword">self</span> setCollectionName:collectionName = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#aa8de933ea23c92706286550e7d90b1f9">defaultCollectionName</a>]];
+<a name="l00173"></a>00173     }
+<a name="l00174"></a>00174     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a34def863ec7085d2cfd78028ae57539a">collectionName</a>;
+<a name="l00175"></a>00175 }
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00178"></a>00178 <span class="preprocessor">#pragma mark                                                         Primary Key</span>
+<a name="l00179"></a>00179 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> = _primaryKey;
+<a name="l00182"></a>00182 
+<a name="l00183"></a><a class="code" href="interface_a_r_base.html#a2a046855a10d0ca41c8312d30d79feec">00183</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a2a046855a10d0ca41c8312d30d79feec">primaryKeyLazily</a>
+<a name="l00184"></a>00184 {
+<a name="l00185"></a>00185     NSString *<a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a>];
+<a name="l00186"></a>00186     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a> == nil)
+<a name="l00187"></a>00187     {
+<a name="l00188"></a>00188         [<span class="keyword">self</span> setPrimaryKey:primaryKey = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a40c8564764240e2b812ef388e1aefd96">defaultPrimaryKey</a>]];
+<a name="l00189"></a>00189     }
+<a name="l00190"></a>00190     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a36eb125ea6312b64a7e46b75247107f3">primaryKey</a>;
+<a name="l00191"></a>00191 }
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00194"></a>00194 <span class="preprocessor">#pragma mark                                                              Prefix</span>
+<a name="l00195"></a>00195 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = _prefixSource;
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199 <span class="comment">// lazy getter</span>
+<a name="l00200"></a><a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">00200</a> - (NSString *)<a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>
+<a name="l00201"></a>00201 {
+<a name="l00202"></a>00202     NSString *<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a>];
+<a name="l00203"></a>00203     <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> == nil)
+<a name="l00204"></a>00204     {
+<a name="l00205"></a>00205         <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a3cbfeb0c843338934dc6cc4023e6f8f4">defaultPrefixSource</a>];
+<a name="l00206"></a>00206         
+<a name="l00207"></a>00207         <span class="comment">// Automatically append a trailing slash, but if and only if the prefix</span>
+<a name="l00208"></a>00208         <span class="comment">// source does not already terminate with a slash.</span>
+<a name="l00209"></a>00209         <span class="keywordflow">if</span> ([<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> length] == 0 || ![[<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> substringFromIndex:[<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> length] - 1] isEqualToString:<span class="stringliteral">@&quot;/&quot;</span>])
+<a name="l00210"></a>00210         {
+<a name="l00211"></a>00211             <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> = [<a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a> stringByAppendingString:@&quot;/&quot;];
+<a name="l00212"></a>00212         }
+<a name="l00213"></a>00213         
+<a name="l00214"></a>00214         [<span class="keyword">self</span> setPrefixSource:prefixSource];
+<a name="l00215"></a>00215     }
+<a name="l00216"></a>00216     <span class="keywordflow">return</span> <a class="code" href="interface_a_r_base.html#a16078f331fb9825828262396e3fe80f9">prefixSource</a>;
+<a name="l00217"></a>00217 }
+<a name="l00218"></a>00218 
+<a name="l00219"></a><a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">00219</a> - (NSString *)prefixWithOptions:(NSDictionary *)options
+<a name="l00220"></a>00220 {
+<a name="l00221"></a>00221     <span class="comment">// The following implementation duplicates some of the functionality</span>
+<a name="l00222"></a>00222     <span class="comment">// concerning extraction of prefix parameters from the prefix. See the</span>
+<a name="l00223"></a>00223     <span class="comment">// -prefixParameters method. Nevertheless, the replace-in-place approach</span>
+<a name="l00224"></a>00224     <span class="comment">// makes the string operations more convenient. The implementation does not</span>
+<a name="l00225"></a>00225     <span class="comment">// need to cut apart the colon from its parameter word. The regular</span>
+<a name="l00226"></a>00226     <span class="comment">// expression identifies the substitution on our behalf, making it easier to</span>
+<a name="l00227"></a>00227     <span class="comment">// remove the colon, access the prefix parameter minus its colon and replace</span>
+<a name="l00228"></a>00228     <span class="comment">// both; and all at the same time.</span>
+<a name="l00229"></a>00229     <span class="keywordflow">if</span> (options == nil)
+<a name="l00230"></a>00230     {
+<a name="l00231"></a>00231         <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>];
+<a name="l00232"></a>00232     }
+<a name="l00233"></a>00233     <span class="keywordflow">return</span> [[NSRegularExpression regularExpressionWithPattern:@&quot;:(\\w+)&quot; options:0 error:NULL] stringByReplacingMatchesInString:[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a194d5254d5949ffa0ec98f31e4f82649">prefixSourceLazily</a>] replacementStringForResult:^NSString *(NSTextCheckingResult *result, NSString *inString, NSInteger offset) {
+<a name="l00234"></a>00234         return [[[options objectForKey:[[result regularExpression] replacementStringForResult:result inString:inString offset:offset template:@&quot;$1&quot;]] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+<a name="l00235"></a>00235     }];
+<a name="l00236"></a>00236 }
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00239"></a>00239 <span class="preprocessor">#pragma mark                                                               Paths</span>
+<a name="l00240"></a>00240 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00241"></a>00241 
+<a name="l00242"></a><a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">00242</a> - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
+<a name="l00243"></a>00243 {
+<a name="l00244"></a>00244     <span class="keywordflow">if</span> (queryOptions == nil)
+<a name="l00245"></a>00245     {
+<a name="l00246"></a>00246         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
+<a name="l00247"></a>00247     }
+<a name="l00248"></a>00248     NSString *IDString = [[ID stringValue] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+<a name="l00249"></a>00249     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@/%@.%@%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], IDString, [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension], ARQueryStringForOptions(queryOptions)];
+<a name="l00250"></a>00250 }
+<a name="l00251"></a>00251 
+<a name="l00252"></a><a class="code" href="interface_a_r_base.html#adf4e32c37f190a71744504a560e77f36">00252</a> - (NSString *)elementPathForID:(NSNumber *)ID options:(NSDictionary *)options
+<a name="l00253"></a>00253 {
+<a name="l00254"></a>00254     NSDictionary *prefixOptions = nil;
+<a name="l00255"></a>00255     NSDictionary *queryOptions = nil;
+<a name="l00256"></a>00256     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:options <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
+<a name="l00257"></a>00257     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID</a>:ID <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">prefixOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">queryOptions</a>:queryOptions];
+<a name="l00258"></a>00258 }
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260 <span class="comment">// Answers the path for creating a new element. Note, the term “new” appearing</span>
+<a name="l00261"></a>00261 <span class="comment">// at the start of the method name does not, in this case, signify a retained</span>
+<a name="l00262"></a>00262 <span class="comment">// result.</span>
+<a name="l00263"></a><a class="code" href="interface_a_r_base.html#a9bf809bd99b8b142b87c66f8d56224a3">00263</a> - (NSString *)newElementPathWithPrefixOptions:(NSDictionary *)prefixOptions
+<a name="l00264"></a>00264 {
+<a name="l00265"></a>00265     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@/new.%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension]];
+<a name="l00266"></a>00266 }
+<a name="l00267"></a>00267 
+<a name="l00268"></a><a class="code" href="interface_a_r_base.html#a1ee9032aa114bb273e86220be27a9c40">00268</a> - (NSString *)collectionPathWithPrefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
+<a name="l00269"></a>00269 {
+<a name="l00270"></a>00270     <span class="keywordflow">if</span> (queryOptions == nil)
+<a name="l00271"></a>00271     {
+<a name="l00272"></a>00272         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
+<a name="l00273"></a>00273     }
+<a name="l00274"></a>00274     <span class="keywordflow">return</span> [NSString stringWithFormat:@&quot;%@%@.%@%@&quot;, [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a927a21ede543031d0bdbbc9c4c334a95">prefixWithOptions</a>:prefixOptions], [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a4977f7fa7fd873991a87b37e6597b8aa">collectionNameLazily</a>], [[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a50596c357a308a453a717be15d146ce7">formatLazily</a>] extension], ARQueryStringForOptions(queryOptions)];
+<a name="l00275"></a>00275 }
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277 <span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00278"></a>00278 <span class="preprocessor">#pragma mark                                                    RESTful Services</span>
+<a name="l00279"></a>00279 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
+<a name="l00280"></a>00280 
+<a name="l00281"></a>00281 <span class="comment">// Building with attributes. Should this be a class or instance method? Rails</span>
+<a name="l00282"></a>00282 <span class="comment">// implements this as a class method, or to be more specific, a singleton</span>
+<a name="l00283"></a>00283 <span class="comment">// method. Objective-C does not provide the singleton class</span>
+<a name="l00284"></a>00284 <span class="comment">// paradigm. ActiveResourceKit folds the Rails singleton methods to instance</span>
+<a name="l00285"></a>00285 <span class="comment">// methods.</span>
+<a name="l00286"></a><a class="code" href="interface_a_r_base.html#a26c190733e9c8eef57b3faa9e699334d">00286</a> - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00287"></a>00287 {
+<a name="l00288"></a>00288     <span class="comment">// Use the new element path. Construct the request URL using this path but</span>
+<a name="l00289"></a>00289     <span class="comment">// make it relative to the site URL. The NSURL class combines the new</span>
+<a name="l00290"></a>00290     <span class="comment">// element path with the site, using the site&#39;s scheme, host and port.</span>
+<a name="l00291"></a>00291     NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9bf809bd99b8b142b87c66f8d56224a3">newElementPathWithPrefixOptions</a>:nil];
+<a name="l00292"></a>00292     <span class="comment">// The response body decodes successfully but it does not</span><span class="comment">// decode to a dictionary. It must be something else, either</span><span class="comment">// an array, a string or some other primitive type. In which</span><span class="comment">// case, building with attributes must fail even though</span><span class="comment">// ostensibly the operation has succeeded. Set up an error.</span>[<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+<a name="l00293"></a>00293         if ([object isKindOfClass:[NSDictionary class]])
+<a name="l00294"></a>00294         {
+<a name="l00295"></a>00295             NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
+<a name="l00296"></a>00296             [attrs addEntriesFromDictionary:attributes];
+<a name="l00297"></a>00297             completionHandler([[<a class="code" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a> alloc] initWithBase:self attributes:attrs], nil);
+<a name="l00298"></a>00298         }
+<a name="l00299"></a>00299         else
+<a name="l00300"></a>00300         {
+<a name="l00301"></a>00301             
+<a name="l00302"></a>00302             
+<a name="l00303"></a>00303             
+<a name="l00304"></a>00304             
+<a name="l00305"></a>00305             
+<a name="l00306"></a>00306             completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
 <a name="l00307"></a>00307         }
-<a name="l00308"></a>00308         else
-<a name="l00309"></a>00309         {
-<a name="l00310"></a>00310             completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
-<a name="l00311"></a>00311         }
-<a name="l00312"></a>00312     }];
-<a name="l00313"></a>00313 }
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315 <span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00316"></a>00316 <span class="preprocessor">#pragma mark                                                     Operation Queue</span>
-<a name="l00317"></a>00317 <span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span>
-<a name="l00318"></a>00318 
-<a name="l00319"></a>00319 <span class="keyword">@synthesize</span> <a class="code" href="interface_a_r_base.html#a887802a99feed10218df057014a34d14" title="Specifies the operation queue on which to handle response completions for resources associated with t...">operationQueue</a>;
-<a name="l00320"></a>00320 
-<a name="l00321"></a>00321 <span class="keyword">@end</span>
+<a name="l00308"></a>00308     }];
+<a name="l00309"></a>00309 }
+<a name="l00310"></a>00310 
+<a name="l00311"></a><a class="code" href="interface_a_r_base.html#a61cad32e71f88c255cb72f5b04e024bb">00311</a> - (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00312"></a>00312 {
+<a name="l00313"></a>00313     [[[<a class="code" href="interface_a_r_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">ARResource</a> alloc] initWithBase:self attributes:attributes] saveWithCompletionHandler:^(id object, NSError *error) {
+<a name="l00314"></a>00314         completionHandler(object, error);
+<a name="l00315"></a>00315     }];
+<a name="l00316"></a>00316 }
+<a name="l00317"></a>00317 
+<a name="l00318"></a><a class="code" href="interface_a_r_base.html#a057d7ee10a9dca9b446f46d235a053bf">00318</a> - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(<a class="code" href="_a_r_base_8h.html#a92f51ae4b1d9c5cf804d1279af2aa05d" title="Defines a type of completion handler block where successful completion yields an array of resources...">ARResourcesCompletionHandler</a>)completionHandler
+<a name="l00319"></a>00319 {
+<a name="l00320"></a>00320     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:completionHandler];
+<a name="l00321"></a>00321 }
+<a name="l00322"></a>00322 
+<a name="l00323"></a><a class="code" href="interface_a_r_base.html#a9e57fd0f1332a1928efebc75d813d4df">00323</a> - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00324"></a>00324 {
+<a name="l00325"></a>00325     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:^(NSArray *resources, NSError *error) {
+<a name="l00326"></a>00326         completionHandler(resources &amp;&amp; [resources count] ? [resources objectAtIndex:0] : nil, error);
+<a name="l00327"></a>00327     }];
+<a name="l00328"></a>00328 }
+<a name="l00329"></a>00329 
+<a name="l00330"></a><a class="code" href="interface_a_r_base.html#a5fa71307cbadd7ee49c34425ed110ff3">00330</a> - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00331"></a>00331 {
+<a name="l00332"></a>00332     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">findEveryWithOptions</a>:options <a class="code" href="interface_a_r_base.html#a9a5229ce622944d3983fdd2ae47ccd7b">completionHandler</a>:^(NSArray *resources, NSError *error) {
+<a name="l00333"></a>00333         completionHandler(resources &amp;&amp; [resources count] ? [resources lastObject] : nil, error);
+<a name="l00334"></a>00334     }];
+<a name="l00335"></a>00335 }
+<a name="l00336"></a>00336 
+<a name="l00337"></a><a class="code" href="interface_a_r_base.html#a4b01a1ebf32ec86bbcbea5308b27529d">00337</a> - (void)findSingleWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00338"></a>00338 {
+<a name="l00339"></a>00339     NSDictionary *prefixOptions = nil;
+<a name="l00340"></a>00340     NSDictionary *queryOptions = nil;
+<a name="l00341"></a>00341     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:options <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
+<a name="l00342"></a>00342     NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID</a>:ID <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">prefixOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">queryOptions</a>:queryOptions];
+<a name="l00343"></a>00343     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+<a name="l00344"></a>00344         if ([object isKindOfClass:[NSDictionary class]])
+<a name="l00345"></a>00345         {
+<a name="l00346"></a>00346             completionHandler([<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a0d8cba786e712d954e375228085047e1" title="Instantiates a resource element (a record) using the given attributes and prefix options.">instantiateRecordWithAttributes</a>:object <a class="code" href="interface_a_r_base.html#a0d8cba786e712d954e375228085047e1" title="Instantiates a resource element (a record) using the given attributes and prefix options.">prefixOptions</a>:prefixOptions], nil);
+<a name="l00347"></a>00347         }
+<a name="l00348"></a>00348         else
+<a name="l00349"></a>00349         {
+<a name="l00350"></a>00350             completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+<a name="l00351"></a>00351         }
+<a name="l00352"></a>00352     }];
+<a name="l00353"></a>00353 }
+<a name="l00354"></a>00354 
+<a name="l00355"></a><a class="code" href="interface_a_r_base.html#a2f20027f696d856d5a5cc409cbd63ed1">00355</a> - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(<a class="code" href="_a_r_base_8h.html#a020f16b0863a0a89ad0826fd9267dad1" title="Defines a completion handler block type where the results of completion yield a single resource...">ARResourceCompletionHandler</a>)completionHandler
+<a name="l00356"></a>00356 {
+<a name="l00357"></a>00357     NSString *from = [options objectForKey:ARFromKey];
+<a name="l00358"></a>00358     <span class="keywordflow">if</span> (from &amp;&amp; [from isKindOfClass:[NSString <span class="keyword">class</span>]])
+<a name="l00359"></a>00359     {
+<a name="l00360"></a>00360         NSString *path = [NSString stringWithFormat:@&quot;%@%@&quot;, from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
+<a name="l00361"></a>00361         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">get</a>:path <a class="code" href="interface_a_r_base.html#abd862568fc50d92461f06e2220ecf789" title="Sends an asynchronous GET request. Used to find a resource.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+<a name="l00362"></a>00362             if ([object isKindOfClass:[NSDictionary class]])
+<a name="l00363"></a>00363             {
+<a name="l00364"></a>00364                 completionHandler([<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a0d8cba786e712d954e375228085047e1" title="Instantiates a resource element (a record) using the given attributes and prefix options.">instantiateRecordWithAttributes</a>:object <a class="code" href="interface_a_r_base.html#a0d8cba786e712d954e375228085047e1" title="Instantiates a resource element (a record) using the given attributes and prefix options.">prefixOptions</a>:nil], nil);
+<a name="l00365"></a>00365             }
+<a name="l00366"></a>00366             else
+<a name="l00367"></a>00367             {
+<a name="l00368"></a>00368                 completionHandler(nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+<a name="l00369"></a>00369             }
+<a name="l00370"></a>00370         }];
+<a name="l00371"></a>00371     }
+<a name="l00372"></a>00372 }
+<a name="l00373"></a>00373 
+<a name="l00374"></a><a class="code" href="interface_a_r_base.html#a6d04532af100e457e25c49ced057fe4d">00374</a> - (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(NSError *))completionHandler
+<a name="l00375"></a>00375 {
+<a name="l00376"></a>00376     NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID</a>:ID <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">prefixOptions</a>:options <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">queryOptions</a>:nil];
+<a name="l00377"></a>00377     [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a5b8e69cd01611294153bf1b69147c3a3" title="Used to delete resources. Sends an asynchronous DELETE request.">delete</a>:path <a class="code" href="interface_a_r_base.html#a5b8e69cd01611294153bf1b69147c3a3" title="Used to delete resources. Sends an asynchronous DELETE request.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+<a name="l00378"></a>00378         completionHandler(error);
+<a name="l00379"></a>00379     }];
+<a name="l00380"></a>00380 }
+<a name="l00381"></a>00381 
+<a name="l00382"></a><a class="code" href="interface_a_r_base.html#a1d9a9ea99d7c8cbd478f5681b3d2ac20">00382</a> - (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(<span class="keywordtype">void</span> (^)(BOOL exists))completionHandler
+<a name="l00383"></a>00383 {
+<a name="l00384"></a>00384     <span class="keywordflow">if</span> (ID)
+<a name="l00385"></a>00385     {
+<a name="l00386"></a>00386         NSDictionary *prefixOptions = nil;
+<a name="l00387"></a>00387         NSDictionary *queryOptions = nil;
+<a name="l00388"></a>00388         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">splitOptions</a>:options <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">prefixOptions</a>:&amp;prefixOptions <a class="code" href="interface_a_r_base.html#ab9ebe70524801d91eb06a260b8fbfc72">queryOptions</a>:&amp;queryOptions];
+<a name="l00389"></a>00389         NSString *path = [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">elementPathForID</a>:ID <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">prefixOptions</a>:prefixOptions <a class="code" href="interface_a_r_base.html#a979b630979926df19866ec1e081a6f2f">queryOptions</a>:queryOptions];
+<a name="l00390"></a>00390         [<span class="keyword">self</span> <a class="code" href="interface_a_r_base.html#aaf1c31fe3e73d6d563734eba9d2a0981" title="Used to obtain meta-information about resources, whether they exist or their size. Sends an asynchronous HEAD request.">head</a>:path <a class="code" href="interface_a_r_base.html#aaf1c31fe3e73d6d563734eba9d2a0981" title="Used to obtain meta-information about resources, whether they exist or their size. Sends an asynchronous HEAD request.">completionHandler</a>:^(NSHTTPURLResponse *HTTPResponse, id object, NSError *error) {
+<a name="l00391"></a>00391             completionHandler([HTTPResponse statusCode] == 200);
+<a name="l00392"></a>00392         }];
+<a name="l00393"></a>00393     }
+<a name="l00394"></a>00394 }
+<a name="l00395"></a>00395 
+<a name="l00396"></a>00396 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->

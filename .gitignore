@@ -1,0 +1,7 @@
+*.map
+*.md5
+Info.plist
+Makefile
+Nodes.xml
+Tokens.xml
+*.docset/

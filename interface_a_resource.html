@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.2&nbsp;(191.0)</span>
+   &#160;<span id="projectnumber">v0.3&nbsp;(211.2)</span>
    </div>
    
   </td>
@@ -117,6 +117,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#a6a1f6cd1ce0d50fae31ffe503499036d">setID:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#a1e79c219aa83b8064124b724cb16ce08">saveWithCompletionHandler:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#a67b79e4b6bb94fad7c39db67e7fba9c7">valueForUndefinedKey:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#ae5607301c668e723d31af1cf041e7af9">setValue:forUndefinedKey:</a><code> [implementation]</code></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#abf79364abf70518be713d5e80de77db0">updateWithCompletionHandler:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#a0314b2e567508126c062e256a40918f9">createWithCompletionHandler:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_resource.html#a6e19cc86089e57ac62f080351c99bf09">loadAttributesFromResponse:attributes:</a></td></tr>
@@ -127,7 +128,7 @@ Static Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_a_r_base.html">ARBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_resource.html#a857faa7fc108ffccea8c2f7e2e84c66c">base</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_resource.html#a41b90fcbde29cf78475969192bd6aa77">attributes</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_resource.html#a3f1c5b1df49a95509e99cbf9e4a5689c">attributes</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_resource.html#a5c2f5f2e7bc77d1a62e6ace01de84a62">prefixOptions</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_resource.html#a10da03073a25a2bfa0cee9bf2b7e0041">persisted</a></td></tr>
 </table>
@@ -177,7 +178,7 @@ Properties</h2></td></tr>
 <p>Asks for the resource base, lazily constructing a base instance if the resource does not currently retain a base. </p>
 <p>Asks the class for a site URL and an element name. Optionally implement <code>+site</code> and <code>+elementName</code> to supply the URL and element name. If your class does not supply an implementation for <code>+elementName</code>, the element name derives from the sub-class name. This assumes that you do not directly instantiate the <a class="el" href="interface_a_resource.html" title="Provides the core class mirroring Rails&#39; ActiveResource::Base class.">AResource</a> class. If you do, the element name remains <code>nil</code>. </p>
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00097">97</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00110">110</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -218,7 +219,7 @@ Properties</h2></td></tr>
 <p>By convention, Rails' primary keys appear in the column named <code>id</code>. Column type is integer. Hence the ActiveResourceKit implementation answers the primary key only if the type is a number. (This includes other types of number.) Otherwise it answers <code>nil</code>. </p>
 <dl class="user"><dt><b>Integer Width</b></dt><dd>The exact integer type depends on the database implementation and configuration at the server side. Databases typically store integers as signed 32-bit integers. Send -[NSNumber intValue] to the resulting number to retrieve the signed 32-bit identifier in such cases. </dd></dl>
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00180">180</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00208">208</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -237,7 +238,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00060">60</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00073">73</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -266,7 +267,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00071">71</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00084">84</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -301,7 +302,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00081">81</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00094">94</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -319,7 +320,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00166">166</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00194">194</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -337,7 +338,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00171">171</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00199">199</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -358,7 +359,7 @@ Properties</h2></td></tr>
 <p>Answers all the known attributes belonging to this active resource, a unique array of attribute key strings. </p>
 <p>The resulting array includes all the base's known attributes plus this resource instance's known attributes. Duplicates if any do <em>not</em> appear. This deviates from Rails at version 3.1.0 where duplicates <em>do</em> appear. </p>
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00152">152</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00180">180</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -388,7 +389,7 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>Argument <em>removeRoot</em> becomes a do-not-care if <em>attributes</em> contains just a single key-object pair. In such a case, removing the root depends on whether or not the single key matches the base element name. </p>
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00113">113</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00131">131</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -443,7 +444,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00199">199</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00219">219</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -461,7 +462,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00146">146</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00174">174</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -480,7 +481,36 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00186">186</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00214">214</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5607301c668e723d31af1cf041e7af9"></a><!-- doxytag: member="AResource::setValue:forUndefinedKey:" ref="ae5607301c668e723d31af1cf041e7af9" args="(id value,[forUndefinedKey] NSString *key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setValue: </td>
+          <td></td>
+          <td class="paramtype">(id)&#160;</td>
+          <td class="paramname"><em>value</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">forUndefinedKey:</td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00159">159</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
@@ -518,17 +548,17 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00131">131</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
+<p>Definition at line <a class="el" href="_a_resource_8m_source.html#l00154">154</a> of file <a class="el" href="_a_resource_8m_source.html">AResource.m</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a41b90fcbde29cf78475969192bd6aa77"></a><!-- doxytag: member="AResource::attributes" ref="a41b90fcbde29cf78475969192bd6aa77" args="" -->
+<a class="anchor" id="a3f1c5b1df49a95509e99cbf9e4a5689c"></a><!-- doxytag: member="AResource::attributes" ref="a3f1c5b1df49a95509e99cbf9e4a5689c" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSDictionary*) attributes<code> [read, write, copy]</code></td>
+          <td class="memname">- (NSDictionary *) attributes<code> [read, copy]</code></td>
         </tr>
       </table>
 </div>
@@ -543,7 +573,7 @@ Properties</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (<a class="el" href="interface_a_r_base.html">ARBase</a> *) base<code> [read, write, retain]</code></td>
+          <td class="memname">- (<a class="el" href="interface_a_r_base.html">ARBase</a> *) base<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
