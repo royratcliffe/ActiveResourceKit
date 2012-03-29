@@ -43,7 +43,7 @@ You can view the test servers log using the command:
 
 	➜  active-resource-kit-tests git:(master) tail -f log/thin.log
 
-### `RAILS_BASE_URL`
+### Rails Base URL
 
 The kit's test target launches a Rails application in the background. The Xcode 
 schemes run a Thin server using the URL scheme, address and port passed by the 
