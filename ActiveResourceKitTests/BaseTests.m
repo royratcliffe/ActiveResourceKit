@@ -85,8 +85,8 @@
 - (void)testToJSON
 {
 	[[Person service] findSingleWithID:[NSNumber numberWithInt:6] options:nil completionHandler:^(ARHTTPResponse *response, ARResource *joe, NSError *error) {
-		NSString *string = [[NSString alloc] initWithData:[joe encode] encoding:NSUTF8StringEncoding];
-		for (NSString *re in [NSArray arrayWithObjects:@"^\\{\"person\":\\{", @"\"id\":6", @"\"name\":\"Joe\"", @"\\}\\}$", nil])
+		NSString *string = [[NSString alloc] initWithData:[response body] encoding:NSUTF8StringEncoding];
+		for (NSString *re in [NSArray arrayWithObjects:@"\"id\":6", @"\"name\":\"Joe\"", nil])
 		{
 			STAssertNotNil([[NSRegularExpression regularExpressionWithPattern:re options:0 error:NULL] firstMatchInString:string options:0 range:NSMakeRange(0, [string length])], @"%@ should find match in %@", re, string);
 		}
