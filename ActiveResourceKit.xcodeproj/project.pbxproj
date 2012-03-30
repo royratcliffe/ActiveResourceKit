@@ -95,6 +95,10 @@
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
 		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
+		78B58E9C1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
+		78B58E9D1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
+		78B58E9E1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */; };
+		78B58E9F1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */; };
 		78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */; };
@@ -248,6 +252,8 @@
 		7870D53814CDFED800934195 /* ARMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMacros.h; sourceTree = "<group>"; };
 		7879809A14D1704900825C1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
+		78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+ActiveResource.h"; sourceTree = "<group>"; };
+		78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+ActiveResource.m"; sourceTree = "<group>"; };
 		78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPMethods.h; sourceTree = "<group>"; };
 		78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPMethods.m; sourceTree = "<group>"; };
 		78D3D6F1140BC3B800DD4278 /* ARService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ARService.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -380,6 +386,8 @@
 				780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */,
 				78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */,
 				78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */,
+				78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */,
+				78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */,
 				78D3D6F1140BC3B800DD4278 /* ARService.h */,
 				78D3D6F2140BC3B800DD4278 /* ARService.m */,
 				784450131428EFCB0014B4C6 /* ARService+Private.h */,
@@ -493,6 +501,7 @@
 				7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 				780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 				78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
+				78B58E9D1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +532,7 @@
 				7870471A14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
 				780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 				78404E6814F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
+				78B58E9C1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +780,7 @@
 				7870471D14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 				780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 				78404E6B14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
+				78B58E9F1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -812,6 +823,7 @@
 				7870471C14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */,
 				780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 				78404E6A14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
+				78B58E9E1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
