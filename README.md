@@ -37,6 +37,8 @@ current background instance in order to set up and prime the fixtures, before
 launching a new server instance. This happens quite quickly; Thin is a
 fast-loading web server.
 
+The test launcher script assumes that you have RVM installed.
+
 ### Viewing the Test Server Log
 
 You can view the test servers log using the command:

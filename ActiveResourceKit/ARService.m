@@ -303,20 +303,27 @@ Class ARServiceDefaultConnectionClass;
 	// element path with the site, using the site's scheme, host and port.
 	NSString *path = [self newElementPathWithPrefixOptions:nil];
 	[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
-		if ([object isKindOfClass:[NSDictionary class]])
+		if (object && error == nil)
 		{
-			NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
-			[attrs addEntriesFromDictionary:attributes];
-			completionHandler(response, [[ARResource alloc] initWithService:self attributes:attrs], nil);
+			if ([object isKindOfClass:[NSDictionary class]])
+			{
+				NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:object];
+				[attrs addEntriesFromDictionary:attributes];
+				completionHandler(response, [[ARResource alloc] initWithService:self attributes:attrs], nil);
+			}
+			else
+			{
+				// The response body decodes successfully but it does not
+				// decode to a dictionary. It must be something else, either
+				// an array, a string or some other primitive type. In which
+				// case, building with attributes must fail even though
+				// ostensibly the operation has succeeded. Set up an error.
+				completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
 		}
 		else
 		{
-			// The response body decodes successfully but it does not
-			// decode to a dictionary. It must be something else, either
-			// an array, a string or some other primitive type. In which
-			// case, building with attributes must fail even though
-			// ostensibly the operation has succeeded. Set up an error.
-			completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(response, object, error);
 		}
 	}];
 }
@@ -355,13 +362,20 @@ Class ARServiceDefaultConnectionClass;
 	[self splitOptions:options prefixOptions:&prefixOptions queryOptions:&queryOptions];
 	NSString *path = [self elementPathForID:ID prefixOptions:prefixOptions queryOptions:queryOptions];
 	[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
-		if ([object isKindOfClass:[NSDictionary class]])
+		if (object && error == nil)
 		{
-			completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
+			if ([object isKindOfClass:[NSDictionary class]])
+			{
+				completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:prefixOptions], nil);
+			}
+			else
+			{
+				completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			}
 		}
 		else
 		{
-			completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+			completionHandler(response, object, error);
 		}
 	}];
 }
@@ -373,13 +387,20 @@ Class ARServiceDefaultConnectionClass;
 	{
 		NSString *path = [NSString stringWithFormat:@"%@%@", from, ARQueryStringForOptions([options objectForKey:ARParamsKey])];
 		[self get:path completionHandler:^(ARHTTPResponse *response, id object, NSError *error) {
-			if ([object isKindOfClass:[NSDictionary class]])
+			if (object && error == nil)
 			{
-				completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+				if ([object isKindOfClass:[NSDictionary class]])
+				{
+					completionHandler(response, [self instantiateRecordWithAttributes:object prefixOptions:nil], nil);
+				}
+				else
+				{
+					completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				}
 			}
 			else
 			{
-				completionHandler(response, nil, [NSError errorWithDomain:ARErrorDomain code:ARUnsupportedRootObjectTypeError userInfo:nil]);
+				completionHandler(response, object, error);
 			}
 		}];
 	}
