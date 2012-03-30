@@ -32,7 +32,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop db:setup db:fixtures:load thin:start&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;bundle exec rake thin:stop db:setup db:fixtures:load thin:start"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -50,7 +51,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;&quot;$HOME/.rvm/bin/rvm-shell&quot; -c &quot;bundle exec rake thin:stop&quot;">
+               scriptText = "cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;bundle exec rake thin:stop"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
