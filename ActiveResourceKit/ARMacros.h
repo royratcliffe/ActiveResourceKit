@@ -37,4 +37,4 @@
  * @note Beware of side effects if you pass operators in the @a array
  * expression. The macro argument evaluates twice.
  */
-#define ASDimOf(array) (sizeof(array)/sizeof((array)[0]))
+#define ARDimOf(array) (sizeof(array)/sizeof((array)[0]))

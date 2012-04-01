@@ -24,7 +24,7 @@
 
 #import "ARConnection+Private.h"
 
-// for ASDimOf
+// for ARDimOf
 #import "ARMacros.h"
 
 // for ARHTTPGetMethod and friends
@@ -77,7 +77,7 @@
 	// slower look-up for less common types, e.g. HEAD. Is this a reasonable
 	// trade-off?
 	NSUInteger index;
-	for (index = 0; index < ASDimOf(HTTPMethods); index++)
+	for (index = 0; index < ARDimOf(HTTPMethods); index++)
 	{
 		if ([HTTPMethod isEqualToString:HTTPMethods[index]])
 		{
@@ -85,7 +85,7 @@
 		}
 	}
 	NSDictionary *formatHeader;
-	if (index < ASDimOf(HTTPMethods))
+	if (index < ARDimOf(HTTPMethods))
 	{
 		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:headerNames[index]];
 	}

@@ -67,15 +67,15 @@
 		{ 410, (NSInteger)ARResourceGoneErrorCode },
 		{ 422, (NSInteger)ARResourceInvalidErrorCode },
 	};
-	for (NSUInteger i = 0; i < ASDimOf(clientCodesAndErrors); i++)
+	for (NSUInteger i = 0; i < ARDimOf(clientCodesAndErrors); i++)
 	{
 		STAssertEquals([errorForResponse(clientCodesAndErrors[i].statusCode) code], clientCodesAndErrors[i].errorCode, nil);
 	}
 	for (NSInteger statusCode = 402; statusCode <= 499; statusCode++)
 	{
 		NSUInteger i;
-		for (i = 0; i < ASDimOf(clientCodesAndErrors) && statusCode != clientCodesAndErrors[i].statusCode; i++);
-		if (i == ASDimOf(clientCodesAndErrors))
+		for (i = 0; i < ARDimOf(clientCodesAndErrors) && statusCode != clientCodesAndErrors[i].statusCode; i++);
+		if (i == ARDimOf(clientCodesAndErrors))
 		{
 			STAssertEquals([errorForResponse(statusCode) code], (NSInteger)ARClientErrorCode, nil);
 		}
