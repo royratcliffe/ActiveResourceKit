@@ -27,6 +27,9 @@
 // for ASDimOf
 #import "ARMacros.h"
 
+// for ARHTTPGetMethod and friends
+#import "ARHTTPMethods.h"
+
 @implementation ARConnection(Private)
 
 - (NSDictionary *)defaultHeaders
@@ -51,22 +54,21 @@
 
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod
 {
-	// Use CFStringRefs rather than NSString pointers when using Automatic
-	// Reference Counting. ARC does not allow references within C
-	// structures. Toll-free bridging exists between Core Foundation and Next
-	// Step strings.
-	static struct
+	NSString *const HTTPMethods[] =
 	{
-		NSString *const __unsafe_unretained HTTPMethod;
-		NSString *const __unsafe_unretained headerName;
-	}
-	const HTTPFormatHeaderNames[] =
+		ARHTTPGetMethod,
+		ARHTTPPutMethod,
+		ARHTTPPostMethod,
+		ARHTTPDeleteMethod,
+		ARHTTPHeadMethod,
+	};
+	NSString *const headerNames[] =
 	{
-		{ @"GET",    @"Accept" },
-		{ @"PUT",    @"Content-Type" },
-		{ @"POST",   @"Content-Type" },
-		{ @"DELETE", @"Accept" },
-		{ @"HEAD",   @"Accept" },
+		@"Accept",
+		@"Content-Type",
+		@"Content-Type",
+		@"Accept",
+		@"Accept",
 	};
 	// Is this too ugly? A dictionary could implement the look-up. But that
 	// requires building a static dictionary initially and does not allow
@@ -75,17 +77,17 @@
 	// slower look-up for less common types, e.g. HEAD. Is this a reasonable
 	// trade-off?
 	NSUInteger index;
-	for (index = 0; index < ASDimOf(HTTPFormatHeaderNames); index++)
+	for (index = 0; index < ASDimOf(HTTPMethods); index++)
 	{
-		if ([HTTPMethod isEqualToString:HTTPFormatHeaderNames[index].HTTPMethod])
+		if ([HTTPMethod isEqualToString:HTTPMethods[index]])
 		{
 			break;
 		}
 	}
 	NSDictionary *formatHeader;
-	if (index < ASDimOf(HTTPFormatHeaderNames))
+	if (index < ASDimOf(HTTPMethods))
 	{
-		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:HTTPFormatHeaderNames[index].headerName];
+		formatHeader = [NSDictionary dictionaryWithObject:[[self format] MIMEType] forKey:headerNames[index]];
 	}
 	else
 	{
