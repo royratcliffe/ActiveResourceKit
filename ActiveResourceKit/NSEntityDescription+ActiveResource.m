@@ -43,10 +43,11 @@
 			case NSDateAttributeType:
 				value = ASDateFromRFC3339String(value);
 		}
-		if (value)
+		if (value == nil)
 		{
-			[attributes setObject:value forKey:attributeName];
+			value = [NSNull null];
 		}
+		[attributes setObject:value forKey:attributeName];
 	}
 	return [attributes copy];
 }
@@ -64,10 +65,11 @@
 			case NSDateAttributeType:
 				value = ASRFC3339StringFromDate(value);
 		}
-		if (value)
+		if (value == nil)
 		{
-			[attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:attributeName]];
+			value = [NSNull null];
 		}
+		[attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:attributeName]];
 	}
 	return [attributes copy];
 }

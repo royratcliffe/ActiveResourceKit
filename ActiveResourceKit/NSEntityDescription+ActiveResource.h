@@ -39,6 +39,14 @@
  * underscored names. This method does not validate the schema however. It
  * silently ignores resource attributes that do not appear in the managed-object
  * model.
+ *
+ * The method does not handle relationships, only attributes. At this point in
+ * the class hierarchy, the method cannot resolve relationships. Resolution
+ * requires assumptions about how Core Data relations map to Active Resource
+ * relations, and vice versa. Typically this occurs by accessing the foreign key
+ * for to-one associations or accessing resources at a remove sub-path in the
+ * case of to-many associations. Either way, such mapping must assume things
+ * about the Core Data and Active Resource idioms and their interaction.
  */
 - (NSDictionary *)attributesFromResource:(ARResource *)resource;
 
