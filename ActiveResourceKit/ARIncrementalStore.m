@@ -110,6 +110,26 @@
 	return service;
 }
 
+- (NSString *)elementNameForEntityName:(NSString *)entityName
+{
+	return [[ASInflector defaultInflector] underscore:entityName];
+}
+
+- (NSString *)entityNameForElementName:(NSString *)elementName
+{
+	return [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+}
+
+- (NSString *)attributeNameForPropertyName:(NSString *)propertyName
+{
+	return [[ASInflector defaultInflector] underscore:propertyName];
+}
+
+- (NSString *)propertyNameForAttributeName:(NSString *)attributeName
+{
+	return [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                  Incremental Store Method Overrides
 //------------------------------------------------------------------------------
