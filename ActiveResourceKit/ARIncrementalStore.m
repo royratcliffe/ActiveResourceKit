@@ -280,7 +280,7 @@
 			for (ARResource *resource in resources)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
-				NSDictionary *values = [[objectID entity] attributesFromResource:resource];
+				NSDictionary *values = [[objectID entity] propertiesFromResource:resource];
 				NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
 				if (node == nil)
 				{
@@ -442,7 +442,7 @@
 			if (resource)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:entity referenceObject:[resource ID]];
-				NSDictionary *values = [[objectID entity] attributesFromResource:resource];
+				NSDictionary *values = [[objectID entity] propertiesFromResource:resource];
 				[_nodesByObjectID setObject:[[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:values version:0] forKey:objectID];
 				[objectIDs addObject:objectID];
 			}

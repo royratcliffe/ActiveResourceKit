@@ -1,4 +1,4 @@
-// ActiveResourceKit NSEntityDescription+ActiveResource.m
+// ActiveResourceKit NSAttributeDescription+ActiveResource.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,45 +22,33 @@
 //
 //------------------------------------------------------------------------------
 
-#import "NSEntityDescription+ActiveResource.h"
 #import "NSAttributeDescription+ActiveResource.h"
-#import "ARResource.h"
 
-// for -[ASInflector underscore:camelCasedWord]
+#import <ActiveResourceKit/ActiveResourceKit.h>
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
-@implementation NSEntityDescription(ActiveResource)
+@implementation NSAttributeDescription(ActiveResource)
 
-- (NSDictionary *)propertiesFromResource:(ARResource *)resource
+- (id)valueInResource:(ARResource *)resource
 {
-	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-	for (NSPropertyDescription *property in [self properties])
+	id value = [resource valueForKey:[self name]];
+	switch ([self attributeType])
 	{
-		if ([property isKindOfClass:[NSAttributeDescription class]])
-		{
-			// Iterate through all the attribute descriptions, ignoring
-			// relationships and fetched properties.
-			NSAttributeDescription *attribute = (NSAttributeDescription *)property;
-			id value = [attribute valueInResource:resource];
-			[attributes setObject:value ? value : [NSNull null] forKey:[attribute name]];
-		}
+		case NSDateAttributeType:
+			value = ASDateFromRFC3339String(value);
 	}
-	return [attributes copy];
+	return value;
 }
 
-- (NSDictionary *)attributesFromObject:(NSObject *)object
+- (id)valueInObject:(NSObject *)object
 {
-	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-	for (NSPropertyDescription *property in [self properties])
+	id value = [object valueForKey:[self name]];
+	switch ([self attributeType])
 	{
-		if ([property isKindOfClass:[NSAttributeDescription class]])
-		{
-			NSAttributeDescription *attribute = (NSAttributeDescription *)property;
-			id value = [attribute valueInObject:object];
-			[attributes setObject:value ? value : [NSNull null] forKey:[[ASInflector defaultInflector] underscore:[attribute name]]];
-		}
+		case NSDateAttributeType:
+			value = ASRFC3339StringFromDate(value);
 	}
-	return [attributes copy];
+	return value;
 }
 
 @end

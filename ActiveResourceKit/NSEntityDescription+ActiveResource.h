@@ -48,20 +48,20 @@
  * case of to-many associations. Either way, such mapping must assume things
  * about the Core Data and Active Resource idioms and their interaction.
  */
-- (NSDictionary *)attributesFromResource:(ARResource *)resource;
+- (NSDictionary *)propertiesFromResource:(ARResource *)resource;
 
 /*!
  * @brief Answers a dictionary of Active Resource-style attributes derived from
- * the given managed object.
+ * the given object.
  * @details Performs reverse-date conversions: from @c NSDate to RFC
  * 3339-formatted strings suitable for Rails applications. The method iterates
  * through all attributes, attributes only, no relationships. The implementation
- * uses Key-Value Coding to access the given managed object. For date
+ * uses Key-Value Coding to access the given object. For date
  * attributes, it converts from @c NSDate to RFC 3339 date-time strings. The
  * resulting dictionary of attributes keys by Rails-convention attribute names,
  * i.e. underscored keys rather than camel-cased keys. Use the results for
  * Active Resource attributes, not for Core Data attributes.
  */
-- (NSDictionary *)attributesFromObject:(NSManagedObject *)object;
+- (NSDictionary *)attributesFromObject:(NSObject *)object;
 
 @end

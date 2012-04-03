@@ -1,4 +1,4 @@
-// ActiveResourceKit NSManagedObject+ActiveResource.m
+// ActiveResourceKit NSAttributeDescription+ActiveResource.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,14 +22,13 @@
 //
 //------------------------------------------------------------------------------
 
-#import "NSManagedObject+ActiveResource.h"
-#import "NSEntityDescription+ActiveResource.h"
+#import <CoreData/CoreData.h>
 
-@implementation NSManagedObject(ActiveResource)
+@class ARResource;
 
-- (void)loadAttributesFromResource:(ARResource *)resource
-{
-	[self setValuesForKeysWithDictionary:[[self entity] propertiesFromResource:resource]];
-}
+@interface NSAttributeDescription(ActiveResource)
+
+- (id)valueInResource:(ARResource *)resource;
+- (id)valueInObject:(NSObject *)object;
 
 @end
