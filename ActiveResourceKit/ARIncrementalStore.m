@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "ARIncrementalStore.h"
+#import "ARIncrementalStore+Private.h"
 #import "ARResource.h"
 #import "ARService.h"
 #import "ARSynchronousLoadingURLConnection.h"
@@ -97,7 +98,7 @@
 	// The entity name may not correspond to a class name. You can use
 	// managed-object entities even without deriving a sub-class. However, the
 	// entity name follows class naming conventions: capitalised camel-case.
-	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
+	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[self elementNameForEntityName:entityName]];
 	[service setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
 	return service;
 }
@@ -226,10 +227,17 @@
 	//
 	// The order query reverts to default ordering when params[:order] is not
 	// present, equals nil.
+	//
+	// Use property-to-attribute name mapping to derive the sort key. The sort
+	// descriptor key exists in the Core Data namespace. However, the sort key
+	// for the ordering parameter must cross the HTTP connection and interact
+	// with the Rails namespace. The sort key follows property (Core Data)
+	// conventions at this side of the connection, but follows attribute (Active
+	// Resource) conventions at the far side of the connection.
 	NSMutableArray *orderStrings = [NSMutableArray array];
 	for (NSSortDescriptor *sortDescriptor in [request sortDescriptors])
 	{
-		[orderStrings addObject:[NSString stringWithFormat:@"%@+%@", [[ASInflector defaultInflector] underscore:[sortDescriptor key]], [sortDescriptor ascending] ? @"asc" : @"desc"]];
+		[orderStrings addObject:[NSString stringWithFormat:@"%@+%@", [self attributeNameForPropertyName:[sortDescriptor key]], [sortDescriptor ascending] ? @"asc" : @"desc"]];
 	}
 	if ([orderStrings count])
 	{

@@ -113,10 +113,10 @@
 		78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
 		78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
-		78E02AFB152AD82B008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02AF9152AD82B008E6EC1 /* ARIncrementalStore+Private.h */; };
-		78E02AFC152AD82B008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02AF9152AD82B008E6EC1 /* ARIncrementalStore+Private.h */; };
-		78E02AFD152AD82B008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02AFA152AD82B008E6EC1 /* ARIncrementalStore+Private.m */; };
-		78E02AFE152AD82B008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02AFA152AD82B008E6EC1 /* ARIncrementalStore+Private.m */; };
+		78E02B10152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */; };
+		78E02B11152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */; };
+		78E02B12152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */; };
+		78E02B13152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */; };
 		78E4DFEB145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFED145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
@@ -265,8 +265,8 @@
 		78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKit.h; sourceTree = "<group>"; };
 		78D9883F14E9378E0081C350 /* ARHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARHTTPResponse.h; sourceTree = "<group>"; };
 		78D9884014E9378E0081C350 /* ARHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHTTPResponse.m; sourceTree = "<group>"; };
-		78E02AF9152AD82B008E6EC1 /* ARIncrementalStore+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ARIncrementalStore+Private.h"; path = "../../../LevideCapital/Kits/MarketDataKit/ActiveResourceKit/ActiveResourceKit/ARIncrementalStore+Private.h"; sourceTree = "<group>"; };
-		78E02AFA152AD82B008E6EC1 /* ARIncrementalStore+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ARIncrementalStore+Private.m"; path = "../../../LevideCapital/Kits/MarketDataKit/ActiveResourceKit/ActiveResourceKit/ARIncrementalStore+Private.m"; sourceTree = "<group>"; };
+		78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARIncrementalStore+Private.h"; sourceTree = "<group>"; };
+		78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARIncrementalStore+Private.m"; sourceTree = "<group>"; };
 		78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARResource+Private.h"; sourceTree = "<group>"; };
 		78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ARResource+Private.m"; sourceTree = "<group>"; };
 		78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConnection.h; sourceTree = "<group>"; };
@@ -386,8 +386,8 @@
 				78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */,
 				7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */,
 				7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */,
-				78E02AF9152AD82B008E6EC1 /* ARIncrementalStore+Private.h */,
-				78E02AFA152AD82B008E6EC1 /* ARIncrementalStore+Private.m */,
+				78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */,
+				78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */,
 				7870471814EFA2BC00510373 /* NSPersistentStore+ActiveResource.h */,
 				7870471914EFA2BC00510373 /* NSPersistentStore+ActiveResource.m */,
 				780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */,
@@ -510,7 +510,7 @@
 				780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 				78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
 				78B58E9D1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */,
-				78E02AFC152AD82B008E6EC1 /* ARIncrementalStore+Private.h in Headers */,
+				78E02B11152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +542,7 @@
 				780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
 				78404E6814F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
 				78B58E9C1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */,
-				78E02AFB152AD82B008E6EC1 /* ARIncrementalStore+Private.h in Headers */,
+				78E02B10152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,7 +791,7 @@
 				780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 				78404E6B14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
 				78B58E9F1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */,
-				78E02AFE152AD82B008E6EC1 /* ARIncrementalStore+Private.m in Sources */,
+				78E02B13152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +835,7 @@
 				780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */,
 				78404E6A14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */,
 				78B58E9E1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */,
-				78E02AFD152AD82B008E6EC1 /* ARIncrementalStore+Private.m in Sources */,
+				78E02B12152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
