@@ -76,7 +76,7 @@
 	self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:URL options:options];
 	if (self)
 	{
-		_nodesByObjectID = [[NSMutableDictionary alloc] init];
+		_resourcesByObjectID = [[NSCache alloc] init];
 	}
 	return self;
 }
@@ -264,22 +264,10 @@
 			// requests and other incremental-store interface methods. Do this
 			// regardless of result type. It refreshes the cache with the latest
 			// available resource attributes.
-			NSMutableArray *nodes = [NSMutableArray array];
+			NSMutableArray *objectIDs = [NSMutableArray array];
 			for (ARResource *resource in resources)
 			{
-				NSManagedObjectID *objectID = [self newObjectIDForEntity:[request entity] referenceObject:[resource ID]];
-				NSDictionary *values = [[objectID entity] propertiesFromResource:resource];
-				NSIncrementalStoreNode *node = [_nodesByObjectID objectForKey:objectID];
-				if (node == nil)
-				{
-					node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:values version:0];
-					[_nodesByObjectID setObject:node forKey:objectID];
-				}
-				else
-				{
-					[node updateWithValues:values version:[node version] + 1];
-				}
-				[nodes addObject:node];
+				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
 			}
 			
 			// Compile the results for Core Data. Base the results on nodes,
@@ -291,29 +279,22 @@
 			{
 				case NSManagedObjectResultType:
 					result = [NSMutableArray array];
-					for (NSIncrementalStoreNode *node in nodes)
+					for (NSManagedObjectID *objectID in objectIDs)
 					{
-						// Tempting to load up the object attributes at this
-						// point, right away. Do not however. Doing so triggers
-						// the realisation of attributes before Core Data
-						// expects.
-						//
-						//	[[context objectWithID:[node objectID]] loadAttributesFromResource:resource];
-						//
-						[(NSMutableArray *)result addObject:[context objectWithID:[node objectID]]];
+						[(NSMutableArray *)result addObject:[context objectWithID:objectID]];
 					}
 					result = [result copy];
 					break;
 				case NSManagedObjectIDResultType:
 					result = [NSMutableArray array];
-					for (NSIncrementalStoreNode *node in nodes)
+					for (NSManagedObjectID *objectID in objectIDs)
 					{
-						[(NSMutableArray *)result addObject:[node objectID]];
+						[(NSMutableArray *)result addObject:objectID];
 					}
 					result = [result copy];
 					break;
 				case NSCountResultType:
-					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[nodes count]]];
+					result = [NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:[objectIDs count]]];
 			}
 		}
 		else
@@ -401,7 +382,36 @@
 
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
-	return [_nodesByObjectID objectForKey:objectID];
+	// If not already in the cache, turn the fault into a resource.
+	ARResource *__block resource = [_resourcesByObjectID objectForKey:objectID];
+	if (resource == nil)
+	{
+		NSNumber *ID = [self referenceObjectForObjectID:objectID];
+		ARService *service = [self serviceForEntityName:[[objectID entity] name]];
+		[service findSingleWithID:ID options:nil completionHandler:^(ARHTTPResponse *response, ARResource *aResource, NSError *error) {
+			if (aResource)
+			{
+				[_resourcesByObjectID setObject:resource = aResource forKey:objectID];
+			}
+		}];
+	}
+	
+	NSIncrementalStoreNode *node;
+	if (resource)
+	{
+		NSDictionary *properties = [[objectID entity] propertiesFromResource:resource];
+		uint64_t version = [self versionForResource:resource];
+		node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:properties version:version];
+	}
+	else
+	{
+		node = nil;
+		if (outError && *outError == nil)
+		{
+			
+		}
+	}
+	return node;
 }
 
 - (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
@@ -430,8 +440,7 @@
 			if (resource)
 			{
 				NSManagedObjectID *objectID = [self newObjectIDForEntity:entity referenceObject:[resource ID]];
-				NSDictionary *values = [[objectID entity] propertiesFromResource:resource];
-				[_nodesByObjectID setObject:[[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:values version:0] forKey:objectID];
+				[_resourcesByObjectID setObject:resource forKey:objectID];
 				[objectIDs addObject:objectID];
 			}
 			else

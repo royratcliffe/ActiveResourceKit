@@ -40,7 +40,7 @@
 @interface ARIncrementalStore : NSIncrementalStore
 {
 	/*!
-	 * @brief Caches incremental nodes by object ID.
+	 * @brief Caches resources by object ID.
 	 * @details This cache effectively associates Active Resource with Core
 	 * Data. It bridges the difference between the Active Resource interface and
 	 * the Core Data interface. When you "find" active resources, all resource
@@ -54,9 +54,9 @@
 	 * Resource interface creates a new resource along with its attributes. Core
 	 * Data, however, only obtains permanent IDs initially. They become faulted
 	 * objects. Core Data asks for properties later when needed. Again, the
-	 * nodes-by-object-ID cache acts as a bridging buffer.
+	 * resources-by-object-ID cache acts as a bridging buffer.
 	 */
-	NSMutableDictionary *__strong _nodesByObjectID;
+	NSCache *__strong _resourcesByObjectID;
 }
 
 + (NSString *)storeType;
