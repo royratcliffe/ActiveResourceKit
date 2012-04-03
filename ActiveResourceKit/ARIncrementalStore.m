@@ -30,8 +30,6 @@
 #import "NSManagedObject+ActiveResource.h"
 #import "NSEntityDescription+ActiveResource.h"
 
-#import <ActiveSupportKit/ActiveSupportKit.h>
-
 @interface ARIncrementalStore()
 
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError;
