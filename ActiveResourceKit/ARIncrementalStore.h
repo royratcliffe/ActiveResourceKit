@@ -136,21 +136,4 @@
  */
 - (ARService *)serviceForEntityName:(NSString *)entityName;
 
-//--------------------------------------- Active Resource Versus Core Data Names
-
-// The following instance methods perform default name translations between
-// Active Resource names and Core Data names. You might wish to override the
-// following methods if your server-side and client-side element-entity names
-// fall outside the simple underscored-to-camel case conversions and back.
-//
-// Separate method pairs exist for element-entity names and attribute-property
-// names. The former translate between Active Resource elements and Core Data
-// entities; the latter between Active Resource attributes and Core Data
-// properties.
-
-- (NSString *)elementNameForEntityName:(NSString *)entityName;
-- (NSString *)entityNameForElementName:(NSString *)elementName;
-- (NSString *)attributeNameForPropertyName:(NSString *)propertyName;
-- (NSString *)propertyNameForAttributeName:(NSString *)attributeName;
-
 @end
