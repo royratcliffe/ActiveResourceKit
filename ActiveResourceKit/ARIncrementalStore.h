@@ -39,12 +39,6 @@
  */
 @interface ARIncrementalStore : NSIncrementalStore
 {
-	// Use a cache for retaining child contexts by parent; iOS does not yet
-	// support collections with zeroing weak references, e.g. hash tables. No
-	// need to keep references to child contexts indefinitely. Recreate on
-	// demand.
-	NSCache *__strong _childContextsByParent;
-	
 	/*!
 	 * @brief Caches incremental nodes by object ID.
 	 * @details This cache effectively associates Active Resource with Core

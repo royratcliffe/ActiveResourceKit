@@ -76,21 +76,9 @@
 	self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:URL options:options];
 	if (self)
 	{
-		_childContextsByParent = [[NSCache alloc] init];
 		_nodesByObjectID = [[NSMutableDictionary alloc] init];
 	}
 	return self;
-}
-
-- (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext
-{
-	NSManagedObjectContext *childContext = [_childContextsByParent objectForKey:parentContext];
-	if (childContext == nil)
-	{
-		[childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType] setParentContext:parentContext];
-		[_childContextsByParent setObject:childContext forKey:parentContext];
-	}
-	return childContext;
 }
 
 - (ARService *)serviceForEntityName:(NSString *)entityName
