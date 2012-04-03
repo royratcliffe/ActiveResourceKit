@@ -355,10 +355,14 @@
 - (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	NSMutableArray *errors = [NSMutableArray array];
+	
+	// inserts
 	for (NSManagedObject *object in [request insertedObjects])
 	{
 		;
 	}
+	
+	// updates
 	for (NSManagedObject *object in [request updatedObjects])
 	{
 		// Updates occur by rebuilding the Active Resource from its associated
@@ -383,6 +387,8 @@
 			}
 		}];
 	}
+	
+	// deletes
 	for (NSManagedObject *object in [request deletedObjects])
 	{
 		NSNumber *ID = [self referenceObjectForObjectID:[object objectID]];
@@ -395,6 +401,8 @@
 			}
 		}];
 	}
+	
+	// results
 	BOOL success = [errors count] == 0;
 	if (!success && outError && *outError == nil)
 	{
