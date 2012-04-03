@@ -111,16 +111,6 @@
 + (void)registerStoreTypeForClass:(Class)aClass;
 
 /*!
- * @brief Fetches or creates a managed object context attached as a child to the
- * given parent context.
- * @details The incremental store retains a cache of child contexts. If
- * necessary, the method forks a new private-queue concurrent context based on
- * the given context. Multiple contexts can exist for a single persistent-store
- * coordinator.
- */
-- (NSManagedObjectContext *)childContextForParentContext:(NSManagedObjectContext *)parentContext;
-
-/*!
  * @brief Answers a suitably-connected Active Resource service for interacting
  * with the given entity.
  * @details Performs Core Data entity-name to Active Resource element name
