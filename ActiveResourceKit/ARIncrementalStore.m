@@ -30,6 +30,8 @@
 #import "NSManagedObject+ActiveResource.h"
 #import "NSEntityDescription+ActiveResource.h"
 
+#import <ActiveSupportKit/ActiveSupportKit.h>
+
 @interface ARIncrementalStore()
 
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError;
@@ -99,6 +101,30 @@
 	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[self elementNameForEntityName:entityName]];
 	[service setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
 	return service;
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                  Active Resource-to-Core Data Names
+//------------------------------------------------------------------------------
+
+- (NSString *)elementNameForEntityName:(NSString *)entityName
+{
+	return [[ASInflector defaultInflector] underscore:entityName];
+}
+
+- (NSString *)entityNameForElementName:(NSString *)elementName
+{
+	return [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+}
+
+- (NSString *)attributeNameForPropertyName:(NSString *)propertyName
+{
+	return [[ASInflector defaultInflector] underscore:propertyName];
+}
+
+- (NSString *)propertyNameForAttributeName:(NSString *)attributeName
+{
+	return [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
 }
 
 //------------------------------------------------------------------------------

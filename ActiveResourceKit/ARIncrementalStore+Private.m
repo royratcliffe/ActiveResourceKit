@@ -25,7 +25,6 @@
 #import "ARIncrementalStore+Private.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
-#import <ActiveSupportKit/ActiveSupportKit.h>
 
 @implementation ARIncrementalStore(Private)
 
@@ -41,30 +40,6 @@
 	NSManagedObjectID *objectID = [self objectIDForResource:resource withContext:context];
 	[_resourcesByObjectID setObject:resource forKey:objectID];
 	return objectID;
-}
-
-//------------------------------------------------------------------------------
-#pragma mark                                  Active Resource-to-Core Data Names
-//------------------------------------------------------------------------------
-
-- (NSString *)elementNameForEntityName:(NSString *)entityName
-{
-	return [[ASInflector defaultInflector] underscore:entityName];
-}
-
-- (NSString *)entityNameForElementName:(NSString *)elementName
-{
-	return [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
-}
-
-- (NSString *)attributeNameForPropertyName:(NSString *)propertyName
-{
-	return [[ASInflector defaultInflector] underscore:propertyName];
-}
-
-- (NSString *)propertyNameForAttributeName:(NSString *)attributeName
-{
-	return [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
 }
 
 @end
