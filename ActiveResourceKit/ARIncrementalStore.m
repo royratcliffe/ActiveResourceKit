@@ -146,10 +146,11 @@
 	[metadata setObject:[ARIncrementalStore storeTypeForClass:[self class]] forKey:NSStoreTypeKey];
 	
 	// Assigning a Universally-Unique ID is essential. Without this the next
-	// invocation of -setMetadata: will recurse infinitely.
-	CFUUIDRef uuid = CFUUIDCreate(NULL);
-	[metadata setObject:(__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuid) forKey:NSStoreUUIDKey];
-	CFRelease(uuid);
+	// invocation of -[setMetadata:] will recurse infinitely. Use the URL
+	// description as the UUID. Within the context of Core Data, that should
+	// provide a sufficiently unique identifier while giving the store's
+	// managed-object IDs a meaningful and readable prefix.
+	[metadata setObject:[[self URL] description] forKey:NSStoreUUIDKey];
 	
 	[self setMetadata:[metadata copy]];
 	return YES;
