@@ -97,14 +97,6 @@
 	// The entity name may not correspond to a class name. You can use
 	// managed-object entities even without deriving a sub-class. However, the
 	// entity name follows class naming conventions: capitalised camel-case.
-	//
-	// Remove all but the last initial leading capital from the entity name. By
-	// Apple Cocoa conventions, the initial capitals designate the namespace,
-	// e.g. NS for NextStep namespace. Strip away these initial namespace
-	// capitals by default. Typically the path will not require the namespace
-	// qualifier. The URL itself provides sufficient scoping.
-	NSRegularExpression *re = [NSRegularExpression regularExpressionWithPattern:@"^([A-Z\\d]+)([A-Z][a-z])" options:0 error:NULL];
-	entityName = [re stringByReplacingMatchesInString:entityName options:0 range:NSMakeRange(0, [entityName length]) withTemplate:@"$2"];
 	ARService *service = [[ARService alloc] initWithSite:[self URL] elementName:[[ASInflector defaultInflector] underscore:entityName]];
 	[service setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
 	return service;
