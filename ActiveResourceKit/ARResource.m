@@ -318,7 +318,8 @@
 
 - (NSData *)encode
 {
-	return [[[self service] format] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[[self service] elementName]] error:NULL];
+	ARService *service = [self service];
+	return [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL];
 }
 
 @end

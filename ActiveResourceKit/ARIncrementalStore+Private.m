@@ -30,7 +30,7 @@
 
 - (NSManagedObjectID *)objectIDForResource:(ARResource *)resource withContext:(NSManagedObjectContext *)context
 {
-	NSString *entityName = [self entityNameForElementName:[[resource service] elementName]];
+	NSString *entityName = [self entityNameForElementName:[[resource serviceLazily] elementNameLazily]];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 	return [self newObjectIDForEntity:entity referenceObject:[resource ID]];
 }
