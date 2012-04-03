@@ -25,6 +25,7 @@
 #import "ARIncrementalStore+Private.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
+#import <ActiveSupportKit/ActiveSupportKit.h>
 
 @implementation ARIncrementalStore(Private)
 
