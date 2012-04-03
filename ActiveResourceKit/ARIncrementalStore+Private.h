@@ -41,4 +41,24 @@
  */
 - (NSManagedObjectID *)objectIDForCachedResource:(ARResource *)resource withContext:(NSManagedObjectContext *)context;
 
+/*!
+ * @brief Answers a 64-bit version number derived from the given @a resource.
+ * @details Uses the updated-at date-time as the version number. Converts the
+ * update-at date to seconds since the reference date. This amounts to a big
+ * version number, but the version number allows for 64 bits of unsigned integer
+ * width.
+ *
+ * Also makes an assumption about the updated-at dates: that they always exceed
+ * midnight 1st January 2001, the reference point. If they precede that point,
+ * then the reference-relative time interval becomes negative, the signed
+ * interval wraps the unsigned 64-bit version and version numbers start counting
+ * down. This is not what Core Data will expect.
+ *
+ * The implementation multiplies the time interval by 1,000 in order to allow
+ * for rare sub-second updates, if the server-side includes date-time at
+ * sub-second resolutions. RFC 3339 date-time formats allow for sub-second
+ * accuracy.
+ */
+- (uint64_t)versionForResource:(ARResource *)resource;
+
 @end

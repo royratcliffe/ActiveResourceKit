@@ -42,4 +42,19 @@
 	return objectID;
 }
 
+- (uint64_t)versionForResource:(ARResource *)resource
+{
+	uint64_t version;
+	NSDate *updatedAt = [[resource attributes] objectForKey:@"updated_at"];
+	if (updatedAt)
+	{
+		version = [updatedAt timeIntervalSinceReferenceDate] * 1000;
+	}
+	else
+	{
+		version = 0;
+	}
+	return version;
+}
+
 @end
