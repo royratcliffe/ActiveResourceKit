@@ -163,7 +163,14 @@
 
 - (void)mergeAttributes:(NSDictionary *)attributes
 {
-	[_attributes setValuesForKeysWithDictionary:attributes];
+	// Take care not to use -[NSObject setValuesForKeysWithDictionary:] because
+	// it filters out all those attributes with null values. By design,
+	// resources preserve all attributes, even those with no values.
+	for (NSString *attributeName in attributes)
+	{
+		id attributeValue = [attributes objectForKey:attributeName];
+		[_attributes setObject:attributeValue forKey:attributeName];
+	}
 }
 
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
