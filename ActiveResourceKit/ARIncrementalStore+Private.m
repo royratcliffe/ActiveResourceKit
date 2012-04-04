@@ -25,6 +25,7 @@
 #import "ARIncrementalStore+Private.h"
 
 #import <ActiveResourceKit/ActiveResourceKit.h>
+#import <ActiveSupportKit/ActiveSupportKit.h>
 
 @implementation ARIncrementalStore(Private)
 
@@ -45,7 +46,7 @@
 - (uint64_t)versionForResource:(ARResource *)resource
 {
 	uint64_t version;
-	NSDate *updatedAt = [[resource attributes] objectForKey:@"updated_at"];
+	NSDate *updatedAt = ASDateFromRFC3339String([[resource attributes] objectForKey:@"updated_at"]);
 	if (updatedAt)
 	{
 		version = [updatedAt timeIntervalSinceReferenceDate] * 1000;
