@@ -176,10 +176,11 @@
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot
 {
 	NSDictionary *prefixOptions = nil;
-	[[self serviceLazily] splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
+	ARService *service = [self serviceLazily];
+	[service splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
 	if ([attributes count] == 1)
 	{
-		removeRoot = [[[self serviceLazily] elementName] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
+		removeRoot = [[service elementNameLazily] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
 	}
 	if (removeRoot)
 	{
