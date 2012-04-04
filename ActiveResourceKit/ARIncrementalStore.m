@@ -416,7 +416,36 @@
 
 - (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
-	return [super newValueForRelationship:relationship forObjectWithID:objectID withContext:context error:outError];
+	id result;
+	// to-one
+	if ([relationship maxCount] == 1)
+	{
+		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
+		NSString *foreignIDKey = [NSString stringWithFormat:@"%@_%@", [self attributeNameForPropertyName:[relationship name]], [[resource serviceLazily] primaryKeyLazily]];
+		id foreignID = [[resource attributes] objectForKey:foreignIDKey];
+		if (foreignID == [NSNull null])
+		{
+			result = [NSNull null];
+		}
+		else
+		{
+			result = [self newObjectIDForEntity:[relationship destinationEntity] referenceObject:foreignID];
+		}
+	}
+	// to-many
+	else if ([relationship isToMany])
+	{
+		result = nil;
+	}
+	else
+	{
+		result = nil;
+		if (outError && *outError == nil)
+		{
+			
+		}
+	}
+	return result;
 }
 
 /*!
