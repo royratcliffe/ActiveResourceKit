@@ -79,6 +79,11 @@
 		7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA14140BAAE100FE58E5 /* ActiveResourceKit.framework */; };
 		7846AA38140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA36140BAAE100FE58E5 /* InfoPlist.strings */; };
 		7846AA3A140BAAE100FE58E5 /* ActiveResourceKitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */; };
+		784BA1A0152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */; };
+		784BA1A1152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */; };
+		784BA1A2152C978600D4DD97 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879809A14D1704900825C1E /* CoreData.framework */; };
+		7865AE67152C4738008F96CC /* IncrementalStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865AE66152C4738008F96CC /* IncrementalStoreTests.m */; };
+		7865AE68152C4738008F96CC /* IncrementalStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865AE66152C4738008F96CC /* IncrementalStoreTests.m */; };
 		786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		786D637514DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -251,6 +256,9 @@
 		7846AA37140BAAE100FE58E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
+		784BA19F152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ActiveResourceKitTests.xcdatamodel; sourceTree = "<group>"; };
+		7865AE65152C4738008F96CC /* IncrementalStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncrementalStoreTests.h; sourceTree = "<group>"; };
+		7865AE66152C4738008F96CC /* IncrementalStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncrementalStoreTests.m; sourceTree = "<group>"; };
 		786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueCodingTests.h; sourceTree = "<group>"; };
 		786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueCodingTests.m; sourceTree = "<group>"; };
 		786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARURLConnectionDelegate.h; sourceTree = "<group>"; };
@@ -323,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784BA1A2152C978600D4DD97 /* CoreData.framework in Frameworks */,
 				7846AA32140BAAE100FE58E5 /* ActiveResourceKit.framework in Frameworks */,
 				78BF7F7214164FE100DB0DEA /* Foundation.framework in Frameworks */,
 				78BF7F731416512200DB0DEA /* SenTestingKit.framework in Frameworks */,
@@ -458,8 +467,11 @@
 			children = (
 				7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */,
 				7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */,
+				784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */,
 				78054AFB14694531007E947E /* VersioningTests.h */,
 				78054AFC14694531007E947E /* VersioningTests.m */,
+				7865AE65152C4738008F96CC /* IncrementalStoreTests.h */,
+				7865AE66152C4738008F96CC /* IncrementalStoreTests.m */,
 				786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */,
 				786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */,
 				7828228214686DFD005D9BD2 /* ARTestCase.h */,
@@ -818,6 +830,8 @@
 				78F7972614CC3D01007A1262 /* ConnectionTests.m in Sources */,
 				786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */,
 				780D95AE14E173B5005689CA /* BaseTests.m in Sources */,
+				7865AE68152C4738008F96CC /* IncrementalStoreTests.m in Sources */,
+				784BA1A1152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +877,8 @@
 				78F7972514CC3D01007A1262 /* ConnectionTests.m in Sources */,
 				786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */,
 				780D95AD14E173B5005689CA /* BaseTests.m in Sources */,
+				7865AE67152C4738008F96CC /* IncrementalStoreTests.m in Sources */,
+				784BA1A0152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,6 +1227,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				784BA19F152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodel */,
+			);
+			currentVersion = 784BA19F152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodel */;
+			path = ActiveResourceKitTests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7846AA0A140BAAE100FE58E5 /* Project object */;
 }
