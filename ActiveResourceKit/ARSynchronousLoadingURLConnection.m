@@ -29,8 +29,8 @@
 
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler
 {
-	NSURLResponse *response = nil;
-	NSError *error = nil;
+	NSURLResponse *__autoreleasing response = nil;
+	NSError *__autoreleasing error = nil;
 	NSData *data = [self sendRequest:request returningResponse:&response error:&error];
 	completionHandler([[ARHTTPResponse alloc] initWithURLResponse:response body:data], error);
 }

@@ -90,8 +90,8 @@
 - (void)testGet
 {
 	ARSynchronousLoadingURLConnection *connection = [[ARSynchronousLoadingURLConnection alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
-	NSHTTPURLResponse *response = nil;
-	NSError *error = nil;
+	NSHTTPURLResponse *__autoreleasing response = nil;
+	NSError *__autoreleasing error = nil;
 	NSMutableURLRequest *request = [connection requestForHTTPMethod:ARHTTPGetMethod path:@"/people/1.json" headers:nil];
 	NSData *data = [connection sendRequest:request returningResponse:&response error:&error];
 	NSDictionary *matz = [[connection format] decode:data error:&error];
