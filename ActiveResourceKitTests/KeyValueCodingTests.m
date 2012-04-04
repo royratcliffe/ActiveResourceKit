@@ -73,11 +73,12 @@
 
 - (void)testSetValuesForKeys
 {
-	NSDictionary *valuesForKeys = [NSDictionary dictionaryWithObjectsAndKeys:@"abc", @"KeyABC", @"xyz", @"KeyXYZ", nil];
+	NSDictionary *valuesForKeys = [NSDictionary dictionaryWithObjectsAndKeys:@"abc", @"KeyABC", @"xyz", @"KeyXYZ", [NSNull null], @"Null", nil];
 	[[self resource] setValuesForKeysWithDictionary:valuesForKeys];
 	NSDictionary *attributes = [[self resource] attributes];
 	STAssertEqualObjects([attributes objectForKey:@"key_abc"], @"abc", nil);
 	STAssertEqualObjects([attributes objectForKey:@"key_xyz"], @"xyz", nil);
+	STAssertEqualObjects([attributes objectForKey:@"null"], [NSNull null], nil);
 }
 
 @end
