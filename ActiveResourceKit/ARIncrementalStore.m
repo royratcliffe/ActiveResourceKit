@@ -270,11 +270,9 @@
 				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
 			}
 			
-			// Compile the results for Core Data. Base the results on nodes,
-			// rather than resources. Having previously iterated the resources
-			// in order to create or update the incremental nodes, now deal with
-			// the results in terms of managed objects and object IDs using
-			// nodes.
+			// Compile the results for Core Data. Having previously iterated the
+			// resources in order to create or update the cache, now deal with
+			// the results in terms of managed objects and object IDs.
 			switch ([request resultType])
 			{
 				case NSManagedObjectResultType:
