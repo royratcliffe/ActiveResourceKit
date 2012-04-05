@@ -1,7 +1,11 @@
 ActiveResourceKitTests::Application.routes.draw do
   resources :people
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: :index
+  end
+
+  resources :comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
