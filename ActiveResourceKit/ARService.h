@@ -185,6 +185,17 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  */
 @property(copy, NS_NONATOMIC_IOSONLY) NSURL *site;
 
+/*!
+ * @brief Answers this service's site URL combined with an additional prefix
+ * parameter representing the element attached to this service.
+ * @details Useful for initialising a nested resource service. You can use the
+ * answer to build another service for accessing resources nested below this
+ * service element. You need to supply the super-resource identifier as a prefix
+ * option when accessing sub-resources, using the super-resource's foreign key
+ * as the option key.
+ */
+- (NSURL *)siteWithPrefixParameter;
+
 //----------------------------------------------------------------------- Format
 
 @property(strong, NS_NONATOMIC_IOSONLY) id<ARFormat> format;

@@ -104,6 +104,11 @@ Class ARServiceDefaultConnectionClass;
 
 @synthesize site = _site;
 
+- (NSURL *)siteWithPrefixParameter
+{
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@/:%@", [self collectionNameLazily], [self foreignKey]] relativeToURL:[self site]];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                              Format
 //------------------------------------------------------------------------------
