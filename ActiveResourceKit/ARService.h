@@ -240,11 +240,19 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 - (NSString *)elementNameLazily;
 - (NSString *)collectionNameLazily;
 
-//------------------------------------------------------------------ Primary Key
+//------------------------------------------------------ Primary and Foreign Key
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *primaryKey;
 
 - (NSString *)primaryKeyLazily;
+
+/*!
+ * @brief Answers the element's foreign key.
+ * @details The foreign key equates to the element name followed by an
+ * underscore and finally the "id" string. This key can appear in URL paths as a
+ * prefix parameter, marked by a leading colon.
+ */
+- (NSString *)foreignKey;
 
 //----------------------------------------------------------------------- Prefix
 

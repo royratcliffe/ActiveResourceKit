@@ -196,7 +196,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                         Primary Key
+#pragma mark                                             Primary and Foreign Key
 //------------------------------------------------------------------------------
 
 @synthesize primaryKey = _primaryKey;
@@ -209,6 +209,11 @@ Class ARServiceDefaultConnectionClass;
 		[self setPrimaryKey:primaryKey = [self defaultPrimaryKey]];
 	}
 	return primaryKey;
+}
+
+- (NSString *)foreignKey
+{
+	return [[ASInflector defaultInflector] foreignKey:[self elementNameLazily] separateClassNameAndIDWithUnderscore:YES];
 }
 
 //------------------------------------------------------------------------------
