@@ -26,6 +26,8 @@
 
 #import "Person.h"
 
+#import "ActiveResourceKitTests.h"
+
 @implementation FinderTests
 
 - (void)testFindByID
@@ -59,6 +61,41 @@
 		STAssertNotNil([[matz attributes] objectForKey:@"name"], nil);
 		
 		[self setStop:YES];
+	}];
+	[self runUntilStop];
+}
+
+- (void)testFindCollectionWithCustomPrefix
+{
+	NSUInteger __block pending = 0;
+	
+	ARService *postService = [[ARService alloc] initWithSite:ActiveResourceKitTestsBaseURL() elementName:@"post"];
+	[postService findAllWithOptions:nil completionHandler:^(ARHTTPResponse *response, NSArray *posts, NSError *error) {
+		STAssertNotNil(posts, nil);
+		for (ARResource *post in posts)
+		{
+			// Derive a site URL for the nested resource.
+			NSDictionary *options = [NSDictionary dictionaryWithObject:[post ID] forKey:[[post service] foreignKey]];
+			ARService *commentService = [[ARService alloc] initWithSite:[[post service] siteWithPrefixParameter] elementName:@"comment"];
+			[commentService findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *comments, NSError *error) {
+				STAssertNotNil(comments, nil);
+				NSLog(@"%@", [post valueForKey:@"title"]);
+				for (ARResource *comment in comments)
+				{
+					NSLog(@"%@", [comment valueForKey:@"text"]);
+				}
+				
+				// Stop the run loop when pending equals zero, but not
+				// before. Completion handlers execute when the request
+				// responds. Finding a post increments pending. Finding all a
+				// post's comments decrements pending. Pending therefore finally
+				// becomes zero after finding all posts and finding each one's
+				// comments.
+				if (--pending == 0) [self setStop:YES];
+			}];
+			++pending;
+		}
+		if (pending == 0) [self setStop:YES];
 	}];
 	[self runUntilStop];
 }
