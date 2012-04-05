@@ -3,7 +3,11 @@
     <entity name="Person" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Post" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Person" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Post" positionX="160" positionY="192" width="128" height="60"/>
     </elements>
 </model>

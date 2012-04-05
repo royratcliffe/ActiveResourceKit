@@ -91,4 +91,17 @@
 	}
 }
 
+- (void)testPosts
+{
+	NSError *__autoreleasing error = nil;
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+	NSArray *posts = [[self context] executeFetchRequest:request error:&error];
+	for (NSManagedObject *post in posts)
+	{
+		NSString *title = [post valueForKey:@"title"];
+		NSLog(@"post entitled %@", title);
+		STAssertNotNil(title, nil);
+	}
+}
+
 @end
