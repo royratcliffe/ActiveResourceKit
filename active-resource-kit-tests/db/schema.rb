@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408080529) do
+ActiveRecord::Schema.define(:version => 20120409075740) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120408080529) do
     t.boolean  "published"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "person_id"
+    t.integer  "poster_id"
   end
 
 end

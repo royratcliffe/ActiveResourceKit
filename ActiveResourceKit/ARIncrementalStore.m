@@ -420,7 +420,7 @@
 	{
 		// Active resources implement to-one associations using foreign keys,
 		// meaning the incremental store expects the remote server to provide a
-		// "nameofresource_id" attribute for each to-one resource at the origin
+		// "relationship_id" attribute for each to-one resource at the origin
 		// of the to-one association.
 		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
 		NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:[self attributeNameForPropertyName:[relationship name]] separateClassNameAndIDWithUnderscore:YES];

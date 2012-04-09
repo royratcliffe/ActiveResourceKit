@@ -99,7 +99,7 @@
 	for (NSManagedObject *post in posts)
 	{
 		NSString *title = [post valueForKey:@"title"];
-		NSManagedObject *person = [post valueForKey:@"person"];
+		NSManagedObject *person = [post valueForKey:@"poster"];
 		NSString *name = [person valueForKey:@"name"];
 		NSLog(@"post entitled %@ by %@", title, name);
 		STAssertNotNil(title, nil);
