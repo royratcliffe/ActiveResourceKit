@@ -381,18 +381,7 @@
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	// If not already in the cache, turn the fault into a resource.
-	ARResource *__block resource = [_resourcesByObjectID objectForKey:objectID];
-	if (resource == nil)
-	{
-		NSNumber *ID = [self referenceObjectForObjectID:objectID];
-		ARService *service = [self serviceForEntityName:[[objectID entity] name]];
-		[service findSingleWithID:ID options:nil completionHandler:^(ARHTTPResponse *response, ARResource *aResource, NSError *error) {
-			if (aResource)
-			{
-				[_resourcesByObjectID setObject:resource = aResource forKey:objectID];
-			}
-		}];
-	}
+	ARResource *resource = [self cachedResourceForObjectID:objectID error:outError];
 	
 	NSIncrementalStoreNode *node;
 	if (resource)

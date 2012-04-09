@@ -42,6 +42,15 @@
 - (NSManagedObjectID *)objectIDForCachedResource:(ARResource *)resource withContext:(NSManagedObjectContext *)context;
 
 /*!
+ * @brief Converts an object identifier to an active resource.
+ * @details The conversion occurs using the resource cache, if the resource
+ * currently exists in the cache (a cache hit). Otherwise the implementation
+ * first loads the cache with the resource using the given object identifier (a
+ * cache miss). Uncached resources become cached before the method returns.
+ */
+- (ARResource *)cachedResourceForObjectID:(NSManagedObjectID *)objectID error:(NSError **)outError;
+
+/*!
  * @brief Answers a 64-bit version number derived from the given @a resource.
  * @details Uses the updated-at date-time as the version number. Converts the
  * update-at date to seconds since the reference date. This amounts to a big

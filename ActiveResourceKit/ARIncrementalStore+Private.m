@@ -43,6 +43,30 @@
 	return objectID;
 }
 
+- (ARResource *)cachedResourceForObjectID:(NSManagedObjectID *)objectID error:(NSError **)outError
+{
+	ARResource *__block resource = [_resourcesByObjectID objectForKey:objectID];
+	if (resource == nil)
+	{
+		NSNumber *ID = [self referenceObjectForObjectID:objectID];
+		ARService *service = [self serviceForEntityName:[[objectID entity] name]];
+		[service findSingleWithID:ID options:nil completionHandler:^(ARHTTPResponse *response, ARResource *aResource, NSError *error) {
+			if (aResource)
+			{
+				[_resourcesByObjectID setObject:resource = aResource forKey:objectID];
+			}
+			else
+			{
+				if (outError && *outError == nil)
+				{
+					*outError = error;
+				}
+			}
+		}];
+	}
+	return resource;
+}
+
 - (uint64_t)versionForResource:(ARResource *)resource
 {
 	uint64_t version;
