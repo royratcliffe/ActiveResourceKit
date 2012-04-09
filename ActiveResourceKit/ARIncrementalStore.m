@@ -418,10 +418,14 @@
 	// to-one
 	if ([relationship maxCount] == 1)
 	{
+		// Active resources implement to-one associations using foreign keys,
+		// meaning the incremental store expects the remote server to provide a
+		// "nameofresource_id" attribute for each to-one resource at the origin
+		// of the to-one association.
 		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
-		NSString *foreignIDKey = [NSString stringWithFormat:@"%@_%@", [self attributeNameForPropertyName:[relationship name]], [[resource serviceLazily] primaryKeyLazily]];
-		id foreignID = [[resource attributes] objectForKey:foreignIDKey];
-		if (foreignID == [NSNull null])
+		NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:[self attributeNameForPropertyName:[relationship name]] separateClassNameAndIDWithUnderscore:YES];
+		id foreignID = [[resource attributes] objectForKey:foreignKey];
+		if (ASNilForNull(foreignID) == nil)
 		{
 			result = [NSNull null];
 		}
