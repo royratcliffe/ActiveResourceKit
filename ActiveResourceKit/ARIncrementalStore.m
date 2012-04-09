@@ -437,7 +437,31 @@
 	// to-many
 	else if ([relationship isToMany])
 	{
-		result = nil;
+		// Answer an array of managed-object identifiers. Using standard RESTful
+		// approaches, no interface exists for querying just the resource
+		// identifiers. Instead, ask for the resources entirely, all attributes
+		// included. Rely on the resource cache to save the attributes for later
+		// when the object identifiers change from faults to realised objects.
+		//
+		// At present, the nested service cannot appear in the cache because the
+		// cache indexes by entity name; nor would it be correct to cache by the
+		// destination entity name, because the nested resource may not
+		// correspond to the non-nested resource by the same name. Caching would
+		// be possible in future if the cache indexed by site path.
+		NSMutableArray *objectIDs = [NSMutableArray array];
+		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
+		ARService *service = [resource serviceLazily];
+		ARService *nestedService = [[ARService alloc] initWithSite:[service siteWithPrefixParameter]];
+		[nestedService setElementName:[[ASInflector defaultInflector] singularize:[relationship name]]];
+		[nestedService setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
+		NSDictionary *options = [NSDictionary dictionaryWithObject:[resource ID] forKey:[service foreignKey]];
+		[nestedService findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
+			for (ARResource *resource in resources)
+			{
+				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
+			}
+		}];
+		result = [objectIDs copy];
 	}
 	else
 	{
