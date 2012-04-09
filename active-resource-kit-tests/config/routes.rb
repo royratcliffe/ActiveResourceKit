@@ -1,5 +1,7 @@
 ActiveResourceKitTests::Application.routes.draw do
-  resources :people
+  resources :people do
+    resources :posts, only: :index
+  end
 
   resources :posts do
     resources :comments, only: :index

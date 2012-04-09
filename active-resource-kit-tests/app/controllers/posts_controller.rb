@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    person_id = params[:person_id]
+    @posts = person_id ? Person.find(person_id).posts : Post.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -99,8 +99,29 @@
 	for (NSManagedObject *post in posts)
 	{
 		NSString *title = [post valueForKey:@"title"];
+		NSManagedObject *person = [post valueForKey:@"person"];
+		NSString *name = [person valueForKey:@"name"];
+		NSLog(@"post entitled %@ by %@", title, name);
+		STAssertNotNil(title, nil);
+	}
+}
+
+- (void)testComments
+{
+	NSError *__autoreleasing error = nil;
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+	NSArray *posts = [[self context] executeFetchRequest:request error:&error];
+	for (NSManagedObject *post in posts)
+	{
+		NSString *title = [post valueForKey:@"title"];
 		NSLog(@"post entitled %@", title);
 		STAssertNotNil(title, nil);
+		for (NSManagedObject *comment in [post valueForKey:@"comments"])
+		{
+			NSString *text = [comment valueForKey:@"text"];
+			NSLog(@"%@", text);
+			STAssertNotNil(text, nil);
+		}
 	}
 }
 

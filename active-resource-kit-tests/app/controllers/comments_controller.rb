@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
+    # If the parameters include a post identifier, use it. The request path
+    # matches the nested post-comments resource when a post identifier exists.
     post_id = params[:post_id]
     @comments = post_id ? Post.find(post_id).comments : Comment.all
 
