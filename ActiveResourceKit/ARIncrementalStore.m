@@ -403,7 +403,7 @@
 
 - (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
-	id result;
+	id __block result;
 	// to-one
 	if ([relationship maxCount] == 1)
 	{
@@ -437,20 +437,31 @@
 		// destination entity name, because the nested resource may not
 		// correspond to the non-nested resource by the same name. Caching would
 		// be possible in future if the cache indexed by site path.
-		NSMutableArray *objectIDs = [NSMutableArray array];
-		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
+		ARResource *resource = [self cachedResourceForObjectID:objectID error:outError];
 		ARService *service = [resource serviceLazily];
 		ARService *nestedService = [[ARService alloc] initWithSite:[service siteWithPrefixParameter]];
 		[nestedService setElementName:[[ASInflector defaultInflector] singularize:[relationship name]]];
 		[nestedService setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
 		NSDictionary *options = [NSDictionary dictionaryWithObject:[resource ID] forKey:[service foreignKey]];
 		[nestedService findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
-			for (ARResource *resource in resources)
+			if (resources)
 			{
-				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
+				NSMutableArray *objectIDs = [NSMutableArray array];
+				for (ARResource *resource in resources)
+				{
+					[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
+				}
+				result = [objectIDs copy];
+			}
+			else
+			{
+				result = nil;
+				if (outError && *outError == nil)
+				{
+					*outError = error;
+				}
 			}
 		}];
-		result = [objectIDs copy];
 	}
 	else
 	{
