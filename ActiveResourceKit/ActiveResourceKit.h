@@ -75,8 +75,17 @@
  *
  * This is easy to do. Just follow the usual Core Data-prescribed procedure:
  * load the model, load the coordinator with the model, add the store to the
- * coordinator, and finally attach the coordinator to the context. See example
- * below.
+ * coordinator, and finally attach the coordinator to the context.
+ *
+ * See example below. There are some things to especially notice. First, the
+ * persistent store type specifies the @c ARIncrementalStore type. The URL
+ * specifies the remote resource, its protocol, host and path. Protocol can be
+ * @c http, or @c https if you want secure transport. The path can specify the
+ * site root, i.e. an empty or single-slash path, or can also include a sub-path
+ * nested within the remote site. The client-side data model must correspond to
+ * the remote's RESTful interface. The Active Resource incremental store
+ * utilises the client-side data model in order to deduce the entities, their
+ * properties and relationships. Core Data itself requires a valid data model.
  *
  * @code
  *	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
