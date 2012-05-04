@@ -140,9 +140,7 @@ you cannot conveniently debug with SSL enabled. Just switch the build setting
 to `RAILS_BASE_URL = http://localhost:3000` (insecure) and launch the Rails app 
 as normal.
 
-## Design Notes
-
-### Resource Associations
+## Resource Associations
 
 When resources load at the client side, what binds their associations? How can
 the client resolve foreign keys? To do so, the client needs to identify the
@@ -154,7 +152,7 @@ resolve the association whenever a new resource appears with an ID matching some
 existing foreign key. Similarly when a new record comprising an unresolved
 foreign key loads, `ARBase` can resolve it against an existing resource.
 
-### Incremental Stores
+## Incremental Stores
 
 Apple provide a useful Core Data component called `NSIncrementalStore`, designed
 for interacting with external stores which do not bring all data into memory the
@@ -170,7 +168,7 @@ fetch request with faulting object identities without some server interaction.
 Unless the code blocks for synchronous communication, you cannot return with
 anything else except an error.
 
-### Rails Kit Sub-Framework
+## Rails Kit Sub-Framework
 
 Active Resource Kit is designed as a sub-framework on Mac OS X, though not so in
 iOS. Framework requirements mandate the following build setting within the Rails
