@@ -77,6 +77,7 @@
 	if (self)
 	{
 		_resourcesByObjectID = [[NSCache alloc] init];
+		[_resourcesByObjectID setDelegate:self];
 	}
 	return self;
 }
@@ -523,6 +524,11 @@
 		*outError = [errors objectAtIndex:0];
 	}
 	return success ? [objectIDs copy] : nil;
+}
+
+- (void)cache:(NSCache *)cache willEvictObject:(id)obj
+{
+	
 }
 
 @end

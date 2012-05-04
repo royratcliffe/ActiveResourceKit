@@ -37,7 +37,7 @@
  * derives the resources and their properties using the managed-object model
  * along with standard Rails-compatible conventions for naming.
  */
-@interface ARIncrementalStore : NSIncrementalStore
+@interface ARIncrementalStore : NSIncrementalStore<NSCacheDelegate>
 {
 	/*!
 	 * @brief Caches resources by object ID.
