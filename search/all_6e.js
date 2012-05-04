@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['newelementpathwithprefixoptions_3a',['newElementPathWithPrefixOptions:',['../interface_a_r_service.html#a811db044821c334ef4d8224ae5c421b5',1,'ARService']]],
+  ['newvalueforrelationship_3aforobjectwithid_3awithcontext_3aerror_3a',['newValueForRelationship:forObjectWithID:withContext:error:',['../interface_a_r_incremental_store.html#a003e7a5a100d4477182856cdeb7f99c4',1,'ARIncrementalStore']]],
+  ['newvaluesforobjectwithid_3awithcontext_3aerror_3a',['newValuesForObjectWithID:withContext:error:',['../interface_a_r_incremental_store.html#a7c7b414ac0a6bd1083bd402e562c96f4',1,'ARIncrementalStore']]],
+  ['nsattributedescription_28activeresource_29',['NSAttributeDescription(ActiveResource)',['../interface_n_s_attribute_description_07_active_resource_08.html',1,'']]],
+  ['nsattributedescription_2bactiveresource_2eh',['NSAttributeDescription+ActiveResource.h',['../_n_s_attribute_description_09_active_resource_8h.html',1,'']]],
+  ['nsattributedescription_2bactiveresource_2em',['NSAttributeDescription+ActiveResource.m',['../_n_s_attribute_description_09_active_resource_8m.html',1,'']]],
+  ['nsentitydescription_28activeresource_29',['NSEntityDescription(ActiveResource)',['../interface_n_s_entity_description_07_active_resource_08.html',1,'']]],
+  ['nsentitydescription_2bactiveresource_2eh',['NSEntityDescription+ActiveResource.h',['../_n_s_entity_description_09_active_resource_8h.html',1,'']]],
+  ['nsentitydescription_2bactiveresource_2em',['NSEntityDescription+ActiveResource.m',['../_n_s_entity_description_09_active_resource_8m.html',1,'']]],
+  ['nshttpurlresponse_28activeresource_29',['NSHTTPURLResponse(ActiveResource)',['../interface_n_s_h_t_t_p_u_r_l_response_07_active_resource_08.html',1,'']]],
+  ['nshttpurlresponse_2bactiveresource_2eh',['NSHTTPURLResponse+ActiveResource.h',['../_n_s_h_t_t_p_u_r_l_response_09_active_resource_8h.html',1,'']]],
+  ['nshttpurlresponse_2bactiveresource_2em',['NSHTTPURLResponse+ActiveResource.m',['../_n_s_h_t_t_p_u_r_l_response_09_active_resource_8m.html',1,'']]],
+  ['nsmanagedobject_28activeresource_29',['NSManagedObject(ActiveResource)',['../interface_n_s_managed_object_07_active_resource_08.html',1,'']]],
+  ['nsmanagedobject_2bactiveresource_2eh',['NSManagedObject+ActiveResource.h',['../_n_s_managed_object_09_active_resource_8h.html',1,'']]],
+  ['nsmanagedobject_2bactiveresource_2em',['NSManagedObject+ActiveResource.m',['../_n_s_managed_object_09_active_resource_8m.html',1,'']]],
+  ['nspersistentstore_28activeresource_29',['NSPersistentStore(ActiveResource)',['../interface_n_s_persistent_store_07_active_resource_08.html',1,'']]],
+  ['nspersistentstore_2bactiveresource_2eh',['NSPersistentStore+ActiveResource.h',['../_n_s_persistent_store_09_active_resource_8h.html',1,'']]],
+  ['nspersistentstore_2bactiveresource_2em',['NSPersistentStore+ActiveResource.m',['../_n_s_persistent_store_09_active_resource_8m.html',1,'']]]
+];
