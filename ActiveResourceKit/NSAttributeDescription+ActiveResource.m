@@ -35,7 +35,7 @@
 	switch ([self attributeType])
 	{
 		case NSDateAttributeType:
-			value = ASDateFromRFC3339String(value);
+			value = ASDateFromRFC3339String(ASNilForNull(value));
 	}
 	return value;
 }

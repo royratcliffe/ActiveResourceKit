@@ -70,7 +70,7 @@
 - (uint64_t)versionForResource:(ARResource *)resource
 {
 	uint64_t version;
-	NSDate *updatedAt = ASDateFromRFC3339String([[resource attributes] objectForKey:@"updated_at"]);
+	NSDate *updatedAt = ASDateFromRFC3339String(ASNilForNull([[resource attributes] objectForKey:@"updated_at"]));
 	if (updatedAt)
 	{
 		version = [updatedAt timeIntervalSinceReferenceDate] * 1000;
