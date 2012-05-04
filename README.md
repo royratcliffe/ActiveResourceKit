@@ -1,5 +1,81 @@
 # Active Resource Kit
 
+What can you do with Active Resource Kit?  Active Resource Kit is yet-another
+RESTful framework. There are others. But Active Resource Kit has a number of
+distinct features.
+
+1. It mirrors the Rails Active Resource gem closely. The interface and
+implementation remain as faithful as an Objective-C implementation can
+reasonably be to the Ruby-based originals.
+2. It offers a very high-level interface to RESTful resources using Core
+Data. You can access remote resources just as if they were in a local Core
+Data store. The implementation uses the new Core Data `NSIncrementalStore`
+API to merge the two dissimilar interfaces.
+3. It only has Foundation and Core Data as underlying dependencies. Although
+it has two immediate dependencies, Active Model Kit and Active Support Kit
+which fall under the same umbrella framework, Apple's Foundation and Core
+Data kits form the only _external_ dependencies. The implementation employs
+only the Foundation framework for network access.
+4. The framework supports various concurrency models when interacting with
+remote resources: these are the same models offered by Apple's Foundation
+`NSURLConnection` class, i.e. delegated URL connections, synchronous loading or
+queued loading. You can configure according to your requirements on a
+resource-by-resource basis.
+5. There are no swizzles or other non-standard Objective-C tricks. The
+framework makes extensive use of C blocks for handling completions for both
+asynchronous and synchronous interfaces; this simply follows the pattern set
+by Apple in their URL connection API.
+
+## Setting Up an Active Resource-Based Core Data Stack
+
+This is easy to do. Just follow the usual Core Data-prescribed procedure:
+load the model, load the coordinator with the model, add the store to the
+coordinator, and finally attach the coordinator to the context. See example
+below.
+
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
+	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+
+	NSError *__autoreleasing error = nil;
+	NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
+	                                                     configuration:nil
+	                                                               URL:[NSURL URLWithString:@"http://localhost:3000"]
+	                                                           options:nil
+	                                                             error:&error];
+	// <-- error handling goes here
+
+	NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+	[context setPersistentStoreCoordinator:coordinator];
+	[self setContext:context];
+
+Note that this excerpt uses Automatic Reference Counting, hence the
+`__autoreleasing` specifier for the error pointer. Notice the blatant lack of
+manual auto-releasing.
+
+## Accessing Resources
+
+You can then access resources using _only_ Core Data.
+
+	NSError *__autoreleasing error = nil;
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+	NSArray *people = [[self context] executeFetchRequest:request error:&error];
+	for (NSManagedObject *person in people)
+	{
+	    NSString *name = [person valueForKey:@"name"];
+	    NSLog(@"person named %@", name);
+	}
+
+You ask Core Data for the Person entities. The answer is a collection of
+managed object representing each Person. You access attributes on the objects
+using standard Cocoa key-value coding. However, underneath the hood, the
+Active Resource incremental store has enacted a RESTful GET request at
+http://localhost:3000/people.json, decoding and caching the active resources
+at the client side.
+
+# Design Notes
+
 ## Goals
 
 Memory is a major issue on devices running iOS. Such phones and tablets only 
