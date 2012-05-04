@@ -82,4 +82,10 @@
 	return version;
 }
 
+- (void)refreshObject:(NSManagedObject *)object
+{
+	[_resourcesByObjectID removeObjectForKey:[object objectID]];
+	[[object managedObjectContext] refreshObject:object mergeChanges:NO];
+}
+
 @end

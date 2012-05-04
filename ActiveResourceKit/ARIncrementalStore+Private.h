@@ -70,4 +70,19 @@
  */
 - (uint64_t)versionForResource:(ARResource *)resource;
 
+/*!
+ * @brief Refreshes an object in the incremental store cache.
+ * @param object The object to refresh.
+ * @details The given @a object disappears from the resource cache and becomes a
+ * fault. Subsequent attempts to access the object will refetch its resource
+ * attributes. This happens when objects insert. Inserted objects become
+ * unrealised because the remote server typically validates and further updates
+ * the inserted resource, e.g. by setting its update-at date. It also occurs
+ * when you update an object, for the same reason. Object deletion also
+ * refreshes the cache; the deleted resource disappears from the cache and the
+ * object becomes a fault before disappearing from the managed-object context as
+ * all deleted objects do.
+ */
+- (void)refreshObject:(NSManagedObject *)object;
+
 @end

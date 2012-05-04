@@ -326,7 +326,7 @@
 	// inserts
 	for (NSManagedObject *object in [request insertedObjects])
 	{
-		;
+		[self refreshObject:object];
 	}
 	
 	// updates
@@ -348,7 +348,11 @@
 		[resource setValuesForKeysWithDictionary:[entity attributesFromObject:object]];
 		[resource setPersisted:YES];
 		[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
-			if (error)
+			if (error == nil)
+			{
+				[self refreshObject:object];
+			}
+			else
 			{
 				[errors addObject:error];
 			}
@@ -362,7 +366,11 @@
 		NSEntityDescription *entity = [object entity];
 		ARService *service = [self serviceForEntityName:[entity name]];
 		[service deleteWithID:ID options:nil completionHandler:^(ARHTTPResponse *response, NSError *error) {
-			if (error)
+			if (error == nil)
+			{
+				[self refreshObject:object];
+			}
+			else
 			{
 				[errors addObject:error];
 			}
