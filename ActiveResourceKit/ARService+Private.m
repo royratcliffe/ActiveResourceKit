@@ -226,7 +226,21 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 					// error. Instead, pass the result up through to the
 					// higher-level software layers as success. Let higher-level
 					// software make a decision about validity.
+					//
+					// Rails answers a single space for DELETE responses, in
+					// fact for all responses where your action controller uses
+					// the "head" method. Explicitly, the action controller head
+					// method assigns a single space for the response
+					// body. Unfortunately, this fails to successfully
+					// decode. White space does not correctly decode a JSON
+					// object. Instead it produces an error. Work around is
+					// issue by trimming white space.
 					NSData *data = [response body];
+					NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+					if (string)
+					{
+						data = [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] dataUsingEncoding:NSUTF8StringEncoding];
+					}
 					id object = data && [data length] ? [[self formatLazily] decode:data error:&error] : nil;
 					if (error == nil)
 					{
