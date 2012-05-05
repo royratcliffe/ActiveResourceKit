@@ -125,4 +125,20 @@
 	}
 }
 
+- (void)testInsertAndDeletePerson
+{
+	NSError *__autoreleasing error = nil;
+	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
+	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
+	BOOL yes = [[self context] save:&error];
+	STAssertNotNil(person, nil);
+	STAssertTrue(yes, nil);
+	STAssertNil(error, nil);
+	
+	[[self context] deleteObject:person];
+	yes = [[self context] save:&error];
+	STAssertTrue(yes, nil);
+	STAssertNil(error, nil);
+}
+
 @end
