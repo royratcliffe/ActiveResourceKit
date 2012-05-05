@@ -131,4 +131,14 @@
  * Active Resource incremental store has enacted a RESTful GET request at
  * http://localhost:3000/people.json, decoding and caching the active resources
  * at the client side.
+ *
+ * At the other side of the connection (assuming your server runs on Rails; it
+ * does not need to be Rails but can be any conforming RESTful interface) you
+ * will see a GET request in the server log, as follows. Some details elided.
+ * @code
+ *	Started GET "/people.json" for 127.0.0.1
+ *	Processing by PeopleController#index as JSON
+ *	  Person Load (0.2ms)  SELECT "people".* FROM "people" 
+ *	Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
+ * @endcode
  */
