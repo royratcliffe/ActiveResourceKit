@@ -136,9 +136,49 @@
  * does not need to be Rails but can be any conforming RESTful interface) you
  * will see a GET request in the server log, as follows. Some details elided.
  * @code
- *	Started GET "/people.json" for 127.0.0.1
+ *	Started GET "/people.json" for 127.0.0.1 at …
  *	Processing by PeopleController#index as JSON
  *	  Person Load (0.2ms)  SELECT "people".* FROM "people" 
  *	Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
+ * @endcode
+ *
+ * @subsection inserting_resources Inserting Resources
+ *
+ * This just becomes fuss-free:
+ * @code
+ *	NSError *__autoreleasing error = nil;
+ *	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
+ *	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
+ *	BOOL yes = [[self context] save:&error];
+ * @endcode
+ * And on the server side becomes a familiar POST request:
+ * @code
+ *	Started POST "/people.json" for 127.0.0.1 at …
+ *	Processing by PeopleController#create as JSON
+ *	  Parameters: {"person"=>{"name"=>"Roy Ratcliffe"}}
+ *	   (0.1ms)  begin transaction
+ *	  SQL (0.4ms)  INSERT INTO "people" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", …], ["name", "Roy Ratcliffe"], ["updated_at", …]]
+ *	   (2.3ms)  commit transaction
+ *	Completed 201 Created in 5ms (Views: 0.8ms | ActiveRecord: 2.8ms)
+ * @endcode
+ *
+ * @subsection deleting_resources Deleting Resources
+ *
+ * Again, just very simply:
+ * @code
+ *	NSError *__autoreleasing error = nil;
+ *	[[self context] deleteObject:person];
+ *	BOOL yes = [[self context] save:&error];
+ * @endcode
+ * And the server responds:
+ * @code
+ *	Started DELETE "/people/16.json" for 127.0.0.1 at …
+ *	Processing by PeopleController#destroy as JSON
+ *	  Parameters: {"id"=>"16"}
+ *	  Person Load (0.1ms)  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", "16"]]
+ *	   …
+ *	  SQL (0.3ms)  DELETE FROM "people" WHERE "people"."id" = ?  [["id", 16]]
+ *	   …
+ *	Completed 200 OK in 15ms (ActiveRecord: 12.7ms)
  * @endcode
  */
