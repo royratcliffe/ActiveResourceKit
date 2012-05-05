@@ -23,6 +23,7 @@ var searchData=
   ['testgetwithheader',['testGetWithHeader',['../interface_connection_tests.html#a3bd3a4f5518ac5c0d5fb42baaeb1cfd0',1,'ConnectionTests']]],
   ['testhead',['testHead',['../interface_connection_tests.html#aad747153111aceba94ad857aeae92b37',1,'ConnectionTests']]],
   ['testidfromresponse',['testIDFromResponse',['../interface_active_resource_kit_tests.html#aa456317879a07fec315f95f8a2a3c554',1,'ActiveResourceKitTests']]],
+  ['testinsertanddeleteperson',['testInsertAndDeletePerson',['../interface_incremental_store_tests.html#a4ff6b670a7d3e2acf1cceb81c9b17bac',1,'IncrementalStoreTests']]],
   ['testjsonformat',['testJSONFormat',['../interface_active_resource_kit_tests.html#ac1c030ef8953921414b03562a3f270df',1,'ActiveResourceKitTests']]],
   ['testnestedresources',['testNestedResources',['../interface_active_resource_kit_tests.html#a5f779872938821181953300a9ed3897d',1,'ActiveResourceKitTests']]],
   ['testnewelementpath',['testNewElementPath',['../interface_active_resource_kit_tests.html#ad4e05b185ccf63a61fafdc056bff7e32',1,'ActiveResourceKitTests']]],

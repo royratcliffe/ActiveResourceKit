@@ -28,7 +28,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v0.4&nbsp;(448.0)</span>
+   &#160;<span id="projectnumber">v0.5&nbsp;(455.0)</span>
    </div>
    
   </td>
@@ -127,8 +127,43 @@ Accessing Resources</h2>
         NSString *name = [person valueForKey:<span class="stringliteral">@&quot;name&quot;</span>];
         NSLog(<span class="stringliteral">@&quot;person named %@&quot;</span>, name);
     }
-</pre></div><p>You ask Core Data for the <a class="el" href="interface_person.html">Person</a> entities. The answer is a collection of managed object representing each <a class="el" href="interface_person.html">Person</a>. You access attributes on the objects using standard Cocoa key-value coding. However, underneath the hood, the Active Resource incremental store has enacted a RESTful GET request at <a href="http://localhost:3000/people.json,">http://localhost:3000/people.json,</a> decoding and caching the active resources at the client side. </p>
-</div></div><!-- contents -->
+</pre></div><p>You ask Core Data for the <a class="el" href="interface_person.html">Person</a> entities. The answer is a collection of managed object representing each <a class="el" href="interface_person.html">Person</a>. You access attributes on the objects using standard Cocoa key-value coding. However, underneath the hood, the Active Resource incremental store has enacted a RESTful GET request at <a href="http://localhost:3000/people.json,">http://localhost:3000/people.json,</a> decoding and caching the active resources at the client side.</p>
+<p>At the other side of the connection (assuming your server runs on Rails; it does not need to be Rails but can be any conforming RESTful interface) you will see a GET request in the server log, as follows. Some details elided. </p>
+<div class="fragment"><pre class="fragment">    Started GET <span class="stringliteral">&quot;/people.json&quot;</span> <span class="keywordflow">for</span> 127.0.0.1 at …
+    Processing by PeopleController#index as JSON
+      <a class="code" href="interface_person.html">Person</a> Load (0.2ms)  SELECT &quot;people&quot;.* FROM &quot;people&quot; 
+    Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
+</pre></div><h3><a class="anchor" id="inserting_resources"></a>
+Inserting Resources</h3>
+<p>This just becomes fuss-free: </p>
+<div class="fragment"><pre class="fragment">    NSError *__autoreleasing error = nil;
+    NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:<span class="stringliteral">@&quot;Person&quot;</span> inManagedObjectContext:[<span class="keyword">self</span> context]];
+    [person setValue:<span class="stringliteral">@&quot;Roy Ratcliffe&quot;</span> forKey:<span class="stringliteral">@&quot;name&quot;</span>];
+    BOOL yes = [[<span class="keyword">self</span> context] save:&amp;error];
+</pre></div><p> And on the server side becomes a familiar POST request: </p>
+<div class="fragment"><pre class="fragment">    Started POST <span class="stringliteral">&quot;/people.json&quot;</span> <span class="keywordflow">for</span> 127.0.0.1 at …
+    Processing by PeopleController#create as JSON
+      Parameters: {<span class="stringliteral">&quot;person&quot;</span>=&gt;{<span class="stringliteral">&quot;name&quot;</span>=&gt;<span class="stringliteral">&quot;Roy Ratcliffe&quot;</span>}}
+       (0.1ms)  begin transaction
+      SQL (0.4ms)  INSERT INTO <span class="stringliteral">&quot;people&quot;</span> (<span class="stringliteral">&quot;created_at&quot;</span>, <span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;updated_at&quot;</span>) VALUES (?, ?, ?)  [[<span class="stringliteral">&quot;created_at&quot;</span>, …], [<span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;Roy Ratcliffe&quot;</span>], [<span class="stringliteral">&quot;updated_at&quot;</span>, …]]
+       (2.3ms)  commit transaction
+    Completed 201 Created in 5ms (Views: 0.8ms | ActiveRecord: 2.8ms)
+</pre></div><h3><a class="anchor" id="deleting_resources"></a>
+Deleting Resources</h3>
+<p>Again, just very simply: </p>
+<div class="fragment"><pre class="fragment">    NSError *__autoreleasing error = nil;
+    [[<span class="keyword">self</span> context] deleteObject:person];
+    BOOL yes = [[<span class="keyword">self</span> context] save:&amp;error];
+</pre></div><p> And the server responds: </p>
+<div class="fragment"><pre class="fragment">    Started DELETE <span class="stringliteral">&quot;/people/16.json&quot;</span> <span class="keywordflow">for</span> 127.0.0.1 at …
+    Processing by PeopleController#destroy as JSON
+      Parameters: {<span class="stringliteral">&quot;id&quot;</span>=&gt;<span class="stringliteral">&quot;16&quot;</span>}
+      <a class="code" href="interface_person.html">Person</a> Load (0.1ms)  SELECT &quot;people&quot;.* FROM &quot;people&quot; WHERE &quot;people&quot;.&quot;<span class="keywordtype">id</span>&quot; = ? LIMIT 1  [[&quot;<span class="keywordtype">id</span>&quot;, &quot;16&quot;]]
+       …
+      SQL (0.3ms)  DELETE FROM &quot;people&quot; WHERE &quot;people&quot;.&quot;<span class="keywordtype">id</span>&quot; = ?  [[&quot;<span class="keywordtype">id</span>&quot;, 16]]
+       …
+    Completed 200 OK in 15ms (ActiveRecord: 12.7ms)
+</pre></div> </div></div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
