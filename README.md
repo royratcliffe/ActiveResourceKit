@@ -160,7 +160,13 @@ current background instance in order to set up and prime the fixtures, before
 launching a new server instance. This happens quite quickly; Thin is a
 fast-loading web server.
 
-The test launcher script assumes that you have RVM installed.
+The test launcher script assumes that you have RVM installed as well as the 
+expected version of Ruby; see `active-resource-kit-tests/.rvmrc`. After 
+installing RVM, install the required Ruby and the required Gems, as follows.
+
+	cd active-resource-kit-tests
+	rvm install ruby-1.9.2-p320
+	bundle install
 
 ### Viewing the Test Server Log
 
