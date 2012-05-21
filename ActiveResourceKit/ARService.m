@@ -342,7 +342,7 @@ Class ARServiceDefaultConnectionClass;
 {
 	ARResource *resource = [[ARResource alloc] initWithService:self attributes:attributes];
 	[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
-		completionHandler(response, resource, error);
+		completionHandler(response, error == nil ? resource : nil, error);
 	}];
 }
 
