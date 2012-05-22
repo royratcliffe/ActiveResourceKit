@@ -141,4 +141,20 @@
 	STAssertNil(error, nil);
 }
 
+- (void)testUpdatePerson
+{
+	NSError *__autoreleasing error = nil;
+	
+	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
+	BOOL yes = [[self context] save:&error];
+	STAssertNotNil(person, nil);
+	STAssertTrue(yes, nil);
+	STAssertNil(error, nil);
+	
+	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
+	yes = [[self context] save:&error];
+	STAssertTrue(yes, nil);
+	STAssertNil(error, nil);
+}
+
 @end
