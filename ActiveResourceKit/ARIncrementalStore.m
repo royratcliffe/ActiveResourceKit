@@ -327,6 +327,13 @@
 	// inserts
 	for (NSManagedObject *object in [request insertedObjects])
 	{
+		// There is a good reason for refreshing an inserted object, even though
+		// at first sight reloading it appears odd. Are not the client and
+		// server synchronised after a resource insertion with respect to the
+		// inserted entities? No, because the server updates the created-at and
+		// the updated-at time stamps. Accessing the object again therefore
+		// requires a fetch in order to synchronise with the server. This
+		// principle also applies to updates, see below.
 		[self refreshObject:object];
 	}
 	
