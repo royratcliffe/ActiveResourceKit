@@ -157,4 +157,45 @@
 	STAssertNil(error, nil);
 }
 
+- (void)testOnePostToManyComments
+{
+	// What happens when you instantiate two entities and wire them up entirely
+	// at the client side first? Test it! Create a post with one
+	// comment. Construct the post, comment and their relationship within the
+	// client at first. Then save the context in order to transfer the objects
+	// and their relationship to the remote server. Thereafter, throw away the
+	// comment and refetch the comment by dereferencing the post's "comments"
+	// relationship.
+	NSError *__autoreleasing error = nil;
+	NSManagedObject *post;
+	
+	@autoreleasepool {
+		post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+		NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+		STAssertNotNil(post, nil);
+		STAssertNotNil(comment, nil);
+		
+		// Set up attributes for the post and the comment.
+		[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
+		[post setValue:@"Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret. nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur. erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent." forKey:@"body"];
+		[comment setValue:@"Quae cum dixisset, Explicavi, inquit, sententiam meam, et eo quidem consilio, tuum iudicium ut cognoscerem, quoniam mihi ea facultas, ut id meo arbitratu facerem, ante hoc tempus numquam est data." forKey:@"text"];
+		
+		// Form the one-post-to-many-comments association.
+		[comment setValue:post forKey:@"post"];
+		
+		// Send it all to the server.
+		STAssertTrue([[self context] save:&error], nil);
+		STAssertNil(error, nil);
+	}
+	
+	@autoreleasepool {
+		NSMutableArray *comments = [NSMutableArray array];
+		for (NSManagedObject *comment in [post valueForKey:@"comments"])
+		{
+			[comments addObject:[comment valueForKey:@"text"]];
+		}
+		STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound, nil);
+	}
+}
+
 @end

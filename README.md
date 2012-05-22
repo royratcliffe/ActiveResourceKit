@@ -121,6 +121,46 @@ And the server responds:
 	   …
 	Completed 200 OK in 15ms (ActiveRecord: 12.7ms)
 
+### Forming Associations
+
+You can conveniently form associations between objects and their remote 
+resources using only the Core Data interface.
+
+The following demonstrates what happens when you instantiate two entities and 
+wire them up entirely at the client side first. Lets say you have a post and 
+comment model; posts have many comments, a one post to many comments 
+association. The following initially creates a post with one comment.
+
+	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+		
+	// Set up attributes for the post and the comment.
+	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
+	[post setValue:@"Non eram nescius…" forKey:@"body"];
+	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
+		
+	// Form the one-post-to-many-comments association.
+	[comment setValue:post forKey:@"post"];
+		
+	// Send it all to the server.
+	NSError *__autoreleasing error = nil;
+	[[self context] save:&error];
+
+It constructs a new post, a new comment and their relationship within the 
+client at first. Then it saves the context in order to transfer the objects and 
+their relationship to the remote server.
+
+Thereafter, you can throw away the comment and refetch it by dereferencing the 
+post's "comments" relationship. The following extract pulls out each text field 
+from the comments based on a given post.
+
+	NSMutableArray *comments = [NSMutableArray array];
+	for (NSManagedObject *comment in [post valueForKey:@"comments"])
+	{
+		[comments addObject:[comment valueForKey:@"text"]];
+	}
+	[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
+
 # Design Notes
 
 ## Goals

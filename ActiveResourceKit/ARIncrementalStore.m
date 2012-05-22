@@ -334,6 +334,50 @@
 	//
 	for (NSManagedObject *object in [[request insertedObjects] copy])
 	{
+		// Resolve relationships. Pick out the to-one associations. Is there a
+		// foreign key with a matching to-one relationship? Look for a matching
+		// foreign key within the resource for each to-one relationship. If the
+		// foreign key does not exist but the to-one relationship does, then
+		// resolve the relationship at the server side by assigning the foreign
+		// key to the relationship destination's object reference, its resource
+		// identifier. Collect such foreign key attributes first because there
+		// could be multiple. Merge and save them.
+		//
+		// Ignore the to-many associations. Rails will handle that.
+		ARResource *resource = [self cachedResourceForObjectID:[object objectID] error:outError];
+		if (resource)
+		{
+			NSMutableDictionary *foreignKeys = [NSMutableDictionary dictionary];
+			for (NSPropertyDescription *property in [[object entity] properties])
+			{
+				if ([property isKindOfClass:[NSRelationshipDescription class]] && [(NSRelationshipDescription *)property maxCount] == 1)
+				{
+					NSString *attributeName = [self attributeNameForPropertyName:[(NSRelationshipDescription *)property name]];
+					NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:attributeName separateClassNameAndIDWithUnderscore:YES];
+					NSManagedObject *destination = [object valueForKey:[(NSRelationshipDescription *)property name]];
+					if (ASNilForNull([[resource attributes] objectForKey:foreignKey]) == nil && destination)
+					{
+						NSNumber *destinationID = [self referenceObjectForObjectID:[destination objectID]];
+						[foreignKeys setObject:destinationID forKey:foreignKey];
+					}
+				}
+			}
+			if ([foreignKeys count])
+			{
+				[resource mergeAttributes:foreignKeys];
+				[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
+					if (error == nil)
+					{
+						;
+					}
+					else
+					{
+						[errors addObject:error];
+					}
+				}];
+			}
+		}
+		
 		// There is a good reason for refreshing an inserted object, even though
 		// at first sight reloading it appears odd. Are not the client and
 		// server synchronised after a resource insertion with respect to the
@@ -510,6 +554,12 @@
  * sends Active Resource "create with attributes" requests for each object in
  * order to obtain each object's permanent ID, as assigned by the resource
  * server.
+ *
+ * There is a synchronisation issue here. The given objects do not yet exist at
+ * the server side; they have no permanent identifiers and hence Core Data asks
+ * for those identifiers by invoking this override. The objects need
+ * creating. Their permanent identifiers appear at the server side when the
+ * remote application creates the associated record.
  */
 - (NSArray *)obtainPermanentIDsForObjects:(NSArray *)objects error:(NSError **)outError
 {
