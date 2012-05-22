@@ -325,7 +325,14 @@
 	NSMutableArray *errors = [NSMutableArray array];
 	
 	// inserts
-	for (NSManagedObject *object in [request insertedObjects])
+	//
+	// Copy the insert-update-delete sets before iterating. This is necessary
+	// because the inner loop refreshes the object. Core Data adjusts the given
+	// sets when you refresh the object. Naughty, naughty. Apple documentation
+	// does not mention this subtlety. Copying the set effectively side-steps
+	// the collection mutation.
+	//
+	for (NSManagedObject *object in [[request insertedObjects] copy])
 	{
 		// There is a good reason for refreshing an inserted object, even though
 		// at first sight reloading it appears odd. Are not the client and
@@ -338,7 +345,7 @@
 	}
 	
 	// updates
-	for (NSManagedObject *object in [request updatedObjects])
+	for (NSManagedObject *object in [[request updatedObjects] copy])
 	{
 		// Updates occur by rebuilding the Active Resource from its associated
 		// incremental node unless the resource already exists in the cache. You
@@ -373,7 +380,7 @@
 	}
 	
 	// deletes
-	for (NSManagedObject *object in [request deletedObjects])
+	for (NSManagedObject *object in [[request deletedObjects] copy])
 	{
 		NSNumber *ID = [self referenceObjectForObjectID:[object objectID]];
 		NSEntityDescription *entity = [object entity];
