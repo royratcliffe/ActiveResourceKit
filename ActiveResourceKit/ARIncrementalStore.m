@@ -26,6 +26,7 @@
 #import "ARIncrementalStore+Private.h"
 #import "ARResource.h"
 #import "ARService.h"
+#import "ARErrors.h"
 #import "ARSynchronousLoadingURLConnection.h"
 #import "NSManagedObject+ActiveResource.h"
 #import "NSEntityDescription+ActiveResource.h"
@@ -467,7 +468,7 @@
 		node = nil;
 		if (outError && *outError == nil)
 		{
-			
+			*outError = [NSError errorWithDomain:ARErrorDomain code:ARValuesForObjectError userInfo:nil];
 		}
 	}
 	return node;
@@ -540,7 +541,7 @@
 		result = nil;
 		if (outError && *outError == nil)
 		{
-			
+			*outError = [NSError errorWithDomain:ARErrorDomain code:ARValueForRelationshipError userInfo:nil];
 		}
 	}
 	return result;

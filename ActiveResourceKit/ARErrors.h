@@ -30,6 +30,8 @@ enum
 {
 	ARUnsupportedRootObjectTypeError = 'urot',
 	ARResponseIsNotHTTPError         = 'rinh',
+	ARValuesForObjectError           = 'vfoe',
+	ARValueForRelationshipError      = 'vfre',
 };
 
 //------------------------------------------------------------ Connection Errors
