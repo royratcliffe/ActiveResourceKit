@@ -138,7 +138,7 @@
  * @code
  *	Started GET "/people.json" for 127.0.0.1 at …
  *	Processing by PeopleController#index as JSON
- *	  Person Load (0.2ms)  SELECT "people".* FROM "people" 
+ *	  Person Load (0.2ms)  SELECT "people".* FROM "people"
  *	Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
  * @endcode
  *

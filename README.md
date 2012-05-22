@@ -80,7 +80,7 @@ will see a GET request in the server log, as follows. Some details elided.
 
 	Started GET "/people.json" for 127.0.0.1 at …
 	Processing by PeopleController#index as JSON
-	  Person Load (0.2ms)  SELECT "people".* FROM "people" 
+	  Person Load (0.2ms)  SELECT "people".* FROM "people"
 	Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
 
 ### Inserting Resources
@@ -123,35 +123,35 @@ And the server responds:
 
 ### Forming Associations
 
-You can conveniently form associations between objects and their remote 
+You can conveniently form associations between objects and their remote
 resources using only the Core Data interface.
 
-The following demonstrates what happens when you instantiate two entities and 
-wire them up entirely at the client side first. Lets say you have a post and 
-comment model; posts have many comments, a one post to many comments 
+The following demonstrates what happens when you instantiate two entities and
+wire them up entirely at the client side first. Lets say you have a post and
+comment model; posts have many comments, a one post to many comments
 association. The following initially creates a post with one comment.
 
 	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
 	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
-		
+	
 	// Set up attributes for the post and the comment.
 	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
 	[post setValue:@"Non eram nescius…" forKey:@"body"];
 	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
-		
+	
 	// Form the one-post-to-many-comments association.
 	[comment setValue:post forKey:@"post"];
-		
+	
 	// Send it all to the server.
 	NSError *__autoreleasing error = nil;
 	[[self context] save:&error];
 
-It constructs a new post, a new comment and their relationship within the 
-client at first. Then it saves the context in order to transfer the objects and 
+It constructs a new post, a new comment and their relationship within the
+client at first. Then it saves the context in order to transfer the objects and
 their relationship to the remote server.
 
-Thereafter, you can throw away the comment and refetch it by dereferencing the 
-post's "comments" relationship. The following extract pulls out each text field 
+Thereafter, you can throw away the comment and refetch it by dereferencing the
+post's "comments" relationship. The following extract pulls out each text field
 from the comments based on a given post.
 
 	NSMutableArray *comments = [NSMutableArray array];
@@ -165,26 +165,26 @@ from the comments based on a given post.
 
 ## Goals
 
-Memory is a major issue on devices running iOS. Such phones and tablets only 
+Memory is a major issue on devices running iOS. Such phones and tablets only
 have either 128, 256 or 512MB of RAM.
 
 ## Connections
 
-Cocoa's Foundation framework supports three distinct URL connections. Active 
-Resource Kit models them using four object classes: one abstract with three 
+Cocoa's Foundation framework supports three distinct URL connections. Active
+Resource Kit models them using four object classes: one abstract with three
 corresponding concrete implementation classes.
 
 ![Class Diagram: Connections](https://github.com/royratcliffe/ActiveResourceKit/raw/master/Documents/Class_Diagram__Connections.png)
 
 ## Lazy Getting
 
-Rails makes extensive use of the lazy getter paradigm: attributes remain 
-undefined until you access them for the first time. This is a useful model. It 
-postpones instantiation of dependencies, such as format and connection, until 
-actually needed. Hence clients can easily override before use to customise 
+Rails makes extensive use of the lazy getter paradigm: attributes remain
+undefined until you access them for the first time. This is a useful model. It
+postpones instantiation of dependencies, such as format and connection, until
+actually needed. Hence clients can easily override before use to customise
 behaviour.
 
-The cross-platform requirement clashes with lazily-getting for this project 
+The cross-platform requirement clashes with lazily-getting for this project
 however.
 
 ## Testing
@@ -200,8 +200,8 @@ current background instance in order to set up and prime the fixtures, before
 launching a new server instance. This happens quite quickly; Thin is a
 fast-loading web server.
 
-The test launcher script assumes that you have RVM installed as well as the 
-expected version of Ruby; see `active-resource-kit-tests/.rvmrc`. After 
+The test launcher script assumes that you have RVM installed as well as the
+expected version of Ruby; see `active-resource-kit-tests/.rvmrc`. After
 installing RVM, install the required Ruby and the required Gems, as follows.
 
 	cd active-resource-kit-tests
@@ -216,21 +216,21 @@ You can view the test servers log using the command:
 
 ### Rails Base URL
 
-The kit's test target launches a Rails application in the background. The Xcode 
-schemes run a Thin server using the URL scheme, address and port passed by the 
-`RAILS_BASE_URL` environment variable. You can find this variable, along with 
-the default `RAILS_ENV` setting, in the project build settings under 
+The kit's test target launches a Rails application in the background. The Xcode
+schemes run a Thin server using the URL scheme, address and port passed by the
+`RAILS_BASE_URL` environment variable. You can find this variable, along with
+the default `RAILS_ENV` setting, in the project build settings under
 User-Defined as follows.
 
 	RAILS_BASE_URL = https://localhost:3000
 	RAILS_ENV = development
 
-Since the default URL scheme specifies `https`, the test launches Thin with the 
-`--ssl` option. This enables SSL over HTTP encrypted communication. Changing 
-the build setting to use `http` rather than `https` disables the `--ssl` 
-option. This proves useful when debugging the server-side in tandom, e.g. when 
-you cannot conveniently debug with SSL enabled. Just switch the build setting 
-to `RAILS_BASE_URL = http://localhost:3000` (insecure) and launch the Rails app 
+Since the default URL scheme specifies `https`, the test launches Thin with the
+`--ssl` option. This enables SSL over HTTP encrypted communication. Changing
+the build setting to use `http` rather than `https` disables the `--ssl`
+option. This proves useful when debugging the server-side in tandom, e.g. when
+you cannot conveniently debug with SSL enabled. Just switch the build setting
+to `RAILS_BASE_URL = http://localhost:3000` (insecure) and launch the Rails app
 as normal.
 
 ## Resource Associations
