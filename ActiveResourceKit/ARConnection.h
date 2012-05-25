@@ -100,6 +100,7 @@ typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError 
  * belongs to the public API in order to provide a flexible approach to handling
  * connections: asynchronous or synchronous, queued or immediate. The method
  * simply prepares the request ready to go.
+ * @param HTTPMethod HTTP request method, one of: GET, HEAD, PUT, POST or DELETE.
  * @param path URL path element to apply to the site's base URL.
  * @param headers Zero or more header fields. These override all other headers
  * within the request, including authorisation and formatting headers. Use @c
