@@ -93,6 +93,11 @@
 	return service;
 }
 
+- (void)evictAllResources
+{
+	[_resourcesByObjectID removeAllObjects];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                  Active Resource-to-Core Data Names
 //------------------------------------------------------------------------------

@@ -120,6 +120,19 @@
  */
 - (ARService *)serviceForEntityName:(NSString *)entityName;
 
+/*!
+ * @brief Flushes the resource cache.
+ * @details Removes all resources currently retained by the incremental store's
+ * active resource-oriented cache. Note that this method flushes the resource
+ * cache only. It does not @em fault any associated non-fault managed objects
+ * which also retain client-side snapshots of attributes and
+ * relationships. Resources do not persist in the cache for any length of time;
+ * managed objects cache remote resources independently when not faulted. The
+ * cache exists as an interface bridging device for marrying Active Resource
+ * protocols with Core Data protocols.
+ */
+- (void)evictAllResources;
+
 //------------------------------------------- Active Resource-to-Core Data Names
 
 // The following instance methods perform default name translations between
