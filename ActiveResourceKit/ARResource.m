@@ -330,4 +330,33 @@
 	return [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark                                                              Object
+//------------------------------------------------------------------------------
+
+- (NSString *)description
+{
+	NSMutableString *string = [NSMutableString stringWithFormat:@"%@: %p", NSStringFromClass([self class]), self];
+	ARService *service = [self service];
+	if (service)
+	{
+		NSString *elementName = [service elementName];
+		if (elementName)
+		{
+			[string appendFormat:@" element:%@", elementName];
+		}
+		NSString *collectionName = [service collectionName];
+		if (collectionName)
+		{
+			[string appendFormat:@" collection:%@", collectionName];
+		}
+		NSDictionary *attributes = [self attributes];
+		for (NSString *attributeName in attributes)
+		{
+			[string appendFormat:@" %@=%@", attributeName, [attributes objectForKey:attributeName]];
+		}
+	}
+	return [string copy];
+}
+
 @end
