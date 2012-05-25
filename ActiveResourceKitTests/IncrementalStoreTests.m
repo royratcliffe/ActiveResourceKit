@@ -157,94 +157,88 @@
 	STAssertNil(error, nil);
 }
 
+/*!
+ * @brief Tests one post to many comments association
+ * @details What happens when you instantiate two entities and wire them up entirely
+ * at the client side first? Test it! Create a post with one
+ * comment. Construct the post, comment and their relationship within the
+ * client at first. Then save the context in order to transfer the objects
+ * and their relationship to the remote server. Thereafter, throw away the
+ * comment and refetch the comment by dereferencing the post's "comments"
+ * relationship.
+ */
 - (void)testOnePostToManyComments
 {
-	// What happens when you instantiate two entities and wire them up entirely
-	// at the client side first? Test it! Create a post with one
-	// comment. Construct the post, comment and their relationship within the
-	// client at first. Then save the context in order to transfer the objects
-	// and their relationship to the remote server. Thereafter, throw away the
-	// comment and refetch the comment by dereferencing the post's "comments"
-	// relationship.
 	NSError *__autoreleasing error = nil;
-	NSManagedObject *post;
 	
-	@autoreleasepool {
-		post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
-		NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
-		STAssertNotNil(post, nil);
-		STAssertNotNil(comment, nil);
-		
-		// Set up attributes for the post and the comment.
-		[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
-		[post setValue:@"Non eram nescius…" forKey:@"body"];
-		[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
-		
-		// Form the one-post-to-many-comments association.
-		[comment setValue:post forKey:@"post"];
-		
-		// Send it all to the server.
-		STAssertTrue([[self context] save:&error], nil);
-		STAssertNil(error, nil);
-	}
+	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+	STAssertNotNil(post, nil);
+	STAssertNotNil(comment, nil);
 	
-	@autoreleasepool {
-		NSMutableArray *comments = [NSMutableArray array];
-		for (NSManagedObject *comment in [post valueForKey:@"comments"])
-		{
-			[comments addObject:[comment valueForKey:@"text"]];
-		}
-		STAssertFalse([comments count] == 0, nil);
-		STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset…"].location != NSNotFound, nil);
+	// Set up attributes for the post and the comment.
+	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
+	[post setValue:@"Non eram nescius…" forKey:@"body"];
+	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
+	
+	// Form the one-post-to-many-comments association.
+	[comment setValue:post forKey:@"post"];
+	
+	// Send it all to the server.
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	NSMutableArray *comments = [NSMutableArray array];
+	for (NSManagedObject *comment in [post valueForKey:@"comments"])
+	{
+		[comments addObject:[comment valueForKey:@"text"]];
 	}
+	STAssertFalse([comments count] == 0, nil);
+	STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset…"].location != NSNotFound, nil);
 }
 
 - (void)testOnePostToManyCommentsPartiallySaved
 {
 	NSError *__autoreleasing error = nil;
-	NSManagedObject *post;
 	
-	@autoreleasepool {
-		// Send the post to the server. This results in one POST request.
-		post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
-		[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
-		[post setValue:@"Non eram nescius…" forKey:@"body"];
-		STAssertNotNil(post, nil);
-		STAssertTrue([[self context] save:&error], nil);
-		STAssertNil(error, nil);
-		
-		// Send the comment to the server. This results in a second POST request.
-		NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
-		[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
-		STAssertNotNil(comment, nil);
-		STAssertTrue([[self context] save:&error], nil);
-		STAssertNil(error, nil);
-		
-		// Send the relationship to the server. This results in a GET request
-		// for the comment and for the post. This always happens because
-		// insertion of objects always evicts the resource from the resource
-		// cache. The server alters attributes when creating and updating. POST
-		// requests therefore desynchronise server and client. Core Data then
-		// asks for all the post's comments, another GET request. Finally, a PUT
-		// request for the comment saves the new association.
-		//
-		// As a side effect, an unwanted one, Core Data also marks the post as
-		// modified and issues an update for it.
-		[comment setValue:post forKey:@"post"];
-		STAssertTrue([[self context] save:&error], nil);
-		STAssertNil(error, nil);
-		
-	}
+	// Send the post to the server. This results in one POST request.
+	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+	[post setValue:@"title" forKey:@"title"];
+	[post setValue:@"body" forKey:@"body"];
+	STAssertNotNil(post, nil);
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
 	
-	@autoreleasepool {
-		NSMutableArray *comments = [NSMutableArray array];
-		for (NSManagedObject *comment in [post valueForKey:@"comments"])
-		{
-			[comments addObject:[comment valueForKey:@"text"]];
-		}
-		STAssertFalse([comments count] == 0, nil);
-		STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset…"].location != NSNotFound, nil);
+	// Send the comment to the server. This results in a second POST request.
+	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+	[comment setValue:@"text" forKey:@"text"];
+	STAssertNotNil(comment, nil);
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	// Send the relationship to the server. This results in a GET request
+	// for the comment and for the post. This always happens because
+	// insertion of objects always evicts the resource from the resource
+	// cache. The server alters attributes when creating and updating. POST
+	// requests therefore desynchronise server and client. Core Data then
+	// asks for all the post's comments, another GET request. Finally, a PUT
+	// request for the comment saves the new association.
+	//
+	// As a side effect, an unwanted one, Core Data also marks the post as
+	// modified and issues an update for it.
+	[comment setValue:post forKey:@"post"];
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
+	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
+	NSMutableArray *comments = [NSMutableArray array];
+	for (NSManagedObject *comment in [post valueForKey:@"comments"])
+	{
+		[comments addObject:[comment valueForKey:@"text"]];
 	}
+	STAssertFalse([comments count] == 0, nil);
+	STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"text"].location != NSNotFound, nil);
 }
 
 @end

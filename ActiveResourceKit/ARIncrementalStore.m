@@ -391,9 +391,28 @@
 		{
 			resource = [[ARResource alloc] initWithService:[self serviceForEntityName:[entity name]]];
 		}
-		[resource setValuesForKeysWithDictionary:[entity attributesFromObject:object]];
+		// Optimise PUT requests. Extract updated attributes from the managed
+		// object. Merge these with foreign-key updates. However, if the
+		// resulting merge exactly matches the cached resource attributes, then
+		// skip the resource save operation, as an optimisation. Do not compare
+		// attributes only appearing in the cached resource when finding
+		// differences; attributes only appearing in the resource cache have
+		// never been accessed or modified, likely because the client-side data
+		// model does not describe these ignored attributes. This makes an
+		// important assumption: that the resource always reflects its
+		// server-side state. The assumption remains true because the
+		// incremental store flushes the resource on insert, update and
+		// delete. Anything remaining in the cache was fetched from the server
+		// and therefore remains in-sync with the server until modified or
+		// deleted.
+		NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[entity attributesFromObject:object]];
+		[attributes setValuesForKeysWithDictionary:[self foreignKeysForObject:object resource:resource]];
+		if ([attributes isEqualToDictionary:[[resource attributes] dictionaryWithValuesForKeys:[attributes allKeys]]])
+		{
+			continue;
+		}
+		[resource mergeAttributes:attributes];
 		[resource setPersisted:YES];
-		[resource mergeAttributes:[self foreignKeysForObject:object resource:resource]];
 		[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
 			if (error == nil)
 			{
