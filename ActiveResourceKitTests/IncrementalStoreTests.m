@@ -188,6 +188,8 @@
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
 	
+	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
+	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
 	NSMutableArray *comments = [NSMutableArray array];
 	for (NSManagedObject *comment in [post valueForKey:@"comments"])
 	{
