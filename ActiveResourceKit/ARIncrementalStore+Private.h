@@ -85,4 +85,18 @@
  */
 - (void)refreshObject:(NSManagedObject *)object;
 
+/*!
+ * @brief Resolves relationships.
+ * @details Picks out the to-one associations. Is there a foreign key with a
+ * matching to-one relationship? Looks for a matching foreign key within the
+ * resource for each to-one relationship. If the foreign key does not exist but
+ * the to-one relationship does, then resolves the relationship at the server
+ * side by assigning the foreign key to the relationship destination's object
+ * reference, its resource identifier. Collects such foreign key attributes
+ * first because there could be multiple. Merge and save them.
+ *
+ * Ignores to-many associations. Rails will handle that.
+ */
+- (NSDictionary *)foreignKeysForObject:(NSManagedObject *)object resource:(ARResource *)resource;
+
 @end

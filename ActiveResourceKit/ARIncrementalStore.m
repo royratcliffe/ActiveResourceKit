@@ -335,34 +335,10 @@
 	//
 	for (NSManagedObject *object in [[request insertedObjects] copy])
 	{
-		// Resolve relationships. Pick out the to-one associations. Is there a
-		// foreign key with a matching to-one relationship? Look for a matching
-		// foreign key within the resource for each to-one relationship. If the
-		// foreign key does not exist but the to-one relationship does, then
-		// resolve the relationship at the server side by assigning the foreign
-		// key to the relationship destination's object reference, its resource
-		// identifier. Collect such foreign key attributes first because there
-		// could be multiple. Merge and save them.
-		//
-		// Ignore the to-many associations. Rails will handle that.
 		ARResource *resource = [self cachedResourceForObjectID:[object objectID] error:outError];
 		if (resource)
 		{
-			NSMutableDictionary *foreignKeys = [NSMutableDictionary dictionary];
-			for (NSPropertyDescription *property in [[object entity] properties])
-			{
-				if ([property isKindOfClass:[NSRelationshipDescription class]] && [(NSRelationshipDescription *)property maxCount] == 1)
-				{
-					NSString *attributeName = [self attributeNameForPropertyName:[(NSRelationshipDescription *)property name]];
-					NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:attributeName separateClassNameAndIDWithUnderscore:YES];
-					NSManagedObject *destination = [object valueForKey:[(NSRelationshipDescription *)property name]];
-					if (ASNilForNull([[resource attributes] objectForKey:foreignKey]) == nil && destination)
-					{
-						NSNumber *destinationID = [self referenceObjectForObjectID:[destination objectID]];
-						[foreignKeys setObject:destinationID forKey:foreignKey];
-					}
-				}
-			}
+			NSDictionary *foreignKeys = [self foreignKeysForObject:object resource:resource];
 			if ([foreignKeys count])
 			{
 				[resource mergeAttributes:foreignKeys];
@@ -412,6 +388,7 @@
 		}
 		[resource setValuesForKeysWithDictionary:[entity attributesFromObject:object]];
 		[resource setPersisted:YES];
+		[resource mergeAttributes:[self foreignKeysForObject:object resource:resource]];
 		[resource saveWithCompletionHandler:^(ARHTTPResponse *response, NSError *error) {
 			if (error == nil)
 			{

@@ -88,4 +88,24 @@
 	[[object managedObjectContext] refreshObject:object mergeChanges:NO];
 }
 
+- (NSDictionary *)foreignKeysForObject:(NSManagedObject *)object resource:(ARResource *)resource
+{
+	NSMutableDictionary *foreignKeys = [NSMutableDictionary dictionary];
+	for (NSPropertyDescription *property in [[object entity] properties])
+	{
+		if ([property isKindOfClass:[NSRelationshipDescription class]] && [(NSRelationshipDescription *)property maxCount] == 1)
+		{
+			NSString *attributeName = [self attributeNameForPropertyName:[(NSRelationshipDescription *)property name]];
+			NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:attributeName separateClassNameAndIDWithUnderscore:YES];
+			NSManagedObject *destination = [object valueForKey:[(NSRelationshipDescription *)property name]];
+			if (ASNilForNull([[resource attributes] objectForKey:foreignKey]) == nil && destination)
+			{
+				NSNumber *destinationID = [self referenceObjectForObjectID:[destination objectID]];
+				[foreignKeys setObject:destinationID forKey:foreignKey];
+			}
+		}
+	}
+	return [foreignKeys copy];
+}
+
 @end
