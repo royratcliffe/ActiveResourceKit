@@ -7,5 +7,6 @@ var searchData=
   ['findonewithoptions_3acompletionhandler_3a',['findOneWithOptions:completionHandler:',['../interface_a_r_service.html#a7fd07ad857602919e97b8aaebeee847b',1,'ARService']]],
   ['findsinglewithid_3aoptions_3acompletionhandler_3a',['findSingleWithID:options:completionHandler:',['../interface_a_r_service.html#abdc02afd018da5b7637f860d3ded4e5b',1,'ARService']]],
   ['foreignkey',['foreignKey',['../interface_a_r_service.html#a215865a89883e99e3d17f40566fa21ba',1,'ARService']]],
+  ['foreignkeysforobject_3aresource_3a',['foreignKeysForObject:resource:',['../interface_a_r_incremental_store.html#ab6b527e8546cd233ebba18be0951f21f',1,'ARIncrementalStore']]],
   ['formatlazily',['formatLazily',['../interface_a_r_service.html#a9295da3829623a87c6fe8289e04ef19f',1,'ARService']]]
 ];

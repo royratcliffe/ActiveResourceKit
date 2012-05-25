@@ -13,5 +13,7 @@ var searchData=
   ['arresponseisnothttperror',['ARResponseIsNotHTTPError',['../_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55bab42f27c02882e18084bed5abd922b659',1,'ARErrors.h']]],
   ['arservererrorcode',['ARServerErrorCode',['../_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a9b670e095ae6457f8e943feb3dffec52',1,'ARErrors.h']]],
   ['arunauthorizedaccesserrorcode',['ARUnauthorizedAccessErrorCode',['../_a_r_errors_8h.html#adf764cbdea00d65edcd07bb9953ad2b7af798377c95284e77be3f3e84e333b435',1,'ARErrors.h']]],
-  ['arunsupportedrootobjecttypeerror',['ARUnsupportedRootObjectTypeError',['../_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba0aa3a49df834b2a347e520bdf2dead84',1,'ARErrors.h']]]
+  ['arunsupportedrootobjecttypeerror',['ARUnsupportedRootObjectTypeError',['../_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba0aa3a49df834b2a347e520bdf2dead84',1,'ARErrors.h']]],
+  ['arvalueforrelationshiperror',['ARValueForRelationshipError',['../_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55baf133e1dbca42ddac2d4b7dae57366abd',1,'ARErrors.h']]],
+  ['arvaluesforobjecterror',['ARValuesForObjectError',['../_a_r_errors_8h.html#a06fc87d81c62e9abb8790b6e5713c55babf3b0f5fd9c87326556942cd3b08d67e',1,'ARErrors.h']]]
 ];
