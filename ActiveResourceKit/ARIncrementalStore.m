@@ -492,12 +492,15 @@
 		// destination entity name, because the nested resource may not
 		// correspond to the non-nested resource by the same name. Caching would
 		// be possible in future if the cache indexed by site path.
-		ARResource *resource = [self cachedResourceForObjectID:objectID error:outError];
-		ARService *service = [resource serviceLazily];
+		//
+		// Derive the resource identifier from the object identifier. Hence, the
+		// actual resource does not need to exist in the cache. If it does not
+		// exist, there is no need to load it, an optimisation.
+		ARService *service = [self serviceForEntityName:[[objectID entity] name]];
 		ARService *nestedService = [[ARService alloc] initWithSite:[service siteWithPrefixParameter]];
 		[nestedService setElementName:[[ASInflector defaultInflector] singularize:[relationship name]]];
 		[nestedService setConnection:[[ARSynchronousLoadingURLConnection alloc] init]];
-		NSDictionary *options = [NSDictionary dictionaryWithObject:[resource ID] forKey:[service foreignKey]];
+		NSDictionary *options = [NSDictionary dictionaryWithObject:[self referenceObjectForObjectID:objectID] forKey:[service foreignKey]];
 		[nestedService findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
 			if (resources)
 			{
