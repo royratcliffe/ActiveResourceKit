@@ -237,6 +237,16 @@
 	NSMutableArray *comments = [NSMutableArray array];
 	for (NSManagedObject *comment in [post valueForKey:@"comments"])
 	{
+		// Assert that the comment's "post relationship" references back to the
+		// post. This would fail if the relationship resolver only searches
+		// attributes for the post identifier, because loading attributes splits
+		// off the prefix parameters which, in this case, include the post
+		// identifier (post_id). Prefix parameters live in the prefix options,
+		// rather than the attributes. Such play a special role. They carry the
+		// substitution values for the resource's prefix parameters.
+		NSManagedObject *commentPost = [comment valueForKey:@"post"];
+		STAssertEqualObjects(post, commentPost, nil);
+		
 		[comments addObject:[comment valueForKey:@"text"]];
 	}
 	STAssertFalse([comments count] == 0, nil);

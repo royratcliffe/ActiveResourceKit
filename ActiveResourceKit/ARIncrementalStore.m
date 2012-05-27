@@ -485,10 +485,22 @@
 		// meaning the incremental store expects the remote server to provide a
 		// "relationship_id" attribute for each to-one resource at the origin
 		// of the to-one association.
+		//
+		// Back references are a special case. Their identifiers do not exist
+		// within the resource attributes. Active Resource Kit splits off the
+		// identifier from the attributes for nested resources. The
+		// back-referencing identifier lives instead within the prefix
+		// options. Hence, resolve the relationship by looking first in the
+		// attributes; but then by looking if necessary in the prefix options.
 		ARResource *resource = [_resourcesByObjectID objectForKey:objectID];
-		NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:[self attributeNameForPropertyName:[relationship name]] separateClassNameAndIDWithUnderscore:YES];
-		id foreignID = [[resource attributes] objectForKey:foreignKey];
-		if (ASNilForNull(foreignID) == nil)
+		NSString *relationshipName = [self attributeNameForPropertyName:[relationship name]];
+		NSString *foreignKey = [[ASInflector defaultInflector] foreignKey:relationshipName separateClassNameAndIDWithUnderscore:YES];
+		id foreignID = ASNilForNull([[resource attributes] objectForKey:foreignKey]);
+		if (foreignID == nil)
+		{
+			foreignID = [[resource prefixOptions] objectForKey:foreignKey];
+		}
+		if (foreignID == nil)
 		{
 			result = [NSNull null];
 		}

@@ -178,6 +178,7 @@
 	NSDictionary *prefixOptions = nil;
 	ARService *service = [self serviceLazily];
 	[service splitOptions:attributes prefixOptions:&prefixOptions queryOptions:&attributes];
+	[self setPrefixOptions:prefixOptions];
 	if ([attributes count] == 1)
 	{
 		removeRoot = [[service elementNameLazily] isEqualToString:[[[attributes allKeys] objectAtIndex:0] description]];
