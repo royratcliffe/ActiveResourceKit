@@ -460,9 +460,18 @@
 	NSIncrementalStoreNode *node;
 	if (resource)
 	{
-		NSDictionary *properties = [[objectID entity] propertiesFromResource:resource];
+		// Do not reflect null-valued properties in the snapshot. Take
+		// properties from the remote resource, find which if any have null
+		// values, then remove those key-value pairs. Core Data interprets
+		// missing attributes which appear in the data model as nils. Therefore
+		// missing equals nil and hence null equals nil, when
+		// missing. Otherwise, Core Data sends messages to the non-nil values,
+		// e.g. sends -length to string-type attributes; this raises an
+		// exception of course if the string equals [NSNull null] and not nil.
+		NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:[[objectID entity] propertiesFromResource:resource]];
+		[properties removeObjectsForKeys:[properties allKeysForObject:[NSNull null]]];
 		uint64_t version = [self versionForResource:resource];
-		node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:properties version:version];
+		node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:[properties copy] version:version];
 	}
 	else
 	{

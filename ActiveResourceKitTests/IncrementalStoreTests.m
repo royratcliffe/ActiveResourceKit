@@ -87,7 +87,6 @@
 	{
 		NSString *name = [person valueForKey:@"name"];
 		NSLog(@"person named %@", name);
-		STAssertNotNil(name, nil);
 	}
 }
 
@@ -102,7 +101,6 @@
 		NSManagedObject *person = [post valueForKey:@"poster"];
 		NSString *name = [person valueForKey:@"name"];
 		NSLog(@"post entitled %@ by %@", title, name);
-		STAssertNotNil(title, nil);
 	}
 }
 
@@ -251,6 +249,49 @@
 	}
 	STAssertFalse([comments count] == 0, nil);
 	STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"text"].location != NSNotFound, nil);
+}
+
+/*!
+ * @brief Tests resource attributes carrying NSNull values.
+ * @details Nulls become nils within managed objects. All missing properties
+ * within managed objects become nils when accessed. The following tests that
+ * the nulls within resources become nils when manifested by Core Data.
+ */
+- (void)testOnePostToManyCommentsPartiallySavedAndNullAttributes
+{
+	NSError *__autoreleasing error = nil;
+	
+	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+	STAssertNotNil(post, nil);
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+	STAssertNotNil(comment, nil);
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	[comment setValue:post forKey:@"post"];
+	STAssertTrue([[self context] save:&error], nil);
+	STAssertNil(error, nil);
+	
+	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
+	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
+	NSMutableArray *comments = [NSMutableArray array];
+	for (NSManagedObject *comment in [post valueForKey:@"comments"])
+	{
+		NSString *text = [comment valueForKey:@"text"];
+		if (text)
+		{
+			[comments addObject:text];
+		}
+		STAssertNil(text, nil);
+		
+		// The comment has no text (nil) but it does have a valid back reference.
+		NSManagedObject *commentPost = [comment valueForKey:@"post"];
+		STAssertEqualObjects(post, commentPost, nil);
+	}
+	STAssertTrue([comments count] == 0, nil);
 }
 
 @end
