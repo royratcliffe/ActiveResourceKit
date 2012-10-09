@@ -26,7 +26,9 @@ framework makes extensive use of C blocks for handling completions for both
 asynchronous and synchronous interfaces; this simply follows the pattern set
 by Apple in their URL connection API.
 
-## Setting Up an Active Resource-Based Core Data Stack
+## Resources Using Core Data
+
+### Setting Up an Active Resource-Based Core Data Stack
 
 This is easy to do. Just follow the usual Core Data-prescribed procedure:
 load the model, load the coordinator with the model, add the store to the
@@ -54,7 +56,7 @@ Note that this excerpt uses Automatic Reference Counting, hence the
 `__autoreleasing` specifier for the error pointer. Notice the blatant lack of
 manual auto-releasing.
 
-## Accessing Resources
+### Accessing Existing Resources
 
 You can then access resources using _only_ Core Data.
 
@@ -121,7 +123,7 @@ And the server responds:
 	   …
 	Completed 200 OK in 15ms (ActiveRecord: 12.7ms)
 
-### Forming Associations
+### Building Associations
 
 You can conveniently form associations between objects and their remote
 resources using only the Core Data interface.
