@@ -345,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */,
-				78326FCE140FE38B00ECCE7D /* ActiveModelKitTests.octest */,
+				78326FCE140FE38B00ECCE7D /* ActiveModelKitFrameworkTests.octest */,
 				78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */,
 				78BF7F5814164D2000DB0DEA /* ActiveModelKitLibraryTests.octest */,
 			);
@@ -707,10 +707,9 @@
 			remoteRef = 78326FCB140FE38B00ECCE7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		78326FCE140FE38B00ECCE7D /* ActiveModelKitTests.octest */ = {
+		78326FCE140FE38B00ECCE7D /* ActiveModelKitFrameworkTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = ActiveModelKitTests.octest;
 			path = ActiveModelKitFrameworkTests.octest;
 			remoteRef = 78326FCD140FE38B00ECCE7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
