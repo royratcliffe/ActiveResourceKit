@@ -16,7 +16,7 @@ var searchData=
   ['primarykeylazily',['primaryKeyLazily',['../interface_a_r_service.html#a494130801b4bfc657cb420c5b0c52cc9',1,'ARService']]],
   ['private_2eh',['Private.h',['../_private_8h.html',1,'']]],
   ['program_5fname_5fstring',['PROGRAM_NAME_STRING',['../_versioning_tests_8m.html#a94a1c5e5f878b1f6830c9a3d70babc34',1,'VersioningTests.m']]],
-  ['propertiesfromresource_3a',['propertiesFromResource:',['../interface_n_s_entity_description_07_active_resource_08.html#a182fb07888813f6f56f50e72e273a24a',1,'NSEntityDescription(ActiveResource)']]],
+  ['propertiesfromresource_3a',['propertiesFromResource:',['../category_n_s_entity_description_07_active_resource_08.html#a182fb07888813f6f56f50e72e273a24a',1,'NSEntityDescription(ActiveResource)']]],
   ['propertynameforattributename_3a',['propertyNameForAttributeName:',['../interface_a_r_incremental_store.html#a7d3e9c1d7b8eaba961943eac2307663b',1,'ARIncrementalStore']]],
   ['put_3abody_3acompletionhandler_3a',['put:body:completionHandler:',['../interface_a_r_service.html#a5aa259decb380b43706331ab460f0698',1,'ARService']]]
 ];

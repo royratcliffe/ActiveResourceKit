@@ -96,6 +96,6 @@ var searchData=
   ['at_5fhash',['AT_HASH',['../_versioning_tests_8m.html#aee60df0c3ca1a5862cd197ced35892e4',1,'VersioningTests.m']]],
   ['attributenameforpropertyname_3a',['attributeNameForPropertyName:',['../interface_a_r_incremental_store.html#a497e029e2e2dff25719bccff9e73ab6e',1,'ARIncrementalStore']]],
   ['attributes',['attributes',['../interface_a_r_resource.html#a67121a6b516a1851f90522b65f901596',1,'ARResource']]],
-  ['attributesfromobject_3a',['attributesFromObject:',['../interface_n_s_entity_description_07_active_resource_08.html#ab8ad9fbc695f384638879a5b2e47aae3',1,'NSEntityDescription(ActiveResource)']]],
+  ['attributesfromobject_3a',['attributesFromObject:',['../category_n_s_entity_description_07_active_resource_08.html#ab8ad9fbc695f384638879a5b2e47aae3',1,'NSEntityDescription(ActiveResource)']]],
   ['active_20resource_20kit',['Active Resource Kit',['../index.html',1,'']]]
 ];
