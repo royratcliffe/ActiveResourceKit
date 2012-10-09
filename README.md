@@ -163,6 +163,27 @@ from the comments based on a given post.
 	}
 	[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
 
+## Resources Using Rails-Style Access
+
+You can also access resources using a Rails-style Active Resource interface.
+The interface mimics Rails so far as possible, albeit using Objective-C and
+Cocoa frameworks as the baseline rather than Ruby and the Ruby standard library.
+
+## Concurrency and Incremental Stores
+
+By necessity, incremental stores must access remote resources synchronously.
+The Core Data interface, `NSIncrementalStore`, implements a pull-style of
+access to the underlying abstract store, as opposed to push-style. The
+interface does not let you tell Core Data when remote information arrives;
+instead, Core Data makes a request and expects its result by reply. There is no
+scope for running the request asynchronously and telling Core Data when results
+become available.
+
+Instead, you need to incorporate concurrency within your application at a
+higher level, e.g. the controller layer. Core Data facilitates such an approach
+by allowing child contexts to operate in concurrent threads of control, later
+merging changes to the parent context.
+
 # Design Notes
 
 ## Goals
