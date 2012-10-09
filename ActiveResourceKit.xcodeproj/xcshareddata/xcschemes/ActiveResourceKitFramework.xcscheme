@@ -32,7 +32,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;bundle exec rake thin:stop db:setup db:fixtures:load thin:start"
+               scriptText = "# The test launcher script assumes that you have RVM installed as well as the expected version of Ruby; see active-resource-kit-tests/.rvmrc. After installing RVM, install the required Ruby and the required Gems, as follows.&#10;#&#10;#&#9;cd active-resource-kit-tests&#10;#&#9;rvm install ruby-1.9.2-p320&#10;#&#9;bundle install&#10;#&#10;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;bundle exec rake thin:stop db:setup db:fixtures:load thin:start"
                shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
