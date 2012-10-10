@@ -669,7 +669,7 @@
 		7846AA0A140BAAE100FE58E5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Pioneering Software, United Kingdom";
 			};
 			buildConfigurationList = 7846AA0D140BAAE100FE58E5 /* Build configuration list for PBXProject "ActiveResourceKit" */;
@@ -1073,6 +1073,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 481.0;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/ObjectiveRailsKit.framework/Versions/Current/Frameworks";
@@ -1089,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 481.0;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/ObjectiveRailsKit.framework/Versions/Current/Frameworks";
@@ -1105,6 +1107,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -1128,6 +1131,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -1150,6 +1154,7 @@
 		78C21F7C14A467FD00750476 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1163,6 +1168,7 @@
 		78C21F7D14A467FD00750476 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PATH = "/bin:/usr/bin:/usr/local/bin:/Applications/Doxygen.app/Contents/Resources";
