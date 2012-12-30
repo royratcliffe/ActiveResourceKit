@@ -76,14 +76,13 @@
 	NSUInteger __block pending = 0;
 	
 	ARService *postService = [[ARService alloc] initWithSite:ActiveResourceKitTestsBaseURL() elementName:@"post"];
+	ARService *commentService = [postService serviceForSubelementNamed:@"comment"];
 	[postService findAllWithOptions:nil completionHandler:^(ARHTTPResponse *response, NSArray *posts, NSError *error) {
 		STAssertNotNil(posts, nil);
 		for (ARResource *post in posts)
 		{
 			// Derive a site URL for the nested resource.
-			NSDictionary *options = [NSDictionary dictionaryWithObject:[post ID] forKey:[[post service] foreignKey]];
-			ARService *commentService = [[ARService alloc] initWithSite:[[post service] siteWithPrefixParameter] elementName:@"comment"];
-			[commentService findAllWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *comments, NSError *error) {
+			[commentService findAllWithOptions:[post optionsForSubelement] completionHandler:^(ARHTTPResponse *response, NSArray *comments, NSError *error) {
 				STAssertNotNil(comments, nil);
 				NSLog(@"%@", [post valueForKey:@"title"]);
 				for (ARResource *comment in comments)

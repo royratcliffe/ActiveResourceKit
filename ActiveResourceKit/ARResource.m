@@ -123,6 +123,11 @@
 	return self;
 }
 
+- (NSDictionary *)optionsForSubelement
+{
+	return [NSDictionary dictionaryWithObject:[self ID] forKey:[[self service] foreignKey]];
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                                                Base
 //------------------------------------------------------------------------------

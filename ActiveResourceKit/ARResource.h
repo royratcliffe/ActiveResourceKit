@@ -57,6 +57,16 @@
 
 - (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
+/*!
+ * @brief Answers options for applying this resource's identity to a nested
+ * service.
+ * @details Use it to access this resource's subelements. First derive a nested
+ * service for the subelement. Doing so parameterises the resource
+ * identity. Then apply these options to select this resource's subelement or
+ * subelements.
+ */
+- (NSDictionary *)optionsForSubelement;
+
 //------------------------------------------------------------------------- Base
 
 /*!

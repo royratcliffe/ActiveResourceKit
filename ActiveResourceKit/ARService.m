@@ -87,6 +87,13 @@ Class ARServiceDefaultConnectionClass;
 	return self;
 }
 
+- (ARService *)serviceForSubelementNamed:(NSString *)elementName
+{
+	ARService *service = [[ARService alloc] initWithSite:[self siteWithPrefixParameter] elementName:elementName];
+	[service setConnection:_connection];
+	return service;
+}
+
 //------------------------------------------------------------------------------
 #pragma mark                                         Schema and Known Attributes
 //------------------------------------------------------------------------------

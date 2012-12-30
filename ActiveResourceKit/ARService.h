@@ -156,6 +156,15 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 - (id)initWithSite:(NSURL *)site;
 - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
 
+/*!
+ * @brief Derives a service for a subelement based on this service, representing
+ * nested resources.
+ * @details The new service shares the connection, if already
+ * configured. Otherwise, it constructs its own connection on-demand using the
+ * default.
+ */
+- (ARService *)serviceForSubelementNamed:(NSString *)elementName;
+
 // The following properties use copy, in general, rather than retain. Why use
 // copy? You can pass a mutable URL or string. The Active Resource retains a
 // non-mutable copy.
