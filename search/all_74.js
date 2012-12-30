@@ -36,6 +36,7 @@ var searchData=
   ['testposts',['testPosts',['../interface_incremental_store_tests.html#ac9e72e39582a255fd05d831d3a8387b3',1,'IncrementalStoreTests']]],
   ['testprefixparameterwithpercentescapes',['testPrefixParameterWithPercentEscapes',['../interface_active_resource_kit_tests.html#ac9880c7272eb2d1579bde69f10b6eeb2',1,'ActiveResourceKitTests']]],
   ['testprefixsource',['testPrefixSource',['../interface_active_resource_kit_tests.html#ab598497601978afdc1788d5e3b806f83',1,'ActiveResourceKitTests']]],
+  ['testprefixwithnestedresources',['testPrefixWithNestedResources',['../interface_active_resource_kit_tests.html#ad64e676a5fef46b7ef56baad5b089d07',1,'ActiveResourceKitTests']]],
   ['testsetnilvalue',['testSetNilValue',['../interface_key_value_coding_tests.html#a0f342d915563f3c755803ddff71863b8',1,'KeyValueCodingTests']]],
   ['testsetupsite',['testSetUpSite',['../interface_active_resource_kit_tests.html#a531f8457307546f647c13bbfb0db9a41',1,'ActiveResourceKitTests']]],
   ['testsetvaluesforkeys',['testSetValuesForKeys',['../interface_key_value_coding_tests.html#aee02bde64ea0d8e3435021190494060d',1,'KeyValueCodingTests']]],
@@ -47,6 +48,6 @@ var searchData=
   ['testversionnumber',['testVersionNumber',['../interface_versioning_tests.html#afa639d2a6156e03154ed10c9a10d99be',1,'VersioningTests']]],
   ['testversionstring',['testVersionString',['../interface_versioning_tests.html#ad3770fdcf2c8de2c0f60986a1831f594',1,'VersioningTests']]],
   ['timeout',['timeout',['../interface_a_r_connection.html#afbfa574cb05cb13a22278554d80f2e55',1,'ARConnection::timeout()'],['../interface_a_r_service.html#a0349e484fcee69d6f76cd896f407592c',1,'ARService::timeout()']]],
-  ['tokey',['toKey',['../interface_a_r_resource.html#ab7808d6790f4f118169540da2d8b3920',1,'ARResource']]],
-  ['toparam',['toParam',['../interface_a_r_resource.html#a5b88f8ffaa9508ea3103591581a978ce',1,'ARResource']]]
+  ['tokey',['toKey',['../category_a_r_resource_07_private_08.html#ab7808d6790f4f118169540da2d8b3920',1,'ARResource(Private)::toKey()'],['../interface_a_r_resource.html#ab7808d6790f4f118169540da2d8b3920',1,'ARResource::toKey()']]],
+  ['toparam',['toParam',['../category_a_r_resource_07_private_08.html#a5b88f8ffaa9508ea3103591581a978ce',1,'ARResource(Private)::toParam()'],['../interface_a_r_resource.html#a5b88f8ffaa9508ea3103591581a978ce',1,'ARResource::toParam()']]]
 ];

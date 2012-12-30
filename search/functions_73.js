@@ -6,6 +6,7 @@ var searchData=
   ['sendrequest_3areturningresponse_3aerror_3a',['sendRequest:returningResponse:error:',['../interface_a_r_synchronous_loading_u_r_l_connection.html#af9bb1a624b50e041bc1eb651e97a25bd',1,'ARSynchronousLoadingURLConnection']]],
   ['service',['service',['../interface_a_r_resource.html#aea3b80c03b6584efc5e1a4c8730e94aa',1,'ARResource']]],
   ['serviceforentityname_3a',['serviceForEntityName:',['../interface_a_r_incremental_store.html#a0ac35587d1ac8ae9817a49bbb550297b',1,'ARIncrementalStore']]],
+  ['serviceforsubelementnamed_3a',['serviceForSubelementNamed:',['../interface_a_r_service.html#ab6569ee4f52a40bca742300d80f48174',1,'ARService']]],
   ['servicelazily',['serviceLazily',['../interface_a_r_resource.html#aceed18188a9e9a3116f3106ae9cedb1d',1,'ARResource']]],
   ['setattributes_3a',['setAttributes:',['../interface_a_r_resource.html#aa26b78daf6426ad8969988d84a4835ab',1,'ARResource']]],
   ['setconnection_3a',['setConnection:',['../interface_a_r_service.html#a51896dd1e553dac840c839db38dca5ea',1,'ARService']]],
@@ -17,7 +18,7 @@ var searchData=
   ['setvaluesforkeyswithdictionary_3a',['setValuesForKeysWithDictionary:',['../interface_a_r_resource.html#ab3bcb2fb82e5575e8363907a90396431',1,'ARResource']]],
   ['site',['site',['../interface_person.html#af3751ba6f4dbe54e9473cedf71538620',1,'Person']]],
   ['sitewithprefixparameter',['siteWithPrefixParameter',['../interface_a_r_service.html#aca3a99af08ab4d4a3d09af9a8c355ef2',1,'ARService']]],
-  ['splitoptions_3aprefixoptions_3aqueryoptions_3a',['splitOptions:prefixOptions:queryOptions:',['../interface_a_r_service.html#a749828d9160f1bbbf57072dd966d86b0',1,'ARService']]],
+  ['splitoptions_3aprefixoptions_3aqueryoptions_3a',['splitOptions:prefixOptions:queryOptions:',['../category_a_r_service_07_private_08.html#a749828d9160f1bbbf57072dd966d86b0',1,'ARService(Private)::splitOptions:prefixOptions:queryOptions:()'],['../interface_a_r_service.html#a749828d9160f1bbbf57072dd966d86b0',1,'ARService::splitOptions:prefixOptions:queryOptions:()']]],
   ['storetype',['storeType',['../interface_a_r_incremental_store.html#a7b840bc69314bea3ce37c1c8574a412a',1,'ARIncrementalStore']]],
   ['storetypeforclass_3a',['storeTypeForClass:',['../interface_a_r_incremental_store.html#a6d08967fbf44d56d99b18d49209ec4e6',1,'ARIncrementalStore']]]
 ];
