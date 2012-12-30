@@ -61,15 +61,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 
 - (NSString *)defaultPrefixSource
 {
-	// Asking for the site path answers only the non-base path as the path, even
-	// if the URL comprises relative path components based on a base URL which
-	// itself includes a path. The base URL's path disappears from the
-	// equation. Is this a bug in Foundation? Work around it by computing the
-	// prefix source through concatenation of the two paths.
-	NSURL *site = [self site];
-	NSURL *baseURL = [site baseURL];
-	NSString *path = [site path];
-	return baseURL ? [[baseURL path] stringByAppendingPathComponent:path] : path;
+	return [[self site] path];
 }
 
 - (void)findEveryWithOptions:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSArray *resources, NSError *error))completionHandler

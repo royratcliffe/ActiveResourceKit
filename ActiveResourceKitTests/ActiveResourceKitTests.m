@@ -158,6 +158,18 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	STAssertEqualObjects(prefix, @"/resources/1", nil);
 }
 
+- (void)testPrefixWithNestedResources
+{
+	// What about prefixes applied to nested resources? Note the importance of
+	// the trailing slash. Without it, the tests below fail because NSURL's
+	// implementation uses the trailing slash to differentiate between base URL
+	// with incorporated paths and additional subpaths.
+	ARService *resourceService = [[ARService alloc] initWithSite:[NSURL URLWithString:@"http://localhost/api/"] elementName:@"resource"];
+	ARService *subresourceService = [resourceService serviceForSubelementNamed:@"subresource"];
+	STAssertEqualObjects([resourceService prefixWithOptions:nil], @"/api/", nil);
+	STAssertEqualObjects([subresourceService prefixWithOptions:nil], @"/api/resources/:resource_id/", nil);
+}
+
 - (void)testPrefixParameterWithPercentEscapes
 {
 	ARService *service = [[ARService alloc] init];
