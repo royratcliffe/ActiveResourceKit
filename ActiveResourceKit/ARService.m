@@ -90,7 +90,10 @@ Class ARServiceDefaultConnectionClass;
 - (ARService *)serviceForSubelementNamed:(NSString *)elementName
 {
 	ARService *service = [[ARService alloc] initWithSite:[self siteWithPrefixParameter] elementName:elementName];
-	[service setConnection:_connection];
+	if (_connection)
+	{
+		[service setConnection:[_connection copy]];
+	}
 	return service;
 }
 
