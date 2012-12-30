@@ -92,7 +92,7 @@ Class ARServiceDefaultConnectionClass;
 	ARService *service = [[ARService alloc] initWithSite:[self siteWithPrefixParameter] elementName:elementName];
 	if (_connection)
 	{
-		[service setConnection:[_connection copy]];
+		[service setConnection:[[[_connection class] alloc] init]];
 	}
 	return service;
 }
