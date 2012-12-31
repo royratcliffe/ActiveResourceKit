@@ -79,6 +79,7 @@
 	{
 		_resourcesByObjectID = [[NSCache alloc] init];
 		[_resourcesByObjectID setDelegate:self];
+		[self setEntityNamePrefix:[options objectForKey:ARIncrementalStoreElementNamePrefixKey]];
 	}
 	return self;
 }
@@ -108,6 +109,11 @@
 {
 	if ([self entityNamePrefix])
 	{
+		// The following implementation assumes that all entity names handled by
+		// this incremental store have the given prefix. It removes the prefix
+		// without first ensuring that the entity name begins with a matching
+		// string; design by contract. If the assumption fails, your application
+		// will throw an exception or otherwise fail.
 		entityName = [entityName substringFromIndex:[[self entityNamePrefix] length]];
 	}
 	return [[ASInflector defaultInflector] underscore:entityName];
@@ -638,3 +644,5 @@
 }
 
 @end
+
+NSString *ARIncrementalStoreElementNamePrefixKey = @"ARIncrementalStoreElementNamePrefix";
