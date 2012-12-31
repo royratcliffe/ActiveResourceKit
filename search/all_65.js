@@ -8,6 +8,7 @@ var searchData=
   ['encode',['encode',['../interface_a_r_resource.html#ad9d318e9c9bade9979aed84c89af21bb',1,'ARResource']]],
   ['encode_3aerror_3a',['encode:error:',['../protocol_a_r_format-p.html#a3c690648bba967411acd7e7b6a5676b6',1,'ARFormat-p::encode:error:()'],['../interface_a_r_j_s_o_n_format.html#a8ad1c64c1c2929fd2889d4723169e854',1,'ARJSONFormat::encode:error:()']]],
   ['entitynameforelementname_3a',['entityNameForElementName:',['../interface_a_r_incremental_store.html#a56da7430016dbba9fab77f59dee5e8a8',1,'ARIncrementalStore']]],
+  ['entitynameprefix',['entityNamePrefix',['../interface_a_r_incremental_store.html#a25a3774e1019216cdf904ef31f5c0e29',1,'ARIncrementalStore']]],
   ['errorforresponse_3a',['errorForResponse:',['../interface_a_r_connection.html#ac3430ba13d48f78d4cce830e0e35cc31',1,'ARConnection']]],
   ['evictallresources',['evictAllResources',['../interface_a_r_incremental_store.html#af54e3dceb0727470192b7b350a7366ea',1,'ARIncrementalStore']]],
   ['executefetchrequest_3awithcontext_3aerror_3a',['executeFetchRequest:withContext:error:',['../interface_a_r_incremental_store.html#a1162d520ef9120a27e62c581431d6c0b',1,'ARIncrementalStore']]],

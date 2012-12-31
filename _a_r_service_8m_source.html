@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">ActiveResourceKit
-   &#160;<span id="projectnumber">v1.1&nbsp;(493.0)</span>
+   &#160;<span id="projectnumber">v1.2&nbsp;(498.0)</span>
    </div>
   </td>
  </tr>
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="interface_a_r_service.html" title="An active resource&#39;s service configuration.">ARService</a> *service = [[<a class="code" href="interface_a_r_service.html" title="An active resource&#39;s service configuration.">ARService</a> alloc] initWithSite:[<span class="keyword">self</span> <a class="code" href="interface_a_r_service.html#aca3a99af08ab4d4a3d09af9a8c355ef2" title="Answers this service&#39;s site URL combined with an additional prefix parameter representing the element...">siteWithPrefixParameter</a>] elementName:elementName];</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="interface_a_r_service.html#a1e8bb66b45067f394f3e7f59130f14d2">_connection</a>)</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        [service <a class="code" href="interface_a_r_service.html#a51896dd1e553dac840c839db38dca5ea">setConnection</a>:[<a class="code" href="interface_a_r_service.html#a1e8bb66b45067f394f3e7f59130f14d2">_connection</a> copy]];</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        [service <a class="code" href="interface_a_r_service.html#a51896dd1e553dac840c839db38dca5ea">setConnection</a>:[[[<a class="code" href="interface_a_r_service.html#a1e8bb66b45067f394f3e7f59130f14d2">_connection</a> class] alloc] init]];</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span> service;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>

@@ -46,6 +46,7 @@ var searchData=
   ['arincrementalstore_2bprivate_2em',['ARIncrementalStore+Private.m',['../_a_r_incremental_store_09_private_8m.html',1,'']]],
   ['arincrementalstore_2eh',['ARIncrementalStore.h',['../_a_r_incremental_store_8h.html',1,'']]],
   ['arincrementalstore_2em',['ARIncrementalStore.m',['../_a_r_incremental_store_8m.html',1,'']]],
+  ['arincrementalstoreelementnameprefixkey',['ARIncrementalStoreElementNamePrefixKey',['../_a_r_incremental_store_8h.html#a021b7e6027ca5a02b4a7903741cbc19a',1,'ARIncrementalStoreElementNamePrefixKey():&#160;ARIncrementalStore.m'],['../_a_r_incremental_store_8m.html#a021b7e6027ca5a02b4a7903741cbc19a',1,'ARIncrementalStoreElementNamePrefixKey():&#160;ARIncrementalStore.m']]],
   ['arjsonformat',['ARJSONFormat',['../interface_a_r_j_s_o_n_format.html',1,'']]],
   ['arjsonformat_2eh',['ARJSONFormat.h',['../_a_r_j_s_o_n_format_8h.html',1,'']]],
   ['arjsonformat_2em',['ARJSONFormat.m',['../_a_r_j_s_o_n_format_8m.html',1,'']]],
