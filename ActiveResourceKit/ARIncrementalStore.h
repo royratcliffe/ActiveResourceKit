@@ -145,6 +145,8 @@
 // entities; the latter between Active Resource attributes and Core Data
 // properties.
 
+@property(copy) NSString *entityNamePrefix;
+
 - (NSString *)elementNameForEntityName:(NSString *)entityName;
 - (NSString *)entityNameForElementName:(NSString *)elementName;
 - (NSString *)attributeNameForPropertyName:(NSString *)propertyName;

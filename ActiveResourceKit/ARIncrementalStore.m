@@ -102,14 +102,25 @@
 #pragma mark                                  Active Resource-to-Core Data Names
 //------------------------------------------------------------------------------
 
+@synthesize entityNamePrefix = _entityNamePrefix;
+
 - (NSString *)elementNameForEntityName:(NSString *)entityName
 {
+	if ([self entityNamePrefix])
+	{
+		entityName = [entityName substringFromIndex:[[self entityNamePrefix] length]];
+	}
 	return [[ASInflector defaultInflector] underscore:entityName];
 }
 
 - (NSString *)entityNameForElementName:(NSString *)elementName
 {
-	return [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+	NSString *entityName = [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+	if ([self entityNamePrefix])
+	{
+		entityName = [[self entityNamePrefix] stringByAppendingString:entityName];
+	}
+	return entityName;
 }
 
 - (NSString *)attributeNameForPropertyName:(NSString *)propertyName
