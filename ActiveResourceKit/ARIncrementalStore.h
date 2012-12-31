@@ -135,6 +135,20 @@
 
 //------------------------------------------- Active Resource-to-Core Data Names
 
+/*!
+ * @brief Optional prefix string for entity names.
+ * @details In the Objective-C world, entity names often begin with a namespace
+ * prefix. If this is the case, specify the prefix here. The incremental store
+ * automatically adds or removes the prefix when translating between entity
+ * names and element names. For example, your element names might be `post` and
+ * `comment` when accessing some kind of RESTful blog interface. But your
+ * Objective-C entities might be `MYPost` and `MYComment`. Configure your
+ * store's entity name prefix as `MY` and it will automatically prepend `MY`
+ * when converting from element to entity names; and automatically remove it
+ * when converting from entity to element names.
+ */
+@property(copy) NSString *entityNamePrefix;
+
 // The following instance methods perform default name translations between
 // Active Resource names and Core Data names. You might wish to override the
 // following methods if your server-side and client-side element-entity names
@@ -151,3 +165,5 @@
 - (NSString *)propertyNameForAttributeName:(NSString *)attributeName;
 
 @end
+
+extern NSString *ARIncrementalStoreElementNamePrefixKey;

@@ -79,6 +79,7 @@
 	{
 		_resourcesByObjectID = [[NSCache alloc] init];
 		[_resourcesByObjectID setDelegate:self];
+		[self setEntityNamePrefix:[options objectForKey:ARIncrementalStoreElementNamePrefixKey]];
 	}
 	return self;
 }
@@ -102,14 +103,30 @@
 #pragma mark                                  Active Resource-to-Core Data Names
 //------------------------------------------------------------------------------
 
+@synthesize entityNamePrefix = _entityNamePrefix;
+
 - (NSString *)elementNameForEntityName:(NSString *)entityName
 {
+	if ([self entityNamePrefix])
+	{
+		// The following implementation assumes that all entity names handled by
+		// this incremental store have the given prefix. It removes the prefix
+		// without first ensuring that the entity name begins with a matching
+		// string; design by contract. If the assumption fails, your application
+		// will throw an exception or otherwise fail.
+		entityName = [entityName substringFromIndex:[[self entityNamePrefix] length]];
+	}
 	return [[ASInflector defaultInflector] underscore:entityName];
 }
 
 - (NSString *)entityNameForElementName:(NSString *)elementName
 {
-	return [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+	NSString *entityName = [[ASInflector defaultInflector] camelize:elementName uppercaseFirstLetter:YES];
+	if ([self entityNamePrefix])
+	{
+		entityName = [[self entityNamePrefix] stringByAppendingString:entityName];
+	}
+	return entityName;
 }
 
 - (NSString *)attributeNameForPropertyName:(NSString *)propertyName
@@ -627,3 +644,5 @@
 }
 
 @end
+
+NSString *ARIncrementalStoreElementNamePrefixKey = @"ARIncrementalStoreElementNamePrefix";
