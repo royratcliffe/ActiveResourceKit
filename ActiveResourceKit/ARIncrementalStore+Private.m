@@ -1,6 +1,6 @@
 // ActiveResourceKit ARIncrementalStore+Private.m
 //
-// Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2012, 2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -84,7 +84,19 @@
 
 - (void)refreshObject:(NSManagedObject *)object
 {
-	[_resourcesByObjectID removeObjectForKey:[object objectID]];
+	// Refrain from flushing the resource unless the object model maps the
+	// createdAt or updatedAt attributes, equivalent to created_at and
+	// updated_at in Rails. If these do appear, then the resource cache will
+	// become invalid when the server-side saves the resource. Typically, you
+	// would include both attributes together in the object model. If neither of
+	// these attributes appear then the resource cache remains valid. No need to
+	// flush it. The object itself becomes a fault. But this quickly refreshes
+	// from the resource cache when you access a value.
+	NSArray *attributeNames = [[[object entity] attributesByName] allKeys];
+	if ([attributeNames containsObject:@"createdAt"] || [attributeNames containsObject:@"updatedAt"])
+	{
+		[_resourcesByObjectID removeObjectForKey:[object objectID]];
+	}
 	[[object managedObjectContext] refreshObject:object mergeChanges:NO];
 }
 
