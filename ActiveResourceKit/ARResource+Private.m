@@ -1,6 +1,6 @@
 // ActiveResourceKit ARResource+Private.m
 //
-// Copyright © 2011, 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2011–2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -83,7 +83,17 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 		{
 			if ([attributes isKindOfClass:[NSDictionary class]])
 			{
-				[self setID:ARIDFromResponse(response)];
+				// Only set up the ID from the response header if it includes
+				// the Location header. Set it up from attributes pulled from
+				// the response body otherwise. This allows some
+				// flexibility. Resource identifiers can originate from the
+				// header or from the body. The latter takes precedence if the
+				// identifier appears in both places.
+				NSNumber *ID = ARIDFromResponse(response);
+				if (ID)
+				{
+					[self setID:ID];
+				}
 				[self loadAttributesFromResponse:response attributes:attributes];
 				completionHandler(response, nil);
 			}
