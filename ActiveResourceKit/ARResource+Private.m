@@ -77,7 +77,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 
 - (void)createWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
 {
-	NSString *path = [[self serviceLazily] collectionPathWithPrefixOptions:nil queryOptions:nil];
+	NSString *path = [self collectionPathWithOptions:nil];
 	[[self serviceLazily] post:path body:[self encode] completionHandler:^(ARHTTPResponse *response, id attributes, NSError *error) {
 		if (attributes)
 		{
@@ -125,6 +125,16 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 - (NSString *)elementPathWithOptions:(NSDictionary *)options
 {
 	return [[self serviceLazily] elementPathForID:[self ID] prefixOptions:options ? options : [self prefixOptions] queryOptions:nil];
+}
+
+- (NSString *)newElementPath
+{
+	return [[self serviceLazily] newElementPathWithPrefixOptions:[self prefixOptions]];
+}
+
+- (NSString *)collectionPathWithOptions:(NSDictionary *)options
+{
+	return [[self serviceLazily] collectionPathWithPrefixOptions:options ? options : [self prefixOptions] queryOptions:nil];
 }
 
 //------------------------------------------------------------------------------

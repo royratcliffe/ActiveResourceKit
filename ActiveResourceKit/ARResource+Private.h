@@ -63,6 +63,10 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
  */
 - (NSString *)elementPathWithOptions:(NSDictionary *)options;
 
+- (NSString *)newElementPath;
+
+- (NSString *)collectionPathWithOptions:(NSDictionary *)options;
+
 //----------------------------------------------------- Active Model Conversions
 
 /*!
