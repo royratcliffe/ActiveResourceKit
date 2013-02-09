@@ -58,14 +58,15 @@
 - (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
 /*!
- * @brief Answers options for applying this resource's identity to a nested
- * service.
- * @details Use it to access this resource's subelements. First derive a nested
- * service for the subelement. Doing so parameterises the resource
- * identity. Then apply these options to select this resource's subelement or
- * subelements.
+ * @brief Answers this resource's foreign identifier along with its foreign key.
+ * @details Gives options for applying this resource's identity to a nested
+ * service. Use the resulting key-value pair to access this resource's
+ * sub-elements. First derive a nested service for the sub-element; doing so
+ * parameterises the resource identity and hence needs a specific sub-element
+ * identifier for the element or collection path. Then apply these options to
+ * select this resource's sub-element or sub-elements.
  */
-- (NSDictionary *)optionsForSubelement;
+- (NSDictionary *)foreignID;
 
 //------------------------------------------------------------------------- Base
 

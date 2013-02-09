@@ -123,7 +123,7 @@
 	return self;
 }
 
-- (NSDictionary *)optionsForSubelement
+- (NSDictionary *)foreignID
 {
 	return [NSDictionary dictionaryWithObject:[self ID] forKey:[[self service] foreignKey]];
 }

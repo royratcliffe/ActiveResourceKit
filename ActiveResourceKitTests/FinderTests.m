@@ -82,7 +82,7 @@
 		for (ARResource *post in posts)
 		{
 			// Derive a site URL for the nested resource.
-			[commentService findAllWithOptions:[post optionsForSubelement] completionHandler:^(ARHTTPResponse *response, NSArray *comments, NSError *error) {
+			[commentService findAllWithOptions:[post foreignID] completionHandler:^(ARHTTPResponse *response, NSArray *comments, NSError *error) {
 				STAssertNotNil(comments, nil);
 				NSLog(@"%@", [post valueForKey:@"title"]);
 				for (ARResource *comment in comments)
