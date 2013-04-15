@@ -6,7 +6,3 @@ language: objective-c
 # folder.
 install:
 	- for dep in ActiveModelKit ActiveSupportKit ; do git clone git://github.com/royratcliffe/$dep.git ../$dep ; done
-before_script:
-	- cd active-resource-kit-tests ; bundle install ; bundle exec rake thin:stop db:setup db:fixtures:load thin:start
-after_script:
-	- cd active-resource-kit-tests ; bundle exec rake thin:stop
