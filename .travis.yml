@@ -9,7 +9,7 @@ install:
 before_script:
 	- cd active-resource-kit-tests
 	- bundle install
-	- bundle exec rake thin:stop db:setup db:fixtures:load thin:start
+	- "bundle exec rake thin:stop db:setup db:fixtures:load thin:start"
 after_script:
 	- cd active-resource-kit-tests
-	- bundle exec rake thin:stop
+	- "bundle exec rake thin:stop"
