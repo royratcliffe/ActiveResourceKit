@@ -4,8 +4,9 @@ language: objective-c
 # Kits together side-by-side in the same folder. Since Travis descends to the
 # project folder first before running the shell command, clone to the parent
 # folder.
-before_script:
+install:
 	- for dep in ActiveModelKit ActiveSupportKit ; do git clone git://github.com/royratcliffe/$dep.git ../$dep ; done
+before_script:
 	- cd active-resource-kit-tests
 	- bundle install
 	- bundle exec rake thin:stop db:setup db:fixtures:load thin:start
