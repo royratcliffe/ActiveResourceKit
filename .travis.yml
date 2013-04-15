@@ -1,0 +1,7 @@
+language: objective-c
+
+# Clone dependent projects as siblings. The kit expects to find other Active
+# Kits together side-by-side in the same folder. Since Travis descends to the
+# project folder first before running the shell command, clone to the parent
+# folder.
+install: for dep in ActiveModelKit ActiveSupportKit ; do git clone git://github.com/royratcliffe/$dep.git ../$dep ; done

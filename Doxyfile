@@ -1,22 +1,22 @@
-GENERATE_DOCSET        = YES
+GENERATE_DOCSET         = YES
 
-DOCSET_FEEDNAME        = "Active Resource Kit Documentation Set"
-DOCSET_BUNDLE_ID       = org.rubyonrails.api.ActiveResourceKitDocSet
-DOCSET_PUBLISHER_ID    = uk.co.pioneeringsoftware.ActiveResourceKitDocSet.documentation
-DOCSET_PUBLISHER_NAME  = Pioneering Software
+DOCSET_FEEDNAME         = "Active Resource Kit Documentation Set"
+DOCSET_BUNDLE_ID        = org.rubyonrails.api.ActiveResourceKitDocSet
+DOCSET_PUBLISHER_ID     = uk.co.pioneeringsoftware.ActiveResourceKitDocSet.documentation
+DOCSET_PUBLISHER_NAME   = Pioneering Software
 
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-EXTRACT_STATIC         = YES
-EXTRACT_LOCAL_METHODS  = YES
+EXTRACT_ALL             = YES
+EXTRACT_PRIVATE         = YES
+EXTRACT_STATIC          = YES
+EXTRACT_LOCAL_METHODS   = YES
 
-GENERATE_TODOLIST      = YES
-GENERATE_TESTLIST      = YES
-GENERATE_BUGLIST       = YES
-GENERATE_DEPRECATEDLIST= YES
+GENERATE_TODOLIST       = YES
+GENERATE_TESTLIST       = YES
+GENERATE_BUGLIST        = YES
+GENERATE_DEPRECATEDLIST = YES
 
-STRIP_CODE_COMMENTS    = NO
+STRIP_CODE_COMMENTS     = NO
 
-HAVE_DOT               = YES
+HAVE_DOT                = YES
 
-IMAGE_PATH             = Documents
+IMAGE_PATH              = Documents

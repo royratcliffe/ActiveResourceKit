@@ -1,5 +1,7 @@
 # Active Resource Kit
 
+[![Build Status](https://travis-ci.org/royratcliffe/ActiveResourceKit.png?branch=master)](https://travis-ci.org/royratcliffe/ActiveResourceKit)
+
 What can you do with Active Resource Kit?  Active Resource Kit is yet-another
 RESTful framework. There are others. But Active Resource Kit has a number of
 distinct features.
