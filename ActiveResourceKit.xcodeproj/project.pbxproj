@@ -570,23 +570,6 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
-/* Begin PBXLegacyTarget section */
-		78C21F7A14A467FD00750476 /* ActiveResourceKitPages */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "-c \"$HOME/.rvm/bin/rvm-auto-ruby -r XcodePages -e XcodePages.doxygen_docset_install\"";
-			buildConfigurationList = 78C21F7B14A467FD00750476 /* Build configuration list for PBXLegacyTarget "ActiveResourceKitPages" */;
-			buildPhases = (
-			);
-			buildToolPath = /bin/sh;
-			buildWorkingDirectory = "";
-			dependencies = (
-			);
-			name = ActiveResourceKitPages;
-			passBuildSettingsInEnvironment = 1;
-			productName = ActiveResourceKitPages;
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		7813AA991419270400523ECD /* ActiveResourceKitLibrary */ = {
 			isa = PBXNativeTarget;
@@ -694,7 +677,6 @@
 				7846AA2B140BAAE100FE58E5 /* ActiveResourceKitFrameworkTests */,
 				7813AA991419270400523ECD /* ActiveResourceKitLibrary */,
 				7813AAA61419270400523ECD /* ActiveResourceKitLibraryTests */,
-				78C21F7A14A467FD00750476 /* ActiveResourceKitPages */,
 			);
 		};
 /* End PBXProject section */
@@ -1042,7 +1024,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				RAILS_BASE_URL = "http://localhost:3000";
+				RAILS_BASE_URL = "http://active-resource-kit-tests.herokuapp.com/";
 				RAILS_ENV = development;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1071,7 +1053,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				RAILS_BASE_URL = "http://localhost:3000";
+				RAILS_BASE_URL = "http://active-resource-kit-tests.herokuapp.com/";
 				RAILS_ENV = development;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1161,31 +1143,6 @@
 			};
 			name = Release;
 		};
-		78C21F7C14A467FD00750476 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PATH = "/bin:/usr/bin:/usr/local/bin:/Applications/Doxygen.app/Contents/Resources";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		78C21F7D14A467FD00750476 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PATH = "/bin:/usr/bin:/usr/local/bin:/Applications/Doxygen.app/Contents/Resources";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1230,15 +1187,6 @@
 			buildConfigurations = (
 				7846AA43140BAAE100FE58E5 /* Debug */,
 				7846AA44140BAAE100FE58E5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		78C21F7B14A467FD00750476 /* Build configuration list for PBXLegacyTarget "ActiveResourceKitPages" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				78C21F7C14A467FD00750476 /* Debug */,
-				78C21F7D14A467FD00750476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

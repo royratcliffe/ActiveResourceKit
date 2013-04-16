@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0460"
-   version = "1.7">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -20,6 +20,20 @@
                ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
+               BuildableName = "ActiveResourceKitFrameworkTests.octest"
+               BlueprintName = "ActiveResourceKitFrameworkTests"
+               ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -27,44 +41,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO"
       buildConfiguration = "Debug">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "# The test launcher script assumes that you have RVM installed as well as the expected version of Ruby; see active-resource-kit-tests/.rvmrc. After installing RVM, install the required Ruby and the required Gems, as follows.&#10;#&#10;#&#9;cd active-resource-kit-tests&#10;#&#9;rvm install ruby-1.9.3-p392&#10;#&#9;bundle install&#10;#&#10;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;bundle exec rake thin:stop db:setup db:fixtures:load thin:start"
-               shellToInvoke = "/bin/bash">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
-                     BlueprintName = "ActiveResourceKitFrameworkTests"
-                     ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot;&#10;cd &quot;$SRCROOT/active-resource-kit-tests&quot;&#10;bundle exec rake thin:stop"
-               shellToInvoke = "/bin/bash">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7846AA2B140BAAE100FE58E5"
-                     BuildableName = "ActiveResourceKitFrameworkTests.octest"
-                     BlueprintName = "ActiveResourceKitFrameworkTests"
-                     ReferencedContainer = "container:ActiveResourceKit.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <Testables>
          <TestableReference
             skipped = "NO">
