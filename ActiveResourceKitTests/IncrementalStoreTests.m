@@ -113,12 +113,10 @@
 	{
 		NSString *title = [post valueForKey:@"title"];
 		NSLog(@"post entitled %@", title);
-		STAssertNotNil(title, nil);
 		for (NSManagedObject *comment in [post valueForKey:@"comments"])
 		{
 			NSString *text = [comment valueForKey:@"text"];
 			NSLog(@"%@", text);
-			STAssertNotNil(text, nil);
 		}
 	}
 }
