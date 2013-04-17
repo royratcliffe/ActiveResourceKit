@@ -65,14 +65,14 @@ manual auto-releasing.
 You can then access resources using _only_ Core Data.
 
 ```objc
-	NSError *__autoreleasing error = nil;
-	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
-	NSArray *people = [[self context] executeFetchRequest:request error:&error];
-	for (NSManagedObject *person in people)
-	{
-	    NSString *name = [person valueForKey:@"name"];
-	    NSLog(@"person named %@", name);
-	}
+NSError *__autoreleasing error = nil;
+NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+NSArray *people = [[self context] executeFetchRequest:request error:&error];
+for (NSManagedObject *person in people)
+{
+    NSString *name = [person valueForKey:@"name"];
+    NSLog(@"person named %@", name);
+}
 ```
 
 You ask Core Data for the Person entities. The answer is a collection of
@@ -96,10 +96,10 @@ will see a GET request in the server log, as follows. Some details elided.
 This just becomes fuss-free:
 
 ```objc
-	NSError *__autoreleasing error = nil;
-	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
-	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
-	BOOL yes = [[self context] save:&error];
+NSError *__autoreleasing error = nil;
+NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
+[person setValue:@"Roy Ratcliffe" forKey:@"name"];
+BOOL yes = [[self context] save:&error];
 ```
 
 And on the server side becomes a familiar POST request:
@@ -117,9 +117,9 @@ And on the server side becomes a familiar POST request:
 Again, just very simply:
 
 ```objc
-	NSError *__autoreleasing error = nil;
-	[[self context] deleteObject:person];
-	BOOL yes = [[self context] save:&error];
+NSError *__autoreleasing error = nil;
+[[self context] deleteObject:person];
+BOOL yes = [[self context] save:&error];
 ```
 
 And the server responds:
@@ -144,20 +144,20 @@ comment model; posts have many comments, a one post to many comments
 association. The following initially creates a post with one comment.
 
 ```objc
-	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
-	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
-	
-	// Set up attributes for the post and the comment.
-	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
-	[post setValue:@"Non eram nescius…" forKey:@"body"];
-	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
-	
-	// Form the one-post-to-many-comments association.
-	[comment setValue:post forKey:@"post"];
-	
-	// Send it all to the server.
-	NSError *__autoreleasing error = nil;
-	[[self context] save:&error];
+NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+
+// Set up attributes for the post and the comment.
+[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
+[post setValue:@"Non eram nescius…" forKey:@"body"];
+[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
+
+// Form the one-post-to-many-comments association.
+[comment setValue:post forKey:@"post"];
+
+// Send it all to the server.
+NSError *__autoreleasing error = nil;
+[[self context] save:&error];
 ```
 
 It constructs a new post, a new comment and their relationship within the
@@ -169,11 +169,11 @@ post's "comments" relationship. The following extract pulls out each text field
 from the comments based on a given post.
 
 ```objc
-	NSMutableArray *comments = [NSMutableArray array];
-	for (NSManagedObject *comment in [post valueForKey:@"comments"])
-	{
-		[comments addObject:[comment valueForKey:@"text"]];
-	}
+NSMutableArray *comments = [NSMutableArray array];
+for (NSManagedObject *comment in [post valueForKey:@"comments"])
+{
+	[comments addObject:[comment valueForKey:@"text"]];
+}
 	[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
 ```
 
