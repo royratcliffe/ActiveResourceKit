@@ -38,22 +38,22 @@ coordinator, and finally attach the coordinator to the context. See example
 below.
 
 ```objc
-	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-	NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
-	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
+NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
 
-	NSError *__autoreleasing error = nil;
-	NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
-	                                                     configuration:nil
-	                                                               URL:[NSURL URLWithString:@"http://localhost:3000"]
-	                                                           options:nil
-	                                                             error:&error];
-	// <-- error handling goes here
+NSError *__autoreleasing error = nil;
+NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
+                                                     configuration:nil
+                                                               URL:[NSURL URLWithString:@"http://localhost:3000"]
+                                                           options:nil
+                                                             error:&error];
+// <-- error handling goes here
 
-	NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-	[context setPersistentStoreCoordinator:coordinator];
-	[self setContext:context];
+NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+[context setPersistentStoreCoordinator:coordinator];
+[self setContext:context];
 ```
 
 Note that this excerpt uses Automatic Reference Counting, hence the
