@@ -37,6 +37,7 @@ load the model, load the coordinator with the model, add the store to the
 coordinator, and finally attach the coordinator to the context. See example
 below.
 
+```objc
 	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
 	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -53,6 +54,7 @@ below.
 	NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 	[context setPersistentStoreCoordinator:coordinator];
 	[self setContext:context];
+```
 
 Note that this excerpt uses Automatic Reference Counting, hence the
 `__autoreleasing` specifier for the error pointer. Notice the blatant lack of
