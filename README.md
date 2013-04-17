@@ -174,7 +174,7 @@ for (NSManagedObject *comment in [post valueForKey:@"comments"])
 {
 	[comments addObject:[comment valueForKey:@"text"]];
 }
-	[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
+[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
 ```
 
 ## Resources Using Rails-Style Access
