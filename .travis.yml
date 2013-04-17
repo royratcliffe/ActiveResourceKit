@@ -5,4 +5,4 @@ language: objective-c
 # project folder first before running the shell command, clone to the parent
 # folder.
 install:
-	- for dep in ActiveModelKit ActiveSupportKit ; do git clone git://github.com/royratcliffe/$dep.git ../$dep ; done
+  - for dep in ActiveModelKit ActiveSupportKit ; do git clone git://github.com/royratcliffe/$dep.git ../$dep ; done
