@@ -59,7 +59,7 @@
 	NSURL *modelURL = [bundle URLForResource:@"ActiveResourceKitTests" withExtension:@"momd"];
 	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-	
+
 	NSError *__autoreleasing error = nil;
 	NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
 														 configuration:nil
@@ -68,7 +68,7 @@
 																 error:&error];
 	STAssertNotNil(store, nil);
 	STAssertNil(error, nil);
-	
+
 	NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 	[context setPersistentStoreCoordinator:coordinator];
 	[self setContext:context];
@@ -130,7 +130,7 @@
 	STAssertNotNil(person, nil);
 	STAssertTrue(yes, nil);
 	STAssertNil(error, nil);
-	
+
 	[[self context] deleteObject:person];
 	yes = [[self context] save:&error];
 	STAssertTrue(yes, nil);
@@ -140,13 +140,13 @@
 - (void)testUpdatePerson
 {
 	NSError *__autoreleasing error = nil;
-	
+
 	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
 	BOOL yes = [[self context] save:&error];
 	STAssertNotNil(person, nil);
 	STAssertTrue(yes, nil);
 	STAssertNil(error, nil);
-	
+
 	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
 	yes = [[self context] save:&error];
 	STAssertTrue(yes, nil);
@@ -166,24 +166,24 @@
 - (void)testOnePostToManyComments
 {
 	NSError *__autoreleasing error = nil;
-	
+
 	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
 	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
 	STAssertNotNil(post, nil);
 	STAssertNotNil(comment, nil);
-	
+
 	// Set up attributes for the post and the comment.
 	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
 	[post setValue:@"Non eram nescius…" forKey:@"body"];
 	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
-	
+
 	// Form the one-post-to-many-comments association.
 	[comment setValue:post forKey:@"post"];
-	
+
 	// Send it all to the server.
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
 	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
 	NSMutableArray *comments = [NSMutableArray array];
@@ -198,7 +198,7 @@
 - (void)testOnePostToManyCommentsPartiallySaved
 {
 	NSError *__autoreleasing error = nil;
-	
+
 	// Send the post to the server. This results in one POST request.
 	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
 	[post setValue:@"title" forKey:@"title"];
@@ -206,14 +206,14 @@
 	STAssertNotNil(post, nil);
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	// Send the comment to the server. This results in a second POST request.
 	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
 	[comment setValue:@"text" forKey:@"text"];
 	STAssertNotNil(comment, nil);
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	// Send the relationship to the server. This results in a GET request
 	// for the comment and for the post. This always happens because
 	// insertion of objects always evicts the resource from the resource
@@ -227,7 +227,7 @@
 	[comment setValue:post forKey:@"post"];
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
 	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
 	NSMutableArray *comments = [NSMutableArray array];
@@ -242,7 +242,7 @@
 		// substitution values for the resource's prefix parameters.
 		NSManagedObject *commentPost = [comment valueForKey:@"post"];
 		STAssertEqualObjects(post, commentPost, nil);
-		
+
 		[comments addObject:[comment valueForKey:@"text"]];
 	}
 	STAssertFalse([comments count] == 0, nil);
@@ -258,21 +258,21 @@
 - (void)testOnePostToManyCommentsPartiallySavedAndNullAttributes
 {
 	NSError *__autoreleasing error = nil;
-	
+
 	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
 	STAssertNotNil(post, nil);
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
 	STAssertNotNil(comment, nil);
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	[comment setValue:post forKey:@"post"];
 	STAssertTrue([[self context] save:&error], nil);
 	STAssertNil(error, nil);
-	
+
 	[[[[self coordinator] persistentStores] objectAtIndex:0] evictAllResources];
 	[[post managedObjectContext] refreshObject:post mergeChanges:NO];
 	NSMutableArray *comments = [NSMutableArray array];
@@ -284,7 +284,7 @@
 			[comments addObject:text];
 		}
 		STAssertNil(text, nil);
-		
+
 		// The comment has no text (nil) but it does have a valid back reference.
 		NSManagedObject *commentPost = [comment valueForKey:@"post"];
 		STAssertEqualObjects(post, commentPost, nil);
