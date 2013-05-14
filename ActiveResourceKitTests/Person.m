@@ -29,6 +29,8 @@
 
 @implementation Person
 
+@dynamic name;
+
 + (NSURL *)site
 {
 	return ActiveResourceKitTestsBaseURL();

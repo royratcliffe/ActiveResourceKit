@@ -40,6 +40,17 @@
 // for ASInflectorUnderscore
 #import <ActiveSupportKit/ActiveSupportKit.h>
 
+/**
+ * Turns the selector string into an undefined key. Remove the set prefix and
+ * the trailing colon. The selector determines which attribute to
+ * access. Setters begin with "set" plus the name of the property and a final
+ * colon. Remove the prefix and suffix; lower case convert the
+ * remainder. Answers `nil` if the selector fails to match the set<Property>:
+ * pattern.
+ */
+NSString *ARUndefinedKeyForSetterSelector(SEL selector);
+NSString *ARUndefinedKeyForGetterSelector(SEL selector);
+
 // continuation class
 @interface ARResource()
 {
@@ -365,4 +376,91 @@
 	return [string copy];
 }
 
+//------------------------------------------------------------------------------
+//
+// The implementation could resolve dynamic setters and getters using
+// +resolveInstanceMethod:sel. See below. However, this approach works by adding
+// method implementations to the ARResource class itself, and hence for all
+// instances of ARResource. Not desirable.
+//
+//	#import <objc/runtime.h>
+//
+//	+ (BOOL)resolveInstanceMethod:(SEL)sel
+//	{
+//		NSString *selString = NSStringFromSelector(sel);
+//		if ([selString hasPrefix:@"set"] && [selString hasSuffix:@":"])
+//		{
+//			NSString *lowercase = [[selString substringWithRange:NSMakeRange(3, 1)] lowercaseString];
+//			NSString *substring = [selString substringWithRange:NSMakeRange(4, [selString length] - 5)];
+//			NSString *undefinedKey = [lowercase stringByAppendingString:substring];
+//			return class_addMethod(self, sel, imp_implementationWithBlock(^(ARResource *self, id value) {
+//				[self setValue:value forUndefinedKey:undefinedKey];
+//			}), "v@:@");
+//		}
+//		if (![selString hasPrefix:@"get"] && ![selString hasSuffix:@":"])
+//		{
+//			return class_addMethod(self, sel, imp_implementationWithBlock(^id (ARResource *self) {
+//				return [self valueForUndefinedKey:selString];
+//			}), "@@:");
+//		}
+//		return [super resolveInstanceMethod:sel];
+//	}
+//
+//------------------------------------------------------------------------------
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
+	NSString *key;
+	if ((key = ARUndefinedKeyForSetterSelector([anInvocation selector])))
+	{
+		id value;
+		[anInvocation getArgument:&value atIndex:2];
+		[self setValue:value forUndefinedKey:key];
+	}
+	else if ((key = ARUndefinedKeyForGetterSelector([anInvocation selector])))
+	{
+		id value = [self valueForUndefinedKey:key];
+		[anInvocation setReturnValue:&value];
+	}
+	else [super forwardInvocation:anInvocation];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+	NSString *key;
+	if ((key = ARUndefinedKeyForSetterSelector(aSelector)) && [[self knownAttributes] containsObject:key])
+	{
+		NSString *types = [NSString stringWithFormat:@"%s%s%s%s", @encode(void), @encode(id), @encode(SEL), @encode(id)];
+		return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
+	}
+	if ((key = ARUndefinedKeyForGetterSelector(aSelector)) && [[self knownAttributes] containsObject:key])
+	{
+		NSString *types = [NSString stringWithFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)];
+		return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
+	}
+	return [super methodSignatureForSelector:aSelector];
+}
+
 @end
+
+NSString *ARUndefinedKeyForSetterSelector(SEL selector)
+{
+	NSString *selectorString = NSStringFromSelector(selector);
+	if ([selectorString hasPrefix:@"set"] && [selectorString hasSuffix:@":"])
+	{
+		NSString *first = [[selectorString substringWithRange:NSMakeRange(3, 1)] lowercaseString];
+		NSString *other = [selectorString substringWithRange:NSMakeRange(4, [selectorString length] - 5)];
+		return [first stringByAppendingString:other];
+	}
+	return nil;
+}
+
+NSString *ARUndefinedKeyForGetterSelector(SEL selector)
+{
+	NSString *selectorString = NSStringFromSelector(selector);
+	if (![selectorString hasPrefix:@"get"] && ![selectorString hasSuffix:@":"])
+	{
+		return selectorString;
+	}
+	return nil;
+}
