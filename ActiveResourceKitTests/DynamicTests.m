@@ -1,6 +1,6 @@
-// ActiveResourceKitTests Person.h
+// ActiveResourceKitTests DynamicTests.m
 //
-// Copyright © 2011–2013, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -22,18 +22,34 @@
 //
 //------------------------------------------------------------------------------
 
-#import <ActiveResourceKit/ActiveResourceKit.h>
+#import "DynamicTests.h"
 
-//
-//	require 'active_resource'
-//
-//	class Person < ActiveResource::Base
-//	  self.site = "https://active-resource-kit-tests.herokuapp.com"
-//	end
-//
+#import "Person.h"
 
-@interface Person : ARResource
+@implementation DynamicTests
 
-@property(strong, NS_NONATOMIC_IOSONLY) NSString *name;
+- (void)testDynamicWithSchema
+{
+	Person *person = [Person new];
+	[[person serviceLazily] setSchema:@{@"name": @(@encode(NSString *))}];
+
+	// setter
+	person.name = @"Roy";
+
+	// getter
+	STAssertEqualObjects(person.name, @"Roy", nil);
+}
+
+- (void)testDynamicWithoutSchema
+{
+	NSString *name;
+	Person *person = [Person new];
+
+	// setter throws
+	STAssertThrows(person.name = @"Roy", nil);
+
+	// getter throws
+	STAssertThrows(name = person.name, nil);
+}
 
 @end

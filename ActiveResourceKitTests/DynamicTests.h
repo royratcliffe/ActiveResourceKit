@@ -1,6 +1,6 @@
-// ActiveResourceKitTests Person.h
+// ActiveResourceKitTests DynamicTests.h
 //
-// Copyright © 2011–2013, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -22,18 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import <ActiveResourceKit/ActiveResourceKit.h>
+#import <SenTestingKit/SenTestingKit.h>
 
-//
-//	require 'active_resource'
-//
-//	class Person < ActiveResource::Base
-//	  self.site = "https://active-resource-kit-tests.herokuapp.com"
-//	end
-//
-
-@interface Person : ARResource
-
-@property(strong, NS_NONATOMIC_IOSONLY) NSString *name;
+@interface DynamicTests : SenTestCase
 
 @end

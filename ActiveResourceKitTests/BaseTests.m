@@ -68,7 +68,7 @@
 	}];
 	[self runUntilStop];
 	
-	[peopleService existsWithID:[NSNumber numberWithInt:99] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
+	[peopleService existsWithID:[NSNumber numberWithInt:999] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
 		STAssertEquals([response code], (NSInteger)404, nil);
 		STAssertEquals([error code], (NSInteger)ARResourceNotFoundErrorCode, nil);
