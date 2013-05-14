@@ -51,7 +51,7 @@
 {
 	[[self resource] setValue:@"" forKey:@"key"];
 	STAssertEqualObjects(@"", [[self resource] valueForKey:@"key"], nil);
-	
+
 	[[self resource] setNilValueForKey:@"key"];
 	STAssertEqualObjects([NSNull null], [[self resource] valueForKey:@"key"], nil);
 }

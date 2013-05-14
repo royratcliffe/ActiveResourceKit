@@ -156,14 +156,14 @@
 {
 	NSMutableDictionary *metadata = [NSMutableDictionary dictionary];
 	[metadata setObject:[ARIncrementalStore storeTypeForClass:[self class]] forKey:NSStoreTypeKey];
-	
+
 	// Assigning a Universally-Unique ID is essential. Without this the next
 	// invocation of -[setMetadata:] will recurse infinitely. Use the URL
 	// description as the UUID. Within the context of Core Data, that should
 	// provide a sufficiently unique identifier while giving the store's
 	// managed-object IDs a meaningful and readable prefix.
 	[metadata setObject:[[self URL] description] forKey:NSStoreUUIDKey];
-	
+
 	[self setMetadata:[metadata copy]];
 	return YES;
 }
@@ -233,7 +233,7 @@
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	id __block result = nil;
-	
+
 	NSMutableDictionary *options = [NSMutableDictionary dictionary];
 	NSUInteger fetchLimit = [request fetchLimit];
 	if (fetchLimit)
@@ -293,7 +293,7 @@
 			{
 				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
 			}
-			
+
 			// Compile the results for Core Data. Having previously iterated the
 			// resources in order to create or update the cache, now deal with
 			// the results in terms of managed objects and object IDs.
@@ -334,7 +334,7 @@
 			}
 		}
 	}];
-	
+
 	return result;
 }
 
@@ -346,7 +346,7 @@
 - (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	NSMutableArray *errors = [NSMutableArray array];
-	
+
 	// inserts
 	//
 	// Copy the insert-update-delete sets before iterating. This is necessary
@@ -376,7 +376,7 @@
 				}];
 			}
 		}
-		
+
 		// There is a good reason for refreshing an inserted object, even though
 		// at first sight reloading it appears odd. Are not the client and
 		// server synchronised after a resource insertion with respect to the
@@ -386,7 +386,7 @@
 		// principle also applies to updates, see below.
 		[self refreshObject:object];
 	}
-	
+
 	// updates
 	for (NSManagedObject *object in [[request updatedObjects] copy])
 	{
@@ -441,7 +441,7 @@
 			}
 		}];
 	}
-	
+
 	// deletes
 	for (NSManagedObject *object in [[request deletedObjects] copy])
 	{
@@ -459,7 +459,7 @@
 			}
 		}];
 	}
-	
+
 	// results
 	BOOL success = [errors count] == 0;
 	if (!success && outError && *outError == nil)
@@ -473,7 +473,7 @@
 {
 	// If not already in the cache, turn the fault into a resource.
 	ARResource *resource = [self cachedResourceForObjectID:objectID error:outError];
-	
+
 	NSIncrementalStoreNode *node;
 	if (resource)
 	{
@@ -640,7 +640,7 @@
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj
 {
-	
+
 }
 
 @end

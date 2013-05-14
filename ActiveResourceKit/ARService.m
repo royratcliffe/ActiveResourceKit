@@ -244,14 +244,14 @@ Class ARServiceDefaultConnectionClass;
 	if (prefixSource == nil)
 	{
 		prefixSource = [self defaultPrefixSource];
-		
+
 		// Automatically append a trailing slash, but if and only if the prefix
 		// source does not already terminate with a slash.
 		if ([prefixSource length] == 0 || ![[prefixSource substringFromIndex:[prefixSource length] - 1] isEqualToString:@"/"])
 		{
 			prefixSource = [prefixSource stringByAppendingString:@"/"];
 		}
-		
+
 		[self setPrefixSource:prefixSource];
 	}
 	return prefixSource;

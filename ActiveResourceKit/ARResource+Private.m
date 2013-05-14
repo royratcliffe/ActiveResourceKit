@@ -113,7 +113,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 {
 	NSDictionary *headerFields;
 	NSString *contentLength;
-	
+
 	if (ARResponseCodeAllowsBody([response code]) &&
 		((contentLength = [headerFields = [response headerFields] objectForKey:@"Content-Length"]) == nil || ![contentLength isEqualToString:@"0"]))
 	{
