@@ -24,9 +24,10 @@
 
 #import "ARTestCase.h"
 
-/*!
- * @brief Defines base URL for testing against.
- * @details Tests access this base URL assuming you have launched the
+/**
+ * Defines base URL for testing against.
+ *
+ * Tests access this base URL assuming you have launched the
  * active-resource-kit-tests Rails application. The shared schemas launch a
  * Rails Thin server on localhost:3000. All tests access the base URL here. That
  * makes it easy to change once for all tests to redirect their attention to

@@ -1,10 +1,3 @@
-GENERATE_DOCSET         = YES
-
-DOCSET_FEEDNAME         = "Active Resource Kit Documentation Set"
-DOCSET_BUNDLE_ID        = org.rubyonrails.api.ActiveResourceKitDocSet
-DOCSET_PUBLISHER_ID     = uk.co.pioneeringsoftware.ActiveResourceKitDocSet.documentation
-DOCSET_PUBLISHER_NAME   = Pioneering Software
-
 EXTRACT_ALL             = YES
 EXTRACT_PRIVATE         = YES
 EXTRACT_STATIC          = YES
@@ -16,7 +9,11 @@ GENERATE_BUGLIST        = YES
 GENERATE_DEPRECATEDLIST = YES
 
 STRIP_CODE_COMMENTS     = NO
+JAVADOC_AUTOBRIEF       = YES
 
 HAVE_DOT                = YES
+
+INPUT                  += README.md
+USE_MDFILE_AS_MAINPAGE  = README.md
 
 IMAGE_PATH              = Documents

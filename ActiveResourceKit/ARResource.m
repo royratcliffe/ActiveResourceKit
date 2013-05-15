@@ -229,13 +229,14 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	[self setValue:[NSNull null] forKey:key];
 }
 
-/*!
- * @brief Transfers values from the resource attributes to a dictionary,
+/**
+ * Transfers values from the resource attributes to a dictionary,
  * answering the dictionary.
- * @details Accesses the values by sending @c -valueForKey:aKey to @c self,
- * where @c aKey conforms to key-value coding requirements, i.e. lower
- * camel-case. This invokes @c -valueForUndefinedKey:aKey on @c self which
- * performs the @c aKey to @c a_key translation to Rails resource attribute
+ *
+ * Accesses the values by sending `-valueForKey:aKey` to `self`,
+ * where `aKey` conforms to key-value coding requirements, i.e. lower
+ * camel-case. This invokes `-valueForUndefinedKey:aKey` on `self` which
+ * performs the `aKey` to `a_key` translation to Rails resource attribute
  * name.
  */
 - (NSDictionary *)dictionaryWithValuesForKeys:(NSArray *)keys

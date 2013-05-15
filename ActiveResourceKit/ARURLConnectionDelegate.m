@@ -45,9 +45,10 @@
 	return YES;
 }
 
-/*!
- * @brief Responds to authentication challenges.
- * @details The connection @em cannot continue without credentials in order to
+/**
+ * Responds to authentication challenges.
+ *
+ * The connection _cannot_ continue without credentials in order to
  * access HTTPS resources. Creates a credential, passing it to the
  * authentication challenge's sender. Sends “server trust” provided by the
  * protection space of the authentication challenge.

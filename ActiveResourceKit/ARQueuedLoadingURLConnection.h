@@ -30,10 +30,11 @@
 
 //-------------------------------------------------------------- Operation Queue
 
-/*!
- * @brief Specifies the operation queue on which to handle response completions
+/**
+ * Specifies the operation queue on which to handle response completions
  * for resources associated with this connection.
- * @details All completion handlers run in the given operation queue. If @c nil,
+ *
+ * All completion handlers run in the given operation queue. If `nil`,
  * the completion handler runs in the operation queue used to issue the request.
  */
 @property(strong, NS_NONATOMIC_IOSONLY) NSOperationQueue *operationQueue;

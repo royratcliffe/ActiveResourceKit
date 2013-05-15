@@ -26,8 +26,8 @@
 
 @class ARHTTPResponse;
 
-/*!
- * @brief Implements a simple connection delegate designed for collecting the
+/**
+ * Implements a simple connection delegate designed for collecting the
  * response, including the body data, and for working around SSL challenges.
  */
 @interface ARURLConnectionDelegate : NSObject

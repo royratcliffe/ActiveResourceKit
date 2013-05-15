@@ -24,9 +24,9 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * @brief Strips off the enclosing dictionary if and only if the object is a
+/**
+ * Strips off the enclosing dictionary if and only if the object is a
  * dictionary (hash) containing just a single key-value pair. Otherwise answers
- * @a object, a no-operation.
+ * `object`, a no-operation.
  */
 id ARRemoveRoot(id object);
