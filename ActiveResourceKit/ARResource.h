@@ -41,6 +41,14 @@
 @interface ARResource : NSObject<AMAttributeMethods, NSCopying>
 
 /**
+ * Clones the given resource by copying its entire state to this
+ * resource, the `self` instance. The entire state includes the
+ * underlying service object, the resource attributes, its prefix options and
+ * its persisted status.
+ */
+- (void)clone:(ARResource *)resource;
+
+/**
  * Constructs an active resource service using class methods to establish
  * the site and element name.
  *
