@@ -28,21 +28,23 @@
 @class ARService;
 @class ARHTTPResponse;
 
-/*!
- * @brief Provides the core class mirroring Rails' @c ActiveResource::Base class.
- * @details An active resource mimics an active record. Resources behave as
+/**
+ * Provides the core class mirroring Rails' `ActiveResource::Base` class.
+ *
+ * An active resource mimics an active record. Resources behave as
  * records. Only their connection fundamentally differs. Active Records connect
  * to a database whereas Active Resources connect to a RESTful API accessed via
  * HTTP transport.
  *
- * @image html Class_Diagram__Service_and_Resource.png
+ * [![Class Diagram: Connections](https://raw.github.com/royratcliffe/ActiveResourceKit/master/Documents/Class%5fDiagram%5f%5fService%5fand%5fResource.png)](https://raw.github.com/royratcliffe/ActiveResourceKit/master/Documents/Class%5fDiagram%5f%5fService%5fand%5fResource.png)
  */
 @interface ARResource : NSObject<AMAttributeMethods, NSCopying>
 
-/*!
- * @brief Constructs an active resource service using class methods to establish
+/**
+ * Constructs an active resource service using class methods to establish
  * the site and element name.
- * @details If the ARResource sub-class has a class method called +site, use its
+ *
+ * If the ARResource sub-class has a class method called +site, use its
  * answer to set up the Active Resource site. This assumes that +site answers an
  * NSURL object. Similarly, sets up the service element name by sending
  * +elementName to the sub-class, answering a string. However, if the sub-class
@@ -57,9 +59,10 @@
 
 - (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
-/*!
- * @brief Answers this resource's foreign identifier along with its foreign key.
- * @details Gives options for applying this resource's identity to a nested
+/**
+ * Answers this resource's foreign identifier along with its foreign key.
+ *
+ * Gives options for applying this resource's identity to a nested
  * service. Use the resulting key-value pair to access this resource's
  * sub-elements. First derive a nested service for the sub-element; doing so
  * parameterises the resource identity and hence needs a specific sub-element
@@ -70,21 +73,22 @@
 
 //------------------------------------------------------------------------- Base
 
-/*!
+/**
  * Retains the active-resource service. Does not copy the service. This has important
  * implications. If you alter service properties, the changes affect all the
  * resources which depend upon it.
  */
 @property(strong, NS_NONATOMIC_IOSONLY) ARService *service;
 
-/*!
- * @brief Asks for the resource service, lazily constructing a service instance if the
+/**
+ * Asks for the resource service, lazily constructing a service instance if the
  * resource does not currently retain a service.
- * @details Asks the class for a site URL and an element name. Optionally
- * implement @c +site and @c +elementName to supply the URL and element name. If
- * your class does not supply an implementation for @c +elementName, the element
+ *
+ * Asks the class for a site URL and an element name. Optionally
+ * implement `+site` and `+elementName` to supply the URL and element name. If
+ * your class does not supply an implementation for `+elementName`, the element
  * name derives from the sub-class name. This assumes that you do not directly
- * instantiate the ARResource class. If you do, the element name remains @c nil.
+ * instantiate the ARResource class. If you do, the element name remains `nil`.
  */
 - (ARService *)serviceLazily;
 
@@ -92,19 +96,21 @@
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *attributes;
 
-/*!
- * @brief Merges the contents of a dictionary into the receiver's attributes.
- * @param attributes The dictionary (or hash) of attribute key-value pairs used
- * for merging with the receiver's attributes.
- * @details If keys within the given dictionary of @a attributes match keys in
+/**
+ * Merges the contents of a dictionary into the receiver's attributes.
+ *
+ * If keys within the given dictionary of `attributes` match keys in
  * the receiver's current attributes, merging replaces the objects in the
  * receiver by those in the given dictionary.
+ * @param attributes The dictionary (or hash) of attribute key-value pairs used
+ * for merging with the receiver's attributes.
  */
 - (void)mergeAttributes:(NSDictionary *)attributes;
 
-/*!
- * @brief Loads resource attributes from a dictionary of key-value pairs.
- * @details Argument @a removeRoot becomes a do-not-care if @a attributes
+/**
+ * Loads resource attributes from a dictionary of key-value pairs.
+ *
+ * Argument `removeRoot` becomes a do-not-care if `attributes`
  * contains just a single key-object pair. In such a case, removing the root
  * depends on whether or not the single key matches the service element name.
  *
@@ -112,7 +118,7 @@
  * also access the attribute values using Key-Value Coding where the keys follow
  * Cocoa conventions: camel case with leading lower case letter. The resource
  * translates the KVC-style keys to Rails conventions when looking up the
- * corresponding value, @c aKey becomes @c a_key.
+ * corresponding value, `aKey` becomes `a_key`.
  */
 - (void)loadAttributes:(NSDictionary *)attributes removeRoot:(BOOL)removeRoot;
 
@@ -124,12 +130,13 @@
 
 - (NSDictionary *)schema;
 
-/*!
- * @brief Answers all the known attributes belonging to this active resource, a
+/**
+ * Answers all the known attributes belonging to this active resource, a
  * unique array of attribute key strings.
- * @details The resulting array includes all the service's known attributes plus
- * this resource instance's known attributes. Duplicates if any do @e not
- * appear. This deviates from Rails at version 3.1.0 where duplicates @e do
+ *
+ * The resulting array includes all the service's known attributes plus
+ * this resource instance's known attributes. Duplicates if any do _not_
+ * appear. This deviates from Rails at version 3.1.0 where duplicates _do_
  * appear.
  */
 - (NSArray *)knownAttributes;
@@ -143,13 +150,14 @@
 
 //------------------------------------------------------------------ Primary Key
 
-/*!
- * @brief Answers the primary key.
- * @details By convention, Rails' primary keys appear in the column named @c
- * id. Column type is integer. Hence the ActiveResourceKit implementation
+/**
+ * Answers the primary key.
+ *
+ * By convention, Rails' primary keys appear in the column named
+ * `id`. Column type is integer. Hence the ActiveResourceKit implementation
  * answers the primary key only if the type is a number. (This includes other
- * types of number.) Otherwise it answers @c nil.
- * @par Integer Width
+ * types of number.) Otherwise it answers `nil`.
+ * ### Integer Width
  * The exact integer type depends on the database implementation and
  * configuration at the server side. Databases typically store integers as
  * signed 32-bit integers. Send -[NSNumber intValue] to the resulting number to
@@ -167,8 +175,8 @@
 
 - (void)existsWithCompletionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler;
 
-/*!
- * @brief Answers a serialised data representation of the resource according to
+/**
+ * Answers a serialised data representation of the resource according to
  * the configured serialisation format.
  */
 - (NSData *)encode;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--output</key>
+	<string>ActiveResourceKitDocs</string>
+	<key>--index-desc</key>
+	<string>README.md</string>
+	<key>--project-name</key>
+	<string>ActiveResourceKit</string>
+	<key>--project-company</key>
+	<string>Pioneering Software, United Kingdom</string>
+	<key>--company-id</key>
+	<string>uk.co.pioneeringsoftware</string>
+	<key>--keep-undocumented-objects</key>
+	<false/>
+	<key>--keep-undocumented-members</key>
+	<false/>
+	<key>--docset-feed-url</key>
+	<string>http://downloads.pioneeringsoftware.co.uk/%DOCSETATOMFILENAME</string>
+	<key>--docset-package-url</key>
+	<string>http://downloads.pioneeringsoftware.co.uk/%DOCSETPACKAGEFILENAME</string>
+	<key>--docset-fallback-url</key>
+	<string>https://github.com/royratcliffe/ActiveResourceKit/</string>
+	<key>--publish-docset</key>
+	<true/>
+	<key>--repeat-first-par</key>
+	<false/>
+</dict>
+</plist>

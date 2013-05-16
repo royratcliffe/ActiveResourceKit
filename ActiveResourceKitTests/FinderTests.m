@@ -39,11 +39,11 @@
 										 NSError *error) {
 		STAssertNotNil(matz, nil);
 		STAssertNil(error, nil);
-		
+
 		STAssertTrue([matz isKindOfClass:[Person class]], nil);
 		STAssertEqualObjects([matz valueForKey:@"name"], @"Matz", nil);
 		STAssertNotNil([[matz attributes] objectForKey:@"name"], nil);
-		
+
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
@@ -61,11 +61,11 @@
 					 completionHandler:^(ARHTTPResponse *response, ARResource *matz, NSError *error) {
 		STAssertNotNil(matz, nil);
 		STAssertNil(error, nil);
-		
+
 		STAssertTrue([matz isKindOfClass:[Person class]], nil);
 		STAssertEqualObjects([matz valueForKey:@"name"], @"Matz", nil);
 		STAssertNotNil([[matz attributes] objectForKey:@"name"], nil);
-		
+
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
@@ -74,7 +74,7 @@
 - (void)testFindCollectionWithCustomPrefix
 {
 	NSUInteger __block pending = 0;
-	
+
 	ARService *postService = [[ARService alloc] initWithSite:ActiveResourceKitTestsBaseURL() elementName:@"post"];
 	ARService *commentService = [postService serviceForSubelementNamed:@"comment"];
 	[postService findAllWithOptions:nil completionHandler:^(ARHTTPResponse *response, NSArray *posts, NSError *error) {
@@ -89,7 +89,7 @@
 				{
 					NSLog(@"%@", [comment valueForKey:@"text"]);
 				}
-				
+
 				// Stop the run loop when pending equals zero, but not
 				// before. Completion handlers execute when the request
 				// responds. Finding a post increments pending. Finding all a

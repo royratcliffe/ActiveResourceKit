@@ -147,23 +147,24 @@
 // NSIncrementalStore. Implementations below override the abstract interface
 // laid out by Core Data.
 
-/*!
- * @brief Validates the store URL.
- * @details Is the store URL usable? Does it exist? Can the store receive save
+/**
+ * Validates the store URL.
+ *
+ * Is the store URL usable? Does it exist? Can the store receive save
  * requests? Are the schemas compatible?
  */
 - (BOOL)loadMetadata:(NSError **)outError
 {
 	NSMutableDictionary *metadata = [NSMutableDictionary dictionary];
 	[metadata setObject:[ARIncrementalStore storeTypeForClass:[self class]] forKey:NSStoreTypeKey];
-	
+
 	// Assigning a Universally-Unique ID is essential. Without this the next
 	// invocation of -[setMetadata:] will recurse infinitely. Use the URL
 	// description as the UUID. Within the context of Core Data, that should
 	// provide a sufficiently unique identifier while giving the store's
 	// managed-object IDs a meaningful and readable prefix.
 	[metadata setObject:[[self URL] description] forKey:NSStoreUUIDKey];
-	
+
 	[self setMetadata:[metadata copy]];
 	return YES;
 }
@@ -180,19 +181,19 @@
 	return nil;
 }
 
-/*!
+/**
  * @result If the request is a fetch request whose result type is set to one of
- * @c NSManagedObjectResultType, @c NSManagedObjectIDResultType, @c
- * NSDictionaryResultType, returns an array containing all objects in the store
+ * `NSManagedObjectResultType`, `NSManagedObjectIDResultType`,
+ * `NSDictionaryResultType`, returns an array containing all objects in the store
  * matching the request. If the request is a fetch request whose result type is
- * set to @c NSCountResultType, returns an array containing an @c NSNumber of
+ * set to `NSCountResultType`, returns an array containing an `NSNumber` of
  * all objects in the store matching the request.
  *
  * This method runs on iOS, for instance, when a fetched results controller
  * performs a fetch in response to a table view controller determining the
  * number of sections in the table view.
  *
- * @par Fetch Request State
+ * ### Fetch Request State
  * Executing a fetch request requires decoding the fetch request. Fetch requests
  * include numerous additional parameters, including:
  *
@@ -209,7 +210,7 @@
  *
  * Requests can be complex. In Objective-C terms, you can acquire the full
  * fetch-request state using:
- * @code
+ *
  *	NSString *entityName = [request entityName];
  *	NSPredicate *predicate = [request predicate];
  *	NSArray *sortDescriptors = [request sortDescriptors];
@@ -228,12 +229,11 @@
  *	BOOL shouldRefreshRefetchedObjects = [request shouldRefreshRefetchedObjects];
  *	NSArray *propertiesToGroupBy = [request propertiesToGroupBy];
  *	NSPredicate *havingPredicate = [request havingPredicate];
- * @endcode
  */
 - (id)executeFetchRequest:(NSFetchRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	id __block result = nil;
-	
+
 	NSMutableDictionary *options = [NSMutableDictionary dictionary];
 	NSUInteger fetchLimit = [request fetchLimit];
 	if (fetchLimit)
@@ -293,7 +293,7 @@
 			{
 				[objectIDs addObject:[self objectIDForCachedResource:resource withContext:context]];
 			}
-			
+
 			// Compile the results for Core Data. Having previously iterated the
 			// resources in order to create or update the cache, now deal with
 			// the results in terms of managed objects and object IDs.
@@ -334,19 +334,20 @@
 			}
 		}
 	}];
-	
+
 	return result;
 }
 
-/*!
- * @brief Core Data sends this message when managed-object contexts save.
- * @details The save-changes request encapsulates inserted, updated and deleted
+/**
+ * Core Data sends this message when managed-object contexts save.
+ *
+ * The save-changes request encapsulates inserted, updated and deleted
  * objects.
  */
 - (id)executeSaveRequest:(NSSaveChangesRequest *)request withContext:(NSManagedObjectContext *)context error:(NSError **)outError
 {
 	NSMutableArray *errors = [NSMutableArray array];
-	
+
 	// inserts
 	//
 	// Copy the insert-update-delete sets before iterating. This is necessary
@@ -376,7 +377,7 @@
 				}];
 			}
 		}
-		
+
 		// There is a good reason for refreshing an inserted object, even though
 		// at first sight reloading it appears odd. Are not the client and
 		// server synchronised after a resource insertion with respect to the
@@ -386,7 +387,7 @@
 		// principle also applies to updates, see below.
 		[self refreshObject:object];
 	}
-	
+
 	// updates
 	for (NSManagedObject *object in [[request updatedObjects] copy])
 	{
@@ -441,7 +442,7 @@
 			}
 		}];
 	}
-	
+
 	// deletes
 	for (NSManagedObject *object in [[request deletedObjects] copy])
 	{
@@ -459,7 +460,7 @@
 			}
 		}];
 	}
-	
+
 	// results
 	BOOL success = [errors count] == 0;
 	if (!success && outError && *outError == nil)
@@ -473,7 +474,7 @@
 {
 	// If not already in the cache, turn the fault into a resource.
 	ARResource *resource = [self cachedResourceForObjectID:objectID error:outError];
-	
+
 	NSIncrementalStoreNode *node;
 	if (resource)
 	{
@@ -589,8 +590,8 @@
 	return result;
 }
 
-/*!
- * @details Invoked just before sending a save-changes request. Objects sent
+/**
+ * Invoked just before sending a save-changes request. Objects sent
  * here have only a temporary object ID. Objective: to assign permanent IDs to
  * newly inserted objects. Answers a set of matching object IDs. The
  * implementation assumes that the given object's have IDs always of nil. It
@@ -640,7 +641,7 @@
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj
 {
-	
+
 }
 
 @end

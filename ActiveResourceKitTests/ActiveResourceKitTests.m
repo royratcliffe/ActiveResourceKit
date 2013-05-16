@@ -64,7 +64,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 {
 	post = [[Post alloc] initWithSite:ActiveResourceKitTestsBaseURL()];
 	postComment = [[PostComment alloc] initWithSite:[NSURL URLWithString:@"/posts/:post_id" relativeToURL:ActiveResourceKitTestsBaseURL()]];
-	
+
 	// You cannot use Comment as a class name. The CarbonCore framework (a
 	// CoreServices sub-framework) steals this symbol first. Apple has already
 	// polluted the namespace with a Comment type definition. So we will call it
@@ -82,7 +82,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 {
 	Person *ryan = [[Person alloc] init];
 	[ryan setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"Ryan", @"first", @"Daigle", @"last", nil]];
-	
+
 	// At this point, service should be nil because nothing has as yet accessed the
 	// service lazily! The resource only exists in memory; hence not persisted, a
 	// new resource, a new record.
@@ -90,7 +90,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	STAssertFalse([ryan persisted], nil);
 	STAssertTrue([ryan isNew], nil);
 	STAssertTrue([ryan isNewRecord], nil);
-	
+
 	// Use key-value coding to verify the contents of the active resource
 	// instance, albeit not yet persisted.
 	STAssertEqualObjects([ryan valueForKey:@"first"], @"Ryan", nil);
@@ -133,11 +133,11 @@ NSURL *ActiveResourceKitTestsBaseURL()
 	// Running the following piece of Ruby:
 	//
 	//	require 'active_resource'
-	//	
+	//
 	//	class Resource < ActiveResource::Base
 	//	  self.prefix = '/resources/:resource_id'
 	//	end
-	//	
+	//
 	//	p Resource.prefix(:resource_id => 1)
 	//
 	// gives you the following output:

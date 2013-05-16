@@ -54,20 +54,20 @@
 - (void)testExists
 {
 	ARService *peopleService = [Person service];
-	
+
 	// Do not execute a run loop with nil IDs. The answer (exists equal to NO)
 	// comes back immediately. The completion block runs before the
 	// exists-with-ID method returns.
 	[peopleService existsWithID:nil options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
 	}];
-	
+
 	[peopleService existsWithID:[NSNumber numberWithInt:1] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertTrue(exists, nil);
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
-	
+
 	[peopleService existsWithID:[NSNumber numberWithInt:999] options:nil completionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);
 		STAssertEquals([response code], (NSInteger)404, nil);
@@ -75,7 +75,7 @@
 		[self setStop:YES];
 	}];
 	[self runUntilStop];
-	
+
 	Person *person = [[Person alloc] init];
 	[person existsWithCompletionHandler:^(ARHTTPResponse *response, BOOL exists, NSError *error) {
 		STAssertFalse(exists, nil);

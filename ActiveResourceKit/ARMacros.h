@@ -24,17 +24,19 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * @param array A standard C array of fixed-sized elements.
- * @brief Answers the number of elements in the given array, the array's dimension.
- * @details Assumes that the array argument is a standard C-style array where
+/**
+ * Answers the number of elements in the given array, the array's dimension.
+ *
+ * Assumes that the array argument is a standard C-style array where
  * the compiler can assess the number of elements by dividing the size of the
  * entire array by the size of its elements; the answer always equals an integer
  * since array size is a multiple of element size. Both measurements must be
  * static, otherwise the compiler cannot supply a fixed integer dimension.  The
  * implementation wraps the argument in parenthesis in order to enforce the
  * necessary operator precedence.
- * @note Beware of side effects if you pass operators in the @a array
+ *
+ * Note: Beware of side effects if you pass operators in the `array`
  * expression. The macro argument evaluates twice.
+ * @param array A standard C array of fixed-sized elements.
  */
 #define ARDimOf(array) (sizeof(array)/sizeof((array)[0]))

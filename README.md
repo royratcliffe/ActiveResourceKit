@@ -37,24 +37,22 @@ load the model, load the coordinator with the model, add the store to the
 coordinator, and finally attach the coordinator to the context. See example
 below.
 
-```objc
-NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
-NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	NSURL *modelURL = [bundle URLForResource:@"MyCoreDataModel" withExtension:@"momd"];
+	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
 
-NSError *__autoreleasing error = nil;
-NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
-                                                     configuration:nil
-                                                               URL:[NSURL URLWithString:@"http://localhost:3000"]
-                                                           options:nil
-                                                             error:&error];
-// <-- error handling goes here
+	NSError *__autoreleasing error = nil;
+	NSPersistentStore *store = [coordinator addPersistentStoreWithType:[ARIncrementalStore storeType]
+	                                                     configuration:nil
+	                                                               URL:[NSURL URLWithString:@"http://localhost:3000"]
+	                                                           options:nil
+	                                                             error:&error];
+	// <-- error handling goes here
 
-NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-[context setPersistentStoreCoordinator:coordinator];
-[self setContext:context];
-```
+	NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+	[context setPersistentStoreCoordinator:coordinator];
+	[self setContext:context];
 
 Note that this excerpt uses Automatic Reference Counting, hence the
 `__autoreleasing` specifier for the error pointer. Notice the blatant lack of
@@ -64,16 +62,14 @@ manual auto-releasing.
 
 You can then access resources using _only_ Core Data.
 
-```objc
-NSError *__autoreleasing error = nil;
-NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
-NSArray *people = [[self context] executeFetchRequest:request error:&error];
-for (NSManagedObject *person in people)
-{
-    NSString *name = [person valueForKey:@"name"];
-    NSLog(@"person named %@", name);
-}
-```
+	NSError *__autoreleasing error = nil;
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+	NSArray *people = [[self context] executeFetchRequest:request error:&error];
+	for (NSManagedObject *person in people)
+	{
+	    NSString *name = [person valueForKey:@"name"];
+	    NSLog(@"person named %@", name);
+	}
 
 You ask Core Data for the Person entities. The answer is a collection of
 managed object representing each Person. You access attributes on the objects
@@ -95,12 +91,10 @@ will see a GET request in the server log, as follows. Some details elided.
 
 This just becomes fuss-free:
 
-```objc
-NSError *__autoreleasing error = nil;
-NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
-[person setValue:@"Roy Ratcliffe" forKey:@"name"];
-BOOL yes = [[self context] save:&error];
-```
+	NSError *__autoreleasing error = nil;
+	NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self context]];
+	[person setValue:@"Roy Ratcliffe" forKey:@"name"];
+	BOOL yes = [[self context] save:&error];
 
 And on the server side becomes a familiar POST request:
 
@@ -116,11 +110,9 @@ And on the server side becomes a familiar POST request:
 
 Again, just very simply:
 
-```objc
-NSError *__autoreleasing error = nil;
-[[self context] deleteObject:person];
-BOOL yes = [[self context] save:&error];
-```
+	NSError *__autoreleasing error = nil;
+	[[self context] deleteObject:person];
+	BOOL yes = [[self context] save:&error];
 
 And the server responds:
 
@@ -143,22 +135,20 @@ wire them up entirely at the client side first. Lets say you have a post and
 comment model; posts have many comments, a one post to many comments
 association. The following initially creates a post with one comment.
 
-```objc
-NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
-NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
+	NSManagedObject *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:[self context]];
+	NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:[self context]];
 
-// Set up attributes for the post and the comment.
-[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
-[post setValue:@"Non eram nescius…" forKey:@"body"];
-[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
+	// Set up attributes for the post and the comment.
+	[post setValue:@"De finibus bonorum et malorum" forKey:@"title"];
+	[post setValue:@"Non eram nescius…" forKey:@"body"];
+	[comment setValue:@"Quae cum dixisset…" forKey:@"text"];
 
-// Form the one-post-to-many-comments association.
-[comment setValue:post forKey:@"post"];
+	// Form the one-post-to-many-comments association.
+	[comment setValue:post forKey:@"post"];
 
-// Send it all to the server.
-NSError *__autoreleasing error = nil;
-[[self context] save:&error];
-```
+	// Send it all to the server.
+	NSError *__autoreleasing error = nil;
+	[[self context] save:&error];
 
 It constructs a new post, a new comment and their relationship within the
 client at first. Then it saves the context in order to transfer the objects and
@@ -168,14 +158,12 @@ Thereafter, you can throw away the comment and refetch it by dereferencing the
 post's "comments" relationship. The following extract pulls out each text field
 from the comments based on a given post.
 
-```objc
-NSMutableArray *comments = [NSMutableArray array];
-for (NSManagedObject *comment in [post valueForKey:@"comments"])
-{
-	[comments addObject:[comment valueForKey:@"text"]];
-}
-[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
-```
+	NSMutableArray *comments = [NSMutableArray array];
+	for (NSManagedObject *comment in [post valueForKey:@"comments"])
+	{
+		[comments addObject:[comment valueForKey:@"text"]];
+	}
+	[[comments objectAtIndex:0] rangeOfString:@"Quae cum dixisset"].location != NSNotFound;
 
 ## Resources Using Rails-Style Access
 
@@ -211,7 +199,7 @@ Cocoa's Foundation framework supports three distinct URL connections. Active
 Resource Kit models them using four object classes: one abstract with three
 corresponding concrete implementation classes.
 
-![Class Diagram: Connections](https://github.com/royratcliffe/ActiveResourceKit/raw/master/Documents/Class_Diagram__Connections.png)
+[![Class Diagram: Connections](https://raw.github.com/royratcliffe/ActiveResourceKit/master/Documents/Class%5fDiagram%5f%5fConnections.png)](https://raw.github.com/royratcliffe/ActiveResourceKit/master/Documents/Class%5fDiagram%5f%5fConnections.png)
 
 ## Lazy Getting
 
@@ -249,7 +237,7 @@ installing RVM, install the required Ruby and the required Gems, as follows.
 
 You can view the test servers log using the command:
 
-	➜  active-resource-kit-tests git:(master) tail -f log/thin.log
+	tail -f log/thin.log
 
 ### Rails Base URL
 
