@@ -139,6 +139,16 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	return self;
 }
 
+- (id)initWithResource:(ARResource *)resource
+{
+	self = [self init];
+	if (self)
+	{
+		[self clone:resource];
+	}
+	return self;
+}
+
 - (NSDictionary *)foreignID
 {
 	return [NSDictionary dictionaryWithObject:[self ID] forKey:[[self service] foreignKey]];
