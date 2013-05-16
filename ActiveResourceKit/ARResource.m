@@ -75,14 +75,19 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 - (id)copyWithZone:(NSZone *)zone
 {
 	ARResource *copy = [[[self class] allocWithZone:zone] init];
-	[copy setService:[self service]];
+	[copy clone:self];
+	return copy;
+}
+
+- (void)clone:(ARResource *)resource
+{
+	[self setService:[resource service]];
 	// Copy attributes using the standard getter and setter. This does not
 	// deep-copy the objects and thereby assumes a simple set of primitive
 	// attributes.
-	[copy setAttributes:[self attributes]];
-	[copy setPrefixOptions:[self prefixOptions]];
-	[copy setPersisted:[self persisted]];
-	return copy;
+	[self setAttributes:[resource attributes]];
+	[self setPrefixOptions:[resource prefixOptions]];
+	[self setPersisted:[resource persisted]];
 }
 
 + (ARService *)service
