@@ -68,6 +68,18 @@
 - (id)initWithService:(ARService *)service attributes:(NSDictionary *)attributes persisted:(BOOL)persisted;
 
 /**
+ * Initialises by cloning an existing resource.
+ *
+ * The new resource takes the service, the attributes, the prefix options and
+ * the persisted status of the given resource argument. The new resource clone
+ * becomes indistinguishable from the original; it accesses the same remote
+ * resource RESTfully. Their states might subsequently diverge, of course.
+ *
+ * This is a convenience initialiser.
+ */
+- (id)initWithResource:(ARResource *)resource;
+
+/**
  * Answers this resource's foreign identifier along with its foreign key.
  *
  * Gives options for applying this resource's identity to a nested
