@@ -32,31 +32,34 @@ extern NSString *const ARParamsKey;
 @class ARResource;
 @class ARHTTPResponse;
 
-/*!
- * @brief Defines a completion handler block type where the results of
+/**
+ * Defines a completion handler block type where the results of
  * completion yield a single resource.
- * @details Successful completion gives a single instance.
+ *
+ * Successful completion gives a single instance.
  */
 typedef void (^ARResourceCompletionHandler)(ARHTTPResponse *response, ARResource *resource, NSError *error);
 
-/*!
- * @brief Defines a type of completion handler block where successful completion
+/**
+ * Defines a type of completion handler block where successful completion
  * yields an array of resources.
- * @details The completion handler's @a resources argument equals @c nil when
- * completion ends unsuccessfully. In this case, the second argument @a error
+ *
+ * The completion handler's `resources` argument equals `nil` when
+ * completion ends unsuccessfully. In this case, the second argument `error`
  * supplies the reason.
  */
 typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *resources, NSError *error);
 
-/*!
- * @brief An active resource's service configuration.
- * @details Defines an active resource's site, schema and known attributes,
- * etc. Does not however define an active resource @e instance. Active resources
+/**
+ * An active resource's service configuration.
+ *
+ * Defines an active resource's site, schema and known attributes,
+ * etc. Does not however define an active resource _instance_. Active resources
  * binding to the same remote element at the same remote site associate with a
  * common base.
  *
- * ARService corresponds to the singleton class aspects of @c
- * ActiveResource::Base. Under Rails ActiveResource, the @c ActiveResource::Base
+ * ARService corresponds to the singleton class aspects of
+ * `ActiveResource::Base`. Under Rails ActiveResource, the `ActiveResource::Base`
  * singleton class carries the following state. See list below.
  *
  *	- auth_type
@@ -79,13 +82,13 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  *
  * This might help to define what ARService actually does, its purpose. ARService
  * implements the anonymous singleton class behaviours belonging to
- * @c ActiveResource::Base. ARResource defines the class for Active Resource
- * instances, but ARService defines the class for Active Resource @e classes,
+ * `ActiveResource::Base`. ARResource defines the class for Active Resource
+ * instances, but ARService defines the class for Active Resource _classes_,
  * singleton classes that is. Objective-C 2.0 does not provide anything
  * comparable singleton classes. The Rails singleton class becomes the
  * Objective-C “service” class.
  *
- * Singleton methods for @c ActiveResource::Base include the following.
+ * Singleton methods for `ActiveResource::Base` include the following.
  *
  *	- all
  *	- auth_type
@@ -127,7 +130,7 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  *	- timeout
  *	- user
  *
- * @par Lazy Getters
+ * ### Lazy Getters
  * Use a getter-lazily paradigm in place of actual lazy getting. This has
  * advantages. First, it obviates the need for defining custom getters and
  * setters. This is a useful thing, since the exact setter and getter
@@ -145,21 +148,23 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 + (Class)defaultConnectionClass;
 + (void)setDefaultConnectionClass:(Class)aClass;
 
-/*!
- * @brief Initialises a new Active Resource Base instance using a given @a site.
- * @param site An URL specifying the remote HTTP or HTTPS resource.
- * @details This is @em not the designated initialiser but rather a shorthand
- * for sending @c -init followed by @c -setSite:. The element name, if you do
- * not subsequently assign one, derives from the @ref ARService sub-class
+/**
+ * Initialises a new Active Resource Base instance using a given `site`.
+ *
+ * This is _not_ the designated initialiser but rather a shorthand
+ * for sending `-init` followed by `-setSite:`. The element name, if you do
+ * not subsequently assign one, derives from the `ARService` sub-class
  * name. This assumes that you derive ARService.
+ * @param site An URL specifying the remote HTTP or HTTPS resource.
  */
 - (id)initWithSite:(NSURL *)site;
 - (id)initWithSite:(NSURL *)site elementName:(NSString *)elementName;
 
-/*!
- * @brief Derives a service for a subelement based on this service, representing
+/**
+ * Derives a service for a subelement based on this service, representing
  * nested resources.
- * @details The new service shares the connection, if already
+ *
+ * The new service shares the connection, if already
  * configured. Otherwise, it constructs its own connection on-demand using the
  * default.
  */
@@ -177,27 +182,29 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 @property(copy, NS_NONATOMIC_IOSONLY) NSDictionary *schema;
 
-/*!
- * @brief Answers the known attributes, known because the resource server
+/**
+ * Answers the known attributes, known because the resource server
  * publishes them; although the server does not necessarily publish everything.
- * @details Known attributes depend on schema. The result amounts to the
+ *
+ * Known attributes depend on schema. The result amounts to the
  * schema's keys. The schema is a dictionary of attribute name-type pairs.
  */
 - (NSArray *)knownAttributes;
 
 //------------------------------------------------------------------------- Site
 
-/*!
+/**
  * Always set up the site first. Other things depend on this essential
  * property. You cannot fully operate the resource without the site URL. The
  * site's path becomes the default prefix.
  */
 @property(copy, NS_NONATOMIC_IOSONLY) NSURL *site;
 
-/*!
- * @brief Answers this service's site URL combined with an additional prefix
+/**
+ * Answers this service's site URL combined with an additional prefix
  * parameter representing the element attached to this service.
- * @details Useful for initialising a nested resource service. You can use the
+ *
+ * Useful for initialising a nested resource service. You can use the
  * answer to build another service for accessing resources nested below this
  * service element. You need to supply the super-resource identifier as a prefix
  * option when accessing sub-resources, using the super-resource's foreign key
@@ -222,8 +229,8 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 // ARService has no non-lazily getter.
 - (ARConnection *)connectionLazily;
 
-/*!
- * @details Setting the connection overwrites the given connection's site,
+/**
+ * Setting the connection overwrites the given connection's site,
  * format and time-out. You can easily reset any of these attributes afterwards,
  * even though that defeats the purpose.
  */
@@ -231,12 +238,12 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 //---------------------------------------------------------------------- Headers
 
-/*!
- * @note The @ref headers property exposes its implementation. This echoes the
- * Rails interface where @c ActiveResource::Base subclasses derives a singleton
- * class with a directly-accessible mutable hash called @c headers. If Person
- * inherits from @c ActiveResource::Base, then an instance of Person exposes its
- * mutable headers at @c person.class.headers.
+/**
+ * The `headers` property exposes its implementation. This echoes the
+ * Rails interface where `ActiveResource::Base` subclasses derives a singleton
+ * class with a directly-accessible mutable hash called `headers`. If Person
+ * inherits from `ActiveResource::Base`, then an instance of Person exposes its
+ * mutable headers at `person.class.headers`.
  */
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableDictionary *headers;
 
@@ -266,9 +273,10 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 - (NSString *)primaryKeyLazily;
 
-/*!
- * @brief Answers the element's foreign key.
- * @details The foreign key equates to the element name followed by an
+/**
+ * Answers the element's foreign key.
+ *
+ * The foreign key equates to the element name followed by an
  * underscore and finally the "id" string. This key can appear in URL paths as a
  * prefix parameter, marked by a leading colon.
  */
@@ -276,7 +284,7 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 //----------------------------------------------------------------------- Prefix
 
-/*!
+/**
  * By default, the prefix source equals the site URL's path.
  */
 @property(copy, NS_NONATOMIC_IOSONLY) NSString *prefixSource;
@@ -284,7 +292,7 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 // lazy getter
 - (NSString *)prefixSourceLazily;
 
-/*!
+/**
  * Answers the prefix after translating the prefix parameters according to the
  * given prefix-options dictionary. The options dictionary may be nil. In that
  * case -prefixWithOptions: answers the prefix unmodified. This assumes that the
@@ -313,7 +321,7 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 //	- delete
 //	- exists?
 
-/*!
+/**
  * Asynchronously builds an Active Resource.
  *
  * Executes the completion handler on success or upon error. Completion handler
@@ -322,15 +330,15 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
  */
 - (void)buildWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-/*!
- * @brief Creates a new resource instance, requesting that the remote service
+/**
+ * Creates a new resource instance, requesting that the remote service
  * saves the new resource.
  */
 - (void)createWithAttributes:(NSDictionary *)attributes completionHandler:(ARResourceCompletionHandler)completionHandler;
 
 - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler;
 
-/*!
+/**
  * Answers just the first resource in a collection of resources. Finds all the
  * resources first, then extracts the first element. Acts as a convenience
  * wrapper.
@@ -339,59 +347,61 @@ typedef void (^ARResourcesCompletionHandler)(ARHTTPResponse *response, NSArray *
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-/*!
- * @brief Finds a single resource for a given identifier using the default URL.
+/**
+ * Finds a single resource for a given identifier using the default URL.
  *
- * @par Ruby on Rails Comparison
+ * ### Ruby on Rails Comparison
  * Under the Rails' ActiveResource gem, this method appears as a private
- * method. Why not here? In Rails, you access the @c find_single(scope, options)
- * method indirectly as the default @c find(arguments) case when the first scope
+ * method. Why not here? In Rails, you access the `find_single(scope, options)`
+ * method indirectly as the default `find(arguments)` case when the first scope
  * argument does not match all, first, last or one (by symbol). Objective-C does
  * not offer so flexible a syntax. Consequently, this implementation folds the
  * find-scope interface into distinct methods: find all, find first, find last,
- * find one and find single. The scope argument resolves to the method @e
- * name. This approach carries advantages and disadvantages. It eliminates the
- * @c switch statement necessary to resolve the scope. But at the same stroke
+ * find one and find single. The scope argument resolves to the method
+ * _name_. This approach carries advantages and disadvantages. It eliminates the
+ * `switch` statement necessary to resolve the scope. But at the same stroke
  * eliminates the flexibility of parameterising the scope in cases where scope
  * is a dynamic argument.
  */
 - (void)findSingleWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-/*!
- * @brief Finds a single resource from a one-off URL.
- * @details This method expects you to provide the one-off URL using the @ref
- * ARFromKey within the options dictionary. You must also specify query string
- * parameters using the @ref ARParamsKey within the options.
+/**
+ * Finds a single resource from a one-off URL.
+ *
+ * This method expects you to provide the one-off URL using the
+ * `ARFromKey` within the options dictionary. You must also specify query string
+ * parameters using the `ARParamsKey` within the options.
  */
 - (void)findOneWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler;
 
-/*!
- * @brief Deletes the resource with the given ID.
+/**
+ * Deletes the resource with the given ID.
  * @param ID Identifies the resource to delete.
  * @param options All options specify prefix and query parameters.
  * @param completionHandler Block to execute on success or failure.
  */
 - (void)deleteWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
-/*!
- * @brief Asserts the existence of a resource.
+/**
+ * Asserts the existence of a resource.
+ *
+ * The resource exists when the block receives `exists` argument equal
+ * to YES. This indicates a valid code-200 response from the remote
+ * service. Otherwise, when `exists` equals NO, either the resource does not
+ * exist or there was a communication error. When the remote service fails to
+ * locate the given resource, the completion handler receives an error object
+ * with an error code matching `ARResourceNotFoundErrorCode` or
+ * `ARResourceGoneErrorCode` (response codes 404 or 410, respectively).
+ *
+ * Warning: Asserting existence sends a HEAD request to the remote RESTful
+ * service. The standard Rails Rack converts the HEAD request to a GET but then
+ * strips the body from the response.
  * @param ID Identifies the resource to assert the existence of.
  * @param options Specifies prefix and query parameters if any.
  * @param completionHandler Block to execute on success or failure. The block's
  * parameters include a response, a boolean equal to YES if a resource with the
  * given ID really exists along with an error object describing the error if one
  * occurs.
- * @details The resource exists when the block receives @a exists argument equal
- * to YES. This indicates a valid code-200 response from the remote
- * service. Otherwise, when @a exists equals NO, either the resource does not
- * exist or there was a communication error. When the remote service fails to
- * locate the given resource, the completion handler receives an error object
- * with an error code matching @ref ARResourceNotFoundErrorCode or @ref
- * ARResourceGoneErrorCode (response codes 404 or 410, respectively).
- *
- * @note Asserting existence sends a HEAD request to the remote RESTful
- * service. The standard Rails Rack converts the HEAD request to a GET but then
- * strips the body from the response.
  */
 - (void)existsWithID:(NSNumber *)ID options:(NSDictionary *)options completionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler;
 

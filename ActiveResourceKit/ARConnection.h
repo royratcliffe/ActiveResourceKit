@@ -26,19 +26,21 @@
 
 @class ARHTTPResponse;
 
-/*!
- * @brief Defines a lower-level connection-oriented completion handler.
- * @details The handler accepts a basic URL response, not a HTTP response
+/**
+ * Defines a lower-level connection-oriented completion handler.
+ *
+ * The handler accepts a basic URL response, not a HTTP response
  * necessarily. Though typically, URL responses will be HTTP responses. Apple's
- * @c NSHTTPURLResponse derives from @c NSURLResponse. The @a data argument
+ * `NSHTTPURLResponse` derives from `NSURLResponse`. The `data` argument
  * accepts the body data verbatim. When connection completes, the body remains
  * un-decoded.
  */
 typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError *error);
 
-/*!
- * @brief Connects to a site using a format.
- * @details Connections do not have responsibility for decoding response
+/**
+ * Connects to a site using a format.
+ *
+ * Connections do not have responsibility for decoding response
  * bodies. With respect to formatting, connections only carry responsibility for
  * setting up the correct header fields.
  */
@@ -62,38 +64,41 @@ typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError 
 - (id)initWithSite:(NSURL *)site format:(id<ARFormat>)format;
 - (id)initWithSite:(NSURL *)site;
 
-/*!
- * @brief Sends a request.
- * @details Sending a request answers the raw body data. At this level, the
+/**
+ * Sends a request.
+ *
+ * Sending a request answers the raw body data. At this level, the
  * connection only handles the actual sending. It does not attempt to handle the
  * response. Other object methods interpret the response code and decode the
  * response body according to the expected format.
  */
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
-/*!
- * @brief Decides how to handle the given HTTP response based on the response
+/**
+ * Decides how to handle the given HTTP response based on the response
  * status code.
- * @details The Rails implementation of @c handle_response checks the status
+ *
+ * The Rails implementation of `handle_response` checks the status
  * code and raises an exception for any status outside the normal range. The
- * Objective-C implementation does @em not raise exceptions however, by
+ * Objective-C implementation does _not_ raise exceptions however, by
  * design. Instead, “handling a response” refers to deriving an error object for
  * an otherwise-successful response.
- * @result Answers an @c NSError object if the response indicates a problem; @c
- * nil otherwise. The error object's error code and localised description
+ * @result Answers an `NSError` object if the response indicates a problem;
+ * `nil` otherwise. The error object's error code and localised description
  * outline the issue. You can also retrieve the HTTP response object itself by
- * accessing the error's user information dictionary with the @ref
- * ARConnectionHTTPResponseKey key; this key-value pair captures the given @ref
- * ARHTTPResponse wrapper which includes the body as well as the original URL
+ * accessing the error's user information dictionary with the
+ * `ARConnectionHTTPResponseKey` key; this key-value pair captures the given
+ * `ARHTTPResponse` wrapper which includes the body as well as the original URL
  * response.
  */
 + (NSError *)errorForResponse:(ARHTTPResponse *)response;
 
 //------------------------------------------------------------ Building Requests
 
-/*!
- * @brief Builds a mutable HTTP request given a HTTP method, a path and headers.
- * @details The request site and timeout originates with the message
+/**
+ * Builds a mutable HTTP request given a HTTP method, a path and headers.
+ *
+ * The request site and timeout originates with the message
  * receiver. You can open either an asynchronous connection using the request,
  * or send it synchronously and wait for the response. You might even enqueue
  * the request in a pool of pending requests. This interface method exists and
@@ -103,8 +108,8 @@ typedef void (^ARConnectionCompletionHandler)(ARHTTPResponse *response, NSError 
  * @param HTTPMethod HTTP request method, one of: GET, HEAD, PUT, POST or DELETE.
  * @param path URL path element to apply to the site's base URL.
  * @param headers Zero or more header fields. These override all other headers
- * within the request, including authorisation and formatting headers. Use @c
- * nil for no headers.
+ * within the request, including authorisation and formatting headers. Use
+ * `nil` for no headers.
  */
 - (NSMutableURLRequest *)requestForHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers;
 

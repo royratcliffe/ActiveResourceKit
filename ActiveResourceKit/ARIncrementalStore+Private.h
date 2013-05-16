@@ -28,31 +28,34 @@
 
 @interface ARIncrementalStore(Private)
 
-/*!
- * @brief Using a particular context, derives a managed-object identifier based
+/**
+ * Using a particular context, derives a managed-object identifier based
  * on a resource's element name and its primary key.
- * @details Derives the entity name from the resource element name.
+ *
+ * Derives the entity name from the resource element name.
  */
 - (NSManagedObjectID *)objectIDForResource:(ARResource *)resource withContext:(NSManagedObjectContext *)context;
 
-/*!
- * @brief Answers the object identifier for a given resource after caching the
+/**
+ * Answers the object identifier for a given resource after caching the
  * resource against its object identifier.
  */
 - (NSManagedObjectID *)objectIDForCachedResource:(ARResource *)resource withContext:(NSManagedObjectContext *)context;
 
-/*!
- * @brief Converts an object identifier to an active resource.
- * @details The conversion occurs using the resource cache, if the resource
+/**
+ * Converts an object identifier to an active resource.
+ *
+ * The conversion occurs using the resource cache, if the resource
  * currently exists in the cache (a cache hit). Otherwise the implementation
  * first loads the cache with the resource using the given object identifier (a
  * cache miss). Uncached resources become cached before the method returns.
  */
 - (ARResource *)cachedResourceForObjectID:(NSManagedObjectID *)objectID error:(NSError **)outError;
 
-/*!
- * @brief Answers a 64-bit version number derived from the given @a resource.
- * @details Uses the updated-at date-time as the version number. Converts the
+/**
+ * Answers a 64-bit version number derived from the given `resource`.
+ *
+ * Uses the updated-at date-time as the version number. Converts the
  * update-at date to seconds since the reference date. This amounts to a big
  * version number, but the version number allows for 64 bits of unsigned integer
  * width.
@@ -70,10 +73,11 @@
  */
 - (uint64_t)versionForResource:(ARResource *)resource;
 
-/*!
- * @brief Refreshes an object in the incremental store cache.
+/**
+ * Refreshes an object in the incremental store cache.
  * @param object The object to refresh.
- * @details The given @a object disappears from the resource cache and becomes a
+ *
+ * The given `object` disappears from the resource cache and becomes a
  * fault. Subsequent attempts to access the object will refetch its resource
  * attributes. This happens when objects insert. Inserted objects become
  * unrealised because the remote server typically validates and further updates
@@ -85,9 +89,10 @@
  */
 - (void)refreshObject:(NSManagedObject *)object;
 
-/*!
- * @brief Resolves relationships.
- * @details Picks out the to-one associations. Is there a foreign key with a
+/**
+ * Resolves relationships.
+ *
+ * Picks out the to-one associations. Is there a foreign key with a
  * matching to-one relationship? Looks for a matching foreign key within the
  * resource for each to-one relationship. If the foreign key does not exist but
  * the to-one relationship does, then resolves the relationship at the server

@@ -28,13 +28,13 @@
 
 - (void)sendRequest:(NSURLRequest *)request completionHandler:(ARConnectionCompletionHandler)completionHandler;
 
-/*!
- * @brief Performs a @em synchronous request.
+/**
+ * Performs a _synchronous_ request.
  * @param request Passes the request wrapper.
- * @param outResponse Receives the response if not @c NULL.
- * @param outError Receives any error if not @c NULL.
- * @result Answers the response body as raw data bytes if successful. Answers @c
- * nil on error.
+ * @param outResponse Receives the response if not `NULL`.
+ * @param outError Receives any error if not `NULL`.
+ * @result Answers the response body as raw data bytes if successful. Answers
+ * `nil` on error.
  */
 - (NSData *)sendRequest:(NSURLRequest *)request
 	  returningResponse:(NSURLResponse **)outResponse

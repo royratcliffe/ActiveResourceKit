@@ -24,48 +24,51 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * @brief Wraps HTTP response and body.
- * @details Apple's URL connection programming interface delivers HTTP response
+/**
+ * Wraps HTTP response and body.
+ *
+ * Apple's URL connection programming interface delivers HTTP response
  * information in two separate pieces: a response object and a block of data for
  * the response body. This class combines these two pieces together again. You
  * can pass around a response, ask for its status code, header fields and
  * body. You can also decode and replace the body if required.
  *
- * Can this class safely sub-class @c NSHTTPURLResponse? That may be possible
+ * Can this class safely sub-class `NSHTTPURLResponse`? That may be possible
  * since the class does not explicitly belong to a class cluster. Nevertheless,
- * @ref ARHTTPResponse does not sub-class it because the Active Resource
+ * `ARHTTPResponse` does not sub-class it because the Active Resource
  * response presents a more Ruby-compatible interface. You can still access the
- * underlying Cocoa response object by sending @ref URLResponse.
+ * underlying Cocoa response object by sending `URLResponse`.
  */
 @interface ARHTTPResponse : NSObject
 
-/*!
- * @brief The underlying URL response object.
+/**
+ * The underlying URL response object.
  */
 @property(strong, NS_NONATOMIC_IOSONLY) NSHTTPURLResponse *URLResponse;
 
-/*!
- * @brief The response body in some form.
- * @details Note that you can rewrite the body, e.g. when handling
+/**
+ * The response body in some form.
+ *
+ * Note that you can rewrite the body, e.g. when handling
  * decompression. Hence the body has generic object type. It always starts out
- * as @c NSData but can become other types such as @c NSString after decoding.
+ * as `NSData` but can become other types such as `NSString` after decoding.
  */
 @property(strong, NS_NONATOMIC_IOSONLY) id body;
 
-/*!
- * @brief Shortcut for allocating, initialising then setting the URL response
+/**
+ * Shortcut for allocating, initialising then setting the URL response
  * and body.
- * @details Not the designated initialiser.
+ *
+ * Not the designated initialiser.
  */
 - (id)initWithHTTPURLResponse:(NSHTTPURLResponse *)URLResponse body:(id)body;
 
-/*!
- * @brief Creates an Active Resource HTTP response based on a response-data
+/**
+ * Creates an Active Resource HTTP response based on a response-data
  * pair, the kind typically delivered by Apple's URL connection programming
  * interface.
- * @result Answers a new HTTP response wrapper or @c nil if the given response
- * is @em not a HTTP URL response.  Answering @c nil is an expected response
+ * @result Answers a new HTTP response wrapper or `nil` if the given response
+ * is _not_ a HTTP URL response.  Answering `nil` is an expected response
  * from this method if the requests from which the responses derive do not use
  * the HTTP protocol.
  */

@@ -26,9 +26,10 @@
 
 @class ARService;
 
-/*!
- * @brief Core Data incremental store based on active resources.
- * @details The ARIncrementalStore class performs one simple function:
+/**
+ * Core Data incremental store based on active resources.
+ *
+ * The ARIncrementalStore class performs one simple function:
  * translating Core Data requests to Active Resource requests, and translating
  * Active Resource responses to Core Data responses. The class mediates between
  * Core Data and Active Resource. You can easily access remote resources using
@@ -39,9 +40,10 @@
  */
 @interface ARIncrementalStore : NSIncrementalStore<NSCacheDelegate>
 {
-	/*!
-	 * @brief Caches resources by object ID.
-	 * @details This cache effectively associates Active Resource with Core
+	/**
+	 * Caches resources by object ID.
+	 *
+	 * This cache effectively associates Active Resource with Core
 	 * Data. It bridges the difference between the Active Resource interface and
 	 * the Core Data interface. When you "find" active resources, all resource
 	 * attributes become available. However, when Core Data fetches managed
@@ -62,10 +64,11 @@
 + (NSString *)storeType;
 + (void)registerStoreClass;
 
-/*!
- * @brief Derives a store's type for use when adding a store instance to your
+/**
+ * Derives a store's type for use when adding a store instance to your
  * persistent store coordinator.
- * @details You could define this explicitly but there exists an essential
+ *
+ * You could define this explicitly but there exists an essential
  * requirement. It is very important that the store-type string matches the
  * class name. If not, your store will fail to successfully attach to its store
  * coordinator. Core Data's error reason explains, "The store type in the
@@ -74,21 +77,22 @@
  */
 + (NSString *)storeTypeForClass:(Class)aClass;
 
-/*!
- * @brief Registers an incremental store subclass.
- * @details You need to register the store class before using it. If your
+/**
+ * Registers an incremental store subclass.
+ *
+ * You need to register the store class before using it. If your
  * run-time loading sequence prevents you registering the store type
- * automatically during class initialisation, that is, during @c +initialize,
- * then in such cases you need to invoke @c +registerStoreTypeForClass:aClass
- * explicitly @em before using the store type. Typically though, you can
+ * automatically during class initialisation, that is, during `+initialize`,
+ * then in such cases you need to invoke `+registerStoreTypeForClass:aClass`
+ * explicitly _before_ using the store type. Typically though, you can
  * register the store type during class initialisation. Your sub-class interface
  * will contain method declarations along these lines:
- * @code
+ *
  *	+ (NSString *)storeType;
  *	+ (void)registerStoreClass;
- * @endcode
+ *
  * Along with implementations as follows:
- * @code
+ *
  *	+ (void)initialize
  *	{
  *		if (self == [MyActiveResourceIncrementalStore class])
@@ -106,25 +110,26 @@
  *	{
  *		[ARIncrementalStore registerStoreTypeForClass:self];
  *	}
- * @endcode
  */
 + (void)registerStoreTypeForClass:(Class)aClass;
 
-/*!
- * @brief Answers a suitably-connected Active Resource service for interacting
+/**
+ * Answers a suitably-connected Active Resource service for interacting
  * with the given entity.
- * @details Performs Core Data entity-name to Active Resource element name
+ *
+ * Performs Core Data entity-name to Active Resource element name
  * mapping. Uses a standard delegate-based URL connection. The connection runs
  * asynchronously but delegates synchronously and conveniently handles
  * authentication if needed.
  */
 - (ARService *)serviceForEntityName:(NSString *)entityName;
 
-/*!
- * @brief Flushes the resource cache.
- * @details Removes all resources currently retained by the incremental store's
+/**
+ * Flushes the resource cache.
+ *
+ * Removes all resources currently retained by the incremental store's
  * active resource-oriented cache. Note that this method flushes the resource
- * cache only. It does not @em fault any associated non-fault managed objects
+ * cache only. It does not _fault_ any associated non-fault managed objects
  * which also retain client-side snapshots of attributes and
  * relationships. Resources do not persist in the cache for any length of time;
  * managed objects cache remote resources independently when not faulted. The
@@ -135,9 +140,10 @@
 
 //------------------------------------------- Active Resource-to-Core Data Names
 
-/*!
- * @brief Optional prefix string for entity names.
- * @details In the Objective-C world, entity names often begin with a namespace
+/**
+ * Optional prefix string for entity names.
+ *
+ * In the Objective-C world, entity names often begin with a namespace
  * prefix. If this is the case, specify the prefix here. The incremental store
  * automatically adds or removes the prefix when translating between entity
  * names and element names. For example, your element names might be `post` and

@@ -24,8 +24,8 @@
 
 #import <ActiveResourceKit/ARConnection.h>
 
-/*!
- * @brief Implements an Active Resource connection using an URL connection.
+/**
+ * Implements an Active Resource connection using an URL connection.
  */
 @interface ARURLConnection : ARConnection
 

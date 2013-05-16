@@ -26,11 +26,12 @@
 
 @interface NSPersistentStore(ActiveResource)
 
-/*!
- * @brief Stores attach to coordinators, persistent store coordinators. Answers
- * all the stores attached to this store's coordinator @em except this
+/**
+ * Stores attach to coordinators, persistent store coordinators. Answers
+ * all the stores attached to this store's coordinator _except_ this
  * store. Hence answers all other stores.
- * @details This step is very important when a store builds a fetch
+ *
+ * This step is very important when a store builds a fetch
  * request. Narrow the scope of the affected stores to eliminate
  * recursion. Fetch requests apply to all the stores within a context by
  * default, including self.

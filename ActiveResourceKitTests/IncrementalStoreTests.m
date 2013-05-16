@@ -44,8 +44,8 @@
 	return [[self coordinator] managedObjectModel];
 }
 
-/*!
- * @brief Builds a Core Data stack. @details Loads the data model, initialises
+/**
+ * Builds a Core Data stack. Loads the data model, initialises
  * the coordinator with the model, adds the incremental store to the
  * coordinator, finally attaches the coordinator to a new main-queue context.
  */
@@ -153,9 +153,10 @@
 	STAssertNil(error, nil);
 }
 
-/*!
- * @brief Tests one post to many comments association
- * @details What happens when you instantiate two entities and wire them up entirely
+/**
+ * Tests one post to many comments association
+ *
+ * What happens when you instantiate two entities and wire them up entirely
  * at the client side first? Test it! Create a post with one
  * comment. Construct the post, comment and their relationship within the
  * client at first. Then save the context in order to transfer the objects
@@ -249,9 +250,10 @@
 	STAssertTrue([[comments objectAtIndex:0] rangeOfString:@"text"].location != NSNotFound, nil);
 }
 
-/*!
- * @brief Tests resource attributes carrying NSNull values.
- * @details Nulls become nils within managed objects. All missing properties
+/**
+ * Tests resource attributes carrying NSNull values.
+ *
+ * Nulls become nils within managed objects. All missing properties
  * within managed objects become nils when accessed. The following tests that
  * the nulls within resources become nils when manifested by Core Data.
  */

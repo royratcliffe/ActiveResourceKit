@@ -26,20 +26,21 @@
 
 @class ARHTTPResponse;
 
-/*!
- * @brief Extracts the resource identifier from the given HTTP response.
- * @details The HTTP response includes a Location header field specifying the
+/**
+ * Extracts the resource identifier from the given HTTP response.
+ *
+ * The HTTP response includes a Location header field specifying the
  * resource's full resource location. Rails places the resource ID at the last
  * element in the location path. The implementation extracts this element using
  * a regular expression.
  * @result Answers an NSNumber numerical identifier based on the response
- * location field. Answers @c nil if the response does not contain a Location
- * header, or if the Location field does not match the format @c "/foo/bar/1".
+ * location field. Answers `nil` if the response does not contain a Location
+ * header, or if the Location field does not match the format `"/foo/bar/1"`.
  */
 NSNumber *ARIDFromResponse(ARHTTPResponse *response);
 
-/*!
- * @brief Determines whether the HTTP 1.1 specification allows a response to
+/**
+ * Determines whether the HTTP 1.1 specification allows a response to
  * have a body (see section 4.4.1 of the specification).
  */
 BOOL ARResponseCodeAllowsBody(NSInteger code);
@@ -50,14 +51,14 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
 
 - (void)createWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler;
 
-/*!
+/**
  * @param response A HTTP response wrapper.
  * @param attributes Set of attributes decoded from the response body.
  */
 - (void)loadAttributesFromResponse:(ARHTTPResponse *)response attributes:(NSDictionary *)attributes;
 
-/*!
- * @brief Answers this resource's element path.
+/**
+ * Answers this resource's element path.
  * @param options Prefix and query options for overriding the existing resource
  * prefix options if any.
  */
@@ -69,9 +70,10 @@ BOOL ARResponseCodeAllowsBody(NSInteger code);
 
 //----------------------------------------------------- Active Model Conversions
 
-/*!
- * @brief Enumerates all key attributes.
- * @result Only answers key attributes if the resource persists. Answers @c nil
+/**
+ * Enumerates all key attributes.
+ *
+ * @result Only answers key attributes if the resource persists. Answers `nil`
  * otherwise since key attributes only logically exist when the resource begins
  * to persist.
  */

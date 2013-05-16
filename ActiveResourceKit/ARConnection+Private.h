@@ -26,17 +26,18 @@
 
 @interface ARConnection(Private)
 
-/*!
- * @brief Supplies default headers for the connection; none by default unless a
+/**
+ * Supplies default headers for the connection; none by default unless a
  * sub-class overrides this method.
- * @details Sub-classes can override this method to provide headers required for
+ *
+ * Sub-classes can override this method to provide headers required for
  * the underlying connection. Please note however, the implementation
  * subsequently overwrites the format header. Similarly, user-supplied headers
  * override headers injected here as defaults.
  *
- * @par Interface Note
- * Rails' Active Resource gem calls this method @c default_header,
- * singular. This interface makes it @em plural since the answer is a dictionary
+ * ### Interface Note
+ * Rails' Active Resource gem calls this method `default_header`,
+ * singular. This interface makes it _plural_ since the answer is a dictionary
  * of headers.
  */
 - (NSDictionary *)defaultHeaders;
@@ -45,8 +46,9 @@
 
 //----------------------------------------------------- Format Header for Method
 
-/*!
- * @brief Answers a format header for the given HTTP request method.
+/**
+ * Answers a format header for the given HTTP request method.
+ *
  * @param HTTPMethod String containing either GET, PUT, POST, DELETE or HEAD
  * that specifies the HTTP request method. Case must match.
  * @result A dictionary containing either an Accept or Content-Type format
