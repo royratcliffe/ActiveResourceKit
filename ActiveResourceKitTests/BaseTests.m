@@ -99,4 +99,26 @@
 	[self runUntilStop];
 }
 
+- (void)testCloneResource
+{
+	[[Person service] createWithAttributes:@{@"name": @"Roy"} completionHandler:^(ARHTTPResponse *response, ARResource *resource, NSError *error) {
+		STAssertNotNil(resource, nil);
+		STAssertNotNil([resource valueForKey:@"name"], nil);
+		STAssertNotNil([resource service], nil);
+		STAssertNotNil([resource attributes], nil);
+		STAssertNotNil([resource prefixOptions], nil);
+		STAssertTrue([resource persisted], nil);
+		ARResource *clone = [ARResource new];
+		STAssertNotNil(clone, nil);
+		[clone clone:resource];
+		STAssertEqualObjects([clone valueForKey:@"name"], [resource valueForKey:@"name"], nil);
+		STAssertEqualObjects([clone service], [resource service], nil);
+		STAssertEqualObjects([clone attributes], [resource attributes], nil);
+		STAssertEqualObjects([clone prefixOptions], [resource prefixOptions], nil);
+		STAssertEquals([clone persisted], [resource persisted], nil);
+		[self setStop:YES];
+	}];
+	[self runUntilStop];
+}
+
 @end
