@@ -26,6 +26,18 @@
 
 #import "Person.h"
 
+@interface ResourceWithADynamicAttribute : ARResource
+
+@property(strong, NS_NONATOMIC_IOSONLY) id attributeWithALongName;
+
+@end
+
+@implementation ResourceWithADynamicAttribute
+
+@dynamic attributeWithALongName;
+
+@end
+
 @implementation DynamicTests
 
 - (void)testDynamicWithSchema
@@ -50,6 +62,20 @@
 
 	// getter throws
 	STAssertThrows(name = person.name, nil);
+}
+
+- (void)testUnderscoredSchema
+{
+	ResourceWithADynamicAttribute *resource = [ResourceWithADynamicAttribute new];
+	[[resource serviceLazily] setSchema:@{@"attribute_with_a_long_name": @(@encode(id))}];
+	STAssertNoThrow([resource attributeWithALongName], nil);
+}
+
+- (void)testLowercaseCamelizedSchema
+{
+	ResourceWithADynamicAttribute *resource = [ResourceWithADynamicAttribute new];
+	[[resource serviceLazily] setSchema:@{@"attributeWithALongName": @(@encode(id))}];
+	STAssertThrows([resource attributeWithALongName], nil);
 }
 
 @end
