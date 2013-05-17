@@ -443,13 +443,18 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
+	// Schemas use Rails attribute naming conventions not Objective-C naming
+	// conventions. Dynamic method resolution converts from lower-case camel to
+	// underscore form.
 	NSString *key;
-	if ((key = ARUndefinedKeyForSetterSelector(aSelector)) && [[self knownAttributes] containsObject:key])
+	if ((key = ARUndefinedKeyForSetterSelector(aSelector)) &&
+		[[self knownAttributes] containsObject:[[ASInflector defaultInflector] underscore:key]])
 	{
 		NSString *types = [NSString stringWithFormat:@"%s%s%s%s", @encode(void), @encode(id), @encode(SEL), @encode(id)];
 		return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
 	}
-	if ((key = ARUndefinedKeyForGetterSelector(aSelector)) && [[self knownAttributes] containsObject:key])
+	if ((key = ARUndefinedKeyForGetterSelector(aSelector)) &&
+		[[self knownAttributes] containsObject:[[ASInflector defaultInflector] underscore:key]])
 	{
 		NSString *types = [NSString stringWithFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)];
 		return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
