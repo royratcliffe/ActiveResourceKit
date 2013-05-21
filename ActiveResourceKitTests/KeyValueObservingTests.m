@@ -57,6 +57,7 @@
 	self.person.name = @"XYZ";
 	STAssertEqualObjects(self.person.name, @"XYZ", nil);
 	STAssertEquals(self.changeSetting, (NSUInteger)1, nil);
+	// Note, there is just one change because the name starts off as nil.
 }
 
 - (void)testPersonChangesNameFromXYZToNil
