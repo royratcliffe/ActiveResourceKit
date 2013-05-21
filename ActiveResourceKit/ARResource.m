@@ -236,7 +236,15 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-	[_attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:key]];
+	key = [[ASInflector defaultInflector] underscore:key];
+	if (value)
+	{
+		[_attributes setObject:value forKey:key];
+	}
+	else
+	{
+		[_attributes removeObjectForKey:key];
+	}
 }
 
 - (void)setNilValueForKey:(NSString *)key
