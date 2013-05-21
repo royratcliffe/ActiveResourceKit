@@ -234,14 +234,37 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	return [_attributes objectForKey:[[ASInflector defaultInflector] underscore:key]];
 }
 
+// Removes a value if you set the value to nil. Complies with key-value
+// observing protocols by sending "will- and did-change value for key" messages.
+// Only send will-and-did-change messages if and only if the value changes. Use
+// -isEqual: to determine change versus no change.
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-	[_attributes setObject:value forKey:[[ASInflector defaultInflector] underscore:key]];
+	if (value)
+	{
+		NSString *attributeName = [[ASInflector defaultInflector] underscore:key];
+		if (![[_attributes objectForKey:attributeName] isEqual:value])
+		{
+			[self willChangeValueForKey:key];
+			[_attributes setObject:value forKey:attributeName];
+			[self didChangeValueForKey:key];
+		}
+	}
+	else
+	{
+		[self setNilValueForKey:key];
+	}
 }
 
 - (void)setNilValueForKey:(NSString *)key
 {
-	[self setValue:[NSNull null] forKey:key];
+	NSString *attributeName = [[ASInflector defaultInflector] underscore:key];
+	if ([_attributes objectForKey:attributeName])
+	{
+		[self willChangeValueForKey:key];
+		[_attributes removeObjectForKey:attributeName];
+		[self didChangeValueForKey:key];
+	}
 }
 
 /**

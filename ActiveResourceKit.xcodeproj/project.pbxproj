@@ -82,6 +82,8 @@
 		784BA1A0152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */; };
 		784BA1A1152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 784BA19E152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld */; };
 		784BA1A2152C978600D4DD97 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879809A14D1704900825C1E /* CoreData.framework */; };
+		7851F5E9174B837A000EE84D /* KeyValueObservingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7851F5E8174B837A000EE84D /* KeyValueObservingTests.m */; };
+		7851F5EA174B837A000EE84D /* KeyValueObservingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7851F5E8174B837A000EE84D /* KeyValueObservingTests.m */; };
 		7865AE67152C4738008F96CC /* IncrementalStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865AE66152C4738008F96CC /* IncrementalStoreTests.m */; };
 		7865AE68152C4738008F96CC /* IncrementalStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865AE66152C4738008F96CC /* IncrementalStoreTests.m */; };
 		786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
@@ -259,6 +261,8 @@
 		7846AA39140BAAE100FE58E5 /* ActiveResourceKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveResourceKitTests.h; sourceTree = "<group>"; };
 		7846AA3B140BAAE100FE58E5 /* ActiveResourceKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActiveResourceKitTests.m; sourceTree = "<group>"; };
 		784BA19F152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ActiveResourceKitTests.xcdatamodel; sourceTree = "<group>"; };
+		7851F5E7174B837A000EE84D /* KeyValueObservingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueObservingTests.h; sourceTree = "<group>"; };
+		7851F5E8174B837A000EE84D /* KeyValueObservingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueObservingTests.m; sourceTree = "<group>"; };
 		7865AE65152C4738008F96CC /* IncrementalStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncrementalStoreTests.h; sourceTree = "<group>"; };
 		7865AE66152C4738008F96CC /* IncrementalStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncrementalStoreTests.m; sourceTree = "<group>"; };
 		786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueCodingTests.h; sourceTree = "<group>"; };
@@ -478,6 +482,8 @@
 				7865AE66152C4738008F96CC /* IncrementalStoreTests.m */,
 				786D636614DC1C8D00FCEFA7 /* KeyValueCodingTests.h */,
 				786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */,
+				7851F5E7174B837A000EE84D /* KeyValueObservingTests.h */,
+				7851F5E8174B837A000EE84D /* KeyValueObservingTests.m */,
 				7828228214686DFD005D9BD2 /* ARTestCase.h */,
 				7828228314686DFD005D9BD2 /* ARTestCase.m */,
 				78282272146867F5005D9BD2 /* FinderTests.h */,
@@ -820,6 +826,7 @@
 				7865AE68152C4738008F96CC /* IncrementalStoreTests.m in Sources */,
 				784BA1A1152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 				78AC69E517424480004195E0 /* DynamicTests.m in Sources */,
+				7851F5EA174B837A000EE84D /* KeyValueObservingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +875,7 @@
 				7865AE67152C4738008F96CC /* IncrementalStoreTests.m in Sources */,
 				784BA1A0152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 				78AC69E417424480004195E0 /* DynamicTests.m in Sources */,
+				7851F5E9174B837A000EE84D /* KeyValueObservingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,7 +1022,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 565.2;
+				CURRENT_PROJECT_VERSION = 574.8;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1050,7 +1058,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 565.2;
+				CURRENT_PROJECT_VERSION = 574.8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1075,7 +1083,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 565.2;
+				DYLIB_CURRENT_VERSION = 574.8;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/ObjectiveRailsKit.framework/Versions/Current/Frameworks";
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1092,7 +1100,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 565.2;
+				DYLIB_CURRENT_VERSION = 574.8;
 				DYLIB_INSTALL_NAME_BASE = "@executable_path/../Frameworks/ObjectiveRailsKit.framework/Versions/Current/Frameworks";
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
