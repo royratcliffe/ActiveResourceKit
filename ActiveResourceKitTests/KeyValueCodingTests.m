@@ -56,6 +56,24 @@
 	STAssertEqualObjects(nil, [[self resource] valueForKey:@"key"], nil);
 }
 
+- (void)testNilValueForNull
+{
+	// Setting a resource value using KVC makes null become nil when you later
+	// access the resource attribute using KVC. However, you can still access
+	// the underlying null attribute by directly requesting the attributes
+	// dictionary.
+	[[self resource] setValue:[NSNull null] forKey:@"key"];
+	STAssertNil([[self resource] valueForKey:@"key"], nil);
+	STAssertEquals([[[self resource] attributes] objectForKey:@"key"], [NSNull null], nil);
+}
+
+- (void)testNilValueForNil
+{
+	[[self resource] setValue:nil forKey:@"key"];
+	STAssertNil([[self resource] valueForKey:@"key"], nil);
+	STAssertNil([[[self resource] attributes] objectForKey:@"key"], nil);
+}
+
 - (void)testAttributeKeyVersusKVCKey
 {
 	[[self resource] setValue:@"123" forKey:@"TheKey"];
