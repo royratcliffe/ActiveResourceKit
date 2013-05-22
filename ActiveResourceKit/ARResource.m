@@ -231,7 +231,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 // underscored.
 - (id)valueForUndefinedKey:(NSString *)key
 {
-	return [_attributes objectForKey:[[ASInflector defaultInflector] underscore:key]];
+	return ASNilForNull([_attributes objectForKey:[[ASInflector defaultInflector] underscore:key]]);
 }
 
 // Removes a value if you set the value to nil. Complies with key-value
