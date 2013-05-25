@@ -37,6 +37,17 @@
 	STAssertNotNil(person, nil);
 	STAssertNil([person service], nil);
 	STAssertNil([person encode], nil);
+
+	// Test encoding using default JSON formatter. Construct the people resource
+	// service lazily. This asks the Person class itself to build the
+	// service. The lazy getter instantiates a default service as a side
+	// effect. Finally, assert the default JSON encoding.
+	ARService *peopleService = [person serviceLazily];
+	STAssertNotNil(peopleService, nil);
+	STAssertNotNil([person encode], nil);
+	NSData *JSONData = [person encode];
+	NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+	STAssertEqualObjects(JSONString, @"{\"person\":{}}", nil);
 }
 
 @end
