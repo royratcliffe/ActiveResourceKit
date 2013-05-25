@@ -102,6 +102,8 @@
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
 		78805F1D1445ACB100703E80 /* libActiveSupportKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78805F1C1445ACB100703E80 /* libActiveSupportKit.a */; };
+		788A85471750D8010096D8DF /* EncodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 788A85461750D8010096D8DF /* EncodeTests.m */; };
+		788A85481750D8010096D8DF /* EncodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 788A85461750D8010096D8DF /* EncodeTests.m */; };
 		78AC69E417424480004195E0 /* DynamicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC69E317424480004195E0 /* DynamicTests.m */; };
 		78AC69E517424480004195E0 /* DynamicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC69E317424480004195E0 /* DynamicTests.m */; };
 		78B58E9C1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
@@ -274,6 +276,8 @@
 		7870D53814CDFED800934195 /* ARMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMacros.h; sourceTree = "<group>"; };
 		7879809A14D1704900825C1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		78805F1C1445ACB100703E80 /* libActiveSupportKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libActiveSupportKit.a; path = "../ActiveSupportKit/build/Release-iphoneos/libActiveSupportKit.a"; sourceTree = "<group>"; };
+		788A85451750D8010096D8DF /* EncodeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodeTests.h; sourceTree = "<group>"; };
+		788A85461750D8010096D8DF /* EncodeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeTests.m; sourceTree = "<group>"; };
 		78AC69E217424480004195E0 /* DynamicTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTests.h; sourceTree = "<group>"; };
 		78AC69E317424480004195E0 /* DynamicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTests.m; sourceTree = "<group>"; };
 		78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+ActiveResource.h"; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 				780D95AC14E173B5005689CA /* BaseTests.m */,
 				78AC69E217424480004195E0 /* DynamicTests.h */,
 				78AC69E317424480004195E0 /* DynamicTests.m */,
+				788A85451750D8010096D8DF /* EncodeTests.h */,
+				788A85461750D8010096D8DF /* EncodeTests.m */,
 				7828227E14686A2E005D9BD2 /* Person.h */,
 				7828227F14686A2E005D9BD2 /* Person.m */,
 				78054AF81469299E007E947E /* Private.h */,
@@ -827,6 +833,7 @@
 				784BA1A1152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 				78AC69E517424480004195E0 /* DynamicTests.m in Sources */,
 				7851F5EA174B837A000EE84D /* KeyValueObservingTests.m in Sources */,
+				788A85481750D8010096D8DF /* EncodeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +883,7 @@
 				784BA1A0152C8E1800D4DD97 /* ActiveResourceKitTests.xcdatamodeld in Sources */,
 				78AC69E417424480004195E0 /* DynamicTests.m in Sources */,
 				7851F5E9174B837A000EE84D /* KeyValueObservingTests.m in Sources */,
+				788A85471750D8010096D8DF /* EncodeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
