@@ -35,6 +35,7 @@
 	// until the resource knows its service.
 	Person *person = [Person new];
 	STAssertNotNil(person, nil);
+	STAssertNil([person service], nil);
 	STAssertNil([person encode], nil);
 }
 
