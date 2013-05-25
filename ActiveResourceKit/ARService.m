@@ -98,7 +98,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                         Schema and Known Attributes
+#pragma mark -                                       Schema and Known Attributes
 //------------------------------------------------------------------------------
 
 @synthesize schema = _schema;
@@ -109,7 +109,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                                Site
+#pragma mark -                                                              Site
 //------------------------------------------------------------------------------
 
 @synthesize site = _site;
@@ -120,7 +120,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                              Format
+#pragma mark -                                                            Format
 //------------------------------------------------------------------------------
 
 @synthesize format = _format;
@@ -137,13 +137,13 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                             Timeout
+#pragma mark -                                                           Timeout
 //------------------------------------------------------------------------------
 
 @synthesize timeout = _timeout;
 
 //------------------------------------------------------------------------------
-#pragma mark                                                          Connection
+#pragma mark -                                                        Connection
 //------------------------------------------------------------------------------
 
 // Lazily constructs a connection using the default connection class.
@@ -165,7 +165,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                             Headers
+#pragma mark -                                                           Headers
 //------------------------------------------------------------------------------
 
 @synthesize headers = _headers;
@@ -181,7 +181,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                        Element and Collection Names
+#pragma mark -                                      Element and Collection Names
 //------------------------------------------------------------------------------
 
 @synthesize elementName = _elementName;
@@ -211,7 +211,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                             Primary and Foreign Key
+#pragma mark -                                           Primary and Foreign Key
 //------------------------------------------------------------------------------
 
 @synthesize primaryKey = _primaryKey;
@@ -232,7 +232,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                              Prefix
+#pragma mark -                                                            Prefix
 //------------------------------------------------------------------------------
 
 @synthesize prefixSource = _prefixSource;
@@ -277,7 +277,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                               Paths
+#pragma mark -                                                             Paths
 //------------------------------------------------------------------------------
 
 - (NSString *)elementPathForID:(NSNumber *)ID prefixOptions:(NSDictionary *)prefixOptions queryOptions:(NSDictionary *)queryOptions
@@ -308,7 +308,7 @@ Class ARServiceDefaultConnectionClass;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                    RESTful Services
+#pragma mark -                                                  RESTful Services
 //------------------------------------------------------------------------------
 
 // Building with attributes. Should this be a class or instance method? Rails

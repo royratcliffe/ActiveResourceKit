@@ -155,7 +155,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                                Base
+#pragma mark -                                                              Base
 //------------------------------------------------------------------------------
 
 @synthesize service = _service;
@@ -171,7 +171,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                          Attributes
+#pragma mark -                                                        Attributes
 //------------------------------------------------------------------------------
 
 // Store attributes using a mutable dictionary. Take care, however, not to
@@ -296,13 +296,13 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                      Prefix Options
+#pragma mark -                                                    Prefix Options
 //------------------------------------------------------------------------------
 
 @synthesize prefixOptions = _prefixOptions;
 
 //------------------------------------------------------------------------------
-#pragma mark                                         Schema and Known Attributes
+#pragma mark -                                       Schema and Known Attributes
 //------------------------------------------------------------------------------
 
 - (NSDictionary *)schema
@@ -320,7 +320,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                           Persisted
+#pragma mark -                                                         Persisted
 //------------------------------------------------------------------------------
 
 @synthesize persisted = _persisted;
@@ -336,7 +336,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                         Primary Key
+#pragma mark -                                                       Primary Key
 //------------------------------------------------------------------------------
 
 - (NSNumber *)ID
@@ -351,7 +351,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                    RESTful Services
+#pragma mark -                                                  RESTful Services
 //------------------------------------------------------------------------------
 
 - (void)saveWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
@@ -387,7 +387,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                              Object
+#pragma mark -                                                            Object
 //------------------------------------------------------------------------------
 
 - (NSString *)description
