@@ -196,8 +196,13 @@
 - (void)existsWithCompletionHandler:(void (^)(ARHTTPResponse *response, BOOL exists, NSError *error))completionHandler;
 
 /**
- * Answers a serialised data representation of the resource according to
- * the configured serialisation format.
+ * @result Answers a serialised data representation of the resource according to
+ * the configured serialisation format. Answers `nil` if this resource currently
+ * has no service.
+ *
+ * The method does _not_ attempt to construct the service lazily, but does
+ * instantiate the format and element name lazily if the underlying service
+ * already exists.
  */
 - (NSData *)encode;
 

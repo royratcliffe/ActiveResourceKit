@@ -383,7 +383,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 - (NSData *)encode
 {
 	ARService *service = [self service];
-	return [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL];
+	return service ? [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL] : nil;
 }
 
 //------------------------------------------------------------------------------
