@@ -34,7 +34,8 @@
 	// so no way to encode the resource. Encoding requirements remain unknown
 	// until the resource knows its service.
 	Person *person = [Person new];
-	STAssertNil(person, nil);
+	STAssertNotNil(person, nil);
+	STAssertNil([person encode], nil);
 }
 
 @end
