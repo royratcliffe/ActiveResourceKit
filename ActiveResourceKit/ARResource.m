@@ -186,9 +186,22 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (void)setAttributes:(NSDictionary *)attributes
 {
-	// Remove all objects in order to maintain "setter" semantics. Otherwise,
+	// Remove unset objects in order to maintain "setter" semantics. Otherwise,
 	// setting really means merging attributes.
-	[_attributes removeAllObjects];
+	//
+	// Note that removing an attribute does not create a key-value change
+	// "removal." It triggers a key-value "setting" change. Removal changes only
+	// apply to to-many relationships, not to attributes of an object. Removing
+	// an attribute amounts to "setting" it to nil.
+	NSMutableSet *attributeNames = [NSMutableSet setWithArray:[_attributes allKeys]];
+	[attributeNames minusSet:[NSSet setWithArray:[attributes allKeys]]];
+	for (NSString *attributeName in attributeNames)
+	{
+		NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+		[self willChangeValueForKey:key];
+		[_attributes removeObjectForKey:attributeName];
+		[self didChangeValueForKey:key];
+	}
 	[self mergeAttributes:attributes];
 }
 
@@ -197,10 +210,16 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	// Take care not to use -[NSObject setValuesForKeysWithDictionary:] because
 	// it filters out all those attributes with null values. By design,
 	// resources preserve all attributes, even those with no values.
-	for (NSString *attributeName in attributes)
+	for (NSString *attributeName in [attributes allKeys])
 	{
 		id attributeValue = [attributes objectForKey:attributeName];
-		[_attributes setObject:attributeValue forKey:attributeName];
+		if (![attributeValue isEqual:[_attributes objectForKey:attributeName]])
+		{
+			NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+			[self willChangeValueForKey:key];
+			[_attributes setObject:attributeValue forKey:attributeName];
+			[self didChangeValueForKey:key];
+		}
 	}
 }
 
@@ -347,7 +366,14 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (void)setID:(NSNumber *)ID
 {
-	[_attributes setObject:ID forKey:[[self serviceLazily] primaryKeyLazily]];
+	NSString *attributeName = [[self serviceLazily] primaryKeyLazily];
+	if (![ID isEqual:[_attributes objectForKey:attributeName]])
+	{
+		NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+		[self willChangeValueForKey:key];
+		[_attributes setObject:ID forKey:attributeName];
+		[self didChangeValueForKey:key];
+	}
 }
 
 //------------------------------------------------------------------------------
