@@ -100,7 +100,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                  Active Resource-to-Core Data Names
+#pragma mark -                                Active Resource-to-Core Data Names
 //------------------------------------------------------------------------------
 
 @synthesize entityNamePrefix = _entityNamePrefix;
@@ -140,7 +140,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                  Incremental Store Method Overrides
+#pragma mark -                                Incremental Store Method Overrides
 //------------------------------------------------------------------------------
 
 // The following methods appear in Core Data's public interface for

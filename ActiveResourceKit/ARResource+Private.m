@@ -138,7 +138,7 @@ BOOL ARResponseCodeAllowsBody(NSInteger code)
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                            Active Model Conversions
+#pragma mark -                                          Active Model Conversions
 //------------------------------------------------------------------------------
 
 - (NSArray *)toKey

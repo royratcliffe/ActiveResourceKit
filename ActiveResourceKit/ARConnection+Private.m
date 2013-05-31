@@ -49,7 +49,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                            Format Header for Method
+#pragma mark -                                          Format Header for Method
 //------------------------------------------------------------------------------
 
 - (NSDictionary *)HTTPFormatHeaderForHTTPMethod:(NSString *)HTTPMethod

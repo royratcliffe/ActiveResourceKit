@@ -29,7 +29,7 @@
 @implementation VersioningTests
 
 //------------------------------------------------------------------------------
-#pragma mark                                                    Versioning Tests
+#pragma mark -                                                  Versioning Tests
 //------------------------------------------------------------------------------
 
 #define PROGRAM_NAME_STRING PROJECT_NAME_STRING

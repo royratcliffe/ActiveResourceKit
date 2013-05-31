@@ -37,7 +37,7 @@
 @synthesize timeout = _timeout;
 
 //------------------------------------------------------------------------------
-#pragma mark                                                        Initialisers
+#pragma mark -                                                      Initialisers
 //------------------------------------------------------------------------------
 
 // designated initialiser
@@ -144,7 +144,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                   Building Requests
+#pragma mark -                                                 Building Requests
 //------------------------------------------------------------------------------
 
 - (NSMutableURLRequest *)requestForHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path headers:(NSDictionary *)headers

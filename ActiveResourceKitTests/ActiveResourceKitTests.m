@@ -37,7 +37,7 @@ NSURL *ActiveResourceKitTestsBaseURL()
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                        Person Class
+#pragma mark -                                                      Person Class
 //------------------------------------------------------------------------------
 
 @interface MyObject : ARService

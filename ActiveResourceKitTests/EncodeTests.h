@@ -1,6 +1,6 @@
-// ActiveResourceKit ARJSONFormat.m
+// ActiveResourceKitTests EncodeTests.h
 //
-// Copyright © 2011–2013, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -22,55 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARJSONFormat.h"
-#import "ARFormatMethods.h"
+#import <SenTestingKit/SenTestingKit.h>
 
-#import <ActiveSupportKit/ActiveSupportKit.h>
-
-@implementation ARJSONFormat
-
-- (NSString *)extension
-{
-	return @"json";
-}
-
-- (NSString *)MIMEType
-{
-	return @"application/json";
-}
-
-- (NSData *)encode:(id)object error:(NSError **)outError
-{
-	return ASJSONEncodeToData(object, outError);
-}
-
-- (id)decode:(NSData *)data error:(NSError **)outError
-{
-	return ARRemoveRoot(ASJSONDecodeFromData(data, outError));
-}
-
-//------------------------------------------------------------------------------
-#pragma mark -                                                         Singleton
-//------------------------------------------------------------------------------
-
-+ (ARJSONFormat *)JSONFormat
-{
-	static ARJSONFormat *__strong JSONFormat;
-	if (JSONFormat == nil)
-	{
-		JSONFormat = [[super allocWithZone:nil] init];
-	}
-	return JSONFormat;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-	return [self JSONFormat];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-	return self;
-}
+@interface EncodeTests : SenTestCase
 
 @end

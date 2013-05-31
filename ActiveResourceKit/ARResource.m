@@ -155,7 +155,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                                Base
+#pragma mark -                                                              Base
 //------------------------------------------------------------------------------
 
 @synthesize service = _service;
@@ -171,7 +171,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                          Attributes
+#pragma mark -                                                        Attributes
 //------------------------------------------------------------------------------
 
 // Store attributes using a mutable dictionary. Take care, however, not to
@@ -186,9 +186,22 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (void)setAttributes:(NSDictionary *)attributes
 {
-	// Remove all objects in order to maintain "setter" semantics. Otherwise,
+	// Remove unset objects in order to maintain "setter" semantics. Otherwise,
 	// setting really means merging attributes.
-	[_attributes removeAllObjects];
+	//
+	// Note that removing an attribute does not create a key-value change
+	// "removal." It triggers a key-value "setting" change. Removal changes only
+	// apply to to-many relationships, not to attributes of an object. Removing
+	// an attribute amounts to "setting" it to nil.
+	NSMutableSet *attributeNames = [NSMutableSet setWithArray:[_attributes allKeys]];
+	[attributeNames minusSet:[NSSet setWithArray:[attributes allKeys]]];
+	for (NSString *attributeName in attributeNames)
+	{
+		NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+		[self willChangeValueForKey:key];
+		[_attributes removeObjectForKey:attributeName];
+		[self didChangeValueForKey:key];
+	}
 	[self mergeAttributes:attributes];
 }
 
@@ -197,10 +210,16 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	// Take care not to use -[NSObject setValuesForKeysWithDictionary:] because
 	// it filters out all those attributes with null values. By design,
 	// resources preserve all attributes, even those with no values.
-	for (NSString *attributeName in attributes)
+	for (NSString *attributeName in [attributes allKeys])
 	{
 		id attributeValue = [attributes objectForKey:attributeName];
-		[_attributes setObject:attributeValue forKey:attributeName];
+		if (![attributeValue isEqual:[_attributes objectForKey:attributeName]])
+		{
+			NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+			[self willChangeValueForKey:key];
+			[_attributes setObject:attributeValue forKey:attributeName];
+			[self didChangeValueForKey:key];
+		}
 	}
 }
 
@@ -296,13 +315,13 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                      Prefix Options
+#pragma mark -                                                    Prefix Options
 //------------------------------------------------------------------------------
 
 @synthesize prefixOptions = _prefixOptions;
 
 //------------------------------------------------------------------------------
-#pragma mark                                         Schema and Known Attributes
+#pragma mark -                                       Schema and Known Attributes
 //------------------------------------------------------------------------------
 
 - (NSDictionary *)schema
@@ -320,7 +339,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                           Persisted
+#pragma mark -                                                         Persisted
 //------------------------------------------------------------------------------
 
 @synthesize persisted = _persisted;
@@ -336,7 +355,7 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                         Primary Key
+#pragma mark -                                                       Primary Key
 //------------------------------------------------------------------------------
 
 - (NSNumber *)ID
@@ -347,11 +366,18 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 
 - (void)setID:(NSNumber *)ID
 {
-	[_attributes setObject:ID forKey:[[self serviceLazily] primaryKeyLazily]];
+	NSString *attributeName = [[self serviceLazily] primaryKeyLazily];
+	if (![ID isEqual:[_attributes objectForKey:attributeName]])
+	{
+		NSString *key = [[ASInflector defaultInflector] camelize:attributeName uppercaseFirstLetter:NO];
+		[self willChangeValueForKey:key];
+		[_attributes setObject:ID forKey:attributeName];
+		[self didChangeValueForKey:key];
+	}
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                    RESTful Services
+#pragma mark -                                                  RESTful Services
 //------------------------------------------------------------------------------
 
 - (void)saveWithCompletionHandler:(void (^)(ARHTTPResponse *response, NSError *error))completionHandler
@@ -383,11 +409,11 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 - (NSData *)encode
 {
 	ARService *service = [self service];
-	return [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL];
+	return service ? [[service formatLazily] encode:[NSDictionary dictionaryWithObject:[self attributes] forKey:[service elementNameLazily]] error:NULL] : nil;
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                              Object
+#pragma mark -                                                            Object
 //------------------------------------------------------------------------------
 
 - (NSString *)description

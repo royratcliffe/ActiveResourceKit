@@ -1,6 +1,6 @@
-// ActiveResourceKit ARJSONFormat.m
+// ActiveResourceKitTests EncodeTests.m
 //
-// Copyright © 2011–2013, Roy Ratcliffe, Pioneering Software, United Kingdom
+// Copyright © 2013, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -22,55 +22,32 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ARJSONFormat.h"
-#import "ARFormatMethods.h"
+#import "EncodeTests.h"
 
-#import <ActiveSupportKit/ActiveSupportKit.h>
+#import "Person.h"
 
-@implementation ARJSONFormat
+@implementation EncodeTests
 
-- (NSString *)extension
+- (void)testEncode
 {
-	return @"json";
-}
+	// Encode a new person resource. Initially there is no underlying service,
+	// so no way to encode the resource. Encoding requirements remain unknown
+	// until the resource knows its service.
+	Person *person = [Person new];
+	STAssertNotNil(person, nil);
+	STAssertNil([person service], nil);
+	STAssertNil([person encode], nil);
 
-- (NSString *)MIMEType
-{
-	return @"application/json";
-}
-
-- (NSData *)encode:(id)object error:(NSError **)outError
-{
-	return ASJSONEncodeToData(object, outError);
-}
-
-- (id)decode:(NSData *)data error:(NSError **)outError
-{
-	return ARRemoveRoot(ASJSONDecodeFromData(data, outError));
-}
-
-//------------------------------------------------------------------------------
-#pragma mark -                                                         Singleton
-//------------------------------------------------------------------------------
-
-+ (ARJSONFormat *)JSONFormat
-{
-	static ARJSONFormat *__strong JSONFormat;
-	if (JSONFormat == nil)
-	{
-		JSONFormat = [[super allocWithZone:nil] init];
-	}
-	return JSONFormat;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-	return [self JSONFormat];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-	return self;
+	// Test encoding using default JSON formatter. Construct the people resource
+	// service lazily. This asks the Person class itself to build the
+	// service. The lazy getter instantiates a default service as a side
+	// effect. Finally, assert the default JSON encoding.
+	ARService *peopleService = [person serviceLazily];
+	STAssertNotNil(peopleService, nil);
+	STAssertNotNil([person encode], nil);
+	NSData *JSONData = [person encode];
+	NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+	STAssertEqualObjects(JSONString, @"{\"person\":{}}", nil);
 }
 
 @end

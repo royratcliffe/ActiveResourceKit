@@ -144,7 +144,7 @@ NSString *ARQueryStringForOptions(NSDictionary *options)
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                                       HTTP Requests
+#pragma mark -                                                     HTTP Requests
 //------------------------------------------------------------------------------
 
 // Under Rails, the HTTP request methods belong to a separate connection class,

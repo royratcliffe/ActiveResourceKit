@@ -32,7 +32,7 @@
 @synthesize data              = _data;
 
 //------------------------------------------------------------------------------
-#pragma mark                                                 Connection Delegate
+#pragma mark -                                               Connection Delegate
 //------------------------------------------------------------------------------
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -61,7 +61,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark                                            Connection Data Delegate
+#pragma mark -                                          Connection Data Delegate
 //------------------------------------------------------------------------------
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
