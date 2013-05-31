@@ -70,6 +70,20 @@
 	STAssertEquals(self.changeSetting, (NSUInteger)2, nil);
 }
 
+- (void)testMergeAttributes
+{
+	// Key-value observing should work even when accessing the attributes
+	// directly as attributes rather than properties.
+	//
+	// Merging `other_name` does not trigger a change-setting observation
+	// because this test only observes changes to `name`.
+	self.changeSetting = 0;
+	[self.person mergeAttributes:@{@"name": @"Roy"}];
+	STAssertEqualObjects([self.person knownAttributes], @[@"name"], nil);
+	[self.person mergeAttributes:@{@"other_name": @"Ratcliffe"}];
+	STAssertEquals(self.changeSetting, (NSUInteger)1, nil);
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	STAssertEquals(object, self.person, nil);
