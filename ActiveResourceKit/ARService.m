@@ -358,19 +358,19 @@ Class ARServiceDefaultConnectionClass;
 
 - (void)findAllWithOptions:(NSDictionary *)options completionHandler:(ARResourcesCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:completionHandler];
+	[self findEveryWithOptions:options completionHandler:completionHandler];
 }
 
 - (void)findFirstWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
+	[self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
 		completionHandler(response, resources && [resources count] ? [resources objectAtIndex:0] : nil, error);
 	}];
 }
 
 - (void)findLastWithOptions:(NSDictionary *)options completionHandler:(ARResourceCompletionHandler)completionHandler
 {
-	return [self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
+	[self findEveryWithOptions:options completionHandler:^(ARHTTPResponse *response, NSArray *resources, NSError *error) {
 		completionHandler(response, resources && [resources count] ? [resources lastObject] : nil, error);
 	}];
 }
