@@ -301,7 +301,8 @@ NSString *ARUndefinedKeyForGetterSelector(SEL selector);
 	NSMutableDictionary *keyedValues = [NSMutableDictionary dictionary];
 	for (NSString *key in keys)
 	{
-		[keyedValues setObject:[self valueForKey:key] forKey:key];
+		id value = [self valueForKey:key];
+		if (value) [keyedValues setObject:value forKey:key];
 	}
 	return [keyedValues copy];
 }
