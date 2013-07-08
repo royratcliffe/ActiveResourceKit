@@ -12,21 +12,17 @@
 		78054AFD14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
 		78054AFE14694531007E947E /* VersioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78054AFC14694531007E947E /* VersioningTests.m */; };
 		780C11FD14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780C11FF14F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */; };
 		780C120014F06D1C007960CF /* NSManagedObject+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C11FC14F06D1C007960CF /* NSManagedObject+ActiveResource.m */; };
 		780D959D14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		780D959E14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D959F14E1264F005689CA /* ARQueuedLoadingURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D959C14E1264F005689CA /* ARQueuedLoadingURLConnection.m */; };
 		780D95A014E1264F005689CA /* ARQueuedLoadingURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D959C14E1264F005689CA /* ARQueuedLoadingURLConnection.m */; };
 		780D95A714E12D74005689CA /* ARSynchronousLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95A514E12D74005689CA /* ARSynchronousLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		780D95A814E12D74005689CA /* ARSynchronousLoadingURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95A514E12D74005689CA /* ARSynchronousLoadingURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D95A914E12D74005689CA /* ARSynchronousLoadingURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95A614E12D74005689CA /* ARSynchronousLoadingURLConnection.m */; };
 		780D95AA14E12D74005689CA /* ARSynchronousLoadingURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95A614E12D74005689CA /* ARSynchronousLoadingURLConnection.m */; };
 		780D95AD14E173B5005689CA /* BaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95AC14E173B5005689CA /* BaseTests.m */; };
 		780D95AE14E173B5005689CA /* BaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95AC14E173B5005689CA /* BaseTests.m */; };
 		780D95B114E1D178005689CA /* ARURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95AF14E1D178005689CA /* ARURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		780D95B214E1D178005689CA /* ARURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 780D95AF14E1D178005689CA /* ARURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		780D95B314E1D178005689CA /* ARURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95B014E1D178005689CA /* ARURLConnection.m */; };
 		780D95B414E1D178005689CA /* ARURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D95B014E1D178005689CA /* ARURLConnection.m */; };
 		78107B3714DAD54D00662E9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78107B3614DAD54D00662E9B /* CoreData.framework */; };
@@ -40,39 +36,51 @@
 		7828228114686A2E005D9BD2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828227F14686A2E005D9BD2 /* Person.m */; };
 		7828228414686DFD005D9BD2 /* ARTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828228314686DFD005D9BD2 /* ARTestCase.m */; };
 		7828228514686DFD005D9BD2 /* ARTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7828228314686DFD005D9BD2 /* ARTestCase.m */; };
+		782AB986178B33CB008574C5 /* ActiveResourceKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; };
+		782AB987178B33CB008574C5 /* ARIncrementalStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */; };
+		782AB988178B33CB008574C5 /* NSPersistentStore+ActiveResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7870471814EFA2BC00510373 /* NSPersistentStore+ActiveResource.h */; };
+		782AB989178B33CB008574C5 /* NSManagedObject+ActiveResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 780C11FB14F06D1C007960CF /* NSManagedObject+ActiveResource.h */; };
+		782AB98A178B33CB008574C5 /* NSEntityDescription+ActiveResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */; };
+		782AB98B178B33CB008574C5 /* NSAttributeDescription+ActiveResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78E02B14152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h */; };
+		782AB98C178B33CB008574C5 /* NSHTTPURLResponse+ActiveResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
+		782AB98D178B33CB008574C5 /* ARService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARService.h */; };
+		782AB98E178B33CB008574C5 /* ARURLConnectionDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; };
+		782AB98F178B33CB008574C5 /* ARResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* ARResource.h */; };
+		782AB990178B33CB008574C5 /* ARConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; };
+		782AB991178B33CB008574C5 /* ARURLConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 780D95AF14E1D178005689CA /* ARURLConnection.h */; };
+		782AB992178B33CB008574C5 /* ARSynchronousLoadingURLConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 780D95A514E12D74005689CA /* ARSynchronousLoadingURLConnection.h */; };
+		782AB993178B33CB008574C5 /* ARQueuedLoadingURLConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 780D959B14E1264F005689CA /* ARQueuedLoadingURLConnection.h */; };
+		782AB994178B33CB008574C5 /* ARHTTPResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; };
+		782AB995178B33CB008574C5 /* ARHTTPMethods.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; };
+		782AB996178B33CB008574C5 /* ARMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; };
+		782AB997178B33CB008574C5 /* ARFormat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; };
+		782AB998178B33CB008574C5 /* ARFormatMethods.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78444FFB142896330014B4C6 /* ARFormatMethods.h */; };
+		782AB999178B33CB008574C5 /* ARJSONFormat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; };
+		782AB99A178B33CB008574C5 /* ARErrors.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; };
+		782AB99B178B33CB008574C5 /* Versioning.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; };
 		782B5B1D1421CE6100A74579 /* ActiveSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B5B1C1421CE6100A74579 /* ActiveSupportKit.framework */; };
 		78326FD5140FE3AA00ECCE7D /* ActiveModelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78326FCC140FE38B00ECCE7D /* ActiveModelKit.framework */; };
 		7832702F14110B7B00ECCE7D /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703214110BAE00ECCE7D /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7832703314110BAE00ECCE7D /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
 		7834B5DD14D167C90062BB04 /* ARIncrementalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7834B5DB14D167C90062BB04 /* ARIncrementalStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7834B5DF14D167C90062BB04 /* ARIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */; };
 		7834B5E014D167C90062BB04 /* ARIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834B5DC14D167C90062BB04 /* ARIncrementalStore.m */; };
 		7835BC8F1414C47900CC4B56 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7835BC901414C47900CC4B56 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
 		78404E6814F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78404E6614F17FB1005986CB /* NSEntityDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78404E6A14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */; };
 		78404E6B14F17FB1005986CB /* NSEntityDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78404E6714F17FB1005986CB /* NSEntityDescription+ActiveResource.m */; };
-		78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78440D77141928B000EFBB93 /* ARService.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6F1140BC3B800DD4278 /* ARService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78440D78141928B000EFBB93 /* ARFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832702E14110B7B00ECCE7D /* ARFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78440D79141928B000EFBB93 /* ARJSONFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7832703014110BAE00ECCE7D /* ARJSONFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78440D7A141928B000EFBB93 /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 7835BC8D1414C47900CC4B56 /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78440D7B141928D100EFBB93 /* ARService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARService.m */; };
 		78440D7C141928D100EFBB93 /* ARJSONFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832703114110BAE00ECCE7D /* ARJSONFormat.m */; };
 		78440D7D141928D100EFBB93 /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BC8E1414C47900CC4B56 /* Versioning.m */; };
 		78444FFD142896330014B4C6 /* ARFormatMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78444FFB142896330014B4C6 /* ARFormatMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78444FFE142896330014B4C6 /* ARFormatMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78444FFB142896330014B4C6 /* ARFormatMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78444FFF142896330014B4C6 /* ARFormatMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78444FFC142896330014B4C6 /* ARFormatMethods.m */; };
 		78445000142896330014B4C6 /* ARFormatMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78444FFC142896330014B4C6 /* ARFormatMethods.m */; };
 		784450091428CE250014B4C6 /* ARResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* ARResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7844500A1428CE250014B4C6 /* ARResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450071428CE250014B4C6 /* ARResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7844500B1428CE250014B4C6 /* ARResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* ARResource.m */; };
 		7844500C1428CE250014B4C6 /* ARResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450081428CE250014B4C6 /* ARResource.m */; };
 		784450151428EFCB0014B4C6 /* ARService+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450131428EFCB0014B4C6 /* ARService+Private.h */; };
-		784450161428EFCB0014B4C6 /* ARService+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 784450131428EFCB0014B4C6 /* ARService+Private.h */; };
 		784450171428EFCB0014B4C6 /* ARService+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450141428EFCB0014B4C6 /* ARService+Private.m */; };
 		784450181428EFCB0014B4C6 /* ARService+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 784450141428EFCB0014B4C6 /* ARService+Private.m */; };
 		7846AA22140BAAE100FE58E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7846AA20140BAAE100FE58E5 /* InfoPlist.strings */; };
@@ -89,15 +97,12 @@
 		786D637114DC391000FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		786D637214DC391100FCEFA7 /* KeyValueCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D636714DC1C8D00FCEFA7 /* KeyValueCodingTests.m */; };
 		786D637514DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		786D637614DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 786D637314DC568900FCEFA7 /* ARURLConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		786D637714DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */; };
 		786D637814DC568900FCEFA7 /* ARURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 786D637414DC568900FCEFA7 /* ARURLConnectionDelegate.m */; };
 		7870471A14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870471814EFA2BC00510373 /* NSPersistentStore+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870471814EFA2BC00510373 /* NSPersistentStore+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7870471C14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7870471914EFA2BC00510373 /* NSPersistentStore+ActiveResource.m */; };
 		7870471D14EFA2BC00510373 /* NSPersistentStore+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7870471914EFA2BC00510373 /* NSPersistentStore+ActiveResource.m */; };
 		7870D53A14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7870D53B14CDFED800934195 /* ARMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870D53814CDFED800934195 /* ARMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7879809B14D1704900825C1E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879809A14D1704900825C1E /* CoreData.framework */; };
 		78805F1A1445ACB100703E80 /* libActiveResourceKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7813AA9A1419270400523ECD /* libActiveResourceKit.a */; };
 		78805F1B1445ACB100703E80 /* libActiveModelKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF7F5614164D2000DB0DEA /* libActiveModelKit.a */; };
@@ -107,11 +112,9 @@
 		78AC69E417424480004195E0 /* DynamicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC69E317424480004195E0 /* DynamicTests.m */; };
 		78AC69E517424480004195E0 /* DynamicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC69E317424480004195E0 /* DynamicTests.m */; };
 		78B58E9C1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
-		78B58E9D1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B58E9A1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h */; };
 		78B58E9E1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */; };
 		78B58E9F1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B58E9B1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.m */; };
 		78B95F8214CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B95F8014CC6B6D00EEF206 /* ARHTTPMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B95F8414CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */; };
 		78B95F8514CC6B6D00EEF206 /* ARHTTPMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B95F8114CC6B6D00EEF206 /* ARHTTPMethods.m */; };
 		78BF7F5A14164E3500DB0DEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7846AA1C140BAAE100FE58E5 /* Foundation.framework */; };
@@ -121,33 +124,26 @@
 		78D3D6F4140BC3B800DD4278 /* ARService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D6F2140BC3B800DD4278 /* ARService.m */; };
 		78D3D6FB140BC5A100DD4278 /* ActiveResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D6FA140BC5A100DD4278 /* ActiveResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D9884114E9378E0081C350 /* ARHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D9883F14E9378E0081C350 /* ARHTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D9884314E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
 		78D9884414E9378E0081C350 /* ARHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9884014E9378E0081C350 /* ARHTTPResponse.m */; };
 		78E02B10152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */; };
-		78E02B11152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B0E152AE884008E6EC1 /* ARIncrementalStore+Private.h */; };
 		78E02B12152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */; };
 		78E02B13152AE884008E6EC1 /* ARIncrementalStore+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B0F152AE884008E6EC1 /* ARIncrementalStore+Private.m */; };
 		78E02B16152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B14152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78E02B17152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E02B14152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78E02B18152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B15152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.m */; };
 		78E02B19152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E02B15152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.m */; };
 		78E4DFEB145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
-		78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E4DFE9145B1BF700AB4BCB /* ARResource+Private.h */; settings = {ATTRIBUTES = (); }; };
 		78E4DFED145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
 		78E4DFEE145B1BF700AB4BCB /* ARResource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4DFEA145B1BF700AB4BCB /* ARResource+Private.m */; };
 		78EEA80114CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EEA7FF14CB7CEC0049AE28 /* ARConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78EEA80314CB7CEC0049AE28 /* ARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA80014CB7CEC0049AE28 /* ARConnection.m */; };
 		78EEA80414CB7CEC0049AE28 /* ARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA80014CB7CEC0049AE28 /* ARConnection.m */; };
 		78F7972514CC3D01007A1262 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972414CC3D01007A1262 /* ConnectionTests.m */; };
 		78F7972614CC3D01007A1262 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972414CC3D01007A1262 /* ConnectionTests.m */; };
 		78F7972F14CC48E8007A1262 /* ARConnection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F7972D14CC48E8007A1262 /* ARConnection+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F7972D14CC48E8007A1262 /* ARConnection+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78F7973114CC48E8007A1262 /* ARConnection+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972E14CC48E8007A1262 /* ARConnection+Private.m */; };
 		78F7973214CC48E8007A1262 /* ARConnection+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7972E14CC48E8007A1262 /* ARConnection+Private.m */; };
 		78FB0D86141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78FB0D87141A1820007AFB3D /* ARErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB0D84141A1820007AFB3D /* ARErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78FB0D88141A1820007AFB3D /* ARErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB0D85141A1820007AFB3D /* ARErrors.m */; };
 		78FB0D89141A1820007AFB3D /* ARErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB0D85141A1820007AFB3D /* ARErrors.m */; };
 /* End PBXBuildFile section */
@@ -210,6 +206,40 @@
 			remoteInfo = ActiveModelKitLibraryTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		782AB985178B33B4008574C5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				782AB986178B33CB008574C5 /* ActiveResourceKit.h in CopyFiles */,
+				782AB987178B33CB008574C5 /* ARIncrementalStore.h in CopyFiles */,
+				782AB988178B33CB008574C5 /* NSPersistentStore+ActiveResource.h in CopyFiles */,
+				782AB989178B33CB008574C5 /* NSManagedObject+ActiveResource.h in CopyFiles */,
+				782AB98A178B33CB008574C5 /* NSEntityDescription+ActiveResource.h in CopyFiles */,
+				782AB98B178B33CB008574C5 /* NSAttributeDescription+ActiveResource.h in CopyFiles */,
+				782AB98C178B33CB008574C5 /* NSHTTPURLResponse+ActiveResource.h in CopyFiles */,
+				782AB98D178B33CB008574C5 /* ARService.h in CopyFiles */,
+				782AB98E178B33CB008574C5 /* ARURLConnectionDelegate.h in CopyFiles */,
+				782AB98F178B33CB008574C5 /* ARResource.h in CopyFiles */,
+				782AB990178B33CB008574C5 /* ARConnection.h in CopyFiles */,
+				782AB991178B33CB008574C5 /* ARURLConnection.h in CopyFiles */,
+				782AB992178B33CB008574C5 /* ARSynchronousLoadingURLConnection.h in CopyFiles */,
+				782AB993178B33CB008574C5 /* ARQueuedLoadingURLConnection.h in CopyFiles */,
+				782AB994178B33CB008574C5 /* ARHTTPResponse.h in CopyFiles */,
+				782AB995178B33CB008574C5 /* ARHTTPMethods.h in CopyFiles */,
+				782AB996178B33CB008574C5 /* ARMacros.h in CopyFiles */,
+				782AB997178B33CB008574C5 /* ARFormat.h in CopyFiles */,
+				782AB998178B33CB008574C5 /* ARFormatMethods.h in CopyFiles */,
+				782AB999178B33CB008574C5 /* ARJSONFormat.h in CopyFiles */,
+				782AB99A178B33CB008574C5 /* ARErrors.h in CopyFiles */,
+				782AB99B178B33CB008574C5 /* Versioning.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		78054AF81469299E007E947E /* Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
@@ -520,39 +550,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		7813AA981419270400523ECD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78440D76141928B000EFBB93 /* ActiveResourceKit.h in Headers */,
-				78440D77141928B000EFBB93 /* ARService.h in Headers */,
-				78440D78141928B000EFBB93 /* ARFormat.h in Headers */,
-				78440D79141928B000EFBB93 /* ARJSONFormat.h in Headers */,
-				78440D7A141928B000EFBB93 /* Versioning.h in Headers */,
-				78FB0D87141A1820007AFB3D /* ARErrors.h in Headers */,
-				78444FFE142896330014B4C6 /* ARFormatMethods.h in Headers */,
-				7844500A1428CE250014B4C6 /* ARResource.h in Headers */,
-				784450161428EFCB0014B4C6 /* ARService+Private.h in Headers */,
-				78E4DFEC145B1BF700AB4BCB /* ARResource+Private.h in Headers */,
-				78EEA80214CB7CEC0049AE28 /* ARConnection.h in Headers */,
-				78F7973014CC48E8007A1262 /* ARConnection+Private.h in Headers */,
-				78B95F8314CC6B6D00EEF206 /* ARHTTPMethods.h in Headers */,
-				7870D53B14CDFED800934195 /* ARMacros.h in Headers */,
-				7834B5DE14D167C90062BB04 /* ARIncrementalStore.h in Headers */,
-				786D637614DC568900FCEFA7 /* ARURLConnectionDelegate.h in Headers */,
-				780D959E14E1264F005689CA /* ARQueuedLoadingURLConnection.h in Headers */,
-				780D95A814E12D74005689CA /* ARSynchronousLoadingURLConnection.h in Headers */,
-				780D95B214E1D178005689CA /* ARURLConnection.h in Headers */,
-				78D9884214E9378E0081C350 /* ARHTTPResponse.h in Headers */,
-				7870471B14EFA2BC00510373 /* NSPersistentStore+ActiveResource.h in Headers */,
-				780C11FE14F06D1C007960CF /* NSManagedObject+ActiveResource.h in Headers */,
-				78404E6914F17FB1005986CB /* NSEntityDescription+ActiveResource.h in Headers */,
-				78B58E9D1526082100956BB9 /* NSHTTPURLResponse+ActiveResource.h in Headers */,
-				78E02B11152AE884008E6EC1 /* ARIncrementalStore+Private.h in Headers */,
-				78E02B17152B06FC008E6EC1 /* NSAttributeDescription+ActiveResource.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7846AA11140BAAE100FE58E5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,7 +592,7 @@
 			buildPhases = (
 				7813AA961419270400523ECD /* Sources */,
 				7813AA971419270400523ECD /* Frameworks */,
-				7813AA981419270400523ECD /* Headers */,
+				782AB985178B33B4008574C5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
